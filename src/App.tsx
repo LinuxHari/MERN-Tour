@@ -1,9 +1,12 @@
-import Layout from "./layouts/AppLayout"
+
+import AppRoutes from "./AppRoutes"
+// import AdminLayout from "./layouts/AdminLayout"Z
+// import Layout from "./layouts/AppLayout"
 
 function App() {
 
   return (
-    <Layout/>
+    <AppRoutes/>
   )
 }
 

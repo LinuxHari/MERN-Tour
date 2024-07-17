@@ -3,7 +3,7 @@ import Header from "./SidebarHeader";
 import { Link } from "react-router-dom";
 
 const Sidebar = () => {
-  return (
+  return (<div className="dashboard js-dashboard -is-sidebar-visible">
     <div className="dashboard__sidebar js-dashboard-sidebar">
       <Header />
       <div className="sidebar -dashboard">
@@ -14,13 +14,14 @@ const Sidebar = () => {
             }`}
             key={index}
           >
-            <Link to={href}>
+            <Link to={href} style={{color:"white"}}>
               <i className={`${iconClass} text-26`}></i>
               <span className="ml-10">{text}</span>
             </Link>
           </div>
         ))}
       </div>
+    </div>
     </div>
   );
 };
