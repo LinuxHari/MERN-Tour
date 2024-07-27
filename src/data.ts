@@ -528,7 +528,7 @@ export const CURRENCIES = [
 ];
 
 export const DASHBOARD_NAV = [
-  { href: "/", iconClass: "icon-dashboard", text: "Dashboard" },
+  { href: "/dashboard", iconClass: "icon-dashboard", text: "Dashboard" },
   { href: "booking", iconClass: "icon-calendar", text: "My Booking" },
   { href: "listings", iconClass: "icon-menu", text: "My Listings" },
   { href: "addtour", iconClass: "icon-clipboard", text: "Add Tour" },
@@ -569,27 +569,28 @@ export const DASHBOARD_DATA = [
 
 export const NOTIFICATIONS = [
   { 
-    icon: 'icon-home', 
+    type: 'Approved', 
     message: 'Your listing House on the Beverly Hills has been approved' 
   },
   { 
-    icon: 'icon-review', 
+    type: 'Review', 
     message: 'Dollie Horton left a review on House on the Northridge' 
   },
   { 
-    icon: 'icon-heart', 
+    type: 'Favorite', 
     message: 'Someone favorites your Triple Story House for Rent listing' 
   },
   { 
-    icon: 'icon-heart', 
+    type: 'Favorite', 
     message: 'Someone favorites your Triple Story House for Rent listing' 
   },
   { 
-    icon: 'icon-home', 
+    type: 'Approved', 
     message: 'Your listing House on the Beverly Hills has been approved' 
   },
   { 
-    icon: 'icon-review', 
+    type: 'Review', 
     message: 'Dollie Horton left a review on House on the Northridge' 
   }
-]
+];
+

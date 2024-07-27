@@ -1,14 +1,13 @@
 import { DASHBOARD_DATA } from "../../../data";
+import { RenderProps } from "../../../type";
 import DetailCard from "./DetailCard";
 import EarningStatistics from "./EarningStatistics";
 import RecentActivities from "./RecentActivities";
 
-const Dashboard = () => {
+const Dashboard = ({ render }: RenderProps) => {
   return (
-    <div className="dashboard__content_content">
-      <h1 className="text-30">Dashboard</h1>
-      <p className="">Lorem ipsum dolor sit amet, consectetur.</p>
-
+    <>
+      {render("Dashboard", "Track Your Earnings and Activities")}
       <div className="row y-gap-30 pt-60 md:pt-30">
         {DASHBOARD_DATA.map(
           ({ title, icon, today, total, currency }, index) => (
@@ -28,9 +27,7 @@ const Dashboard = () => {
         <EarningStatistics />
         <RecentActivities />
       </div>
-
-      <div className="text-center pt-30">© Copyright Viatours 2023</div>
-    </div>
+    </>
   );
 };
 

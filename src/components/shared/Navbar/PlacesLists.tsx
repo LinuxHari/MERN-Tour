@@ -1,3 +1,4 @@
+import React from "react";
 import PlacesList from "./PlacesList";
 
 type PlacesLocationsProps = {
@@ -28,4 +29,6 @@ const PlacesLocations = ({ data }: PlacesLocationsProps) => {
   );
 };
 
-export default PlacesLocations;
+const MemoizedPlaceLocations = React.memo(PlacesLocations)
+
+export default MemoizedPlaceLocations

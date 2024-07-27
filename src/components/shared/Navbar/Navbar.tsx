@@ -4,8 +4,14 @@ import Logo from "./Logo";
 import Search from "./Search";
 import Places from "./Places";
 import { ACTIVITIES, DESTINATIONS } from "../../../data";
+import { useMemo } from "react";
 
 const Navbar = () => {
+
+  const destinations = useMemo(() => DESTINATIONS, [])
+
+  const activities = useMemo(() => ACTIVITIES, [])
+
   return (
     <header className="header -type-1 js-header">
       <div data-anim="fade delay-3" className="header__container container is-in-view">
@@ -25,8 +31,8 @@ const Navbar = () => {
           </button>
         </div>
         <div className="header__right">
-          <Places data={DESTINATIONS} title="Destionations" dataClick = "headerDestinations"/>
-          <Places data={ACTIVITIES} title="Activities" dataClick = "header-activities"/>
+          <Places data={destinations} title="Destionations" dataClick = "headerDestinations"/>
+          <Places data={activities} title="Activities" dataClick = "header-activities"/>
           <Currency />
           <Link to="/signup" className="ml-10">
             Sign up

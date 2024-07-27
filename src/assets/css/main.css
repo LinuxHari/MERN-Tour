@@ -13912,3 +13912,8 @@ a{
   text-decoration: none !important;
   color: black ;
 }
+
+.tabs__pane canvas{
+  width: 100% !important;
+  height: auto !important;
+}

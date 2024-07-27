@@ -1145,40 +1145,40 @@
     })
   }
   
-  const Tabs = (function() {
-    function init() {
-      const targets = document.querySelectorAll(".js-tabs");
-      if (!targets) return;
+  // const Tabs = (function() {
+  //   function init() {
+  //     const targets = document.querySelectorAll(".js-tabs");
+  //     if (!targets) return;
   
-      targets.forEach(el => {
-        singleTab(el)
-      })
-    }
+  //     targets.forEach(el => {
+  //       singleTab(el)
+  //     })
+  //   }
   
-    function singleTab(target) {
-      const controls = target.querySelector('.js-tabs-controls');
-      const controlsItems = target.querySelectorAll('.js-tabs-controls .js-tabs-button');
-      const content = target.querySelector('.js-tabs-content');
+  //   function singleTab(target) {
+  //     const controls = target.querySelector('.js-tabs-controls');
+  //     const controlsItems = target.querySelectorAll('.js-tabs-controls .js-tabs-button');
+  //     const content = target.querySelector('.js-tabs-content');
   
-      for (let l = 0; l < controlsItems.length; l++) {
-        const el = controlsItems[l];
+  //     for (let l = 0; l < controlsItems.length; l++) {
+  //       const el = controlsItems[l];
         
-        el.addEventListener("click", (e) => {
-          const selector = el.getAttribute('data-tab-target');
+  //       el.addEventListener("click", (e) => {
+  //         const selector = el.getAttribute('data-tab-target');
   
-          controls.querySelector('.is-tab-el-active').classList.remove('is-tab-el-active')
-          content.querySelector('.is-tab-el-active').classList.remove('is-tab-el-active')
+  //         controls.querySelector('.is-tab-el-active').classList.remove('is-tab-el-active')
+  //         content.querySelector('.is-tab-el-active').classList.remove('is-tab-el-active')
   
-          el.classList.add('is-tab-el-active')
-          content.querySelector(selector).classList.add('is-tab-el-active')
-        });
-      }
-    }
+  //         el.classList.add('is-tab-el-active')
+  //         content.querySelector(selector).classList.add('is-tab-el-active')
+  //       });
+  //     }
+  //   }
   
-    return {
-      init: init,
-    }
-  })();
+  //   return {
+  //     init: init,
+  //   }
+  // })();
   
   const Accordion = (function() {
     function init() {
