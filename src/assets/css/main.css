@@ -13917,3 +13917,7 @@ a{
   width: 100% !important;
   height: auto !important;
 }
+
+.text-light-gray {
+  color: #d3d3d3;
+}

@@ -1,12 +1,21 @@
 import React from "react";
 
 type ButtonProps = {
-  type: "primary" | "secondary";
+  type: "primary" | "secondary" | "icon"
   className?: string;
   children: React.ReactNode;
 };
 
 const Button = ({ type, className = "", children }: ButtonProps) => {
+
+  if(type === "icon"){
+    return(
+      <button className={`button -dark-1 size-35 bg-light-1 rounded-full flex-center ${className}`}>
+        {children}
+    </button>
+    )
+  }
+
   if (type === "secondary") {
     return (
       <button
@@ -18,7 +27,9 @@ const Button = ({ type, className = "", children }: ButtonProps) => {
     );
   }
 
-  return <div>Button</div>;
+  return <button className="button -md -dark-1 bg-accent-1 text-white">
+  {children}
+</button>;
 };
 
 export default Button;

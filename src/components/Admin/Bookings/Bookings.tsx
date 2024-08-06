@@ -1,730 +1,212 @@
-import { RenderProps } from "../../../type";
+import { useState } from "react";
+import { Bookings as BookingsType, RenderProps } from "../../../type";
 import Pagination from "../../shared/Pagination/Pagination";
+import Tabs from "../../shared/Tabs/Tabs";
+import Table from "./Table";
 
+const Bookings = ({ render }: RenderProps) => {
+  const [tab, setTab] = useState(0);
 
-const Bookings = ({render}: RenderProps) => {
+  const tableHeaders = [
+    "ID",
+    "Title",
+    "Start date",
+    "End date",
+    "Details",
+    "Price",
+    "Status",
+    "Action",
+  ];
+
+  const Status = ["Confirmed", "Pending", "Cancelled"];
+
+  const confirmedData: BookingsType[] = [
+    {
+      id: 484,
+      tour: {
+        imgUrl: "img/dashboard/booking/1.jpg",
+        title:
+          "Phi Phi Islands Adventure Day Trip with Seaview Lunch by V. Marine Tour",
+      },
+      startDate: "11 April 2023",
+      endDate: "11 April 2023",
+      details: "2 People",
+      price: "$392.89",
+      status: "Confirmed",
+    },
+    {
+      id: 485,
+      tour: {
+        imgUrl: "img/dashboard/booking/2.jpg",
+        title: "Bangkok City Tour with Temple Visits",
+      },
+      startDate: "12 April 2023",
+      endDate: "12 April 2023",
+      details: "3 People",
+      price: "$150.00",
+      status: "Confirmed",
+    },
+    {
+      id: 486,
+      tour: {
+        imgUrl: "img/dashboard/booking/3.jpg",
+        title: "Chiang Mai Elephant Sanctuary Day Trip",
+      },
+      startDate: "13 April 2023",
+      endDate: "13 April 2023",
+      details: "1 Person",
+      price: "$200.00",
+      status: "Confirmed",
+    },
+    {
+      id: 487,
+      tour: {
+        imgUrl: "img/dashboard/booking/4.jpg",
+        title: "Ayutthaya Historical Park Tour",
+      },
+      startDate: "14 April 2023",
+      endDate: "14 April 2023",
+      details: "4 People",
+      price: "$250.00",
+      status: "Confirmed",
+    },
+    {
+      id: 488,
+      tour: {
+        imgUrl: "img/dashboard/booking/5.jpg",
+        title: "Krabi Island Hopping Tour",
+      },
+      startDate: "15 April 2023",
+      endDate: "15 April 2023",
+      details: "2 People",
+      price: "$300.00",
+      status: "Confirmed",
+    },
+    {
+      id: 489,
+      tour: {
+        imgUrl: "img/dashboard/booking/6.jpg",
+        title: "Pattaya Coral Island Tour",
+      },
+      startDate: "16 April 2023",
+      endDate: "16 April 2023",
+      details: "5 People",
+      price: "$350.00",
+      status: "Confirmed",
+    },
+  ];
+
+  const cancelledData: BookingsType[] = [
+    {
+      id: 490,
+      tour: {
+        imgUrl: "img/dashboard/booking/7.jpg",
+        title: "Phuket Fantasea Show with Dinner",
+      },
+      startDate: "17 April 2023",
+      endDate: "17 April 2023",
+      details: "3 People",
+      price: "$400.00",
+      status: "Cancelled",
+    },
+    {
+      id: 491,
+      tour: {
+        imgUrl: "img/dashboard/booking/8.jpg",
+        title: "Koh Samui Angthong National Marine Park Tour",
+      },
+      startDate: "18 April 2023",
+      endDate: "18 April 2023",
+      details: "2 People",
+      price: "$450.00",
+      status: "Cancelled",
+    },
+  ];
+
+  const pendingData: BookingsType[] = [
+    {
+      id: 492,
+      tour: {
+        imgUrl: "img/dashboard/booking/9.jpg",
+        title: "Hua Hin Floating Market and Winery Tour",
+      },
+      startDate: "19 April 2023",
+      endDate: "19 April 2023",
+      details: "1 Person",
+      price: "$100.00",
+      status: "Pending",
+    },
+    {
+      id: 493,
+      tour: {
+        imgUrl: "img/dashboard/booking/10.jpg",
+        title: "Kanchanaburi River Kwai Tour",
+      },
+      startDate: "20 April 2023",
+      endDate: "20 April 2023",
+      details: "4 People",
+      price: "$200.00",
+      status: "Pending",
+    },
+    {
+      id: 494,
+      tour: {
+        imgUrl: "img/dashboard/booking/11.jpg",
+        title: "Sukhothai Historical Park Tour",
+      },
+      startDate: "21 April 2023",
+      endDate: "21 April 2023",
+      details: "2 People",
+      price: "$180.00",
+      status: "Pending",
+    },
+    {
+      id: 495,
+      tour: {
+        imgUrl: "img/dashboard/booking/12.jpg",
+        title: "Chiang Rai Golden Triangle Tour",
+      },
+      startDate: "22 April 2023",
+      endDate: "22 April 2023",
+      details: "3 People",
+      price: "$220.00",
+      status: "Pending",
+    },
+  ];
+
+  const bookingData = [confirmedData, cancelledData, pendingData];
+
   return (
     <>
-     {render("Bookings", "My Bookings")}
+      {render("Bookings", "My Bookings")}
       <div className="rounded-12 bg-white shadow-2 px-40 pt-40 pb-30 md:px-20 md:pt-20 md:mb-20 mt-60">
-        <div className="tabs -underline-2 js-tabs">
-          <div className="tabs__controls row x-gap-40 y-gap-10 lg:x-gap-20 js-tabs-controls">
-            <div className="col-auto">
-              <button
-                className="tabs__button text-20 lh-12 fw-500 pb-15 lg:pb-0 js-tabs-button is-tab-el-active"
-                data-tab-target=".-tab-item-1"
-              >
-                Approved
-              </button>
-            </div>
-
-            <div className="col-auto">
-              <button
-                className="tabs__button text-20 lh-12 fw-500 pb-15 lg:pb-0 js-tabs-button "
-                data-tab-target=".-tab-item-2"
-              >
-                Pending
-              </button>
-            </div>
-
-            <div className="col-auto">
-              <button
-                className="tabs__button text-20 lh-12 fw-500 pb-15 lg:pb-0 js-tabs-button "
-                data-tab-target=".-tab-item-3"
-              >
-                Cancelled
-              </button>
-            </div>
-          </div>
-
-          <div className="tabs__content js-tabs-content">
-            <div className="tabs__pane -tab-item-1 is-tab-el-active">
-              <div className="overflowAuto">
-                <table className="tableTest mb-30">
-                  <thead className="bg-light-1 rounded-12">
-                    <tr>
-                      <th>ID</th>
-                      <th>Title</th>
-                      <th>Start date</th>
-                      <th>End date</th>
-                      <th>Details</th>
-                      <th>Price</th>
-                      <th>Status</th>
-                      <th>Action</th>
-                    </tr>
-                  </thead>
-
-                  <tbody>
-                    <tr>
-                      <td>#484</td>
-
-                      <td className="min-w-300">
-                        <div className="d-flex items-center">
-                          <img src="img/dashboard/booking/1.jpg" alt="image" />
-                          <div className="ml-20">
-                            Phi Phi Islands Adventure Day Trip with Seaview
-                            Lunch by V. Marine Tour
-                          </div>
-                        </div>
-                      </td>
-
-                      <td>11 April 2023</td>
-
-                      <td>11 April 2023</td>
-
-                      <td>2 People</td>
-
-                      <td>$392.89</td>
-
-                      <td>
-                        <div className="circle text-purple-1">Approved</div>
-                      </td>
-
-                      <td>
-                        <div className="d-flex items-center">
-                          <button className="button -dark-1 size-35 bg-light-1 rounded-full flex-center">
-                            <i className="icon-pencil text-14"></i>
-                          </button>
-
-                          <button className="button -dark-1 size-35 bg-light-1 rounded-full flex-center ml-10">
-                            <i className="icon-delete text-14"></i>
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <td>#484</td>
-
-                      <td className="min-w-300">
-                        <div className="d-flex items-center">
-                          <img src="img/dashboard/booking/2.jpg" alt="image" />
-                          <div className="ml-20">
-                            Zipline 18 Platform and ATV Adventure Tour From
-                            Phuket
-                          </div>
-                        </div>
-                      </td>
-
-                      <td>11 April 2023</td>
-
-                      <td>11 April 2023</td>
-
-                      <td>2 People</td>
-
-                      <td>$392.89</td>
-
-                      <td>
-                        <div className="circle text-yellow-1">Pending</div>
-                      </td>
-
-                      <td>
-                        <div className="d-flex items-center">
-                          <button className="button -dark-1 size-35 bg-light-1 rounded-full flex-center">
-                            <i className="icon-pencil text-14"></i>
-                          </button>
-
-                          <button className="button -dark-1 size-35 bg-light-1 rounded-full flex-center ml-10">
-                            <i className="icon-delete text-14"></i>
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <td>#484</td>
-
-                      <td className="min-w-300">
-                        <div className="d-flex items-center">
-                          <img src="img/dashboard/booking/3.jpg" alt="image" />
-                          <div className="ml-20">
-                            Phang Nga Bay &amp; James Bond Island with Canoeing
-                            By Big Boat
-                          </div>
-                        </div>
-                      </td>
-
-                      <td>11 April 2023</td>
-
-                      <td>11 April 2023</td>
-
-                      <td>2 People</td>
-
-                      <td>$392.89</td>
-
-                      <td>
-                        <div className="circle text-red-2">Cancelled</div>
-                      </td>
-
-                      <td>
-                        <div className="d-flex items-center">
-                          <button className="button -dark-1 size-35 bg-light-1 rounded-full flex-center">
-                            <i className="icon-pencil text-14"></i>
-                          </button>
-
-                          <button className="button -dark-1 size-35 bg-light-1 rounded-full flex-center ml-10">
-                            <i className="icon-delete text-14"></i>
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <td>#484</td>
-
-                      <td className="min-w-300">
-                        <div className="d-flex items-center">
-                          <img src="img/dashboard/booking/4.jpg" alt="image" />
-                          <div className="ml-20">
-                            James Bond Island Tour from Phuket by Longtail Boat
-                            with Lunch
-                          </div>
-                        </div>
-                      </td>
-
-                      <td>11 April 2023</td>
-
-                      <td>11 April 2023</td>
-
-                      <td>2 People</td>
-
-                      <td>$392.89</td>
-
-                      <td>
-                        <div className="circle text-red-2">Cancelled</div>
-                      </td>
-
-                      <td>
-                        <div className="d-flex items-center">
-                          <button className="button -dark-1 size-35 bg-light-1 rounded-full flex-center">
-                            <i className="icon-pencil text-14"></i>
-                          </button>
-
-                          <button className="button -dark-1 size-35 bg-light-1 rounded-full flex-center ml-10">
-                            <i className="icon-delete text-14"></i>
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <td>#484</td>
-
-                      <td className="min-w-300">
-                        <div className="d-flex items-center">
-                          <img src="img/dashboard/booking/5.jpg" alt="image" />
-                          <div className="ml-20">
-                            Phuket City Tour: Karon View Point, Big Buddha &amp;
-                            Wat Chalong
-                          </div>
-                        </div>
-                      </td>
-
-                      <td>11 April 2023</td>
-
-                      <td>11 April 2023</td>
-
-                      <td>2 People</td>
-
-                      <td>$392.89</td>
-
-                      <td>
-                        <div className="circle text-red-2">Cancelled</div>
-                      </td>
-
-                      <td>
-                        <div className="d-flex items-center">
-                          <button className="button -dark-1 size-35 bg-light-1 rounded-full flex-center">
-                            <i className="icon-pencil text-14"></i>
-                          </button>
-
-                          <button className="button -dark-1 size-35 bg-light-1 rounded-full flex-center ml-10">
-                            <i className="icon-delete text-14"></i>
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
+        <Tabs className="-underline-2">
+          <Tabs.TabList className="row x-gap-40 y-gap-10 lg:x-gap-20">
+            {Status.map((status, index) => (
+              <div className="col-auto" key={index}>
+                <Tabs.Tab
+                  className="text-20 lh-12 fw-500 pb-15 lg:pb-0 js-tabs-button"
+                  data-tab-target=".-tab-item-1"
+                  onClick={() => setTab(index)}
+                  isActive={tab === index}
+                >
+                  {status}
+                </Tabs.Tab>
               </div>
-              <Pagination/>
-            </div>
-
-            <div className="tabs__pane -tab-item-2 ">
-              <div className="overflowAuto">
-                <table className="tableTest mb-30">
-                  <thead className="bg-light-1 rounded-12">
-                    <tr>
-                      <th>ID</th>
-                      <th>Title</th>
-                      <th>Start date</th>
-                      <th>End date</th>
-                      <th>Details</th>
-                      <th>Price</th>
-                      <th>Status</th>
-                      <th>Action</th>
-                    </tr>
-                  </thead>
-
-                  <tbody>
-                    <tr>
-                      <td>#484</td>
-
-                      <td className="min-w-300">
-                        <div className="d-flex items-center">
-                          <img src="img/dashboard/booking/1.jpg" alt="image" />
-                          <div className="ml-20">
-                            Phi Phi Islands Adventure Day Trip with Seaview
-                            Lunch by V. Marine Tour
-                          </div>
-                        </div>
-                      </td>
-
-                      <td>11 April 2023</td>
-
-                      <td>11 April 2023</td>
-
-                      <td>2 People</td>
-
-                      <td>$392.89</td>
-
-                      <td>
-                        <div className="circle text-purple-1">Approved</div>
-                      </td>
-
-                      <td>
-                        <div className="d-flex items-center">
-                          <button className="button -dark-1 size-35 bg-light-1 rounded-full flex-center">
-                            <i className="icon-pencil text-14"></i>
-                          </button>
-
-                          <button className="button -dark-1 size-35 bg-light-1 rounded-full flex-center ml-10">
-                            <i className="icon-delete text-14"></i>
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <td>#484</td>
-
-                      <td className="min-w-300">
-                        <div className="d-flex items-center">
-                          <img src="img/dashboard/booking/2.jpg" alt="image" />
-                          <div className="ml-20">
-                            Zipline 18 Platform and ATV Adventure Tour From
-                            Phuket
-                          </div>
-                        </div>
-                      </td>
-
-                      <td>11 April 2023</td>
-
-                      <td>11 April 2023</td>
-
-                      <td>2 People</td>
-
-                      <td>$392.89</td>
-
-                      <td>
-                        <div className="circle text-yellow-1">Pending</div>
-                      </td>
-
-                      <td>
-                        <div className="d-flex items-center">
-                          <button className="button -dark-1 size-35 bg-light-1 rounded-full flex-center">
-                            <i className="icon-pencil text-14"></i>
-                          </button>
-
-                          <button className="button -dark-1 size-35 bg-light-1 rounded-full flex-center ml-10">
-                            <i className="icon-delete text-14"></i>
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <td>#484</td>
-
-                      <td className="min-w-300">
-                        <div className="d-flex items-center">
-                          <img src="img/dashboard/booking/3.jpg" alt="image" />
-                          <div className="ml-20">
-                            Phang Nga Bay &amp; James Bond Island with Canoeing
-                            By Big Boat
-                          </div>
-                        </div>
-                      </td>
-
-                      <td>11 April 2023</td>
-
-                      <td>11 April 2023</td>
-
-                      <td>2 People</td>
-
-                      <td>$392.89</td>
-
-                      <td>
-                        <div className="circle text-red-2">Cancelled</div>
-                      </td>
-
-                      <td>
-                        <div className="d-flex items-center">
-                          <button className="button -dark-1 size-35 bg-light-1 rounded-full flex-center">
-                            <i className="icon-pencil text-14"></i>
-                          </button>
-
-                          <button className="button -dark-1 size-35 bg-light-1 rounded-full flex-center ml-10">
-                            <i className="icon-delete text-14"></i>
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <td>#484</td>
-
-                      <td className="min-w-300">
-                        <div className="d-flex items-center">
-                          <img src="img/dashboard/booking/4.jpg" alt="image" />
-                          <div className="ml-20">
-                            James Bond Island Tour from Phuket by Longtail Boat
-                            with Lunch
-                          </div>
-                        </div>
-                      </td>
-
-                      <td>11 April 2023</td>
-
-                      <td>11 April 2023</td>
-
-                      <td>2 People</td>
-
-                      <td>$392.89</td>
-
-                      <td>
-                        <div className="circle text-red-2">Cancelled</div>
-                      </td>
-
-                      <td>
-                        <div className="d-flex items-center">
-                          <button className="button -dark-1 size-35 bg-light-1 rounded-full flex-center">
-                            <i className="icon-pencil text-14"></i>
-                          </button>
-
-                          <button className="button -dark-1 size-35 bg-light-1 rounded-full flex-center ml-10">
-                            <i className="icon-delete text-14"></i>
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <td>#484</td>
-
-                      <td className="min-w-300">
-                        <div className="d-flex items-center">
-                          <img src="img/dashboard/booking/5.jpg" alt="image" />
-                          <div className="ml-20">
-                            Phuket City Tour: Karon View Point, Big Buddha &amp;
-                            Wat Chalong
-                          </div>
-                        </div>
-                      </td>
-
-                      <td>11 April 2023</td>
-
-                      <td>11 April 2023</td>
-
-                      <td>2 People</td>
-
-                      <td>$392.89</td>
-
-                      <td>
-                        <div className="circle text-red-2">Cancelled</div>
-                      </td>
-
-                      <td>
-                        <div className="d-flex items-center">
-                          <button className="button -dark-1 size-35 bg-light-1 rounded-full flex-center">
-                            <i className="icon-pencil text-14"></i>
-                          </button>
-
-                          <button className="button -dark-1 size-35 bg-light-1 rounded-full flex-center ml-10">
-                            <i className="icon-delete text-14"></i>
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-
-              <div className="pagination justify-center">
-                <button className="pagination__button button -accent-1 mr-15 -prev">
-                  <i className="icon-arrow-left text-15"></i>
-                </button>
-
-                <div className="pagination__count">
-                  <a href="#">1</a>
-                  <a href="#" className="is-active">
-                    2
-                  </a>
-                  <a href="#">3</a>
-                  <a href="#">4</a>
-                  <a href="#">5</a>
-                  <div>...</div>
-                  <a href="#">20</a>
-                </div>
-
-                <button className="pagination__button button -accent-1 ml-15 -next">
-                  <i className="icon-arrow-right text-15"></i>
-                </button>
-              </div>
-
-              <div className="text-14 text-center mt-20">
-                Showing results 1-30 of 1,415
-              </div>
-            </div>
-
-            <div className="tabs__pane -tab-item-3 ">
-              <div className="overflowAuto">
-                <table className="tableTest mb-30">
-                  <thead className="bg-light-1 rounded-12">
-                    <tr>
-                      <th>ID</th>
-                      <th>Title</th>
-                      <th>Start date</th>
-                      <th>End date</th>
-                      <th>Details</th>
-                      <th>Price</th>
-                      <th>Status</th>
-                      <th>Action</th>
-                    </tr>
-                  </thead>
-
-                  <tbody>
-                    <tr>
-                      <td>#484</td>
-
-                      <td className="min-w-300">
-                        <div className="d-flex items-center">
-                          <img src="img/dashboard/booking/1.jpg" alt="image" />
-                          <div className="ml-20">
-                            Phi Phi Islands Adventure Day Trip with Seaview
-                            Lunch by V. Marine Tour
-                          </div>
-                        </div>
-                      </td>
-
-                      <td>11 April 2023</td>
-
-                      <td>11 April 2023</td>
-
-                      <td>2 People</td>
-
-                      <td>$392.89</td>
-
-                      <td>
-                        <div className="circle text-purple-1">Approved</div>
-                      </td>
-
-                      <td>
-                        <div className="d-flex items-center">
-                          <button className="button -dark-1 size-35 bg-light-1 rounded-full flex-center">
-                            <i className="icon-pencil text-14"></i>
-                          </button>
-
-                          <button className="button -dark-1 size-35 bg-light-1 rounded-full flex-center ml-10">
-                            <i className="icon-delete text-14"></i>
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <td>#484</td>
-
-                      <td className="min-w-300">
-                        <div className="d-flex items-center">
-                          <img src="img/dashboard/booking/2.jpg" alt="image" />
-                          <div className="ml-20">
-                            Zipline 18 Platform and ATV Adventure Tour From
-                            Phuket
-                          </div>
-                        </div>
-                      </td>
-
-                      <td>11 April 2023</td>
-
-                      <td>11 April 2023</td>
-
-                      <td>2 People</td>
-
-                      <td>$392.89</td>
-
-                      <td>
-                        <div className="circle text-yellow-1">Pending</div>
-                      </td>
-
-                      <td>
-                        <div className="d-flex items-center">
-                          <button className="button -dark-1 size-35 bg-light-1 rounded-full flex-center">
-                            <i className="icon-pencil text-14"></i>
-                          </button>
-
-                          <button className="button -dark-1 size-35 bg-light-1 rounded-full flex-center ml-10">
-                            <i className="icon-delete text-14"></i>
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <td>#484</td>
-
-                      <td className="min-w-300">
-                        <div className="d-flex items-center">
-                          <img src="img/dashboard/booking/3.jpg" alt="image" />
-                          <div className="ml-20">
-                            Phang Nga Bay &amp; James Bond Island with Canoeing
-                            By Big Boat
-                          </div>
-                        </div>
-                      </td>
-
-                      <td>11 April 2023</td>
-
-                      <td>11 April 2023</td>
-
-                      <td>2 People</td>
-
-                      <td>$392.89</td>
-
-                      <td>
-                        <div className="circle text-red-2">Cancelled</div>
-                      </td>
-
-                      <td>
-                        <div className="d-flex items-center">
-                          <button className="button -dark-1 size-35 bg-light-1 rounded-full flex-center">
-                            <i className="icon-pencil text-14"></i>
-                          </button>
-
-                          <button className="button -dark-1 size-35 bg-light-1 rounded-full flex-center ml-10">
-                            <i className="icon-delete text-14"></i>
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <td>#484</td>
-
-                      <td className="min-w-300">
-                        <div className="d-flex items-center">
-                          <img src="img/dashboard/booking/4.jpg" alt="image" />
-                          <div className="ml-20">
-                            James Bond Island Tour from Phuket by Longtail Boat
-                            with Lunch
-                          </div>
-                        </div>
-                      </td>
-
-                      <td>11 April 2023</td>
-
-                      <td>11 April 2023</td>
-
-                      <td>2 People</td>
-
-                      <td>$392.89</td>
-
-                      <td>
-                        <div className="circle text-red-2">Cancelled</div>
-                      </td>
-
-                      <td>
-                        <div className="d-flex items-center">
-                          <button className="button -dark-1 size-35 bg-light-1 rounded-full flex-center">
-                            <i className="icon-pencil text-14"></i>
-                          </button>
-
-                          <button className="button -dark-1 size-35 bg-light-1 rounded-full flex-center ml-10">
-                            <i className="icon-delete text-14"></i>
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <td>#484</td>
-
-                      <td className="min-w-300">
-                        <div className="d-flex items-center">
-                          <img src="img/dashboard/booking/5.jpg" alt="image" />
-                          <div className="ml-20">
-                            Phuket City Tour: Karon View Point, Big Buddha &amp;
-                            Wat Chalong
-                          </div>
-                        </div>
-                      </td>
-
-                      <td>11 April 2023</td>
-
-                      <td>11 April 2023</td>
-
-                      <td>2 People</td>
-
-                      <td>$392.89</td>
-
-                      <td>
-                        <div className="circle text-red-2">Cancelled</div>
-                      </td>
-
-                      <td>
-                        <div className="d-flex items-center">
-                          <button className="button -dark-1 size-35 bg-light-1 rounded-full flex-center">
-                            <i className="icon-pencil text-14"></i>
-                          </button>
-
-                          <button className="button -dark-1 size-35 bg-light-1 rounded-full flex-center ml-10">
-                            <i className="icon-delete text-14"></i>
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-
-              <div className="pagination justify-center">
-                <button className="pagination__button button -accent-1 mr-15 -prev">
-                  <i className="icon-arrow-left text-15"></i>
-                </button>
-
-                <div className="pagination__count">
-                  <a href="#">1</a>
-                  <a href="#" className="is-active">
-                    2
-                  </a>
-                  <a href="#">3</a>
-                  <a href="#">4</a>
-                  <a href="#">5</a>
-                  <div>...</div>
-                  <a href="#">20</a>
-                </div>
-
-                <button className="pagination__button button -accent-1 ml-15 -next">
-                  <i className="icon-arrow-right text-15"></i>
-                </button>
-              </div>
-
-              <div className="text-14 text-center mt-20">
-                Showing results 1-30 of 1,415
-              </div>
-            </div>
-          </div>
-        </div>
+            ))}
+          </Tabs.TabList>
+
+          <Tabs.TabContents>
+            {bookingData.map(
+              (data: BookingsType[], index: number) => (
+                <Tabs.TabContent key={index} isVisible={index === tab}>
+                  <Table headers={tableHeaders} showEdit={true} data={data} />
+                  <Pagination />
+                </Tabs.TabContent>
+              )
+            )}
+          </Tabs.TabContents>
+        </Tabs>
       </div>
     </>
   );
