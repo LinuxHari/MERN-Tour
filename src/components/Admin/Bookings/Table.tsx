@@ -32,11 +32,11 @@ const Table = ({ headers, showEdit, data }: TableProps) => {
               <td>
                 <div className="d-flex items-center">
                   {showEdit && (
-                    <Button type="icon">
+                    <Button buttonType="icon">
                       <i className="icon-pencil text-14"></i>
                     </Button>
                   )}
-                  <Button type="icon" className="ml-10">
+                  <Button buttonType="icon" className="ml-10">
                     <i className="icon-delete text-14"></i>
                   </Button>
                 </div>

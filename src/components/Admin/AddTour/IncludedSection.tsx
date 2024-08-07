@@ -1,7 +1,7 @@
 import Button from "../../shared/Button/Button";
 import Input from "../../shared/Input/Input";
 
-const IncludedForm = () => {
+const IncludedSection = () => {
   return (
     <>
       <div className="row y-gap-20 justify-between">
@@ -76,7 +76,7 @@ const IncludedForm = () => {
       </div>
 
       <div className="mt-40">
-      <Button type="primary">
+      <Button buttonType="primary">
       Save Changes
         <i className="icon-arrow-top-right text-16 ml-10"></i>
       </Button>
@@ -85,4 +85,4 @@ const IncludedForm = () => {
   );
 };
 
-export default IncludedForm;
+export default IncludedSection;

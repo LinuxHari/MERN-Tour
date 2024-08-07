@@ -2,7 +2,7 @@ import Button from "../../shared/Button/Button";
 import Input from "../../shared/Input/Input";
 import Textarea from "../../shared/Teaxtarea/Textarea";
 
-const ContentForm = () => {
+const ContentSection = () => {
   return (
     <div className="contactForm row y-gap-30">
       <Input label="Tour Title" type="text"/>
@@ -106,13 +106,12 @@ const ContentForm = () => {
       </div>
 
       <div className="col-12">
-        <Button type="primary">
+        <Button buttonType="primary">
           Save Changes
-          <i className="icon-arrow-top-right text-16 ml-10"></i>
         </Button>
       </div>
     </div>
   );
 };
 
-export default ContentForm;
+export default ContentSection;

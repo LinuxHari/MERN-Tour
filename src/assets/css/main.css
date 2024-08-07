@@ -13921,3 +13921,7 @@ a{
 .text-light-gray {
   color: #d3d3d3;
 }
+
+.text-dark{
+  color: black !important;
+}

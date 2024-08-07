@@ -1,15 +1,15 @@
 import { useState } from "react";
 import { RenderProps } from "../../../type";
 import Tabs from "../../shared/Tabs/Tabs";
-import ContentForm from "./ContentForm";
-import LocationForm from "./LocationForm";
-import PricingForm from "./PricingForm";
-import IncludedForm from "./IncludedForm";
+import ContentForm from "./ContentSection";
+import LocationForm from "./LocationSection";
+import PricingForm from "./PricingSection";
+import IncludedForm from "./IncludedSection";
 
 const AddTour = ({ render }: RenderProps) => {
-
-  const [currentTab, setCurrentTab] = useState(0)
+  const [currentTab, setCurrentTab] = useState(0);
   const formTabs = ["Content", "Location", "Pricing", "Included"];
+  const formComponents = [<ContentForm />, <LocationForm />, <PricingForm />, <IncludedForm />];
 
   return (
     <>
@@ -34,21 +34,11 @@ const AddTour = ({ render }: RenderProps) => {
           <div className="row pt-40">
             <div className="col-xl-9 col-lg-10">
               <Tabs.TabContents>
-                <Tabs.TabContent className="-tab-item-1" isVisible = {currentTab === 0}>
-                  <ContentForm/>
-                </Tabs.TabContent>
-
-                <Tabs.TabContent className="-tab-item-2" isVisible = {currentTab === 1}>
-                  <LocationForm/>
-                </Tabs.TabContent>
-
-                <Tabs.TabContent className="-tab-item-3" isVisible = {currentTab === 2}>
-                  <PricingForm/>
-                </Tabs.TabContent>
-
-                <Tabs.TabContent className="-tab-item-4" isVisible = {currentTab === 3}>
-                  <IncludedForm/>
-                </Tabs.TabContent>
+                {formComponents.map((Component, index) => (
+                  <Tabs.TabContent className={`-tab-item-${index + 1}`} isVisible={currentTab === index} key={index}>
+                    {Component}
+                  </Tabs.TabContent>
+                ))}
               </Tabs.TabContents>
             </div>
           </div>

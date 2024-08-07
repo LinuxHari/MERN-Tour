@@ -26,7 +26,7 @@ const RecentActivities = () => {
         </div>
 
         <div className="pt-40">
-        <Button type="secondary">View More</Button>
+        <Button buttonType="secondary" className="col-12">View More</Button>
         </div>
       </div>
     </div>

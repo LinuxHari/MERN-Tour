@@ -1,7 +1,7 @@
 import Button from "../../shared/Button/Button";
 import Input from "../../shared/Input/Input";
 
-const LocationForm = () => {
+const LocationSection = () => {
   return (
     <>
       <div className="contactForm row y-gap-30">
@@ -32,12 +32,13 @@ const LocationForm = () => {
         <div className="map__content rounded-12 js-map-single"></div>
       </div>
 
-      <Button type="primary">
+      <div className="mt-30">
+      <Button buttonType="primary">
         Save Changes
-        <i className="icon-arrow-top-right text-16 ml-10"></i>
       </Button>
+      </div>
     </>
   );
 };
 
-export default LocationForm;
+export default LocationSection;
