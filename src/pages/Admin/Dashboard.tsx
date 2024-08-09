@@ -1,8 +1,8 @@
-import { DASHBOARD_DATA } from "../../../data";
-import { RenderProps } from "../../../type";
-import DetailCard from "./DetailCard";
-import EarningStatistics from "./EarningStatistics";
-import RecentActivities from "./RecentActivities";
+import { DASHBOARD_DATA } from "../../data";
+import { RenderProps } from "../../type";
+import DetailCard from "../../components/Admin/Dashboard/DetailCard";
+import EarningStatistics from "../../components/Admin/Dashboard/EarningStatistics";
+import RecentActivities from "../../components/Admin/Dashboard/RecentActivities";
 
 const Dashboard = ({ render }: RenderProps) => {
   return (

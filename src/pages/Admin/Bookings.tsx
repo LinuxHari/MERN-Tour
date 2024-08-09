@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { Bookings as BookingsType, RenderProps } from "../../../type";
-import Pagination from "../../shared/Pagination/Pagination";
-import Tabs from "../../shared/Tabs/Tabs";
-import Table from "./Table";
+import { Bookings as BookingsType, RenderProps } from "../../type";
+import Pagination from "../../components/shared/Pagination/Pagination";
+import Tabs from "../../components/shared/Tabs/Tabs";
+import Table from "../../components/Admin/Bookings/Table";
 
 const Bookings = ({ render }: RenderProps) => {
   const [tab, setTab] = useState(0);

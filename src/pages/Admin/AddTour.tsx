@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { RenderProps } from "../../../type";
-import Tabs from "../../shared/Tabs/Tabs";
-import ContentForm from "./ContentSection";
-import LocationForm from "./LocationSection";
-import PricingForm from "./PricingSection";
-import IncludedForm from "./IncludedSection";
+import { RenderProps } from "../../type";
+import Tabs from "../../components/shared/Tabs/Tabs";
+import ContentForm from "../../components/Admin/AddTour/ContentSection";
+import LocationForm from "../../components/Admin/AddTour/LocationSection";
+import PricingForm from "../../components/Admin/AddTour/PricingSection";
+import IncludedForm from "../../components/Admin/AddTour/IncludedSection";
 
 const AddTour = ({ render }: RenderProps) => {
   const [currentTab, setCurrentTab] = useState(0);

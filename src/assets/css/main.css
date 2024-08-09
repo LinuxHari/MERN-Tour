@@ -13925,3 +13925,7 @@ a{
 .text-dark{
   color: black !important;
 }
+
+.footer ul{
+  padding: 0 !important;
+}

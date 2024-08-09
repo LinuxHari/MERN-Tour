@@ -1,6 +1,6 @@
-import { RenderProps } from "../../../type";
-import Pagination from "../../shared/Pagination/Pagination";
-import ListingCard from "./ListingCard";
+import { RenderProps } from "../../type";
+import Pagination from "../../components/shared/Pagination/Pagination";
+import ListingCard from "../../components/Admin/Listings/ListingCard";
 
 const Listings = ({render}: RenderProps) => {
 
