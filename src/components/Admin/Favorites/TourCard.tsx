@@ -1,8 +1,12 @@
 import { ListingCardPorps } from "../../../type";
 import Rating from "../../shared/Rating/Rating";
 
-const TourCard = ({ img, location, title, rating, reviewCount, duration, price }:ListingCardPorps) => (
-    <div className="col-lg-3 col-md-6">
+type Props = ListingCardPorps & {
+  className?: string
+}
+
+const TourCard = ({ img, location, title, rating, reviewCount, duration, price, className=""}:Props) => (
+    <div className={className}>
       <a
         href="#"
         className="tourCard -type-1 py-10 px-10 border-1 rounded-12  -hover-shadow"
@@ -28,7 +32,7 @@ const TourCard = ({ img, location, title, rating, reviewCount, duration, price }
           </div>
   
           <h3 className="tourCard__title text-16 fw-500 mt-5">
-            <span>{title}</span>
+            <span className="line-clamp-2">{title.length < 55? title: (title.slice(0,55) + "...") }</span>
           </h3>
   
           <div className="tourCard__rating d-flex items-center text-13 mt-5">

@@ -1,9 +1,9 @@
-import { RenderProps } from "../../type";
-import Pagination from "../../components/shared/Pagination/Pagination";
-import TourCard from "../../components/Admin/Favorites/TourCard";
+import { Swiper, SwiperSlide } from "swiper/react";
+import TourCard from "../../Admin/Favorites/TourCard";
+import { Navigation } from "swiper/modules";
 
-const Favorites = ({ render }: RenderProps) => {
-  const favTours = [
+const TopTrending = () => {
+  const tourCards = [
     {
       location: "Paris, France",
       title: "Centipede Tour - Guided Arizona Desert Tour by ATV",
@@ -80,35 +80,69 @@ const Favorites = ({ render }: RenderProps) => {
   ];
 
   return (
-    <>
-      {render("Favorites", "My Favorites")}
-      <div className="rounded-12 bg-white shadow-2 px-40 pt-40 pb-30 mt-60">
-        <div className="row y-gap-30">
-          {favTours.map(
-            (
-              { image, location, title, rating, reviews, duration, price },
-              i
-            ) => (
+    <section className="layout-pt-xl layout-pb-xl ">
+      <div className="relative py-40 sm:py-20">
+      <div className="sectionBg -w-1530 rounded-12 bg-light-1"></div>
+
+<div className="container">
+  <div className="col-auto">
+    <h2 className="text-30 md:text-24">Top Trending</h2>
+  </div>
+
+  <div
+    data-anim-child="slide-up delay-2"
+    className="relative pt-40 sm:pt-20 is-in-view"
+  >
+    <div className="overflow-hidden pb-30">
+      <Swiper
+        modules={[Navigation]}
+        navigation={{
+          nextEl: ".js-slider1-next",
+          prevEl: ".js-slider1-prev",
+        }}
+        spaceBetween={30}
+        slidesPerView={4}
+        breakpoints={{
+          320: { slidesPerView: 1 },
+          640: { slidesPerView: 2 },
+          768: { slidesPerView: 3 },
+          1024: { slidesPerView: 4 },
+        }}
+      >
+        {tourCards.map(
+          (
+            { location, title, reviews, rating, duration, price, image },
+            index
+          ) => (
+            <SwiperSlide key={index}>
               <TourCard
-                key={i}
-                img={image}
                 location={location}
                 title={title}
-                rating={rating}
                 reviewCount={reviews}
+                rating={rating}
                 duration={duration}
                 price={price}
-                className="col-lg-3 col-md-6"
+                img={image}
               />
-            )
-          )}
-        </div>
-        <div className="mt-60">
-          <Pagination />
-        </div>
+            </SwiperSlide>
+          )
+        )}
+      </Swiper>
+    </div>
+
+    <div className="navAbsolute">
+      <button className="navAbsolute__button bg-white js-slider1-prev">
+        <i className="icon-arrow-left text-14"></i>
+      </button>
+      <button className="navAbsolute__button bg-white js-slider1-next">
+        <i className="icon-arrow-right text-14"></i>
+      </button>
+    </div>
+  </div>
+</div>
       </div>
-    </>
+    </section>
   );
 };
 
-export default Favorites;
+export default TopTrending;

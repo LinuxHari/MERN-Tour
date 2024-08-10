@@ -13929,3 +13929,7 @@ a{
 .footer ul{
   padding: 0 !important;
 }
+
+.cursor-pointer{
+  cursor: pointer;
+}
