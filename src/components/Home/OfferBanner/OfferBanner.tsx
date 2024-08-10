@@ -16,8 +16,8 @@ const OfferBanner = () => {
           <div className="col-xxl-4 col-xl-5 col-lg-6 col-md-7">
             <div className="cta__content">
               <h2 className="text-40 md:text-30  lh-13">
-                Grab up to <span className="text-accent-1">35% off</span><br className="lg:d-none"/>
-                on your favorite<br className="lg:d-none"/>
+                Grab up to <span className="text-accent-1">35% off </span><br className="lg:d-none"/>
+                on your favorite <br className="lg:d-none"/>
                 Destination
               </h2>
 

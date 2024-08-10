@@ -100,13 +100,13 @@ const TopTrending = () => {
           nextEl: ".js-slider1-next",
           prevEl: ".js-slider1-prev",
         }}
-        spaceBetween={30}
+        spaceBetween={25}
         slidesPerView={4}
         breakpoints={{
           320: { slidesPerView: 1 },
           640: { slidesPerView: 2 },
-          768: { slidesPerView: 3 },
-          1024: { slidesPerView: 4 },
+          1024: { slidesPerView: 3 },
+          1280: { slidesPerView: 4 }
         }}
       >
         {tourCards.map(

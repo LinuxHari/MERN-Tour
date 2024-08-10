@@ -66,7 +66,7 @@ const Footer = () => {
         <div className="container">
           <div className="footer__bottom">
             <div className="col-auto">
-              <div>© Copyright Viatours 2024</div>
+              <div>© Copyright Viatours 2024. All Rights Reserved.</div>
             </div>
           </div>
         </div>

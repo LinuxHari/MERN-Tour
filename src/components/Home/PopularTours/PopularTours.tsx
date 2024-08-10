@@ -84,7 +84,7 @@ const PopularTours = () => {
           <h2 className="text-30 md:text-24">Find Popular Tours</h2>
         </div>
 
-        <div className="row y-gap-30 justify-between pt-40 sm:pt-20 mobile-css-slider -w-300">
+        <div className="row y-gap-30 justify-content-center justify-content-md-between pt-40 sm:pt-20 mobile-css-slider -w-300">
           {tourCards.map(
             (
               { location, title, rating, reviews, duration, price, image },

@@ -35,6 +35,12 @@ const TrendingDestinations = () => {
           <Swiper
             spaceBetween={25}
             slidesPerView={8}
+            breakpoints={{
+              320: { slidesPerView: 2 },
+              640: { slidesPerView: 4 },
+              768: { slidesPerView: 6 },
+              1024: { slidesPerView: 8 },
+            }}
             pagination={{
               el: '.js-dest-pagination',
               clickable: true,

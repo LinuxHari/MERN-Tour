@@ -34,7 +34,7 @@
   
           <div
             data-anim-child="slide-up delay-2"
-            className="row md:x-gap-20 pt-40 sm:pt-20 mobile-css-slider -w-280 is-in-view"
+            className="row justify-content-center justify-content-md-start md:x-gap-20 pt-40 sm:pt-20 mobile-css-slider -w-280 is-in-view"
           >
             {advantagesData.map(({icon, title, text}, index) => (
               <div key={index} className="col-lg-3 col-sm-6">
