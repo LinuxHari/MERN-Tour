@@ -5818,7 +5818,7 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
   flex-shrink: 0;
   width: 280px;
-  min-height: 260px;
+  height: 260px;
   z-index: 0;
 }
 

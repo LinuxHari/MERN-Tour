@@ -1,0 +1,47 @@
+import { useState } from "react";
+import Select from "../shared/Select/Select";
+
+type SortProps =
+  | "Recommended"
+  | "Price: Low to High"
+  | "Price: High to Low"
+  | "Rating: Low to High"
+  | "Rating: High to Low";
+
+const TourListHeader = () => {
+  const [selectedOption, setSelectedOption] =
+    useState<SortProps>("Recommended");
+
+  const sortOptions: SortProps[] = [
+    "Recommended",
+    "Price: High to Low",
+    "Price: Low to High",
+    "Rating: Low to High",
+    "Rating: High to Low",
+  ];
+
+  const handleChange = (value: SortProps) => {
+    setSelectedOption(value);
+  };  
+
+  return (
+    <div className="row y-gap-5 justify-between">
+      <div className="col-auto">
+        <div>1362 results</div>
+      </div>
+
+      <div className="col-auto">
+        <Select<SortProps> defaultValue={selectedOption} onChange={handleChange}>
+          <Select.Button>Sort by: </Select.Button>
+          <Select.Menu>
+            {sortOptions.map((sortType) => (
+              <Select.Option key={sortType} value={sortType}>{sortType}</Select.Option>
+            ))}
+          </Select.Menu>
+        </Select>
+      </div>
+    </div>
+  );
+};
+
+export default TourListHeader;
