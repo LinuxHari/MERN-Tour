@@ -1,11 +1,11 @@
-import { ListingCardPorps } from "../../../type";
+import { ListingCardProps } from "../../../type";
 import Rating from "../../shared/Rating/Rating";
 
-type Props = ListingCardPorps & {
+type Props = ListingCardProps & {
   className?: string
 }
 
-const TourCard = ({ img, location, title, rating, reviewCount, duration, price, className=""}:Props) => (
+const TourCard = ({ img, location, title, rating, reviewCount, duration, price, className="" }:Props) => (
     <div className={className}>
       <a
         href="#"

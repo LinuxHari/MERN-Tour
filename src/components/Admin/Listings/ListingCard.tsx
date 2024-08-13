@@ -1,7 +1,7 @@
-import { ListingCardPorps } from "../../../type"
+import { ListingCardProps } from "../../../type"
 import Rating from "../../shared/Rating/Rating"
 
-const ListingCard = ({img, location, title, rating, reviewCount, duration, price}: ListingCardPorps) => {
+const ListingCard = ({img, location, title, rating, reviewCount, duration, price}: ListingCardProps) => {
   return (
     <div className="col-lg-6">
     <div className="border-1 rounded-12 px-20 py-20">

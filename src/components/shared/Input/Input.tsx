@@ -11,7 +11,7 @@ const Input = (Props: InputProps) => {
   if (type === "checkbox") {
     return (
       <div className="d-flex items-center">
-        <div className="form-checkbox ">
+        <div className="form-checkbox">
           <input type="checkbox" name="name" />
           <div className="form-checkbox__mark">
             <div className="form-checkbox__icon">
@@ -31,7 +31,7 @@ const Input = (Props: InputProps) => {
           </div>
         </div>
 
-        <div className="lh-16 ml-15">{label}</div>
+        <div className="lh-16 ml-10">{label}</div>
       </div>
     );
   }

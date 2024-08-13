@@ -25,7 +25,7 @@ const TourListHeader = () => {
   };  
 
   return (
-    <div className="row y-gap-5 justify-between">
+    <div className="row y-gap-5 justify-between mt-30 mt-lg-0">
       <div className="col-auto">
         <div>1362 results</div>
       </div>

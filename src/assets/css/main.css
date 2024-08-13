@@ -12880,6 +12880,14 @@ table.table-4.-border-bottom tbody > tr {
   transition: .15s;
 }
 
+@media (max-width: 768px) {
+  .dropdown.-type-2 .dropdown__menu {
+  top: auto;
+  left: 70%;
+  z-index: 10;
+}
+}
+
 .dropdown.-type-2 .dropdown__item {
   cursor: pointer;
   padding: 12px 30px;

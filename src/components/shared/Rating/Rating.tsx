@@ -6,7 +6,7 @@ type RatingProps = {
 
 const Rating = ({ rating, className = "", reviewCount }: RatingProps) => {
   return (
-    <>
+    <div className="d-flex align-items-center">
         <div className={`d-flex x-gap-5 ${className}`}>
       {Array.from({ length: 5 }).map((_, i) => (
         <i
@@ -18,7 +18,7 @@ const Rating = ({ rating, className = "", reviewCount }: RatingProps) => {
       ))}
     </div>
     <span className="text-dark-1 ml-10">{rating} ({reviewCount})</span>
-    </>
+    </div>
   );
 };
 
