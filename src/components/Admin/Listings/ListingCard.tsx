@@ -1,5 +1,5 @@
 import { ListingCardProps } from "../../../type"
-import Rating from "../../shared/Rating/Rating"
+import Rating from "../../Shared/Rating/Rating"
 
 const ListingCard = ({img, location, title, rating, reviewCount, duration, price}: ListingCardProps) => {
   return (

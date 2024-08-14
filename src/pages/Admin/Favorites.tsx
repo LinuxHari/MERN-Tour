@@ -1,5 +1,5 @@
 import { RenderProps } from "../../type";
-import Pagination from "../../components/shared/Pagination/Pagination";
+import Pagination from "../../components/Shared/Pagination/Pagination";
 import TourCard from "../../components/Admin/Favorites/TourCard";
 
 const Favorites = ({ render }: RenderProps) => {

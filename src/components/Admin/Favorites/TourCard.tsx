@@ -1,5 +1,5 @@
 import { ListingCardProps } from "../../../type";
-import Rating from "../../shared/Rating/Rating";
+import Rating from "../../Shared/Rating/Rating";
 
 type Props = ListingCardProps & {
   className?: string

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { RenderProps } from "../../type";
-import Tabs from "../../components/shared/Tabs/Tabs";
+import Tabs from "../../components/Shared/Tabs/Tabs";
 import ContentForm from "../../components/Admin/AddTour/ContentSection";
 import LocationForm from "../../components/Admin/AddTour/LocationSection";
 import PricingForm from "../../components/Admin/AddTour/PricingSection";

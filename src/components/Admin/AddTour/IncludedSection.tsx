@@ -1,5 +1,5 @@
-import Button from "../../shared/Button/Button";
-import Input from "../../shared/Input/Input";
+import Button from "../../Shared/Button/Button";
+import Input from "../../Shared/Input/Input";
 
 const IncludedSection = () => {
   return (

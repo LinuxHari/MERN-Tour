@@ -1,5 +1,5 @@
 import { useEffect, useState, useMemo, useCallback } from "react";
-import DatePicker from "../shared/DatePicker/DatePicker";
+import DatePicker from "../Shared/DatePicker/DatePicker";
 import CheckboxFilter from "./CheckboxFilter";
 import PriceFilter from "./PriceFilter";
 import useWindowSize from "../../hooks/useWindowSize";

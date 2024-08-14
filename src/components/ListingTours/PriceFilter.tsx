@@ -1,4 +1,4 @@
-import Accordion from "../shared/Accordion/Accordian";
+import Accordion from "../Shared/Accordion/Accordian";
 
 const PriceFilter = () => {
   return (

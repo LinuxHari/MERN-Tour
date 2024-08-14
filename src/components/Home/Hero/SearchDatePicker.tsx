@@ -1,4 +1,4 @@
-import DatePicker from "../../shared/DatePicker/DatePicker"
+import DatePicker from "../../Shared/DatePicker/DatePicker"
 
 const SearchDatePicker = () => {
   return (

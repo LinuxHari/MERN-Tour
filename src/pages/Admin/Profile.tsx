@@ -1,7 +1,7 @@
 import { RenderProps } from "../../type";
-import Button from "../../components/shared/Button/Button";
-import Input from "../../components/shared/Input/Input";
-import Textarea from "../../components/shared/Teaxtarea/Textarea";
+import Button from "../../components/Shared/Button/Button";
+import Input from "../../components/Shared/Input/Input";
+import Textarea from "../../components/Shared/Teaxtarea/Textarea";
 import ImagePlaceholder from "../../components/Admin/AddTour/ImagePlaceholder";
 
 const Profile = ({ render }: RenderProps) => {

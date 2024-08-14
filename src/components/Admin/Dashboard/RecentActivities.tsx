@@ -1,5 +1,5 @@
 import { NOTIFICATIONS } from "../../../data";
-import Button from "../../shared/Button/Button";
+import Button from "../../Shared/Button/Button";
 
 const RecentActivities = () => {
 

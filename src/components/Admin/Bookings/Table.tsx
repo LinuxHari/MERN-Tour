@@ -1,6 +1,6 @@
 import { Bookings } from "../../../type";
 import { formatTableData } from "../../../utils/formatTableData";
-import Button from "../../shared/Button/Button";
+import Button from "../../Shared/Button/Button";
 import TableDataCell from "./TableDataCell";
 
 type TableProps = {

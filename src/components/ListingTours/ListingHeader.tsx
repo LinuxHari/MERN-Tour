@@ -1,4 +1,4 @@
-import BreadCrumbs from "../shared/BreadCrumbs/BreadCrumbs"
+import BreadCrumbs from "../Shared/BreadCrumbs/BreadCrumbs"
 
 const ListingHeader = () => {
   return (

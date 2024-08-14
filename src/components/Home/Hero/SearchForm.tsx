@@ -1,4 +1,4 @@
-import Button from "../../shared/Button/Button"
+import Button from "../../Shared/Button/Button"
 import SearchDatePicker from "./SearchDatePicker"
 import SearchSuggestions from "./SearchSuggestions"
 import TourType from "./TourType"

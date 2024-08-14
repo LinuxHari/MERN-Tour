@@ -1,6 +1,6 @@
 import { ListingCardProps } from "../../type";
-import Pagination from "../shared/Pagination/Pagination";
-import TourCard2 from "../shared/TourCard/TourCard2";
+import Pagination from "../Shared/Pagination/Pagination";
+import TourCard2 from "../Shared/TourCard/TourCard2";
 
 const TourList = () => {
   const tourListings: ListingCardProps[] = [

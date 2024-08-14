@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Line } from "react-chartjs-2";
-import Tabs from "../../shared/Tabs/Tabs";
+import Tabs from "../../Shared/Tabs/Tabs";
 import useChart from "../../../hooks/useChart"
 
 const EarningStatistics = () => {

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Select from "../shared/Select/Select";
+import Select from "../Shared/Select/Select";
 
 type SortProps =
   | "Recommended"

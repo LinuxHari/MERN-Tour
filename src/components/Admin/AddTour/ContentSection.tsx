@@ -1,6 +1,6 @@
-import Button from "../../shared/Button/Button";
-import Input from "../../shared/Input/Input";
-import Textarea from "../../shared/Teaxtarea/Textarea";
+import Button from "../../Shared/Button/Button";
+import Input from "../../Shared/Input/Input";
+import Textarea from "../../Shared/Teaxtarea/Textarea";
 import ImagePlaceholder from "./ImagePlaceholder";
 
 const ContentSection = () => {

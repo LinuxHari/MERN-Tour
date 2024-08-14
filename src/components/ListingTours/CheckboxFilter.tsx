@@ -1,5 +1,5 @@
-import Accordion from "../shared/Accordion/Accordian";
-import Input from "../shared/Input/Input";
+import Accordion from "../Shared/Accordion/Accordian";
+import Input from "../Shared/Input/Input";
 
 type Props = {
   title: string
