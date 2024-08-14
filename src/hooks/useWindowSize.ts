@@ -1,6 +1,6 @@
 import { useLayoutEffect, useState } from "react";
 
-export const useWindowSize = () => {
+const useWindowSize = () => {
   const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
 
   const handleSize = () => {
@@ -11,7 +11,6 @@ export const useWindowSize = () => {
   };
 
   useLayoutEffect(() => {
-    handleSize();
 
     let resizeTimeout: number | null = null;
     const debouncedHandleSize = () => {
@@ -20,16 +19,20 @@ export const useWindowSize = () => {
       resizeTimeout = setTimeout(() => {
         handleSize();
         resizeTimeout = null;
-      }, 1000);
+      }, 200);
     };
 
     window.addEventListener("resize", debouncedHandleSize);
 
     return () => {
       if (resizeTimeout) clearTimeout(resizeTimeout);
+      console.log("re size removed");
+      
       window.removeEventListener("resize", debouncedHandleSize);
     };
   }, []);
 
   return windowSize;
 };
+
+export default useWindowSize

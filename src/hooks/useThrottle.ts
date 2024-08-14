@@ -2,9 +2,9 @@ import { useEffect, useState } from "react"
 
 type Value = string | number | (() => void)
 
-export const useThrottle = (value: Value, duration: number) => {
+const useThrottle = (value: Value, duration: number) => {
 
-    const [throttledValue, setThrottledValue] = useState<Value>("")
+    const [throttledValue, setThrottledValue] = useState("")
     const [isLocked, setLock] = useState(false)
 
     const handleLock = () => {
@@ -28,3 +28,5 @@ export const useThrottle = (value: Value, duration: number) => {
 
   return throttledValue
 }
+
+export default useThrottle
