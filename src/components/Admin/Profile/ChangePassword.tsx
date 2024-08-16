@@ -1,7 +1,7 @@
 import Button from "../../Shared/Button/Button";
 import Input from "../../Shared/Input/Input";
 
-const PasswordForm = () => {
+const ChangePassword = () => {
   return (
     <div className="rounded-12 bg-white shadow-2 px-40 pt-40 pb-30 mt-30">
       <h5 className="text-20 fw-500 mb-30">Change Password</h5>
@@ -29,7 +29,6 @@ const PasswordForm = () => {
           <div className="col-12">
             <Button buttonType="primary">
               Save Changes
-              <i className="icon-arrow-top-right text-16 ml-10"></i>
             </Button>
           </div>
         </div>
@@ -38,4 +37,4 @@ const PasswordForm = () => {
   );
 };
 
-export default PasswordForm;
+export default ChangePassword;

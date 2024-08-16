@@ -6,16 +6,24 @@ import ImagePlaceholder from "./ImagePlaceholder";
 const ContentSection = () => {
   return (
     <div className="contactForm row y-gap-30">
-      <Input label="Tour Title" type="text"/>
-      <Input label="Category" type="text"/>
-      <Input label="Keywords" type="text"/>
-      <Textarea label="Tour Description" rows={8}/>
+      <div className="col-12">
+        <Input label="Tour Title" type="text" />
+      </div>
+      <div className="col-12">
+        <Input label="Category" type="text" />
+      </div>
+      <div className="col-12">
+        <Input label="Keywords" type="text" />
+      </div>
+      <div className="col-12">
+        <Textarea label="Tour Description" rows={8} />
+      </div>
       <div className="col-12">
         <h4 className="text-18 fw-500 mb-20">Gallery</h4>
 
         <div className="row x-gap-20 y-gap">
           <div className="col-auto">
-            <ImagePlaceholder size={1}/>
+            <ImagePlaceholder size={1} />
           </div>
         </div>
 
@@ -25,9 +33,7 @@ const ContentSection = () => {
       </div>
 
       <div className="col-12">
-        <Button buttonType="primary">
-          Save Changes
-        </Button>
+        <Button buttonType="primary">Save Changes</Button>
       </div>
     </div>
   );
