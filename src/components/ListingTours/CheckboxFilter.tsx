@@ -1,4 +1,5 @@
-import Accordion from "../Shared/Accordion/Accordian";
+import React from "react";
+import Accordion from "../Shared/Accordion/Accordion";
 import Input from "../Shared/Input/Input";
 
 type Props = {
@@ -33,4 +34,6 @@ const CheckboxFilter = ({title, filters}: Props) => {
   );
 };
 
-export default CheckboxFilter;
+const MemoizedCheckboxFilter = React.memo(CheckboxFilter)
+
+export default MemoizedCheckboxFilter;

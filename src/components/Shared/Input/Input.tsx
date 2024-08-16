@@ -37,12 +37,10 @@ const Input = (Props: InputProps) => {
   }
 
   return (
-    <div className="col-12">
       <div className="form-input">
         <input {...inputProps} />
         <label className="lh-1 text-16 text-light-1">{label}</label>
       </div>
-    </div>
   );
 };
 

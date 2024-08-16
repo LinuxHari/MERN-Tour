@@ -1,9 +1,9 @@
-import { ListingCardProps } from "../../../type";
+import { ListingCard2Props } from "../../../type";
 import { getOriginalPrice } from "../../../utils/getOriginalPrice";
 import Button from "../Button/Button";
 import Rating from "../Rating/Rating";
 
-type Props = ListingCardProps & {
+type Props = ListingCard2Props & {
   className?: string;
 };
 

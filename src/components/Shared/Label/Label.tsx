@@ -1,13 +1,16 @@
 type Props = {
   children: React.ReactNode;
-  className?: string;
+  type?: 1 | 2
 };
 
-const Label = ({ children, className = ""}: Props) => {
+const Label = ({ children, type = 2}: Props) => {
+
+  const labelStyle = type === 1? "text-accent-1 bg-accent-1-05": "bg-light-1"
+
   return (
     <div className="col-auto">
       <button
-        className={`button -accent-1 text-14 px-15 bg-accent-1-05 rounded-200 ${className}`}
+        className={`button -accent-1 text-14 px-15 rounded-200 ${labelStyle}`}
       >
         {children}
       </button>

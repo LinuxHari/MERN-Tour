@@ -1,9 +1,9 @@
-import { ListingCardProps } from "../../type";
+import { ListingCard2Props } from "../../type";
 import Pagination from "../Shared/Pagination/Pagination";
 import TourCard2 from "../Shared/TourCard/TourCard2";
 
 const TourList = () => {
-  const tourListings: ListingCardProps[] = [
+  const tourListings: ListingCard2Props[] = [
     {
       img: "img/tourCards/3/1.png",
       location: "Paris, France",
