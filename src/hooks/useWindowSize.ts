@@ -1,7 +1,7 @@
 import { useLayoutEffect, useState } from "react";
 
 const useWindowSize = () => {
-  const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
+  const [windowSize, setWindowSize] = useState({ width: window.innerWidth, height: window.innerHeight });
 
   const handleSize = () => {
     setWindowSize({
@@ -11,6 +11,8 @@ const useWindowSize = () => {
   };
 
   useLayoutEffect(() => {
+
+    // Prevent unnecessary re-renders with debouncing
 
     let resizeTimeout: number | null = null;
     const debouncedHandleSize = () => {
@@ -26,7 +28,6 @@ const useWindowSize = () => {
 
     return () => {
       if (resizeTimeout) clearTimeout(resizeTimeout);
-      console.log("re size removed");
       
       window.removeEventListener("resize", debouncedHandleSize);
     };
