@@ -20,7 +20,7 @@ const TourHeader = ({freeCancellation, isBestSeller, title, rating, reviewCount,
         <div className="row y-gap-20 justify-between items-end">
           <div className="col-auto">
             <div className="row x-gap-10 y-gap-10 items-center">
-             {freeCancellation && <Label className="text-accent-1">Best seller</Label>}
+             {freeCancellation && <Label type={1}>Best seller</Label>}
              {isBestSeller && <Label>Free cancellation</Label>}
             </div>
 

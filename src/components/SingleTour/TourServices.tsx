@@ -26,11 +26,11 @@ const TourServices = () => {
 
   return (
     <div className="row y-gap-20 justify-between items-center layout-pb-md">
-      <div className="col-lg-3 col-6">
-        {tourDetails.map((detail, index) => (
-          <TourService key={index} {...detail} />
-        ))}
-      </div>
+      {tourDetails.map((detail, index) => (
+        <div key={index} className="col-lg-3 col-6">
+          <TourService {...detail} />
+        </div>
+      ))}
     </div>
   );
 };
