@@ -31,11 +31,11 @@ const TourCard = ({ img, location, title, rating, reviewCount, duration, price, 
             {location}
           </div>
   
-          <h3 className="tourCard__title text-16 fw-500 mt-5">
+          <h3 className="tourCard__title text-16 fw-500 mt-1">
             <span className="line-clamp-2">{title.length < 55? title: (title.slice(0,55) + "...") }</span>
           </h3>
   
-          <div className="tourCard__rating d-flex items-center text-13 mt-5">
+          <div className="tourCard__rating d-flex items-center text-13">
             <Rating rating={rating} reviewCount={reviewCount}/>
           </div>
   

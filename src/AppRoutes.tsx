@@ -13,6 +13,8 @@ const Profile = lazy(() => import('./pages/Admin/Profile'));
 const CommonHeader = lazy(() => import('./components/Admin/CommonHeader'));
 const ListingTours = lazy(() => import('./pages/ListingTours'))
 const Tour = lazy(() => import('./pages/SingleTour'))
+const BookingSuccess = lazy(() => import('./pages/BookingSuccess'));
+const Checkout = lazy(() => import('./pages/TravellerInfo'));
 
 const AppRoutes = () => {
   const render = useCallback((title: string, desc: string) => <CommonHeader title={title} desc={desc}/>,[])
@@ -24,6 +26,8 @@ const AppRoutes = () => {
         <Route index element={<Home/>}/>
         <Route path="tours" element={<ListingTours/>}/>
         <Route path="tour" element={<Tour/>}/>
+        <Route path="checkout" element={<Checkout/>}/>
+        <Route path="success" element={<BookingSuccess/>}/>
       </Route>
       <Route path="/dashboard" element={<AdminLayout />}>
         <Route index element={<Dashboard render={render} />} />

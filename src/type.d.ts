@@ -27,13 +27,17 @@ export type ListingCardProps = {
   img: string;
   location: string;
   title: string;
-  description: string;
   rating: number;
   reviewCount: number;
   duration: number;
   price: number;
+  
+};
+
+export type ListingCard2Props = ListingCardProps & {
+  description: string;
   offer?: {
     percentage: number;
   };
   freeCancellation: boolean;
-};
+}
