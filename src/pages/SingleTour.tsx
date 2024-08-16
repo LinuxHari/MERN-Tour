@@ -1,8 +1,7 @@
 import BreadCrumbs from "../components/Shared/BreadCrumbs/BreadCrumbs";
-import SideCard from "../components/SingleTour/SideCard";
 import TourHeader from "../components/SingleTour/TourHeader";
-import TourOverview from "../components/SingleTour/TourOverview";
-import TourServices from "../components/SingleTour/TourServices";
+import TourInfo from "../components/SingleTour/TourInfo";
+import TourSuggestions from "../components/SingleTour/TourSuggestions";
 
 const SingleTour = () => {
   const tourData = {
@@ -27,19 +26,8 @@ const SingleTour = () => {
         <BreadCrumbs />
       </div>
       <TourHeader {...tourData} />
-      <section className="layout-pt-md js-pin-container">
-        <div className="container">
-          <div className="row y-gap-30 justify-between">
-            <div className="col-lg-8">
-              <TourServices />
-              <TourOverview />
-            </div>
-            <div className="col-lg-4">
-              <SideCard />
-            </div>
-          </div>
-        </div>
-      </section>
+      <TourInfo />
+      <TourSuggestions/>
     </>
   );
 };
