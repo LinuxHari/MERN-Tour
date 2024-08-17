@@ -13,7 +13,7 @@ const CheckboxFilter = ({title, filters}: Props) => {
     <div className="sidebar__item">
       <Accordion>
         <Accordion.Item>
-          <Accordion.Button>
+          <Accordion.Button isShowIcon={true}>
             <h5 className="text-18 fw-500">{title}</h5>
           </Accordion.Button>
 

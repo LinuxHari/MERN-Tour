@@ -67,7 +67,7 @@ const AccordionItem = ({
   );
 };
 
-const AccordionButton = ({ children, onToggle, isShowIcon = false }: AccordionButtonProps) => {
+const AccordionButton = ({ children, onToggle, isShowIcon = true }: AccordionButtonProps) => {
   return (
     <div className="accordion__button d-flex items-center justify-between" onClick={onToggle}>
       {children}

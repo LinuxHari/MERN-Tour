@@ -52,18 +52,15 @@ const TourCard2 = ({
         <Rating rating={rating} reviewCount={reviewCount} />
         <p className="tourCard__text mt-2 mb-2">{description}</p>
         {freeCancellation && (
-          <div className="row x-gap-20 y-gap-5 pt-30">
-            <div className="col-auto">
-              <div className="text-14 text-accent-1">
-                <i className="icon-price-tag mr-10"></i>
-                Best Price Guarantee
-              </div>
+          <div className="d-flex flex-wrap x-gap-20 y-gap-5 pt-30">
+            <div className="text-14 text-accent-1">
+              <i className="icon-price-tag mr-10"></i>
+              Best Price Guarantee
             </div>
-            <div className="col-auto">
-              <div className="text-14">
-                <i className="icon-check mr-10"></i>
-                Free Cancellation
-              </div>
+
+            <div className="text-14">
+              <i className="icon-check mr-10"></i>
+              Free Cancellation
             </div>
           </div>
         )}
@@ -75,7 +72,9 @@ const TourCard2 = ({
             {duration} Days
           </div>
           <div className="tourCard__price">
-            <div>{offer && `$${getOriginalPrice(price, offer.percentage)}`}</div>
+            <div>
+              {offer && `$${getOriginalPrice(price, offer.percentage)}`}
+            </div>
             <div className="d-flex items-center">
               From <span className="text-20 fw-500 ml-5">${price}</span>
             </div>
