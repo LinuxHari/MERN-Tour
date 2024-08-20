@@ -1,4 +1,5 @@
-import React, { useState, ReactNode, cloneElement, isValidElement } from "react";
+import { useState, ReactNode } from "react";
+import { DropdownContext, useDropdownContext } from "../../../context/DropdownContext";
 
 type DropdownProps = {
   className?: string;
@@ -7,56 +8,49 @@ type DropdownProps = {
 
 type ContentProps = {
   children: ReactNode;
-  showContent?: boolean;
-  className?: string
-  dataClick?: string
+  className?: string;
+  dataClick?: string;
 };
 
 type ToggleProps = {
-  onClick?: () => void;
-  className?: string
+  className?: string;
   children: ReactNode;
-  dataClick?: string
+  dataClick?: string;
 };
 
 const Dropdown = ({ className, children }: DropdownProps) => {
   const [showContent, setShowContent] = useState(false);
 
   const toggleContent = () => {
-    setShowContent(!showContent);
+    setShowContent((prev) => !prev);
   };
 
   return (
-    <div className={`headerDropdown ${className}`}>
-      {React.Children.map(children, (child) => {
-        if (isValidElement(child)) {
-          if (child.type === Dropdown.Toggle) {
-            return cloneElement(child, {
-              onClick: toggleContent,
-            } as ToggleProps);
-          } else if (child.type === Dropdown.Content) {
-            return cloneElement(child, { showContent } as ContentProps);
-          }
-        }
-        return child;
-      })}
-    </div>
+    <DropdownContext.Provider value={{ showContent, toggleContent }}>
+      <div className={`headerDropdown ${className}`}>
+        {children}
+      </div>
+    </DropdownContext.Provider>
   );
 };
 
-const Toggle = ({ onClick, children, className = "", dataClick }: ToggleProps) => {
+const Toggle = ({ children, className = "", dataClick }: ToggleProps) => {
+  const { toggleContent } = useDropdownContext();
+
   return (
     <div
       className={`headerDropdown__button ${className}`}
       data-x-click={dataClick}
-      onClick={onClick}
+      onClick={toggleContent}
     >
       {children}
     </div>
   );
 };
 
-const Content = ({ children, showContent, className = "", dataClick }: ContentProps) => {
+const Content = ({ children, className = "", dataClick }: ContentProps) => {
+  const { showContent } = useDropdownContext();
+
   return (
     <div
       className={`headerDropdown__content ${className} ${showContent ? "is-active" : ""}`}
