@@ -1,37 +1,31 @@
-import React, { useState, Children, cloneElement, ReactNode } from "react";
+import { useState, ReactNode } from "react";
+import { SelectContext, useSelectContext } from "../../../context/SelectContext";
 
-type SelectProps<T> = {
+
+
+
+type SelectProps = {
   children: ReactNode;
-  defaultValue?: T;
-  onChange?: (value: T) => void;
+  defaultValue?: string | number;
+  onChange?: (value: string | number) => void;
 };
 
 type ButtonProps = {
-  selectedValue?: string;
-  toggleDropdown?: () => void;
-  isOpen?: boolean;
   children?: ReactNode;
 };
 
-type MenuProps<T> = {
+type OptionProps = {
+  value: string | number;
   children: ReactNode;
-  isOpen?: boolean;
-  selectOption?: (value: T) => void;
 };
 
-type OptionProps<T> = {
-  value: T;
-  children: ReactNode;
-  selectOption?: (value: T) => void;
-};
-
-const Select = <T,>({ children, defaultValue, onChange }: SelectProps<T>) => {
-  const [selectedValue, setSelectedValue] = useState<T>(defaultValue as T);
+const Select = ({ children, defaultValue, onChange }: SelectProps) => {
+  const [selectedValue, setSelectedValue] = useState<string | number>(defaultValue || "");
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  const toggleDropdown = () => setIsOpen(!isOpen);
+  const toggleDropdown = () => setIsOpen((prev) => !prev);
 
-  const selectOption = (value: T) => {
+  const selectOption = (value: string | number) => {
     setSelectedValue(value);
     setIsOpen(false);
     if (onChange) {
@@ -40,62 +34,53 @@ const Select = <T,>({ children, defaultValue, onChange }: SelectProps<T>) => {
   };
 
   return (
-    <div className="dropdown -type-2 js-dropdown js-form-dd is-active">
-      {Children.map(children, (child) => {
-        if (React.isValidElement(child)) {
-          return cloneElement(child, {
-            ...(child.type === Button
-              ? { selectedValue, toggleDropdown, isOpen }
-              : {}),
-            ...(child.type === Menu ? { isOpen, selectOption } : {}),
-          });
-        }
-        return null;
-      })}
+    <SelectContext.Provider
+      value={{ selectedValue, isOpen, toggleDropdown, selectOption }}
+    >
+      <div className="dropdown -type-2 js-dropdown js-form-dd is-active">
+        {children}
+      </div>
+    </SelectContext.Provider>
+  );
+};
+
+
+const Button = ({ children }: ButtonProps) => {
+  const { selectedValue, toggleDropdown, isOpen } = useSelectContext();
+
+  return (
+    <div className="dropdown__button js-button" onClick={toggleDropdown}>
+      {children && <span>{children}</span>}
+      <span className="js-title">{selectedValue}</span>
+      <i
+        className={`icon-chevron-down ${isOpen ? "rotate-180" : "rotate-0"}`}
+      ></i>
     </div>
   );
 };
 
-const Button = ({
-  selectedValue,
-  toggleDropdown,
-  children,
-  isOpen,
-}: ButtonProps) => (
-  <div className="dropdown__button js-button" onClick={toggleDropdown}>
-    {children && <span>{children}</span>}
-    <span className="js-title">{selectedValue}</span>
-    <i
-      className={`icon-chevron-down ${isOpen ? "rotate-180" : "rotate-0"}`}
-    ></i>
-  </div>
-);
+const Menu = ({ children }: ButtonProps) => {
+  const { isOpen } = useSelectContext();
 
-const Menu = <T,>({ children, isOpen, selectOption }: MenuProps<T>) => {
   return isOpen ? (
     <div className="dropdown__menu js-menu-items">
-      {Children.map(children, (child) => {
-        if (React.isValidElement(child)) {
-          return cloneElement(child, {
-            ...(child.type === Option ? { selectOption } : {}),
-          });
-        }
-        return null;
-      })}
+      {children}
     </div>
   ) : null;
 };
 
-const Option = <T,>({ value, children, selectOption }: OptionProps<T>) => (
-  <div
-    className="dropdown__item"
-    onClick={() => {
-      selectOption && selectOption(value);
-    }}
-  >
-    {children}
-  </div>
-);
+const Option = ({ value, children }: OptionProps) => {
+  const { selectOption } = useSelectContext();
+
+  return (
+    <div
+      className="dropdown__item"
+      onClick={() => selectOption(value)}
+    >
+      {children}
+    </div>
+  );
+};
 
 Select.Button = Button;
 Select.Menu = Menu;
