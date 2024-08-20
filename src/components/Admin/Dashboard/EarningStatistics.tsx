@@ -1,11 +1,8 @@
-import { useState } from "react";
 import { Line } from "react-chartjs-2";
 import Tabs from "../../Shared/Tabs/Tabs";
 import useChart from "../../../hooks/useChart"
 
 const EarningStatistics = () => {
-  const [selectedTab, setSelectedTab] = useState(0);
-
   const tabs = ["Hours", "Weekly", "Monthly"];
 
   const data = {
@@ -27,8 +24,7 @@ const EarningStatistics = () => {
                 {tabs.map((tab, index) => (
                   <div className="col-auto" key={index}>
                     <Tabs.Tab
-                      isActive={selectedTab === index}
-                      onClick={() => setSelectedTab(index)}
+                      index={index}
                       className="fw-500"
                     >
                       {tab}
@@ -40,7 +36,7 @@ const EarningStatistics = () => {
 
             <Tabs.TabContents className="pt-30">
               {tabs.map((_, index) => (
-                <Tabs.TabContent key={index} isVisible={selectedTab === index}>
+                <Tabs.TabContent key={index} index={index}>
                   <div className="chart-container">
                     <Line data={chartData[index]} options={chartConfig} />
                   </div>

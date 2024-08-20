@@ -1,11 +1,9 @@
-import { useState } from "react";
 import { Bookings as BookingsType, RenderProps } from "../../type";
 import Pagination from "../../components/Shared/Pagination/Pagination";
 import Tabs from "../../components/Shared/Tabs/Tabs";
 import Table from "../../components/Admin/Bookings/Table";
 
 const Bookings = ({ render }: RenderProps) => {
-  const [tab, setTab] = useState(0);
 
   const tableHeaders = [
     "ID",
@@ -187,8 +185,7 @@ const Bookings = ({ render }: RenderProps) => {
                 <Tabs.Tab
                   className="text-20 lh-12 fw-500 pb-15 lg:pb-0 js-tabs-button"
                   data-tab-target=".-tab-item-1"
-                  onClick={() => setTab(index)}
-                  isActive={tab === index}
+                  index={index}
                 >
                   {status}
                 </Tabs.Tab>
@@ -199,7 +196,7 @@ const Bookings = ({ render }: RenderProps) => {
           <Tabs.TabContents>
             {bookingData.map(
               (data: BookingsType[], index: number) => (
-                <Tabs.TabContent key={index} isVisible={index === tab}>
+                <Tabs.TabContent key={index} index={index}>
                   <Table headers={tableHeaders} showEdit={true} data={data} />
                   <Pagination />
                 </Tabs.TabContent>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { ACTIVITIES, DESTINATIONS } from "../../../data";
 import Dropdown from "../Dropdown/Dropdown";
 import Tabs from "../Tabs/Tabs";
@@ -10,10 +10,7 @@ type PlacesProps = {
   dataClick: string;
 };
 
-const Places = ({ data, title, dataClick }: PlacesProps) => {
-
-  const [selectedTab, setSelectedTab] = useState(0)
-  
+const Places = ({ data, title, dataClick }: PlacesProps) => {  
 
   return (
     <Dropdown className="lg:d-none js-form-dd">
@@ -31,8 +28,7 @@ const Places = ({ data, title, dataClick }: PlacesProps) => {
                 {Object.keys(data).map((tabName, index) => (
                   <Tabs.Tab 
                     key={tabName} 
-                    isActive={selectedTab === index} 
-                    onClick={() => setSelectedTab(index)}
+                    index={index}
                   >
                     {tabName}
                   </Tabs.Tab>
@@ -42,7 +38,7 @@ const Places = ({ data, title, dataClick }: PlacesProps) => {
             <div className="tabsMenu__content">
               <Tabs.TabContents>
                 {Object.values(data).map((data, index) => (
-                  <Tabs.TabContent key={index} isVisible={selectedTab === index}>
+                  <Tabs.TabContent key={index} index={index}>
                     <DestinationLocations data={data} />
                   </Tabs.TabContent>
                 ))}
