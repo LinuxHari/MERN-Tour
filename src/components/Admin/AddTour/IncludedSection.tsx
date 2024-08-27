@@ -1,9 +1,7 @@
-import Button from "../../Shared/Button/Button";
 import Input from "../../Shared/Input/Input";
 
 const IncludedSection = () => {
   return (
-    <>
       <div className="row y-gap-20 justify-between">
         <div className="col-md-8">
           <div className="row y-gap-20">
@@ -49,13 +47,7 @@ const IncludedSection = () => {
           </div>
         </div>
       </div>
-
-      <div className="mt-40">
-      <Button buttonType="primary">
-      Save Changes
-      </Button>
-      </div>
-    </>
+  
   );
 };
 
