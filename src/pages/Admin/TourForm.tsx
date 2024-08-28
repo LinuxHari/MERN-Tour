@@ -1,7 +1,7 @@
 import Tabs from "../../components/Shared/Tabs/Tabs";
 import ContentForm from "../../components/Admin/AddTour/ContentSection";
-import LocationForm from "../../components/Admin/AddTour/LocationSection";
-import PricingForm from "../../components/Admin/AddTour/PricingSection";
+import ItineraryForm from "../../components/Admin/AddTour/ItinerarySection";
+import FAQForm from "../../components/Admin/AddTour/FAQSection";
 import IncludedForm from "../../components/Admin/AddTour/IncludedSection";
 import { FormProvider, useForm } from "react-hook-form";
 import { TourSchema, TourSchemaType} from "../../schema/tourSchema";
@@ -9,8 +9,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import Button from "../../components/Shared/Button/Button";
 
 const TourForm = () => {
-  const formTabs = ["Content", "Location", "Pricing", "Included"];
-  const formComponents = [<ContentForm />,<LocationForm />,<PricingForm />,<IncludedForm />];
+  const formTabs = ["Content", "Itinerary", "FAQ", "Included"];
+  const formComponents = [<ContentForm />,<ItineraryForm />,<FAQForm />,<IncludedForm />];
 
   const form = useForm<TourSchemaType>({ resolver: zodResolver(TourSchema) });
 
@@ -49,7 +49,7 @@ const TourForm = () => {
           </div>
         </Tabs>
         <div className="col-12 mt-30">
-        <Button buttonType="primary">Save Changes</Button>
+        <Button buttonType="primary" type="submit">Save Changes</Button>
       </div>
       </form>
     </FormProvider>
