@@ -1,7 +1,7 @@
 // import { useFormContext } from "react-hook-form";
 import Input from "../../Shared/Input/Input";
 
-const LocationSection = () => {
+const ItinerarySection = () => {
 
   // const {register} = useFormContext()
 
@@ -34,4 +34,4 @@ const LocationSection = () => {
   );
 };
 
-export default LocationSection;
+export default ItinerarySection;
