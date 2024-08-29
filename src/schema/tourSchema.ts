@@ -89,3 +89,30 @@ export const TourSchema = z.object({
 });
 
 export type TourSchemaType = z.infer<typeof TourSchema>;
+
+export const defaultTourValue = {
+  "name": "Demo",
+  "description": "",
+  "category": "Nature tours",
+  "highlights": ["hello", "hello"],
+  "city": "trichy",
+  "state": "tamil nadu",
+  "zipCode": 0,
+  "price": 0.0,
+  "itinerary": [
+    {
+      "place": "",
+      "description": ""
+    }
+  ],
+  "languages": [""],
+  "faq": [
+    {
+      "question": "",
+      "answer": ""
+    }
+  ],
+  "minAge": 0,
+  "freeCancellation": false
+}
+
