@@ -1,6 +1,7 @@
-import React from "react";
+import { ButtonHTMLAttributes } from "react";
 
-type ButtonProps = {
+
+type ExtendedButtonProps = {
   type?: "button" | "submit"; 
   className?: string;
   children: React.ReactNode;
@@ -8,13 +9,9 @@ type ButtonProps = {
   showIcon?: boolean
 };
 
-const Button = ({
-  type = "button",
-  className = "",
-  children,
-  buttonType,
-  showIcon = true
-}: ButtonProps) => {
+type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & ExtendedButtonProps
+
+const Button = ({ type = "button", className = "", children, buttonType, showIcon = true}: ButtonProps) => {
   if (buttonType === "icon") {
     return (
       <button

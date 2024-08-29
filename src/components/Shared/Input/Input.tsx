@@ -1,18 +1,18 @@
-import { InputHTMLAttributes } from "react";
+import { forwardRef, InputHTMLAttributes } from "react";
 
 type InputProps = InputHTMLAttributes<HTMLInputElement> & {
   label: string;
   type: "text" | "checkbox" | "email" | "password";
 };
 
-const Input = (Props: InputProps) => {
-  const { label, type, ...inputProps } = Props;
+const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
+  const { label, type, ...inputProps } = props;
 
   if (type === "checkbox") {
     return (
       <div className="d-flex items-center">
         <div className="form-checkbox">
-          <input type="checkbox" name="name" />
+          <input type="checkbox" {...inputProps} ref={ref}/>
           <div className="form-checkbox__mark">
             <div className="form-checkbox__icon">
               <svg
@@ -38,10 +38,10 @@ const Input = (Props: InputProps) => {
 
   return (
       <div className="form-input">
-        <input {...inputProps} />
+        <input {...inputProps} ref={ref}/>
         <label className="lh-1 text-16 text-light-1">{label}</label>
       </div>
   );
-};
+})
 
 export default Input;
