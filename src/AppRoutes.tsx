@@ -17,7 +17,7 @@ const BookingSuccess = lazy(() => import('./pages/BookingSuccess'));
 const Checkout = lazy(() => import('./pages/TravellerInfo'));
 
 const AppRoutes = () => {
-  const render = useCallback((title: string, desc: string) => <CommonHeader title={title} desc={desc}/>,[])
+  const render = useCallback((title: string, desc: string = "") => <CommonHeader title={title} desc={desc}/>,[])
 
   return (
     <Suspense fallback={<div>Loading...</div>}>

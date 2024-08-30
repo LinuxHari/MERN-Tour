@@ -1290,7 +1290,9 @@ button:focus {
 }
 
 .contactForm .form-input textarea:focus + label,
-.contactForm .form-input input:focus + label {
+.contactForm .form-input input:focus + label,
+.contactForm .form-input input:valid + label,
+.contactForm .form-input textarea:valid + label {
   transform: translateY(-29px);
 }
 

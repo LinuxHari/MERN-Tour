@@ -1,9 +1,11 @@
+import { memo } from "react"
+import { RenderProps } from "../../../type"
 import ImagePlaceholder from "./ImagePlaceholder"
 
-const GallerySection = () => {
+const GallerySection = ({ render }: RenderProps) => {
   return (
     <>
-    <h4 className="text-18 fw-500 mb-20">Gallery</h4>
+   {render("Gallery")}
 
 <div className="row x-gap-20 y-gap">
   <div className="col-auto">
@@ -18,4 +20,6 @@ const GallerySection = () => {
   )
 }
 
-export default GallerySection
+const MemoizedGallerySection = memo(GallerySection)
+
+export default MemoizedGallerySection

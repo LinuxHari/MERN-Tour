@@ -1,5 +1,5 @@
 export type RenderProps = {
-  render: (title: string, desc: string) => React.JSX.Element;
+  render: (title: string, desc?: string) => React.JSX.Element;
 };
 
 export type Status = "Confirmed" | "Pending" | "Cancelled";
