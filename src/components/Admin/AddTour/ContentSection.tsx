@@ -22,6 +22,18 @@ const ContentSection = () => {
         <Textarea label="Tour Description" rows={8} {...register("description")} required/>
       </div>
       <div className="col-12">
+          <Input type="text" label="City" {...register("city")} required/>
+        </div>
+        <div className="col-12">
+          <Input type="text" label="State" {...register("state")} required />
+        </div>
+        <div className="col-12">
+          <Input type="text" label="Address" {...register("address")} required />
+        </div>
+        <div className="col-12">
+          <Input type="text" label="Zip Code" {...register("zipCode")} required />
+        </div>
+      <div className="col-12">
           <Input label="Tour Price" type="text" {...register("price")} required/>
       </div>
       <div className="col-12">

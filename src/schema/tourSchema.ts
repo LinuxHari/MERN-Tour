@@ -20,12 +20,13 @@ export const TourSchema = z.object({
       message: 'Category is not valid',
     }),
 
-  highlights: z.array(z.string()
+  highlights: z.array(z.object({
+    value:z.string()
     .transform(sanitizeString)
     .pipe(z.string().min(20, { message: 'Highlight should be minimum 20 characters' })
-    .max(100, { message: 'Highlight should be maximum 100 characters' })))
-    .min(2, { message: 'Highlights must have at least 2 entries' })
-    .max(10, { message: 'Highlights should not exceed 10 entries' }),
+    .max(100, { message: 'Highlight should be maximum 100 characters' }))
+  })).min(2, { message: 'Highlights must have at least 2 entries' })
+  .max(10, { message: 'Highlights should not exceed 10 entries' }),
 
   city: z.string()
     .transform(sanitizeString)
@@ -37,8 +38,10 @@ export const TourSchema = z.object({
     .pipe(z.string().min(2, { message: 'State name must be at least 2 characters' })
     .max(50, { message: 'State name must not exceed 50 characters' })),
 
-  zipCode: z.number()
-    .refine(code => /^\d{7,8}$/.test(code.toString()), { message: 'Zip code must be 7 or 8 digits' }),
+  country: z.string()
+  .transform(sanitizeString)
+    .pipe(z.string().min(3, { message: 'State name must be at least 3 characters' })
+    .max(56, { message: 'State name must not exceed 56 characters' })),
 
   price: z.number()
     .min(5, { message: 'Price should not be less than 5' })
@@ -46,7 +49,7 @@ export const TourSchema = z.object({
     .transform(value => parseFloat(value.toFixed(2))),
 
   itinerary: z.array(z.object({
-    place: z.string()
+    activity: z.string()
       .transform(sanitizeString)
       .pipe(z.string().min(4, { message: 'Place must be at least 4 characters' })
       .max(50, { message: 'Place must not exceed 50 characters' })),
@@ -55,6 +58,8 @@ export const TourSchema = z.object({
       .transform(sanitizeString)
       .pipe(z.string().min(10, { message: 'Description must be at least 10 characters' })
       .max(300, { message: 'Description must not exceed 300 characters' })),
+    lat: z.number().min(-90).max(90),
+    lon: z.number().min(-180).max(180)
   }))
     .min(2, { message: 'Itinerary must have at least 1 entry' })
     .max(10, { message: 'Itinerary should not exceed 10 entries' }),
@@ -90,23 +95,35 @@ export const TourSchema = z.object({
 
 export type TourSchemaType = z.infer<typeof TourSchema>;
 
-export const defaultTourValue = {
-  "name": "Demo",
+export const defaultTourValue:TourSchemaType = {
+  "name": "",
   "description": "",
-  "category": "Nature tours",
-  "highlights": ["hello", "hello"],
-  "city": "trichy",
-  "state": "tamil nadu",
-  "zipCode": 0,
-  "price": 0.0,
+  "category": "",
+  "highlights": [{value: ""}, {value: ""}],
+  "city": "",
+  "state": "",
+  "country": "",
+  "price": 1000,
   "itinerary": [
     {
-      "place": "",
-      "description": ""
+      "activity": "",
+      "description": "",
+      "lat": 0,
+      "lon": 0
+    },
+    {
+      "activity": "",
+      "description": "",
+      "lat": 0,
+      "lon": 0
     }
   ],
   "languages": [""],
   "faq": [
+    {
+      "question": "",
+      "answer": ""
+    },
     {
       "question": "",
       "answer": ""

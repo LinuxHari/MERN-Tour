@@ -39,7 +39,7 @@ const TourHighlights = ({ render }: RenderProps) => {
           buttonType="primary"
           className="-md -outline-dark-1 text-dark bg-light-1 mt-30"
           showIcon={false}
-          onClick={() => append("hello")}
+          onClick={() => append({value: ""})}
         >
           <i className="icon-add-button text-16 mr-10" />
           Add highlight
