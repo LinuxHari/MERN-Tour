@@ -10,8 +10,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
 
   if (type === 'checkbox') {
     return (
-      <div className="d-flex items-center">
-        <div className="form-checkbox">
+        <div className="form-checkbox d-flex items-center">
           <input type="checkbox" {...inputProps} ref={ref} />
           <div className="form-checkbox__mark">
             <div className="form-checkbox__icon">
@@ -23,10 +22,8 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
               </svg>
             </div>
           </div>
+          <label htmlFor={inputProps.name} className="lh-16 ml-10">{label}</label>
         </div>
-
-        <div className="lh-16 ml-10">{label}</div>
-      </div>
     );
   }
 

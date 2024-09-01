@@ -7,10 +7,11 @@ import { FormProvider, useForm } from "react-hook-form";
 import { defaultTourValue, TourSchema, TourSchemaType} from "../../schema/tourSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Button from "../../components/Shared/Button/Button";
+import LanguageForm from "../../components/Admin/AddTour/LanguageSection";
 
 const TourForm = () => {
-  const formTabs = ["Content", "Itinerary", "FAQ", "Included"];
-  const formComponents = [<ContentForm />,<ItineraryForm />,<FAQForm />,<IncludedForm />];
+  const formTabs = ["Content", "Itinerary", "FAQ", "Included", "Languages"];
+  const formComponents = [<ContentForm />,<ItineraryForm />,<FAQForm />,<IncludedForm />,<LanguageForm/>];
 
   const form = useForm<TourSchemaType>({defaultValues: defaultTourValue, resolver: zodResolver(TourSchema) });
 

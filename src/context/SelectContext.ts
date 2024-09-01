@@ -1,10 +1,10 @@
 import { createContext, useContext } from "react";
 
 type SelectContextProps = {
-    selectedValue: string | number;
+    selectedValue: string;
     isOpen: boolean;
     toggleDropdown: () => void;
-    selectOption: (value: string | number) => void;
+    selectOption: (value: string) => void;
   };
 
 export const SelectContext = createContext<SelectContextProps | undefined>(undefined);

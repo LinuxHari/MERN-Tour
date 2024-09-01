@@ -4,6 +4,7 @@ import Textarea from "../../Shared/Teaxtarea/Textarea";
 import GallerySection from "./GallerySection";
 import TourHighlights from "./TourHighlights";
 import { useCallback } from "react";
+import Categories from "./Categories";
 
 const ContentSection = () => {
   const {register} = useFormContext()
@@ -16,7 +17,7 @@ const ContentSection = () => {
         <Input label="Tour Title" type="text" {...register("name")} required/>
       </div>
       <div className="col-12">
-        <Input label="Category" type="text" {...register("category")} required/>
+       <Categories/>
       </div>
       <div className="col-12">
         <Textarea label="Tour Description" rows={8} {...register("description")} required/>
@@ -35,6 +36,9 @@ const ContentSection = () => {
         </div>
       <div className="col-12">
           <Input label="Tour Price" type="text" {...register("price")} required/>
+      </div>
+      <div className="col-12">
+          <Input label="Tour Capacity" type="text" {...register("capacity")} required/>
       </div>
       <div className="col-12">
       <GallerySection render={render}/>        

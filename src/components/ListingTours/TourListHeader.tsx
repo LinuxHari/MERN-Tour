@@ -20,8 +20,8 @@ const TourListHeader = () => {
     "Rating: High to Low",
   ];
 
-  const handleChange = (value: SortProps) => {
-    setSelectedOption(value);
+  const handleChange = (value: string) => {
+    setSelectedOption(value as SortProps);
   };  
 
   return (
@@ -31,7 +31,7 @@ const TourListHeader = () => {
       </div>
 
       <div className="col-auto">
-        <Select<SortProps> defaultValue={selectedOption} onChange={handleChange}>
+        <Select defaultValue={selectedOption} onChange={handleChange}>
           <Select.Button>Sort by: </Select.Button>
           <Select.Menu>
             {sortOptions.map((sortType) => (

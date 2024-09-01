@@ -2,58 +2,50 @@ import { useFormContext } from "react-hook-form";
 import Input from "../../Shared/Input/Input";
 
 const IncludedSection = () => {
-  const { register } = useFormContext(); // Access the form context for registration
+  const { register } = useFormContext();
+
+  const includedItems = {
+    beverages: "Beverages, drinking water, morning tea and buffet lunch",
+    localTaxes: "Local taxes",
+    hotelPickup: "Hotel pickup and drop-off",
+    insuranceTransfer: "Insurance Transfer",
+    softDrinks: "Soft drinks",
+    tourGuide: "Tour guide",
+    towel: "Towel",
+    tips: "Tips",
+    alcoholicBeverages: "Alcoholic Beverages",
+  };
 
   return (
     <div className="row y-gap-20 justify-between">
       <div className="col-md-8">
         <div className="row y-gap-20">
           <div className="col-12">
-            <Input
-              type="checkbox"
-              label="Beverages, drinking water, morning tea and buffet lunch"
-              {...register("included.beverages")}
-            />
+            <Input type="checkbox" label={includedItems.beverages} {...register("included.beverages")} />
+          </div>
+
+          <div className="col-12">
+            <Input type="checkbox" label={includedItems.localTaxes} {...register("included.localTaxes")} />
+          </div>
+
+          <div className="col-12">
+            <Input type="checkbox" label={includedItems.hotelPickup} {...register("included.hotelPickup")} />
           </div>
 
           <div className="col-12">
             <Input
               type="checkbox"
-              label="Local taxes"
-              {...register("included.localTaxes")}
-            />
-          </div>
-
-          <div className="col-12">
-            <Input
-              type="checkbox"
-              label="Hotel pickup and drop-off by air-conditioned minivan"
-              {...register("included.hotelPickup")}
-            />
-          </div>
-
-          <div className="col-12">
-            <Input
-              type="checkbox"
-              label="Insurance Transfer to a private pier"
+              label={includedItems.insuranceTransfer}
               {...register("included.insuranceTransfer")}
             />
           </div>
 
           <div className="col-12">
-            <Input
-              type="checkbox"
-              label="Soft drinks"
-              {...register("included.softDrinks")}
-            />
+            <Input type="checkbox" label={includedItems.softDrinks} {...register("included.softDrinks")} />
           </div>
 
           <div className="col-12">
-            <Input
-              type="checkbox"
-              label="Tour Guide"
-              {...register("included.tourGuide")}
-            />
+            <Input type="checkbox" label={includedItems.tourGuide} {...register("included.tourGuide")} />
           </div>
         </div>
       </div>
@@ -61,25 +53,17 @@ const IncludedSection = () => {
       <div className="col-md-4">
         <div className="row y-gap-20">
           <div className="col-12">
-            <Input
-              type="checkbox"
-              label="Towel"
-              {...register("included.towel")}
-            />
+            <Input type="checkbox" label={includedItems.towel} {...register("included.towel")} />
+          </div>
+
+          <div className="col-12">
+            <Input type="checkbox" label={includedItems.tips} {...register("included.tips")} />
           </div>
 
           <div className="col-12">
             <Input
               type="checkbox"
-              label="Tips"
-              {...register("included.tips")}
-            />
-          </div>
-
-          <div className="col-12">
-            <Input
-              type="checkbox"
-              label="Alcoholic Beverages"
+              label={includedItems.alcoholicBeverages}
               {...register("included.alcoholicBeverages")}
             />
           </div>

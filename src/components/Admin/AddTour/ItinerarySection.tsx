@@ -30,7 +30,7 @@ const ItinerarySection = () => {
               <Input type="text" label="Activity" {...register(`activity.${index}`)} required />
             </div>
             <div className="col-lg-6">
-              <Input type="text" label="Description" {...register(`description.${index}`)} required />
+              <Input type="text" label="Description" {...register(`details.${index}`)} required />
             </div>
 
             <div className="col-lg-6">

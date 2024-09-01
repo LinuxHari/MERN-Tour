@@ -1,31 +1,30 @@
 import { useState, ReactNode } from "react";
 import { SelectContext, useSelectContext } from "../../../context/SelectContext";
 
-
-
-
 type SelectProps = {
   children: ReactNode;
-  defaultValue?: string | number;
-  onChange?: (value: string | number) => void;
+  defaultValue: string;
+  onChange: (value: string) => void;
+  className?: string
 };
 
 type ButtonProps = {
   children?: ReactNode;
+  className?: string
 };
 
 type OptionProps = {
-  value: string | number;
+  value: string;
   children: ReactNode;
 };
 
-const Select = ({ children, defaultValue, onChange }: SelectProps) => {
-  const [selectedValue, setSelectedValue] = useState<string | number>(defaultValue || "");
+const Select = ({ children, defaultValue, onChange, className = "" }: SelectProps) => {
+  const [selectedValue, setSelectedValue] = useState<string>(defaultValue || "");
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const toggleDropdown = () => setIsOpen((prev) => !prev);
 
-  const selectOption = (value: string | number) => {
+  const selectOption = (value: string) => {
     setSelectedValue(value);
     setIsOpen(false);
     if (onChange) {
@@ -37,7 +36,7 @@ const Select = ({ children, defaultValue, onChange }: SelectProps) => {
     <SelectContext.Provider
       value={{ selectedValue, isOpen, toggleDropdown, selectOption }}
     >
-      <div className="dropdown -type-2 js-dropdown js-form-dd is-active">
+      <div className={`dropdown -type-2 js-dropdown js-form-dd is-active ${className}`}>
         {children}
       </div>
     </SelectContext.Provider>
@@ -45,25 +44,24 @@ const Select = ({ children, defaultValue, onChange }: SelectProps) => {
 };
 
 
-const Button = ({ children }: ButtonProps) => {
+const Button = ({ children, className = "" }: ButtonProps) => {
   const { selectedValue, toggleDropdown, isOpen } = useSelectContext();
 
   return (
-    <div className="dropdown__button js-button" onClick={toggleDropdown}>
-      {children && <span>{children}</span>}
-      <span className="js-title">{selectedValue}</span>
+    <button type="button" className={`dropdown__button js-button ${className}`} onClick={toggleDropdown}>
+      <span className="js-title">{children && <>{children}</>}{selectedValue}</span>
       <i
         className={`icon-chevron-down ${isOpen ? "rotate-180" : "rotate-0"}`}
       ></i>
-    </div>
+    </button>
   );
 };
 
-const Menu = ({ children }: ButtonProps) => {
+const Menu = ({ children, className }: ButtonProps) => {
   const { isOpen } = useSelectContext();
 
   return isOpen ? (
-    <div className="dropdown__menu js-menu-items">
+    <div className={`dropdown__menu js-menu-items ${className}`}>
       {children}
     </div>
   ) : null;
@@ -73,12 +71,12 @@ const Option = ({ value, children }: OptionProps) => {
   const { selectOption } = useSelectContext();
 
   return (
-    <div
+    <option
       className="dropdown__item"
       onClick={() => selectOption(value)}
     >
       {children}
-    </div>
+    </option>
   );
 };
 
