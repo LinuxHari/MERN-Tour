@@ -13,33 +13,42 @@ const ItinerarySection = () => {
         {fields.map((_, index) => (
           <React.Fragment key={index}>
             <div className="d-flex justify-content-between col-lg-12">
-            <h4 className="text-18 fw-500 mb-20">Day {index + 1}</h4>
-            {index > 1 && (
+              <h4 className="text-18 fw-500 mb-20">Day {index + 1}</h4>
+              {index > 1 && (
                 <Button
-              buttonType="icon"
-              className="px-3 py-4 -outline-accent-1 text-accent-1"
-              showIcon={false}
-              onClick={() => remove(index)}
-              style={{width: "fit-content"}}
-            >
-              <i className="icon-delete text-20" />
-            </Button>
-            )}
+                  buttonType="icon"
+                  className="px-3 py-4 -outline-accent-1 text-accent-1"
+                  showIcon={false}
+                  onClick={() => remove(index)}
+                  style={{ width: "fit-content" }}
+                >
+                  <i className="icon-delete text-20" />
+                </Button>
+              )}
             </div>
             <div className="col-lg-6">
-              <Input type="text" label="Activity" {...register(`activity.${index}`)} required />
+              <Input type="text" label="Activity" {...register(`itinerary.${index}.activity`)} required />
             </div>
             <div className="col-lg-6">
-              <Input type="text" label="Description" {...register(`details.${index}`)} required />
+              <Input type="text" label="Description" {...register(`itinerary.${index}.details`)} required />
             </div>
 
             <div className="col-lg-6">
-              <Input type="text" label="Map Latitude" {...register(`lat.${index}`)} required />
+              <Input
+                type="number"
+                label="Map Latitude"
+                {...register(`itinerary.${index}.lat`, { valueAsNumber: true })}
+                required
+              />
             </div>
             <div className="col-lg-6">
-              <Input type="text" label="Map Longitude" {...register(`lon.${index}`)} required />
+              <Input
+                type="number"
+                label="Map Longitude"
+                {...register(`itinerary.${index}.lon`, { valueAsNumber: true })}
+                required
+              />
             </div>
-            
           </React.Fragment>
         ))}
         {fields.length < 10 && (
@@ -51,7 +60,7 @@ const ItinerarySection = () => {
             style={{ width: "fit-content" }}
           >
             <i className="icon-add-button text-16 mr-10" />
-            Add FAQ
+            Add Itinerary
           </Button>
         )}
 

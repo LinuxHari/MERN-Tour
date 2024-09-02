@@ -4,20 +4,29 @@ import ItineraryForm from "../../components/Admin/AddTour/ItinerarySection";
 import FAQForm from "../../components/Admin/AddTour/FAQSection";
 import IncludedForm from "../../components/Admin/AddTour/IncludedSection";
 import { FormProvider, useForm } from "react-hook-form";
-import { defaultTourValue, TourSchema, TourSchemaType} from "../../schema/tourSchema";
+import { defaultTourValue, TourSchema, TourSchemaType } from "../../schema/tourSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Button from "../../components/Shared/Button/Button";
 import LanguageForm from "../../components/Admin/AddTour/LanguageSection";
 
 const TourForm = () => {
   const formTabs = ["Content", "Itinerary", "FAQ", "Included", "Languages"];
-  const formComponents = [<ContentForm />,<ItineraryForm />,<FAQForm />,<IncludedForm />,<LanguageForm/>];
+  const formComponents = [<ContentForm />, <ItineraryForm />, <FAQForm />, <IncludedForm />, <LanguageForm />];
 
-  const form = useForm<TourSchemaType>({defaultValues: defaultTourValue, resolver: zodResolver(TourSchema) });
+  const form = useForm<TourSchemaType>({ defaultValues: defaultTourValue, resolver: zodResolver(TourSchema) });
+
+  const { handleSubmit, formState:{errors}, getValues } = form;
+
+  console.log(errors);
+  
+
+  const addTour = (data: TourSchemaType) => {
+    console.log(data);
+  };
 
   return (
     <FormProvider {...form}>
-      <form className="rounded-12 bg-white shadow-2 px-40 pt-40 pb-30 mt-60">
+      <form className="rounded-12 bg-white shadow-2 px-40 pt-40 pb-30 mt-60" onSubmit={handleSubmit(addTour)}>
         <Tabs className="-underline-2">
           <Tabs.TabList className="row x-gap-40 y-gap-10 lg:x-gap-20 js-tabs-controls">
             {formTabs.map((tab, index) => (
@@ -37,11 +46,7 @@ const TourForm = () => {
             <div className="col-xl-9 col-lg-10">
               <Tabs.TabContents>
                 {formComponents.map((Component, index) => (
-                  <Tabs.TabContent
-                    className={`-tab-item-${index + 1}`}
-                    index={index}
-                    key={index}
-                  >
+                  <Tabs.TabContent className={`-tab-item-${index + 1}`} index={index} key={index}>
                     {Component}
                   </Tabs.TabContent>
                 ))}
@@ -50,8 +55,10 @@ const TourForm = () => {
           </div>
         </Tabs>
         <div className="col-12 mt-30">
-        <Button buttonType="primary" type="submit">Save Changes</Button>
-      </div>
+          <Button buttonType="primary" type="submit">
+            Save Changes
+          </Button>
+        </div>
       </form>
     </FormProvider>
   );

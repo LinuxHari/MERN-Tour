@@ -10,7 +10,7 @@ const Categories = () => {
   };
   return (
     <Select defaultValue="" onChange={handleCategory} className = "w-100">
-      <Select.Button className="d-flex justify-content-between w-100 border p-3 rounded-12">Category: </Select.Button>
+      <Select.Button className="d-flex justify-content-between w-100 border p-3 rounded-12">Category :&nbsp; </Select.Button>
       <Select.Menu className="w-100">
         {categories.map((category) => (
           <Select.Option key={category} value={category}>

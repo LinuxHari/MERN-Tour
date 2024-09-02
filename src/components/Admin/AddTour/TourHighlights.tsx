@@ -19,7 +19,7 @@ const TourHighlights = ({ render }: RenderProps) => {
             type="text"
             className="flex-grow-1"
             label={`Hightlight ${index + 1}`}
-            {...register(`highlight.${index}`)}
+            {...register(`highlights.${index}.value`)}
             required
           />
           {index > 1 && (

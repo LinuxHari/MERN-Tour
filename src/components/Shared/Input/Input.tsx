@@ -2,7 +2,7 @@ import { forwardRef, InputHTMLAttributes } from 'react';
 
 type InputProps = InputHTMLAttributes<HTMLInputElement> & {
   label: string;
-  type: 'text' | 'checkbox' | 'email' | 'password';
+  type: 'text' | 'checkbox' | 'email' | 'password' | 'number' | 'radio';
 };
 
 const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
@@ -25,6 +25,20 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
           <label htmlFor={inputProps.name} className="lh-16 ml-10">{label}</label>
         </div>
     );
+  }
+
+  else if(type === "radio"){
+    return(
+      <div className="form-radio">
+      <div className="radio d-flex items-center">
+        <input type="radio" {...inputProps} ref={ref}/>
+        <div className="radio__mark">
+          <div className="radio__icon"></div>
+        </div>
+        <label htmlFor={inputProps.name} className="text-14 lh-1 ml-10">{label}</label>
+      </div>
+    </div>
+    )
   }
 
   return (
