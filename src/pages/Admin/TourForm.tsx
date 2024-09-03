@@ -26,7 +26,7 @@ const TourForm = () => {
 
   return (
     <FormProvider {...form}>
-      <form className="rounded-12 bg-white shadow-2 px-40 pt-40 pb-30 mt-60" onSubmit={handleSubmit(addTour)}>
+      <form className="rounded-12 bg-white shadow-2 px-40 pt-40 pb-30 mt-60" encType='multipart/form-data' onSubmit={handleSubmit(addTour)}>
         <Tabs className="-underline-2">
           <Tabs.TabList className="row x-gap-40 y-gap-10 lg:x-gap-20 js-tabs-controls">
             {formTabs.map((tab, index) => (

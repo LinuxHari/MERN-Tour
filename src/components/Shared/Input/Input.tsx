@@ -1,12 +1,16 @@
 import { forwardRef, InputHTMLAttributes } from 'react';
+import ImagePlaceholder from '../../Admin/AddTour/ImagePlaceholder';
 
 type InputProps = InputHTMLAttributes<HTMLInputElement> & {
   label: string;
-  type: 'text' | 'checkbox' | 'email' | 'password' | 'number' | 'radio';
+  type: 'text' | 'checkbox' | 'email' | 'password' | 'number' | 'radio' | 'file';
 };
 
 const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   const { label, className = "", type, ...inputProps } = props;
+
+  console.log(type === "file", type, label === "upload");
+  
 
   if (type === 'checkbox') {
     return (
@@ -37,6 +41,15 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
         </div>
         <label htmlFor={inputProps.name} className="text-14 lh-1 ml-10">{label}</label>
       </div>
+    </div>
+    )
+  }
+
+  else if(type === "file"){
+    return(
+      <div>
+      <label htmlFor={inputProps.name} className='cursor-pointer'><ImagePlaceholder size={1} byteSize='MB'/></label>
+      <input type="file" className='d-none' {...inputProps} ref={ref}/>
     </div>
     )
   }

@@ -1,8 +1,9 @@
-type Props = {
+type ImagePlaceholderProps = {
     size: number
+    byteSize: "KB" | "MB"
 }
 
-const ImagePlaceholder = ({size}:Props) => {
+const ImagePlaceholder = ({size, byteSize}:ImagePlaceholderProps) => {
   return (
     <div className="size-200 rounded-12 border-dash-1 bg-accent-1-05 flex-center flex-column">
               <svg
@@ -47,7 +48,7 @@ const ImagePlaceholder = ({size}:Props) => {
               <div className="text-16 fw-500 text-accent-1 mt-10">
                 Upload Images
               </div>
-              <span className="mx-4 mt-2" style={{fontSize: "12px"}}>Maximum size: {size}MB</span>
+              <span className="mx-4 mt-2" style={{fontSize: "12px"}}>Maximum size: {size}{byteSize}</span>
             </div>
   )
 }
