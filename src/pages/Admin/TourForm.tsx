@@ -15,10 +15,9 @@ const TourForm = () => {
 
   const form = useForm<TourSchemaType>({ defaultValues: defaultTourValue, resolver: zodResolver(TourSchema) });
 
-  const { handleSubmit, formState:{errors}, getValues } = form;
+  const { handleSubmit, formState:{errors} } = form;
 
   console.log(errors);
-  
 
   const addTour = (data: TourSchemaType) => {
     console.log(data);

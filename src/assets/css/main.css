@@ -13943,3 +13943,19 @@ a{
 .cursor-pointer{
   cursor: pointer;
 }
+
+.top-10{
+  top: 10px
+}
+
+.end-10{
+  right: 10px
+}
+
+.bottom-10{
+  bottom: 10px
+}
+
+.start{
+  left: 10px;
+}
