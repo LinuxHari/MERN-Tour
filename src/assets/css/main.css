@@ -13944,18 +13944,18 @@ a{
   cursor: pointer;
 }
 
-.top-10{
-  top: 10px
+.top-5{
+  top: 5px
 }
 
-.end-10{
-  right: 10px
+.end-5{
+  right: 5px
 }
 
-.bottom-10{
-  bottom: 10px
+.bottom-5{
+  bottom: 5px
 }
 
-.start{
-  left: 10px;
+.start-5{
+  left: 5px;
 }

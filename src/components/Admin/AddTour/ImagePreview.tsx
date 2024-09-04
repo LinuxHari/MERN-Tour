@@ -8,10 +8,10 @@ type ImagePreviewProps = {
 const ImagePreview = ({ url, onDelete }: ImagePreviewProps) => {
   return (
     <div className="relative p-0">
-      <img src={url} alt={url} className="rounded-8 px-0" style={{ width: "230px", height: "200px", objectFit: "cover" }} />
+      <img src={url} alt={url} className="rounded-8 px-0 border border-dashed border-secondary" style={{ width: "230px", height: "200px", objectFit: "cover" }} />
       <Button
         buttonType="icon"
-        className="px-3 py-4 -outline-accent-1 text-accent-1 absolute top-0 end-0"
+        className="px-2 py-3 -outline-accent-1 text-accent-1 absolute top-5 end-5"
         showIcon={false}
         onClick={onDelete}
         style={{ width: "fit-content" }}

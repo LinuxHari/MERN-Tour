@@ -1,6 +1,6 @@
 import { ChangeEvent, memo, useRef } from "react";
 import { RenderProps } from "../../../type";
-import { useFieldArray } from "react-hook-form";
+import { useFieldArray, useFormContext } from "react-hook-form";
 import ImagePreview from "./ImagePreview";
 import Input from "../../Shared/Input/Input";
 
@@ -10,6 +10,7 @@ type FieldProps = {
 }[];
 
 const GallerySection = ({ render }: RenderProps) => {
+  const {watch} = useFormContext()
   const { fields, append, remove } = useFieldArray({ name: "images", rules: { minLength: 1 } });
 
   const fileRef = useRef<HTMLInputElement>(null);
@@ -26,13 +27,13 @@ const GallerySection = ({ render }: RenderProps) => {
     if (fileRef.current) fileRef.current.value = "";
   };
 
-  console.log(fields, "fields");
+  console.log(watch("images"))
 
   return (
     <>
       {render("Gallery")}
-      <div className="d-flex x-gap-30">
-        <div className="row x-gap-20 y-gap">
+      <div className="d-flex gap-4">
+        <div className="d-flex gap-4">
           {(fields as FieldProps).map(({ id, file }, index) => (
             <ImagePreview key={id} url={URL.createObjectURL(file)} onDelete={() => remove(index)} />
             // <img key={id} src={URL.createObjectURL(file)} alt="" style={{width: "100px", height: "100px"}} />
