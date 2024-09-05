@@ -80,7 +80,7 @@ export const TourSchema = z.object({
 
   capacity: z
     .number()
-    .min(5, { message: "Capacity should not be less than 2" })
+    .min(2, { message: "Capacity should not be less than 2" })
     .max(10000, { message: "Capacity should not be more than 1000" })
     .transform((value) => parseFloat(value.toFixed(2))),
 

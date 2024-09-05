@@ -1175,6 +1175,13 @@ button:focus {
   color: var(--color-dark-1) !important;
 }
 
+.button:disabled, .button:hover:disabled{
+  opacity: 50%;
+  background-color: white !important;
+  border-color: var(--color-accent-1);
+  color: var(--color-accent-1) !important;
+}
+
 .play-button {
   position: absolute;
   top: 50%;
@@ -6530,6 +6537,7 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
   background-color: #F5F5F5;
   transition: .2s;
+  overflow: hidden;
 }
 
 @media (max-width: 767px) {
@@ -6573,6 +6581,7 @@ h1, h2, h3, h4, h5, h6 {
   padding: 0 75px;
   padding-top: 60px;
   padding-bottom: 30px;
+  min-height: 90vh;
 }
 
 @media (max-width: 767px) {

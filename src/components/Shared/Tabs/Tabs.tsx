@@ -1,19 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { TabContext, useTabContext } from "../../../context/TabContext";
 
 type TabsProps = {
   children: React.ReactNode;
   className?: string;
+  defaultIndex?: number
+  onTabChange?: (index: number) => void
 };
 
 type TabProps = TabsProps & {
   index: number;
 };
 
-const Tabs = ({ children, className = "" }: TabsProps) => {
-  const [activeIndex, setActiveIndex] = useState(0);
+const Tabs = ({ children, className = "", defaultIndex = 0, onTabChange }: TabsProps) => {
+  const [activeIndex, setActiveIndex] = useState(defaultIndex);
 
-  const handleTabChange = (index: number) => setActiveIndex(index);
+  const handleTabChange = (index: number) => {
+    setActiveIndex(index);
+    if(onTabChange) onTabChange(index)
+  }
+
+  useEffect(() => {
+    setActiveIndex(defaultIndex)
+  },[defaultIndex])
 
   return (
     <TabContext.Provider
@@ -40,6 +49,7 @@ const Tab = ({ children, className = "", index }: TabProps) => {
         isActive ? "is-tab-el-active" : ""
       } ${className}`}
       onClick={() => setActiveTab(index)}
+      type="button"
     >
       {children}
     </button>

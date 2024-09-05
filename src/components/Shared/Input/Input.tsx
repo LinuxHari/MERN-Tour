@@ -9,9 +9,6 @@ type InputProps = InputHTMLAttributes<HTMLInputElement> & {
 const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   const { label, className = "", type, ...inputProps } = props;
 
-  console.log(type === "file", type, label === "upload");
-  
-
   if (type === 'checkbox') {
     return (
         <div className="form-checkbox d-flex items-center">

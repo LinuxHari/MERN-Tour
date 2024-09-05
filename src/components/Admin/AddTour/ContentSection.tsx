@@ -32,9 +32,9 @@ const ContentSection = () => {
       <div className="col-12">
         <Input type="text" label="Country" {...register("country")} required />
       </div>
-      <div className="col-12">
+      {/* <div className="col-12">
         <Input type="text" label="Address" {...register("address")} required />
-      </div>
+      </div> */}
       <div className="col-12">
         <Input type="text" label="Zip Code" {...register("zipCode")} required />
       </div>
