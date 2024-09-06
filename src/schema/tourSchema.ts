@@ -172,6 +172,22 @@ export const TourSchema = z.object({
     .min(0, { message: "Age must be at least 0" })
     .max(18, { message: "Age must not be more than 18" }),
 
+  images: z
+    .array(
+      z.object({
+        file: z
+          .custom<File>()
+          .refine((file) => file.size <= 1 * 1024 * 1024, {
+            message: "The tour image must be a maximum of 1MB.",
+          })
+          .refine((file) => file.type.startsWith("image"), {
+            message: "Only images are allowed to be sent.",
+          }),
+      })
+    )
+    .min(2, { message: "Atleast 2 images needed" })
+    .max(10, { message: "Can't upload more than 10 images" }),
+
   freeCancellation: z.boolean().optional().default(false),
 });
 
@@ -225,4 +241,5 @@ export const defaultTourValue: TourSchemaType = {
   },
   minAge: 18,
   freeCancellation: false,
+  images: [],
 };
