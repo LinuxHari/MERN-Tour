@@ -1,17 +1,21 @@
+import { TourSchemaType } from "./schema/tourSchema";
+
 export type RenderProps = {
   render: (title: string, desc?: string) => React.JSX.Element;
 };
 
 export type Status = "Confirmed" | "Pending" | "Cancelled";
 
-type Tour = {
-  imgUrl: string;
-  title: string;
+export type Tour = TourSchemaType & {
+  images: string[]
 };
 
 export type Bookings = {
   id: number;
-  tour: Tour;
+  tour: {
+    imgUrl: string;
+    title: string;
+  };
   startDate: string;
   endDate: string;
   details: string;
