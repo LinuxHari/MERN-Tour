@@ -1,17 +1,14 @@
 import { ChangeEvent, memo, useRef } from "react";
 import { RenderProps } from "../../../type";
-import { useFieldArray } from "react-hook-form";
+import { useFieldArray, useFormContext } from "react-hook-form";
 import ImagePreview from "./ImagePreview";
 import Input from "../../Shared/Input/Input";
-
-type FieldProps = {
-  id: string;
-  file: File;
-}[];
+import { TourSchemaType } from "../../../schema/tourSchema";
 
 const GallerySection = ({ render }: RenderProps) => {
-  const { fields, append, remove } = useFieldArray({ name: "images", rules: { minLength: 1 } });
-
+  const { watch } = useFormContext();
+  const { fields, append, remove } = useFieldArray({ name: "images", rules: { minLength: 2 } });
+  const files = watch("images") as TourSchemaType["images"];
   const fileRef = useRef<HTMLInputElement>(null);
 
   const handleAddDocuments = (event: ChangeEvent<HTMLInputElement>) => {
@@ -28,8 +25,8 @@ const GallerySection = ({ render }: RenderProps) => {
       {render("Gallery")}
       <div className="d-flex gap-4">
         <div className="d-flex gap-4">
-          {(fields as FieldProps).map(({ id, file }, index) => (
-            <ImagePreview key={id} url={URL.createObjectURL(file)} onDelete={() => remove(index)} />
+          {files.map(({ file }, index) => (
+            <ImagePreview key={fields[index].id} url={URL.createObjectURL(file)} onDelete={() => remove(index)} />
             // <img key={id} src={URL.createObjectURL(file)} alt="" style={{width: "100px", height: "100px"}} />
           ))}
         </div>
