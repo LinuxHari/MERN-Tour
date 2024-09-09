@@ -10,6 +10,7 @@ import Button from "../../components/Shared/Button/Button";
 import LanguageForm from "../../components/Admin/AddTour/LanguageSection";
 import { useState } from "react";
 import StepNavigator from "../../components/Shared/Navigator/StepNavigator";
+import useFirebaseUpload from "../../hooks/useFirebaseUpload";
 
 const TourForm = () => {
   const formTabs = ["Content", "Itinerary", "FAQ", "Included", "Languages"];
@@ -17,6 +18,8 @@ const TourForm = () => {
   const lastIndex = formComponents.length - 1;
 
   const [currentTab, setCurrentTab] = useState(0);
+
+  const { uploadImages } = useFirebaseUpload();
 
   const form = useForm<TourSchemaType>({ defaultValues: defaultTourValue, resolver: zodResolver(TourSchema) });
 
@@ -26,10 +29,10 @@ const TourForm = () => {
   } = form;
 
   console.log(errors, "errors");
-  
 
-  const addTour = (data: TourSchemaType) => {
+  const addTour = async(data: TourSchemaType) => {
     console.log(data, "submitted data");
+    const imageUrls = await uploadImages(data.images, data.name)
   };
 
   return (
