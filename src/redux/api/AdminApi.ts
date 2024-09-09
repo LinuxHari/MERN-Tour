@@ -1,5 +1,5 @@
-import { Tour } from "../../type";
-import { baseApi } from "./TourApi";
+import { PostResponse, Tour } from "../../type";
+import { baseApi } from "./BaseApi";
 
 export const adminApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
@@ -7,7 +7,7 @@ export const adminApi = baseApi.injectEndpoints({
       query: () => "/admin",
       providesTags: ["Tour"],
     }),
-    createTour: builder.mutation<void, Tour>({
+    createTour: builder.mutation<PostResponse, Tour>({
       query: (body) => ({
         url: "/admin",
         method: "POST",

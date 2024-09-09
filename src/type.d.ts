@@ -45,3 +45,10 @@ export type ListingCard2Props = ListingCardProps & {
   };
   freeCancellation: boolean;
 }
+
+export type PostResponse = {
+  message: string;
+  error?: boolean;
+  data?: Object | Object[];
+  stack?: string
+}
