@@ -1,11 +1,11 @@
 import { getDownloadURL, ref, uploadBytes, deleteObject } from "firebase/storage";
 import firebase from "../config/firebaseConfig";
-import { ImgType } from "../type";
+import { ImgPath } from "../type";
 
 type Image = { file: File };
 
 const uploadImage = async ({ file: image }: Image, name: string) => {
-  const storageRef = ref(firebase.storage, `/${ImgType.tours}/${Date.now()}-${name.replaceAll(" ","-")}`);
+  const storageRef = ref(firebase.storage, `/${ImgPath.tours}/${Date.now()}-${name.replaceAll(" ","-")}`);
 
   const response = await uploadBytes(storageRef, image);
   const url = await getDownloadURL(response.ref);

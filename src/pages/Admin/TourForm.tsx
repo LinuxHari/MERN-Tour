@@ -12,7 +12,7 @@ import { useState } from "react";
 import StepNavigator from "../../components/Shared/Navigator/StepNavigator";
 import useFirebaseUpload from "../../hooks/useFirebaseUpload";
 import { extractFirebaseImgPath } from "../../utils/extractFirebaseImgPath";
-import { ImgType } from "../../type";
+import { ImgPath } from "../../type";
 
 const TourForm = () => {
   const formTabs = ["Content", "Itinerary", "FAQ", "Included", "Languages"];
@@ -35,7 +35,7 @@ const TourForm = () => {
   const addTour = async (data: TourSchemaType) => {
     console.log(data, "submitted data");
     const imageUrls = await uploadImages(data.images, data.name);
-    const imagesToDelete = extractFirebaseImgPath(imageUrls, ImgType.tours)
+    const imagesToDelete = extractFirebaseImgPath(imageUrls, ImgPath.tours)
     console.log(imagesToDelete, "delete this");
     
     await deleteImages(imagesToDelete);

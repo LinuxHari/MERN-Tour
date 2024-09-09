@@ -53,7 +53,7 @@ export type PostResponse = {
   stack?: string
 }
 
-export enum ImgType {
-  tours = "tours",
-  profile = "profile"
+export enum ImgPath {
+  tours = "/tours",
+  profile = "/profile"
 }
