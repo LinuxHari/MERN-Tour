@@ -11,6 +11,8 @@ import LanguageForm from "../../components/Admin/AddTour/LanguageSection";
 import { useState } from "react";
 import StepNavigator from "../../components/Shared/Navigator/StepNavigator";
 import useFirebaseUpload from "../../hooks/useFirebaseUpload";
+import { extractFirebaseImgPath } from "../../utils/extractFirebaseImgPath";
+import { ImgType } from "../../type";
 
 const TourForm = () => {
   const formTabs = ["Content", "Itinerary", "FAQ", "Included", "Languages"];
@@ -19,7 +21,7 @@ const TourForm = () => {
 
   const [currentTab, setCurrentTab] = useState(0);
 
-  const { uploadImages } = useFirebaseUpload();
+  const { uploadImages, deleteImages } = useFirebaseUpload();
 
   const form = useForm<TourSchemaType>({ defaultValues: defaultTourValue, resolver: zodResolver(TourSchema) });
 
@@ -30,9 +32,15 @@ const TourForm = () => {
 
   console.log(errors, "errors");
 
-  const addTour = async(data: TourSchemaType) => {
+  const addTour = async (data: TourSchemaType) => {
     console.log(data, "submitted data");
-    const imageUrls = await uploadImages(data.images, data.name)
+    const imageUrls = await uploadImages(data.images, data.name);
+    const imagesToDelete = extractFirebaseImgPath(imageUrls, ImgType.tours)
+    console.log(imagesToDelete, "delete this");
+    
+    await deleteImages(imagesToDelete);
+
+    console.log(imageUrls, "uploaded image urls");
   };
 
   return (

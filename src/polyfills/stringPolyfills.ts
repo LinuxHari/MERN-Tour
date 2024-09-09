@@ -1,9 +1,3 @@
-declare global {
-  interface String {
-    replaceAll(search: string | RegExp, replace: string): string;
-  }
-}
-
 if (!String.prototype.replaceAll) {
   String.prototype.replaceAll = function (search, replacement) {
     if (typeof search === "string") {

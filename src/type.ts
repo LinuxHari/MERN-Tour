@@ -52,3 +52,8 @@ export type PostResponse = {
   data?: Object | Object[];
   stack?: string
 }
+
+export enum ImgType {
+  tours = "tours",
+  profile = "profile"
+}
