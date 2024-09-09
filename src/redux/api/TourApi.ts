@@ -13,17 +13,18 @@ type TourSearchParams = {
   page: number;
 };
 
-export const tourApi = createApi({
-  reducerPath: "tour",
-  baseQuery: fetchBaseQuery({ baseUrl: `${env.API_BASE_URL}/tour` }),
+export const baseApi = createApi({
+  reducerPath: "api",
+  baseQuery: fetchBaseQuery({ baseUrl: `${env.API_BASE_URL}` }),
+  tagTypes: ["Tour"],
   endpoints: (builder) => ({
     getToursBySearch: builder.query<Partial<Tour>[], Omit<TourSearchParams, "id">>({
-      query: (params): string => generateQueryParams(params),
+      query: (params) => "/tour" + generateQueryParams(params),
     }),
-    getTourById: builder.query<Partial<Tour>[], TourSearchParams>({
-      query: ({ id, ...params }): string => `/${id}` + generateQueryParams(params),
+    getTourById: builder.query<Tour, TourSearchParams>({
+      query: ({ id, ...params }) => `/tour/${id}` + generateQueryParams(params),
     }),
   }),
 });
 
-export const { useGetTourByIdQuery, useGetToursBySearchQuery } = tourApi;
+export const { useGetTourByIdQuery, useGetToursBySearchQuery } = baseApi;
