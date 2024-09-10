@@ -1,3 +1,4 @@
+
 import { PostResponse, Tour } from "../../type";
 import { baseApi } from "./BaseApi";
 
@@ -5,7 +6,14 @@ export const adminApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getAdminPublishedTours: builder.query<Tour, string>({
       query: () => "/admin",
-      providesTags: ["Tour"],
+      providesTags: (result, error, id) => [{ type: 'Tour', id }],
+      transformResponse: (response: { data: Tour}) => response.data,
+      transformErrorResponse: (
+        response
+      ) => {
+        const errorData = response.data as { message?: string };
+        return errorData.message || "Something went wrong";
+      },
     }),
     createTour: builder.mutation<PostResponse, Tour>({
       query: (body) => ({
@@ -17,4 +25,4 @@ export const adminApi = baseApi.injectEndpoints({
   }),
 });
 
-export const { useGetAdminPublishedToursQuery } = adminApi;
+export const { useGetAdminPublishedToursQuery, useCreateTourMutation } = adminApi;

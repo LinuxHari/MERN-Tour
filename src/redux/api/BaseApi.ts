@@ -1,7 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import env from "../../config/envConfig";
 import { Tour } from "../../type";
-import { generateQueryParams } from "../../utils/generateQueryParams";
 
 type TourSearchParams = {
   id: string;
@@ -19,10 +18,10 @@ export const baseApi = createApi({
   tagTypes: ["Tour"],
   endpoints: (builder) => ({
     getToursBySearch: builder.query<Partial<Tour>[], Omit<TourSearchParams, "id">>({
-      query: (params) => "/tour?" + generateQueryParams(params),
+      query: (params) => ({ url: "/tour", params }),
     }),
     getTourById: builder.query<Tour, TourSearchParams>({
-      query: ({ id, ...params }) => `/tour/${id}?` + generateQueryParams(params),
+      query: ({ id, ...params }) => ({ url: `/tour/${id}`, params }),
     }),
   }),
 });
