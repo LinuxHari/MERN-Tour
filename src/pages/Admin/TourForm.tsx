@@ -10,9 +10,7 @@ import Button from "../../components/Shared/Button/Button";
 import LanguageForm from "../../components/Admin/AddTour/LanguageSection";
 import { useState } from "react";
 import StepNavigator from "../../components/Shared/Navigator/StepNavigator";
-import useFirebaseUpload from "../../hooks/useFirebaseUpload";
-import { extractFirebaseImgPath } from "../../utils/extractFirebaseImgPath";
-import { ImgPath } from "../../type";
+import useTourSubmitHandler from "../../hooks/useTourSubmitHandler";
 
 const TourForm = () => {
   const formTabs = ["Content", "Itinerary", "FAQ", "Included", "Languages"];
@@ -21,34 +19,21 @@ const TourForm = () => {
 
   const [currentTab, setCurrentTab] = useState(0);
 
-  const { uploadImages, deleteImages } = useFirebaseUpload();
-
   const form = useForm<TourSchemaType>({ defaultValues: defaultTourValue, resolver: zodResolver(TourSchema) });
-
+  
   const {
     handleSubmit,
-    formState: { errors },
+    formState: { errors }, reset
   } = form;
 
-  console.log(errors, "errors");
-
-  const addTour = async (data: TourSchemaType) => {
-    console.log(data, "submitted data");
-    const imageUrls = await uploadImages(data.images, data.name);
-    const imagesToDelete = extractFirebaseImgPath(imageUrls, ImgPath.tours)
-    console.log(imagesToDelete, "delete this");
-    
-    await deleteImages(imagesToDelete);
-
-    console.log(imageUrls, "uploaded image urls");
-  };
+  const {tourSubmitHandler, isLoading} = useTourSubmitHandler(errors, reset)
 
   return (
     <FormProvider {...form}>
       <form
         className="row y-gap-30 rounded-12 bg-white shadow-2 px-40 pt-40 pb-30 mt-60"
         encType="multipart/form-data"
-        onSubmit={handleSubmit(addTour)}
+        onSubmit={handleSubmit(tourSubmitHandler)}
       >
         <Tabs className="-underline-2" defaultIndex={currentTab} onTabChange={(index: number) => setCurrentTab(index)}>
           <Tabs.TabList className="row x-gap-40 y-gap-10 lg:x-gap-20 js-tabs-controls">
@@ -85,7 +70,7 @@ const TourForm = () => {
         />
         {currentTab === lastIndex && (
           <div className="col-12">
-            <Button buttonType="primary" type="submit">
+            <Button buttonType="primary" type="submit" isLoading>
               Add tour
             </Button>
           </div>

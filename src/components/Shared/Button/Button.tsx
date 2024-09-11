@@ -1,17 +1,26 @@
 import { ButtonHTMLAttributes } from "react";
-
+import Spinner from "../Spinner/Spinner";
 
 type ExtendedButtonProps = {
-  type?: "button" | "submit"; 
+  type?: "button" | "submit";
   className?: string;
   children: React.ReactNode;
   buttonType: "primary" | "secondary" | "icon";
-  showIcon?: boolean
+  showIcon?: boolean;
+  isLoading?: boolean;
 };
 
-type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & ExtendedButtonProps
+type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & ExtendedButtonProps;
 
-const Button = ({ type = "button", className = "", children, buttonType, showIcon = true, ...buttonProps}: ButtonProps) => {
+const Button = ({
+  type = "button",
+  className = "",
+  children,
+  buttonType,
+  showIcon = true,
+  isLoading = false,
+  ...buttonProps
+}: ButtonProps) => {
   if (buttonType === "icon") {
     return (
       <button
@@ -26,11 +35,7 @@ const Button = ({ type = "button", className = "", children, buttonType, showIco
 
   if (buttonType === "secondary") {
     return (
-      <button
-        type={type}
-        className={`button -md -outline-accent-1 text-accent-1 ${className}`}
-        {...buttonProps}
-      >
+      <button type={type} className={`button -md -outline-accent-1 text-accent-1 ${className}`} {...buttonProps}>
         {children}
         {showIcon && <i className="icon-arrow-top-right text-16 ml-10"></i>}
       </button>
@@ -38,11 +43,8 @@ const Button = ({ type = "button", className = "", children, buttonType, showIco
   }
 
   return (
-    <button
-      type={type}
-      className={`button -md -dark-1 bg-accent-1 text-white ${className}`}
-      {...buttonProps}
-    >
+    <button type={type} className={`button -md -dark-1 bg-accent-1 text-white ${className}`} {...buttonProps}>
+        {isLoading && <Spinner/>}
       {children}
       {showIcon && <i className="icon-arrow-top-right text-16 ml-10"></i>}
     </button>
