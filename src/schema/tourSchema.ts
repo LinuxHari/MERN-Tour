@@ -120,12 +120,12 @@ export const TourSchema = z.object({
     .max(10, { message: "Itinerary should not exceed 10 entries" }),
 
   languages: z
-    .array(z.string().transform(sanitizeString))
-    .min(1, { message: "At least one language must be provided" })
-    .max(8, { message: "Languages should not exceed 8 entries" })
-    .refine((langArray) => langArray.every((lang) => languages.includes(lang)), {
-      message: "Invalid language provided",
-    }),
+  .array(z.string().transform(sanitizeString))
+  .min(1, { message: "At least one language must be checked" })
+  .max(8, { message: "Languages should not exceed 8 entries" })
+  .refine((langArray) => langArray.every((lang) => languages.includes(lang)), {
+    message: "Invalid language provided",
+  }),
 
   faq: z
     .array(
@@ -217,7 +217,7 @@ export const defaultTourValue: TourSchemaType = {
       lon: 0,
     },
   ],
-  languages: [""],
+  languages: [],
   faq: [
     {
       question: "",

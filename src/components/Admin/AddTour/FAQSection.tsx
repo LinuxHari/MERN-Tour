@@ -29,9 +29,8 @@ const FAQSection = () => {
               label={`Question ${index + 1}`}
               type="text"
               {...register(`faq.${index}.question`)}
-              required
             />
-            <Input className="mt-30" label="Answer" type="text" {...register(`faq.${index}.answer`)} required />
+            <Input className="mt-30" label="Answer" type="text" {...register(`faq.${index}.answer`)} />
           </div>
         ))}
         {fields.length < 10 && (

@@ -6,7 +6,7 @@ export type RenderProps = {
 
 export type Status = "Confirmed" | "Pending" | "Cancelled";
 
-export type Tour = TourSchemaType & {
+export type Tour = Omit<TourSchemaType, "images"> & {
   images: string[]
 };
 

@@ -27,10 +27,10 @@ const ItinerarySection = () => {
               )}
             </div>
             <div className="col-lg-6">
-              <Input type="text" label="Activity" {...register(`itinerary.${index}.activity`)} required />
+              <Input type="text" label="Activity" {...register(`itinerary.${index}.activity`)} />
             </div>
             <div className="col-lg-6">
-              <Input type="text" label="Description" {...register(`itinerary.${index}.details`)} required />
+              <Input type="text" label="Description" {...register(`itinerary.${index}.details`)} />
             </div>
 
             <div className="col-lg-6">
@@ -38,7 +38,6 @@ const ItinerarySection = () => {
                 type="number"
                 label="Map Latitude"
                 {...register(`itinerary.${index}.lat`, { valueAsNumber: true })}
-                required
               />
             </div>
             <div className="col-lg-6">
@@ -46,7 +45,6 @@ const ItinerarySection = () => {
                 type="number"
                 label="Map Longitude"
                 {...register(`itinerary.${index}.lon`, { valueAsNumber: true })}
-                required
               />
             </div>
           </React.Fragment>

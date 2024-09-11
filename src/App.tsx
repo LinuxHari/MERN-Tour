@@ -1,11 +1,14 @@
-
-import AppRoutes from "./AppRoutes"
+import { Toaster } from "react-hot-toast";
+import AppRoutes from "./AppRoutes";
+import { toasterConfig } from "./config/toasterConfig";
 
 function App() {
-
   return (
-    <AppRoutes/>
-  )
+    <>
+      <AppRoutes />
+      <Toaster {...toasterConfig}/>
+    </>
+  );
 }
 
-export default App
+export default App;

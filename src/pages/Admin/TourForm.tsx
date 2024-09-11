@@ -8,9 +8,11 @@ import { defaultTourValue, TourSchema, TourSchemaType } from "../../schema/tourS
 import { zodResolver } from "@hookform/resolvers/zod";
 import Button from "../../components/Shared/Button/Button";
 import LanguageForm from "../../components/Admin/AddTour/LanguageSection";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import StepNavigator from "../../components/Shared/Navigator/StepNavigator";
 import useTourSubmitHandler from "../../hooks/useTourSubmitHandler";
+import { getFormErrorMessages } from "../../utils/getFormErrorMessages";
+import toast from "react-hot-toast";
 
 const TourForm = () => {
   const formTabs = ["Content", "Itinerary", "FAQ", "Included", "Languages"];
@@ -18,15 +20,16 @@ const TourForm = () => {
   const lastIndex = formComponents.length - 1;
 
   const [currentTab, setCurrentTab] = useState(0);
-
   const form = useForm<TourSchemaType>({ defaultValues: defaultTourValue, resolver: zodResolver(TourSchema) });
-  
-  const {
-    handleSubmit,
-    formState: { errors }, reset
-  } = form;
+  const { handleSubmit, formState: { errors }, reset } = form;
+  const { tourSubmitHandler, isLoading } = useTourSubmitHandler(reset);
 
-  const {tourSubmitHandler, isLoading} = useTourSubmitHandler(errors, reset)
+  useEffect(() => {
+    if (Object.keys(errors).length) {
+      const errorMessages = getFormErrorMessages(errors);
+      toast.error(errorMessages[0]);
+    }
+  }, [errors]);
 
   return (
     <FormProvider {...form}>
@@ -70,7 +73,7 @@ const TourForm = () => {
         />
         {currentTab === lastIndex && (
           <div className="col-12">
-            <Button buttonType="primary" type="submit" isLoading>
+            <Button buttonType="primary" type="submit" isLoading={isLoading}>
               Add tour
             </Button>
           </div>

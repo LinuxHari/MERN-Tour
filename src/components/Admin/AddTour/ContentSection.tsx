@@ -15,37 +15,37 @@ const ContentSection = () => {
   return (
     <div className="contactForm row y-gap-30">
       <div className="col-12">
-        <Input label="Tour Title" type="text" {...register("name")} required />
+        <Input label="Tour Title" type="text" {...register("name")} />
       </div>
       <div className="col-12">
         <Categories />
       </div>
       <div className="col-12">
-        <Textarea label="Tour Description" rows={8} {...register("description")} required />
+        <Textarea label="Tour Description" rows={8} {...register("description")} />
       </div>
       <div className="col-12">
-        <Input type="text" label="City" {...register("city")} required />
+        <Input type="text" label="City" {...register("city")} />
       </div>
       <div className="col-12">
-        <Input type="text" label="State" {...register("state")} required />
+        <Input type="text" label="State" {...register("state")} />
       </div>
       <div className="col-12">
-        <Input type="text" label="Country" {...register("country")} required />
+        <Input type="text" label="Country" {...register("country")} />
       </div>
       {/* <div className="col-12">
-        <Input type="text" label="Address" {...register("address")} required />
+        <Input type="text" label="Address" {...register("address")} />
       </div> */}
       <div className="col-12">
-        <Input type="text" label="Zip Code" {...register("zipCode")} required />
+        <Input type="text" label="Zip Code" {...register("zipCode")} />
       </div>
       <div className="col-12">
-        <Input label="Tour Price" type="number" {...register("price",  {valueAsNumber: true})} required />
+        <Input label="Tour Price" type="number" {...register("price", { valueAsNumber: true })} />
       </div>
       <div className="col-12">
-        <Input label="Tour Capacity" type="number" {...register("capacity",  {valueAsNumber: true})} required />
+        <Input label="Tour Capacity" type="number" {...register("capacity", { valueAsNumber: true })} />
       </div>
       <div className="col-12">
-        <AgeSection render={render}/>
+        <AgeSection render={render} />
       </div>
       <div className="col-12">
         <GallerySection render={render} />
