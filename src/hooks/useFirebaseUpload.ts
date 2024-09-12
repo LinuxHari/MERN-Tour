@@ -4,8 +4,8 @@ import { ImgPath } from "../type";
 
 type Image = { file: File };
 
-const uploadImage = async ({ file: image }: Image, name: string) => {
-  const storageRef = ref(firebase.storage, `/${ImgPath.tours}/${Date.now()}-${name.replaceAll(" ","-")}`);
+const uploadImage = async ({ file: image }: Image, name: string, id: number) => {
+  const storageRef = ref(firebase.storage, `/${ImgPath.tours}/${Date.now() + id * image.size }-${name.replaceAll(" ","-")}`);
 
   const response = await uploadBytes(storageRef, image);
   const url = await getDownloadURL(response.ref);
@@ -13,7 +13,7 @@ const uploadImage = async ({ file: image }: Image, name: string) => {
 };
 
 const uploadImages = async (images:Image[], name:string) => {
-  const imagePromises = Array.from(images, (image) => uploadImage(image, name));
+  const imagePromises = Array.from(images, (image, index) => uploadImage(image, name, index));
 
   const imageRes = await Promise.all(imagePromises);
   return imageRes;

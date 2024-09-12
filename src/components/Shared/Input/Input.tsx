@@ -30,7 +30,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
 
   else if(type === "radio"){
     return(
-      <div className="form-radio">
+      <div className={`form-radio ${className}`}>
       <div className="radio d-flex items-center">
         <input type="radio" {...inputProps} ref={ref}/>
         <div className="radio__mark">

@@ -27,9 +27,6 @@ const TourForm = () => {
   const { handleSubmit, formState: { errors }, setFocus, reset } = form;
   const { tourSubmitHandler, isLoading } = useTourSubmitHandler(reset);
 
-  console.log(errors, "errors");
-  
-
   useLayoutEffect(() => {
     const keys = Object.keys(errors)
     if (keys.length) {
@@ -45,10 +42,19 @@ const TourForm = () => {
       }
       
       setTimeout(() => {
-        if (refs[0]?.focus) {
-          console.log("Focusing", refs[0]);
-          refs[0].focus();
-          refs[0].scrollIntoView();
+        const firstRef = refs[0]
+      
+        if (firstRef?.focus) {
+          console.log(firstRef, "first ref");
+          const elementPosition = firstRef.getBoundingClientRect().top + window.scrollY;
+          const offsetPosition = elementPosition - 50;
+          
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth"
+          })
+          firstRef.focus();
+         
         } 
       }, 100);
     }
