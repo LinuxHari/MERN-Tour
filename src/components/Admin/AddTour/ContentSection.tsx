@@ -48,9 +48,6 @@ const ContentSection = () => {
         <AgeSection render={render} />
       </div>
       <div className="col-12">
-        <GallerySection render={render} />
-      </div>
-      <div className="col-12">
         <TourHighlights render={render} />
       </div>
     </div>

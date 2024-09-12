@@ -17,7 +17,7 @@ export const adminApi = baseApi.injectEndpoints({
     }),
     createTour: builder.mutation<PostResponse, Tour>({
       query: (body) => ({
-        url: "/admin",
+        url: "/admin/add-tour",
         method: "POST",
         body,
       }),

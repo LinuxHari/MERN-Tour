@@ -1,11 +1,10 @@
 import { ChangeEvent, memo, useRef } from "react";
-import { RenderProps } from "../../../type";
 import { useFieldArray, useFormContext } from "react-hook-form";
 import ImagePreview from "./ImagePreview";
 import Input from "../../Shared/Input/Input";
 import { TourSchemaType } from "../../../schema/tourSchema";
 
-const GallerySection = ({ render }: RenderProps) => {
+const GallerySection = () => {
   const { watch } = useFormContext();
   const { fields, append, remove } = useFieldArray({ name: "images", rules: { minLength: 2 } });
   const files = watch("images") as TourSchemaType["images"];
@@ -22,7 +21,7 @@ const GallerySection = ({ render }: RenderProps) => {
 
   return (
     <>
-      {render("Gallery")}
+    <h4 className="text-18 fw-500 mb-20">Images</h4>
       <div className="d-flex gap-4">
         <div className="d-flex gap-4">
           {files.map(({ file }, index) => (
@@ -30,11 +29,10 @@ const GallerySection = ({ render }: RenderProps) => {
             // <img key={id} src={URL.createObjectURL(file)} alt="" style={{width: "100px", height: "100px"}} />
           ))}
         </div>
-        <Input type="file" ref={fileRef} name="file" id="file" label="upload" multiple onChange={handleAddDocuments} />
+        <Input type="file" ref={fileRef} name="images" id="images" label="upload" multiple onChange={handleAddDocuments} />
       </div>
-      {/* <div className="text-14 mt-20">PNG or JPG no bigger than 800px wide and tall.</div> */}
     </>
   );
 };
 
-export default memo(GallerySection);
+export default GallerySection;

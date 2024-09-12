@@ -8,26 +8,49 @@ import { defaultTourValue, TourSchema, TourSchemaType } from "../../schema/tourS
 import { zodResolver } from "@hookform/resolvers/zod";
 import Button from "../../components/Shared/Button/Button";
 import LanguageForm from "../../components/Admin/AddTour/LanguageSection";
-import { useEffect, useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import StepNavigator from "../../components/Shared/Navigator/StepNavigator";
 import useTourSubmitHandler from "../../hooks/useTourSubmitHandler";
 import { getFormErrorMessages } from "../../utils/getFormErrorMessages";
 import toast from "react-hot-toast";
+import GallerySection from "../../components/Admin/AddTour/GallerySection";
 
 const TourForm = () => {
-  const formTabs = ["Content", "Itinerary", "FAQ", "Included", "Languages"];
-  const formComponents = [<ContentForm />, <ItineraryForm />, <FAQForm />, <IncludedForm />, <LanguageForm />];
+  const formTabs = ["Content", "Itinerary", "FAQ", "Gallery", "Included", "Languages"];
+  const formComponents = [<ContentForm />, <ItineraryForm />, <FAQForm />,<GallerySection/>, <IncludedForm />, <LanguageForm />];
   const lastIndex = formComponents.length - 1;
 
+  const tabMap = {itinerary: 1, faq:2, images: 3, included: 4, languages: 5}
+
   const [currentTab, setCurrentTab] = useState(0);
-  const form = useForm<TourSchemaType>({ defaultValues: defaultTourValue, resolver: zodResolver(TourSchema) });
-  const { handleSubmit, formState: { errors }, reset } = form;
+  const form = useForm<TourSchemaType>({ defaultValues: defaultTourValue, resolver: zodResolver(TourSchema), shouldFocusError: false });
+  const { handleSubmit, formState: { errors }, setFocus, reset } = form;
   const { tourSubmitHandler, isLoading } = useTourSubmitHandler(reset);
 
-  useEffect(() => {
-    if (Object.keys(errors).length) {
-      const errorMessages = getFormErrorMessages(errors);
+  console.log(errors, "errors");
+  
+
+  useLayoutEffect(() => {
+    const keys = Object.keys(errors)
+    if (keys.length) {
+      const {errorMessages, refs} = getFormErrorMessages(errors);
       toast.error(errorMessages[0]);
+      setFocus(keys[0] as keyof TourSchemaType)
+      const tabToSet = tabMap[keys[0] as keyof typeof tabMap]
+    
+      if(tabToSet){
+        setCurrentTab(tabToSet)
+      } else {
+        setCurrentTab(0)
+      }
+      
+      setTimeout(() => {
+        if (refs[0]?.focus) {
+          console.log("Focusing", refs[0]);
+          refs[0].focus();
+          refs[0].scrollIntoView();
+        } 
+      }, 100);
     }
   }, [errors]);
 
@@ -71,13 +94,11 @@ const TourForm = () => {
           nextClick={() => setCurrentTab(currentTab + 1)}
           prevClick={() => setCurrentTab(currentTab - 1)}
         />
-        {currentTab === lastIndex && (
-          <div className="col-12">
-            <Button buttonType="primary" type="submit" isLoading={isLoading}>
-              Add tour
-            </Button>
+        {/* {currentTab === lastIndex && ( */}
+          <div className="col-12 mt-40">
+            <Button buttonType="primary" type="submit" isLoading={isLoading}>Add tour</Button>
           </div>
-        )}
+        {/* )} */}
       </form>
     </FormProvider>
   );
