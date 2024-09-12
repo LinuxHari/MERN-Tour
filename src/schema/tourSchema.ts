@@ -74,10 +74,10 @@ export const TourSchema = z.object({
     .pipe(
       z
         .string()
-        .min(3, { message: "State name must be at least 3 characters" })
-        .max(56, { message: "State name must not exceed 56 characters" })
+        .min(3, { message: "Country name must be at least 3 characters" })
+        .max(56, { message: "Country name must not exceed 56 characters" })
     ),
-
+    zipCode: z.string().refine((code) => /^(?:[A-Z0-9]{2,4}\s?[A-Z0-9]{2,4}|[A-Z0-9]{5,7}|[0-9]{4,5}[A-Z]{2})$/i.test(code),{message: "Invalid zip code"}),
   capacity: z
     .number()
     .min(2, { message: "Capacity should not be less than 2" })
@@ -120,12 +120,12 @@ export const TourSchema = z.object({
     .max(10, { message: "Itinerary should not exceed 10 entries" }),
 
   languages: z
-  .array(z.string().transform(sanitizeString))
-  .min(1, { message: "At least one language must be checked" })
-  .max(8, { message: "Languages should not exceed 8 entries" })
-  .refine((langArray) => langArray.every((lang) => languages.includes(lang)), {
-    message: "Invalid language provided",
-  }),
+    .array(z.string().transform(sanitizeString))
+    .min(1, { message: "At least one language must be checked" })
+    .max(8, { message: "Languages should not exceed 8 entries" })
+    .refine((langArray) => langArray.every((lang) => languages.includes(lang)), {
+      message: "Invalid language provided",
+    }),
 
   faq: z
     .array(
@@ -188,7 +188,12 @@ export const TourSchema = z.object({
     .min(2, { message: "Atleast 2 images needed" })
     .max(10, { message: "Can't upload more than 10 images" }),
 
-  freeCancellation: z.boolean().optional().default(false),
+  freeCancellation: z
+    .string()
+    .refine((value) => value === "yes" || value === "no", {
+      message: "Invalid value provided",
+    })
+    .default("yes"),
 });
 
 export type TourSchemaType = z.infer<typeof TourSchema>;
@@ -201,6 +206,7 @@ export const defaultTourValue: TourSchemaType = {
   city: "",
   state: "",
   country: "",
+  zipCode: "123",
   price: 100,
   capacity: 2,
   itinerary: [
@@ -240,6 +246,6 @@ export const defaultTourValue: TourSchemaType = {
     alcoholicBeverages: false,
   },
   minAge: 18,
-  freeCancellation: false,
+  freeCancellation: "yes",
   images: [],
 };

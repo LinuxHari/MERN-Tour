@@ -1,4 +1,4 @@
-import { ChangeEvent, memo, useRef } from "react";
+import { ChangeEvent, useRef } from "react";
 import { useFieldArray, useFormContext } from "react-hook-form";
 import ImagePreview from "./ImagePreview";
 import Input from "../../Shared/Input/Input";

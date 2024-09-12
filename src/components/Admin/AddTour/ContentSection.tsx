@@ -1,11 +1,11 @@
 import { useFormContext } from "react-hook-form";
 import Input from "../../Shared/Input/Input";
 import Textarea from "../../Shared/Teaxtarea/Textarea";
-import GallerySection from "./GallerySection";
 import TourHighlights from "./TourHighlights";
 import { useCallback } from "react";
 import Categories from "./Categories";
 import AgeSection from "./AgeSection";
+import FreeCancellation from "./FreeCancellation";
 
 const ContentSection = () => {
   const { register } = useFormContext();
@@ -46,6 +46,9 @@ const ContentSection = () => {
       </div>
       <div className="col-12">
         <AgeSection render={render} />
+      </div>
+      <div className="col-12">
+        <FreeCancellation render={render} />
       </div>
       <div className="col-12">
         <TourHighlights render={render} />
