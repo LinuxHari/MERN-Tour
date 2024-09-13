@@ -77,7 +77,11 @@ export const TourSchema = z.object({
         .min(3, { message: "Country name must be at least 3 characters" })
         .max(56, { message: "Country name must not exceed 56 characters" })
     ),
-    zipCode: z.string().refine((code) => /^(?:[A-Z0-9]{2,4}\s?[A-Z0-9]{2,4}|[A-Z0-9]{5,7}|[0-9]{4,5}[A-Z]{2})$/i.test(code),{message: "Invalid zip code"}),
+  zipCode: z
+    .string()
+    .refine((code) => /^(?:[A-Z0-9]{2,4}\s?[A-Z0-9]{2,4}|[A-Z0-9]{5,7}|[0-9]{4,5}[A-Z]{2})$/i.test(code), {
+      message: "Invalid zip code",
+    }),
   capacity: z
     .number()
     .min(2, { message: "Capacity should not be less than 2" })
@@ -167,10 +171,16 @@ export const TourSchema = z.object({
   }),
 
   minAge: z
-    .number()
-    .int()
-    .min(0, { message: "Age must be at least 0" })
-    .max(18, { message: "Age must not be more than 18" }),
+    .string()
+    .transform((age) => parseInt(age, 10))
+    .refine((age) => !isNaN(age), { message: "Invalid age" })
+    .pipe(
+      z
+        .number()
+        .int()
+        .min(0, { message: "Age must be at least 0" })
+        .max(18, { message: "Age must not be more than 18" })
+    ),
 
   images: z
     .array(

@@ -4,6 +4,7 @@ import { TourSchemaType } from "../schema/tourSchema";
 import { ImgPath } from "../type";
 import { extractFirebaseImgPath } from "../utils/extractFirebaseImgPath";
 import useFirebaseUpload from "./useFirebaseUpload";
+import toast from "react-hot-toast";
 
 const useTourSubmitHandler = (reset: UseFormReset<TourSchemaType>) => {
   const { uploadImages, deleteImages } = useFirebaseUpload();
@@ -13,6 +14,12 @@ const useTourSubmitHandler = (reset: UseFormReset<TourSchemaType>) => {
     console.log(formData, "formData");
     
     const imageUrls = await uploadImages(formData.images, formData.name);
+
+    toast.promise(createTour({ ...formData, images: imageUrls }), {
+        loading: 'Adding tour',
+        success: 'Tour added',
+        error: 'Error while adding tour',
+    })
 
     await createTour({ ...formData, images: imageUrls });
     console.log(isError, "err occured while uploading");
