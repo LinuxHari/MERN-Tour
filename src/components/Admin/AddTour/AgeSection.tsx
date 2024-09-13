@@ -1,45 +1,40 @@
 import { useFormContext } from "react-hook-form";
 import Input from "../../Shared/Input/Input";
 import { RenderProps } from "../../../type";
-import { memo, useEffect } from "react";
+import { memo } from "react";
 
 const AgeSection = ({ render }: RenderProps) => {
-  const { register, watch, setValue } = useFormContext();
-
-  const currentMinAge = watch("minAge");
+  const { register } = useFormContext();
 
   const age = { adult: 18, children: 12, infant: 0 };
-
-  useEffect(() => {
-    if (typeof currentMinAge === 'string') {
-      setValue("minAge", parseInt(currentMinAge));
-    }
-  }, [currentMinAge]);
 
   return (
     <>
       {render("Minimum age")}
       <div className="d-flex justify-content-between">
         <Input
-          label="Adult"
+          label={`Adult (${age.adult}+)`}
           value={age.adult}
           type="radio"
           {...register("minAge")}
-          checked={currentMinAge === age.adult}
+           id="minAge"
+          // checked={currentMinAge === age.adult}
         />
         <Input
-          label="Children"
+          label={`Children (${age.children})+`}
           value={age.children}
           type="radio"
           {...register("minAge")}
-          checked={currentMinAge === age.children}
+           id="minAge"
+          // checked={currentMinAge === age.children}
         />
         <Input
-          label="Infant"
+          label={`Infant (${age.infant})+`}
           value={age.infant}
           type="radio"
           {...register("minAge")}
-          checked={currentMinAge === age.infant}
+          id="minAge"
+          // checked={currentMinAge === age.infant}
         />
       </div>
     </>

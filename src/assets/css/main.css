@@ -1296,10 +1296,10 @@ button:focus {
   z-index: -1;
 }
 
-.contactForm .form-input textarea:focus + label,
-.contactForm .form-input input:focus + label,
-.contactForm .form-input input:not(:empty) + label,
-.contactForm .form-input textarea:not(:empty) + label {
+.form-input textarea:focus + label,
+.form-input input:focus + label,
+.form-input input:not([value]) + label,
+.form-input textarea:not([value]) + label {
   transform: translateY(-29px);
 }
 
