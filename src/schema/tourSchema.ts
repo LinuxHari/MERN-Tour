@@ -173,7 +173,7 @@ export const TourSchema = z.object({
   minAge: z
     .string()
     .transform((age) => parseInt(age, 10))
-    .refine((age) => !isNaN(age) && minAge.includes(age), { message: "Invalid age" })
+    .refine((age) => !isNaN(age) && Object.values(minAge).includes(age), { message: "Invalid age" })
     .pipe(
       z
         .number()
