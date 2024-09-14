@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { TabContext, useTabContext } from "../../../context/TabContext";
 
-type TabsProps = {
+type CommonTabProps = {
   children: React.ReactNode;
   className?: string;
   defaultIndex?: number
+}
+
+type TabsProps = CommonTabProps & {
   onTabChange?: (index: number) => void
 };
 
-type TabProps = TabsProps & {
+type TabProps = CommonTabProps & {
   index: number;
 };
 
@@ -33,7 +36,7 @@ const Tabs = ({ children, className = "", defaultIndex = 0, onTabChange }: TabsP
   );
 };
 
-const TabList = ({ children, className = "" }: TabsProps) => (
+const TabList = ({ children, className = "" }: CommonTabProps) => (
   <div className={`tabs__controls js-tabs-controls ${className}`}>
     {children}
   </div>
@@ -56,7 +59,7 @@ const Tab = ({ children, className = "", index }: TabProps) => {
   );
 };
 
-const TabContents = ({ children, className = "" }: TabsProps) => (
+const TabContents = ({ children, className = "" }: CommonTabProps) => (
   <div className={`tabs__content js-tabs-content ${className}`}>{children}</div>
 );
 
