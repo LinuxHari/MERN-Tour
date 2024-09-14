@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { categories, languages } from "../config/tourConfig";
+import { categories, languages, minAge } from "../config/tourConfig";
 
 const sanitizeString = (value: string) => value.trim().replace(/\s+/g, " ");
 
@@ -173,7 +173,7 @@ export const TourSchema = z.object({
   minAge: z
     .string()
     .transform((age) => parseInt(age, 10))
-    .refine((age) => !isNaN(age), { message: "Invalid age" })
+    .refine((age) => !isNaN(age) && minAge.includes(age), { message: "Invalid age" })
     .pipe(
       z
         .number()

@@ -10,7 +10,7 @@ const GallerySection = () => {
   const files = watch("images") as TourSchemaType["images"];
   const fileRef = useRef<HTMLInputElement>(null);
 
-  const handleAddDocuments = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleAddImages = (event: ChangeEvent<HTMLInputElement>) => {
     const uploadedFiles = Array.from(event.target.files || { length: 0 });
     const files = uploadedFiles.map((file) => ({
       file,
@@ -26,10 +26,9 @@ const GallerySection = () => {
         <div className="d-flex gap-4">
           {files.map(({ file }, index) => (
             <ImagePreview key={fields[index].id} url={URL.createObjectURL(file)} onDelete={() => remove(index)} />
-            // <img key={id} src={URL.createObjectURL(file)} alt="" style={{width: "100px", height: "100px"}} />
           ))}
         </div>
-        <Input type="file" ref={fileRef} name="images" id="images" label="upload" multiple onChange={handleAddDocuments} />
+        <Input type="file" ref={fileRef} name="images" id="images" label="upload" multiple onChange={handleAddImages} />
       </div>
     </>
   );

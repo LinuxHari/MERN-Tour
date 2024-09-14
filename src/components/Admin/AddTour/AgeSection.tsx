@@ -4,9 +4,11 @@ import { RenderProps } from "../../../type";
 import { memo } from "react";
 
 const AgeSection = ({ render }: RenderProps) => {
-  const { register } = useFormContext();
+  const { register, watch } = useFormContext();
 
   const age = { adult: 18, children: 12, infant: 0 };
+
+  const currentMinAge = parseInt(watch("minAge"))
 
   return (
     <>
@@ -17,24 +19,24 @@ const AgeSection = ({ render }: RenderProps) => {
           value={age.adult}
           type="radio"
           {...register("minAge")}
-           id="minAge"
-          // checked={currentMinAge === age.adult}
+           id="minAge-adult"
+          checked={currentMinAge === age.adult}
         />
         <Input
           label={`Children (${age.children})+`}
           value={age.children}
           type="radio"
           {...register("minAge")}
-           id="minAge"
-          // checked={currentMinAge === age.children}
+           id="minAge-children"
+          checked={currentMinAge === age.children}
         />
         <Input
           label={`Infant (${age.infant})+`}
           value={age.infant}
           type="radio"
           {...register("minAge")}
-          id="minAge"
-          // checked={currentMinAge === age.infant}
+          id="minAge-infant"
+          checked={currentMinAge === age.infant}
         />
       </div>
     </>
