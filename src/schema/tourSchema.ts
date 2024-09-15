@@ -47,7 +47,6 @@ export const TourSchema = z.object({
     )
     .min(2, { message: "Highlights must have at least 2 entries" })
     .max(10, { message: "Highlights should not exceed 10 entries" }),
-
   city: z
     .string()
     .transform(sanitizeString)
