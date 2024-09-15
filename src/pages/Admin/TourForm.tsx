@@ -102,7 +102,7 @@ const TourForm = () => {
         />
         {/* {currentTab === lastIndex && ( */}
           <div className="col-12 mt-40">
-            <Button buttonType="primary" type="submit" isLoading={isLoading}>Add tour</Button>
+            <Button buttonType="primary" type="submit" isLoading={isLoading} disabled={isLoading}>Add tour</Button>
           </div>
         {/* )} */}
       </form>

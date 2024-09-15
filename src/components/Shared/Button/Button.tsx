@@ -1,5 +1,5 @@
 import { ButtonHTMLAttributes } from "react";
-import Spinner from "../Spinner/Spinner";
+// import Spinner from "../Spinner/Spinner";
 
 type ExtendedButtonProps = {
   type?: "button" | "submit";
@@ -44,7 +44,7 @@ const Button = ({
 
   return (
     <button type={type} className={`button -md -dark-1 bg-accent-1 text-white ${className}`} {...buttonProps}>
-        {isLoading && <Spinner/>}
+        {/* {isLoading && <Spinner/>} */}
       {children}
       {showIcon && <i className="icon-arrow-top-right text-16 ml-10"></i>}
     </button>

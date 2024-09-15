@@ -1177,9 +1177,6 @@ button:focus {
 
 .button:disabled, .button:hover:disabled{
   opacity: 50%;
-  background-color: white !important;
-  border-color: var(--color-accent-1);
-  color: var(--color-accent-1) !important;
 }
 
 .play-button {
