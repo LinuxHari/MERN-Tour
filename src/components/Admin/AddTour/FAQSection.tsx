@@ -25,12 +25,11 @@ const FAQSection = () => {
               )}
             </div>
             <Input
-              className="mt-30"
               label={`Question ${index + 1}`}
               type="text"
               {...register(`faq.${index}.question`)}
             />
-            <Input className="mt-30" label="Answer" type="text" {...register(`faq.${index}.answer`)} />
+            <Input wrapperClassName="mt-30" label="Answer" type="text" {...register(`faq.${index}.answer`)} />
           </div>
         ))}
         {fields.length < 10 && (
