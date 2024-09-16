@@ -12,7 +12,7 @@ const FreeCancellation = ({ render }: RenderProps) => {
       <div className="container px-0">
         <div className="row">
           <Input
-            className="col"
+            wrapperClassName="col"
             id="freeCancellationYes"
             label="Yes"
             type="radio"
@@ -20,7 +20,7 @@ const FreeCancellation = ({ render }: RenderProps) => {
             {...register("freeCancellation")}
           />
           <Input
-            className="col"
+            wrapperClassName="col"
             id="freeCancellationNo"
             label="No"
             type="radio"

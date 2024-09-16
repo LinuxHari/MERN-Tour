@@ -15,12 +15,13 @@ const TourHighlights = ({ render }: RenderProps) => {
       {render("Highlights")}
       {fields.map((field, index: number) => (
         <div key={field.id} className="d-flex gap-3 align-items-center mt-30 w-100">
-          <Input
+         <div className="flex-grow-1">
+         <Input
             type="text"
-            className="flex-grow-1"
             label={`Hightlight ${index + 1}`}
             {...register(`highlights.${index}.value`)}
           />
+         </div>
           {index > 1 && (
             <Button
               buttonType="icon"

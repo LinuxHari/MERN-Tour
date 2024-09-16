@@ -4575,7 +4575,7 @@ h1, h2, h3, h4, h5, h6 {
 .searchForm.-type-1 .searchFormItemDropdown {
   position: absolute;
   left: 0;
-  top: calc(100% + 15px);
+  top: 25%;
   padding-top: 10px;
   z-index: 5;
   transition: 0.2s;

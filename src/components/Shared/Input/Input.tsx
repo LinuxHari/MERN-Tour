@@ -4,10 +4,11 @@ import ImagePlaceholder from '../../Admin/AddTour/ImagePlaceholder';
 type InputProps = InputHTMLAttributes<HTMLInputElement> & {
   label: string;
   type: 'text' | 'checkbox' | 'email' | 'password' | 'number' | 'radio' | 'file';
+  wrapperClassName?: string
 };
 
 const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
-  const { label, className = "", type, ...inputProps } = props;
+  const { label, wrapperClassName = "", type, ...inputProps } = props;
 
   if (type === 'checkbox') {
     return (
@@ -30,7 +31,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
 
   else if(type === "radio"){
     return(
-      <div className={`form-radio ${className}`}>
+      <div className={`form-radio ${wrapperClassName}`}>
       <div className="radio d-flex items-center">
         <input type="radio" {...inputProps} ref={ref}/>
         <div className="radio__mark">
@@ -52,7 +53,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   }
 
   return (
-    <div className={`form-input ${className}`}>
+    <div className={`form-input ${wrapperClassName}`}>
       <input {...inputProps} ref={ref} />
       <label className="lh-1 text-16 text-light-1">{label}</label>
     </div>
