@@ -28,13 +28,10 @@ export const adminApi = baseApi.injectEndpoints({
           const tourData:Tour = {...formData, images: imageUrls, highlights}
 
           const response = await baseQuery({
-            url: "/admin/add-tour",
+            url: "/admin/tour",
             method: "POST",
             body: tourData,
-          });
-
-          console.log(response, "response");
-          
+          });     
 
           if (response.error) {
             const imagesToDelete = extractFirebaseImgPath(imageUrls, ImgPath.tours);
