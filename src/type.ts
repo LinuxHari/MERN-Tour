@@ -36,7 +36,6 @@ export type ListingCardProps = {
   reviewCount: number;
   duration: number;
   price: number;
-  
 };
 
 export type ListingCard2Props = ListingCardProps & {
@@ -45,6 +44,12 @@ export type ListingCard2Props = ListingCardProps & {
     percentage: number;
   };
   freeCancellation: boolean;
+}
+
+export type SearchSuggestions = {
+  city?: string[],
+  state?: string[],
+  country?: string[]
 }
 
 export type PostResponse = {
