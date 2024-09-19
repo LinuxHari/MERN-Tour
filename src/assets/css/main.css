@@ -1295,8 +1295,8 @@ button:focus {
 
 .form-input textarea:focus + label,
 .form-input input:focus + label,
-.form-input input:not([value]) + label,
-.form-input textarea:not([value]) + label {
+.form-input input:not([value=""]) + label,
+.form-input textarea:not([value=""]) + label {
   transform: translateY(-29px);
 }
 
@@ -4622,7 +4622,7 @@ h1, h2, h3, h4, h5, h6 {
   overflow-y: scroll;
   display: flex;
   flex-direction: column;
-  height: 302px;
+  height: auto;
 }
 
 .searchForm.-type-1 .searchFormItemDropdown.-location .searchFormItemDropdown__item button {
@@ -4682,7 +4682,7 @@ h1, h2, h3, h4, h5, h6 {
   overflow-y: scroll;
   display: flex;
   flex-direction: column;
-  height: 302px;
+  height: auto;
 }
 
 .searchForm.-type-1 .searchFormItemDropdown.-tour-type .searchFormItemDropdown__item button {
@@ -13955,7 +13955,7 @@ a{
 }
 
 .end-5{
-  right: 5px
+ right: 5px
 }
 
 .bottom-5{
@@ -13964,4 +13964,36 @@ a{
 
 .start-5{
   left: 5px;
+} 
+
+.top-50{
+  top: 50%
+}
+
+.start-50{
+  left: 50%;
+}
+
+.rdrDayToday .rdrDayNumber span::after {
+  background-color: #EB662B !important;
+}
+
+.rdrDateDisplayWrapper{
+  background-color: white !important;
+}
+
+.rdrCalendarWrapper.rdrDateRangeWrapper {
+  overflow: hidden;
+}
+
+.rdrMonthAndYearWrapper button{
+  background-color: #EB662B !important;
+}
+
+.rdrMonthAndYearWrapper .rdrPprevButton i{
+  border-color: transparent white transparent transparent !important;
+}
+
+.rdrMonthAndYearWrapper .rdrNextButton i{
+  border-color: transparent transparent transparent white !important
 }

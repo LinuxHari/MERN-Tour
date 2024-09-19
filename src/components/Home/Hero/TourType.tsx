@@ -1,15 +1,12 @@
+import { tourTypes } from "../../../config/tourConfig";
+import useDropdownFocus from "../../../hooks/useDropdownFocus";
+
 const TourType = () => {
-  const tourTypes = [
-    'City Tour',
-    'Hiking',
-    'Food Tour',
-    'Cultural Tours',
-    'Museums Tours',
-    'Beach Tours'
-  ];
+ 
+  const { dropdownRef, showDropdown } = useDropdownFocus()
 
   return (
-    <div className="searchFormItem js-select-control js-form-dd">
+    <div className="searchFormItem js-select-control js-form-dd" ref={dropdownRef}>
       <div className="searchFormItem__button" data-x-click="tour-type">
         <div className="searchFormItem__icon size-50 rounded-12 border-1 flex-center">
           <i className="text-20 icon-flag"></i>
@@ -20,7 +17,7 @@ const TourType = () => {
         </div>
       </div>
 
-      <div className="searchFormItemDropdown -tour-type" data-x="tour-type" data-x-toggle="is-active">
+      <div className={`searchFormItemDropdown -tour-type ${showDropdown? "is-active": ""}`} data-x="tour-type" data-x-toggle="is-active">
         <div className="searchFormItemDropdown__container">
           <div className="searchFormItemDropdown__list sroll-bar-1">
             {tourTypes.map((type, index) => (

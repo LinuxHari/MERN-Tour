@@ -18,4 +18,6 @@ export const categories = [
   "Cruises Tours",
 ];
 
+export const tourTypes = [...categories, "All tours"]
+
 export const minAge = { adult: 18, teen: 13, infant: 0 };

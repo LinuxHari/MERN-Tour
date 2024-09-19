@@ -1,8 +1,11 @@
+
+import useDropdownFocus from "../../../hooks/useDropdownFocus"
 import DatePicker from "../../Shared/DatePicker/DatePicker"
 
 const SearchDatePicker = () => {
+  const {dropdownRef, showDropdown} = useDropdownFocus()
   return (
-    <div className="searchFormItem js-select-control js-form-dd js-calendar">
+    <div className="searchFormItem js-select-control js-form-dd js-calendar" ref={dropdownRef}>
         <div className="searchFormItem__button" data-x-click="calendar">
           <div className="searchFormItem__icon size-50 rounded-12 border-1 flex-center">
             <i className="text-20 icon-calendar"></i>
@@ -15,7 +18,7 @@ const SearchDatePicker = () => {
             </div>
           </div>
         </div>
-        <DatePicker/>
+        {showDropdown && <DatePicker />}
       </div>
   )
 }
