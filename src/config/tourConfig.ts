@@ -10,12 +10,12 @@ export const languages = [
 ];
 
 export const categories = [
-  "Nature Tours",
-  "Adventure Tours",
-  "Cultural Tours",
-  "Food Tours",
-  "City Tours",
-  "Cruises Tours",
+  "Nature",
+  "Adventure",
+  "Cultural",
+  "Food",
+  "City",
+  "Cruises",
 ];
 
 export const tourTypes = [...categories, "All tours"]

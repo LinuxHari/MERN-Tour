@@ -5,9 +5,9 @@ const useFocusHandler = () => {
   const focusRef = useRef<HTMLDivElement>(null)
 
   const handleFocus = (e: MouseEvent) => {    
-    if(!showContent && focusRef.current?.contains(e.target as Node)) setShowContent(true)
-    
-    else setShowContent(false)
+    if(!focusRef.current?.contains(e.target as Node)) setShowContent(false)
+
+    // else setShowContent(false)
   }
 
   useEffect(() => {

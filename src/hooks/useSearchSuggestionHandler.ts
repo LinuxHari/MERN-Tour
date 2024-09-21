@@ -1,7 +1,6 @@
 import { useRef, useState } from "react";
 import useDebounce from "./useDebounce";
 import { useGetSearchSuggestionsByTextQuery } from "../redux/api/baseApi";
-import useDropdownFocus from "./useDropdownFocus";
 import { SearchSuggestions } from "../type";
 
 const useSearchSuggestionHandler = () => {
@@ -16,21 +15,20 @@ const useSearchSuggestionHandler = () => {
       const debouncedSearchText = useDebounce(searchText, 500);
       const isValidStr = Boolean(debouncedSearchText);
       const { data, isFetching } = useGetSearchSuggestionsByTextQuery(debouncedSearchText as string, { skip: !isValidStr });
-      const {dropdownRef, showDropdown} = useDropdownFocus()
       const inputRef = useRef<HTMLInputElement>(null)
 
       const suggestions = isValidStr && data && !isFetching ? data : defaultSuggestions;
 
-      if (showDropdown) {
-        setTimeout(() => {
-          if (inputRef.current) {
-            inputRef.current.focus();
-          }
-        }, 100); // Added timeout to ensure that focus executed once animation and rendering are ended
-      }
+      // if (showDropdown) {
+      //   setTimeout(() => {
+      //     if (inputRef.current) {
+      //       inputRef.current.focus();
+      //     }
+      //   }, 100); // Added timeout to ensure that focus executed once animation and rendering are ended
+      // }
       
     
-  return ({suggestions, dropdownRef, showDropdown, searchText, setSearchText, isFetching, inputRef })
+  return ({suggestions, searchText, setSearchText, isFetching, inputRef})
 }
 
 export default useSearchSuggestionHandler
