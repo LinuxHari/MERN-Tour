@@ -29,7 +29,7 @@ const FiltersCard = () => {
       <div className="sidebar__header bg-accent-1">
         <div className="text-15 text-white fw-500">When are you traveling?</div>
         <div className="mt-10">
-          <DatePicker />
+          {/* <DatePicker /> */}
         </div>
       </div>
 

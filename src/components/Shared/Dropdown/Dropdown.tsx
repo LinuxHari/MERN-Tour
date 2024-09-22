@@ -1,10 +1,12 @@
-import { ReactNode } from "react";
+import { ReactNode, useEffect } from "react";
 import { DropdownContext, useDropdownContext } from "../../../context/DropdownContext";
 import useFocusHandler from "../../../hooks/useFocusHandler";
 
 type DropdownProps = {
   className?: string;
   children: ReactNode;
+  close?: boolean;
+  setClose?: (value: boolean) => void
 };
 
 type ContentProps = {
@@ -19,12 +21,19 @@ type ToggleProps = {
   dataClick?: string;
 };
 
-const Dropdown = ({ className, children }: DropdownProps) => {
+const Dropdown = ({ className, children, setClose, close }: DropdownProps) => {
   const {showContent, setShowContent, focusRef} = useFocusHandler();
 
   const toggleContent = () => {
     setShowContent(!showContent);
+    if(setClose) setClose(showContent)
   };
+
+  useEffect(() => {
+    if(close && showContent){
+      setShowContent(false)      
+    }
+  }, [close])
 
   return (
     <DropdownContext.Provider value={{ showContent, toggleContent }}>

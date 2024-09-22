@@ -4657,6 +4657,10 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 15px;
   font-weight: 500;
   line-height: 186.667%;
+  width: 30ch;
+  text-align: start;
+  text-overflow: ellipsis !important;
+  overflow: hidden;
 }
 
 .searchForm.-type-1 .searchFormItemDropdown.-location .searchFormItemDropdown__item button > span:nth-child(2) {
@@ -14021,4 +14025,13 @@ a{
 
 .rdrMonthAndYearWrapper .rdrNextButton i{
   border-color: transparent transparent transparent white !important
+}
+
+.rdrDateDisplayWrapper input:focus {
+  border: none !important;
+  outline: none !important;
+}
+
+.tourType .searchFormItemDropdown__container {
+  width: 340px !important;
 }

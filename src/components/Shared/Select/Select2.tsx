@@ -69,7 +69,7 @@ const Menu = ({children, className = ""}: CommonProps) => {
   );
 };
 
-const Option = ({value, children, className}: OptionProps) => {
+const Option = ({value, children, className=""}: OptionProps) => {
     const {onSelect} = useSelect2Context()
   return (
     <div className={`searchFormItemDropdown__item ${className}}`}>
