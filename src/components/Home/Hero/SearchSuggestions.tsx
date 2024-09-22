@@ -9,7 +9,7 @@ const SearchSuggestions = () => {
   const selectedPlace = watch("place");
 
   const handleSelection = (location: string) => {
-    setValue("place", { name: location, type: "state" });
+    setValue("place", { name: location, type: "State" });
   };
 
   return (

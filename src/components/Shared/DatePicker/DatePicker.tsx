@@ -21,7 +21,6 @@ const DatePicker = ({ onChange }: DatePickerProps) => {
   ]);
 
   const { width } = useWindowSize()
-
   const isLaptop = width >= 1200
 
   const handleChange = (dates: any) => {
