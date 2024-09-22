@@ -43,18 +43,11 @@ const TourForm = () => {
       
       setTimeout(() => {
         const firstRef = refs[0]
-      
         if (firstRef?.focus) {
-          console.log(firstRef, "first ref");
           const elementPosition = firstRef.getBoundingClientRect().top + window.scrollY;
           const offsetPosition = elementPosition - 50;
-          
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: "smooth"
-          })
+          window.scrollTo({top: offsetPosition,behavior: "smooth"})
           firstRef.focus();
-         
         } 
       }, 100);
     }
@@ -100,11 +93,11 @@ const TourForm = () => {
           nextClick={() => setCurrentTab(currentTab + 1)}
           prevClick={() => setCurrentTab(currentTab - 1)}
         />
-        {/* {currentTab === lastIndex && ( */}
+        {currentTab === lastIndex && (
           <div className="col-12 mt-40">
             <Button buttonType="primary" type="submit" isLoading={isLoading} disabled={isLoading}>Add tour</Button>
           </div>
-        {/* )} */}
+        )}
       </form>
     </FormProvider>
   );
