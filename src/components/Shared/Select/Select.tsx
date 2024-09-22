@@ -13,9 +13,8 @@ type ButtonProps = {
   className?: string
 };
 
-type OptionProps = {
+type OptionProps = ButtonProps & {
   value: string;
-  children: ReactNode;
 };
 
 const Select = ({ children, defaultValue, onChange, className = "" }: SelectProps) => {

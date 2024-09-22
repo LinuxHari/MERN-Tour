@@ -28,12 +28,14 @@ const Dropdown = ({ className, children, close }: DropdownProps) => {
   };
 
 
-  console.log(close);
+  console.log(close, "close", showContent);
       
 
   useEffect(() => {
+    console.log(close && showContent, "is true");
     if(close && showContent) {
-
+      console.log("setting false");
+      
       setShowContent(false)
     }
   },[close])

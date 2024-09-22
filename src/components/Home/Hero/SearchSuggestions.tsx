@@ -1,50 +1,51 @@
+import { useFormContext } from "react-hook-form";
 import useSearchSuggestionHandler from "../../../hooks/useSearchSuggestionHandler";
 import Input from "../../Shared/Input/Input";
+import Select2 from "../../Shared/Select/Select2";
 
 const SearchSuggestions = () => {
-  const {dropdownRef, showDropdown, suggestions, searchText, setSearchText, isFetching, inputRef } = useSearchSuggestionHandler()
+  const { suggestions, searchText, setSearchText, isFetching, inputRef } = useSearchSuggestionHandler();
+  const { watch, setValue } = useFormContext();
+  const selectedPlace = watch("place");
+
+  const handleSelection = (location: string) => {
+    setValue("place", { name: location, type: "state" });
+  };
 
   return (
-    <div className="searchFormItem js-select-control js-form-dd" ref={dropdownRef}>
-      <div className="searchFormItem__button" data-x-click="location">
-        <div className="searchFormItem__icon size-50 rounded-12 border-1 flex-center">
-          <i className="text-20 icon-pin"></i>
-        </div>
-        <div className="searchFormItem__content">
-          <h5>Where</h5>
-          <div className="js-select-control-chosen">Search destinations</div>
-        </div>
+    <Select2 onSelect={handleSelection} onContentShowing={() => inputRef.current?.focus()}>
+      <Select2.Button>
+      <div className="searchFormItem__icon size-50 rounded-12 border-1 flex-center">
+        <i className="text-20 icon-pin"></i>
       </div>
-     <div
-        className={`contactForm searchFormItemDropdown -location ${showDropdown? "is-active": ""}`}
-        data-x="location"
-        data-x-toggle={showDropdown? "is-active": ""}
-      >
-        <div className="searchFormItemDropdown__container">
-          <Input
-            type="text"
-            label="Search"
-            className="py-0 h-50"
-            value={searchText}
-            onChange={(e) => setSearchText(e.currentTarget.value.trim())}
-            ref={inputRef}
-          />
-          <div className="searchFormItemDropdown__list sroll-bar-1">
-            {isFetching? <p className="d-flex py-2 js-select-control-choice">Loading...</p>:
-              Object.entries(suggestions).map(([locationType, locations]) =>
-                locations.map((location) => (
-                  <div className="searchFormItemDropdown__item" key={location + locationType}>
-                    <button className="js-select-control-button">
-                      <span className="js-select-control-choice">{location}</span>
-                      <span>{locationType}</span>
-                    </button>
-                  </div>
-                ))
-              )}
-          </div>
+      <div className="searchFormItem__content">
+        <h5>Where</h5>
+        <p className="js-select-control-chosen">{selectedPlace?.name || "Search destinations"}</p>
         </div>
-      </div>
-    </div>
+      </Select2.Button>
+      <Select2.Menu>
+        <Input
+          type="text"
+          label="Search"
+          wrapperClassName="m-3"
+          value={searchText}
+          onChange={(e) => setSearchText(e.currentTarget.value.trim())}
+          ref={inputRef}
+        />
+        {isFetching ? (
+          <p className="d-flex py-2 js-select-control-choice">Loading...</p>
+        ) : (
+          Object.entries(suggestions).map(([locationType, locations]) =>
+            locations.map((location) => (
+              <Select2.Option value={location} key={location + locationType}>
+                <span className="js-select-control-choice">{location}</span>
+                <span>{locationType}</span>
+              </Select2.Option>
+            ))
+          )
+        )}
+      </Select2.Menu>
+    </Select2>
   );
 };
 

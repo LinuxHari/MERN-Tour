@@ -1,37 +1,34 @@
+import { useFormContext } from "react-hook-form";
 import { tourTypes } from "../../../config/tourConfig";
-import useDropdownFocus from "../../../hooks/useDropdownFocus";
+import Dropdown from "../../Shared/Dropdown/Dropdown";
+import Select2 from "../../Shared/Select/Select2";
 
 const TourType = () => {
- 
-  const { dropdownRef, showDropdown } = useDropdownFocus()
+  const { setValue, watch } = useFormContext();
+
+  const tourType = watch("tourType");
 
   return (
-    <div className="searchFormItem js-select-control js-form-dd" ref={dropdownRef}>
-      <div className="searchFormItem__button" data-x-click="tour-type">
+    <Select2 onSelect={(value: string) => setValue("tourType", value)}>
+      <Select2.Button>
         <div className="searchFormItem__icon size-50 rounded-12 border-1 flex-center">
           <i className="text-20 icon-flag"></i>
         </div>
         <div className="searchFormItem__content">
           <h5>Tour Type</h5>
-          <div className="js-select-control-chosen">All tours</div>
+          <p className="js-select-control-chosen">{tourType || "Category"}</p>
         </div>
-      </div>
+      </Select2.Button>
 
-      <div className={`searchFormItemDropdown -tour-type ${showDropdown? "is-active": ""}`} data-x="tour-type" data-x-toggle="is-active">
-        <div className="searchFormItemDropdown__container">
-          <div className="searchFormItemDropdown__list sroll-bar-1">
-            {tourTypes.map((type, index) => (
-              <div className="searchFormItemDropdown__item" key={index}>
-                <button className="js-select-control-button">
-                  <span className="js-select-control-choice">{type}</span>
-                </button>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
+      <Select2.Menu>
+        {tourTypes.map((type) => (
+          <Select2.Option value={type} key={type}>
+            <span className="js-select-control-choice">{type}</span>
+          </Select2.Option>
+        ))}
+      </Select2.Menu>
+    </Select2>
   );
-}
+};
 
 export default TourType;

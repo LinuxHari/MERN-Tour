@@ -1232,7 +1232,8 @@ button:focus {
 
 .contactForm select,
 .contactForm input:not([type="range"]),
-.contactForm textarea {
+.contactForm textarea,
+.searchForm input {
   font-size: 15px;
   line-height: 1.4;
   height: 55px;
@@ -1244,7 +1245,8 @@ button:focus {
 
 .contactForm select:focus,
 .contactForm input:not([type="range"]):focus,
-.contactForm textarea:focus {
+.contactForm textarea:focus,
+.searchForm input:focus {
   outline: 1px solid #05073C;
   border: 1px solid #05073C;
 }
@@ -1268,11 +1270,11 @@ button:focus {
   text-transform: uppercase;
 }
 
-.contactForm .form-input {
+.contactForm .form-input, .searchForm .form-input {
   position: relative;
 }
 
-.contactForm .form-input label {
+.contactForm .form-input label, .searchForm .form-input label {
   position: absolute;
   top: 20px;
   left: 15px;
@@ -1282,7 +1284,7 @@ button:focus {
   transition: all 0.15s ease-out;
 }
 
-.contactForm .form-input label::before {
+.contactForm .form-input label::before, .searchForm .form-input label::before {
   content: "";
   position: absolute;
   top: 0;
@@ -2377,6 +2379,9 @@ h1, h2, h3, h4, h5, h6 {
 
 .searchForm.-type-1 .searchFormItem__content > p, .searchForm.-type-1 .searchFormItem__content > span {
   word-break: var(--text-10);
+  width: 10ch;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 }
 
@@ -4577,12 +4582,16 @@ h1, h2, h3, h4, h5, h6 {
   color: #717171;
   white-space: nowrap;
   margin: 0;
+  width: fit-content;
+  max-width: 20ch;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .searchForm.-type-1 .searchFormItemDropdown {
   position: absolute;
   left: 0;
-  top: 25%;
+  top: 80%;
   padding-top: 10px;
   z-index: 5;
   transition: 0.2s;
@@ -12905,6 +12914,10 @@ table.table-4.-border-bottom tbody > tr {
   top: auto;
   left: 70%;
   z-index: 10;
+}
+
+.searchForm.-type-1 .searchFormItem__content > p, .searchForm.-type-1 .searchFormItem__content > span {
+  width: fit-content;
 }
 }
 

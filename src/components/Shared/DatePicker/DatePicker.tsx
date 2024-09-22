@@ -30,7 +30,6 @@ const DatePicker = ({ onChange }: DatePickerProps) => {
   };
 
   return (
-    // <div className="absolute top-100 start-50 translate-middle-x top-md-50 z-5">
       <DateRange
         className="searchFormItemDropdown__container"
         months={isLaptop? 2: 1}
@@ -42,7 +41,6 @@ const DatePicker = ({ onChange }: DatePickerProps) => {
         editableDateInputs
         onChange={handleChange}
       />
-    // </div>
   );
 };
 
