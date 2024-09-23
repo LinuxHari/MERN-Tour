@@ -59,6 +59,8 @@ export type PostResponse = {
   stack?: string
 }
 
+// export type TourCategories = "Nature" | "Adventure" | "Cultural" | "Food" | "City" | "Cruises"
+
 export enum ImgPath {
   tours = "/tours",
   profile = "/profile"
