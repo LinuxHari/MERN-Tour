@@ -41,6 +41,9 @@ const SearchForm = () => {
         tourType,
         startDate: startDate.toISOString().split("T")[0],
         endDate: endDate.toISOString().split("T")[0],
+        adults: "1",
+        children:"0",
+        infants: "0"
       }).toString(),
     });
   };

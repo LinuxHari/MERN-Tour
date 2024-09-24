@@ -9,11 +9,22 @@ type ListingParams = {
     tourType: string;
     startDate: string;
     endDate: string;
+    adults: string;
+    children: string;
+    infants: string;
+}
+
+const formatPaxNumbers = (value: string, defaultValue: number) => {
+    const formattedValue = Number(value)
+    console.log(formattedValue, formattedValue >= defaultValue)
+    if(isNaN(formattedValue) || (formattedValue > 9 || formattedValue < defaultValue) || !Number.isInteger(formattedValue))
+        return defaultValue
+    return formattedValue
 }
 
 
 export const listingUrlParamsHandler = (params:ListingParams) => {
-    let {startDate, endDate, tourType, destination, destinationType} = params
+    let {startDate, endDate, tourType, destination, destinationType, adults, children, infants} = params
 
     if(!tourType || !tourTypes.includes(tourType)) tourType = tourTypes.lastItem()
 
@@ -30,6 +41,10 @@ export const listingUrlParamsHandler = (params:ListingParams) => {
         startDate = new Date(defaultStartDate).toISOString().split("T")[0]
         endDate = new Date(defaultEndDate).toISOString().split("T")[0]
     }
+
+    const formattedAdults = formatPaxNumbers(adults, 1)
+    const formattedChildren = formatPaxNumbers(children, 0)
+    const formattedInfants = formatPaxNumbers(infants, 0)
     
-    return {startDate, endDate, tourType, destination, destinationType}
+    return {startDate, endDate, tourType, destination, destinationType, adults: formattedAdults, children: formattedChildren, infants: formattedInfants}
 }

@@ -8,15 +8,18 @@ import { listingUrlParamsHandler } from "../utils/urlParamsHandler";
 const ListingTours = () => {
   const [searchParams, _] = useSearchParams();
   const urlParams = Object.fromEntries(searchParams);
-  const {destination, destinationType, tourType, startDate, endDate} = listingUrlParamsHandler({
+  const {destination, destinationType, tourType, startDate, endDate, adults, children, infants} = listingUrlParamsHandler({
     destination: urlParams.destination,
     destinationType: urlParams.destinationType,
     tourType: urlParams.tourType,
     startDate: urlParams.startDate,
     endDate: urlParams.endDate,
+    adults: urlParams.adults,
+    children: urlParams.children,
+    infants: urlParams.infants
   });
 
-  console.log(destination, destinationType, tourType, startDate, endDate)
+  console.log(destination, destinationType, tourType, startDate, endDate, adults, children, infants)
 
   return (
     <>
