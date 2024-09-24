@@ -1,16 +1,12 @@
-import DatePicker from "../Shared/DatePicker/DatePicker";
+import { tourTypes } from "../../config/tourConfig";
+// import DatePicker from "../Shared/DatePicker/DatePicker";
 import CheckboxFilter from "./CheckboxFilter";
 import PriceFilter from "./PriceFilter";
 
 const FiltersCard = () => {
   const filterGroup = {
     "Tour Type": [
-      "Nature Tours",
-      "Adventure Tours",
-      "Cultural Tours",
-      "Food Tours",
-      "City Tours",
-      "Cruises Tours",
+     ...tourTypes
     ],
     Duration: ["2 days", "3 days", "5 days", "7 days", "More than 7 days"],
     Language: ["English", "Dutch", "German", "French", "Italian"],

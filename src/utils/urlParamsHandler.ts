@@ -1,6 +1,6 @@
-// import { TourCategories } from "../type"
+import "../polyfills/arrayPolyfills"
 
-import { categories, defaultTourLocation, destinationTypes } from "../config/tourConfig";
+import { tourTypes, defaultTourLocation, destinationTypes } from "../config/tourConfig";
 import { getDefaultDateRange } from "./getDefaultDateRange";
 
 type ListingParams = {
@@ -15,7 +15,7 @@ type ListingParams = {
 export const listingUrlParamsHandler = (params:ListingParams) => {
     let {startDate, endDate, tourType, destination, destinationType} = params
 
-    if(!tourType || !categories.includes(tourType)) tourType = categories.lastItem()
+    if(!tourType || !tourTypes.includes(tourType)) tourType = tourTypes.lastItem()
 
     if(!destination || destination.length < 2 || !destinationType || !destinationTypes.includes(destinationType)) {
         destination = defaultTourLocation.destination
