@@ -38,18 +38,20 @@ export type ListingCardProps = {
   price: number;
 };
 
-export type ListingCard2Props = ListingCardProps & {
+export type ListingCard2Props =  {
+  name: string;
   description: string;
-  offer?: {
-    percentage: number;
-  };
+  price: number;
   freeCancellation: boolean;
+  destination: string;
+  duration: number;
+  images: [string]
 }
 
 export type SearchSuggestions = {
-  city?: string[],
-  state?: string[],
-  country?: string[]
+  City?: string[],
+  State?: string[],
+  Country?: string[]
 }
 
 export type PostResponse = {
@@ -59,7 +61,19 @@ export type PostResponse = {
   stack?: string
 }
 
+export type TourListResponse = {
+  tours: ListingCard2Props[],
+  minPrice: number,
+  maxPrice: number,
+  totalCount: number
+}
+
 // export type TourCategories = "Nature" | "Adventure" | "Cultural" | "Food" | "City" | "Cruises"
+
+export type FiltersProps = {
+  minPrice: number;
+  maxPrice: number;
+}
 
 export enum ImgPath {
   tours = "/tours",

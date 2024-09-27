@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import FiltersCard from './FiltersCard';
+import { FiltersProps } from '../../type';
 
-const MobileFilters = () => {
+const MobileFilters = (props: FiltersProps) => {
     const [isShowFilter, setShowFilter] = useState(false);
     const toggleFilter = () => {
         setShowFilter(prev => !prev);
@@ -18,7 +19,7 @@ const MobileFilters = () => {
         Filter
       </button>
       {isShowFilter && (
-        <FiltersCard/>
+        <FiltersCard {...props}/>
       )}
     </>
   )

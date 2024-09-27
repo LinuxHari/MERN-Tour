@@ -1,37 +1,23 @@
-import { ListingCard2Props } from "../../../type";
+import { ListingCard2Props, Tour, TourListResponse } from "../../../type";
 import { getOriginalPrice } from "../../../utils/getOriginalPrice";
 import Button from "../Button/Button";
 import Rating from "../Rating/Rating";
 
-type Props = ListingCard2Props & {
-  className?: string;
-};
+type TourCard2Props = TourListResponse["tours"][0] & {className?: string}
 
-const TourCard2 = ({
-  img,
-  location,
-  title,
-  rating,
-  reviewCount,
-  duration,
-  price,
-  className = "",
-  freeCancellation,
-  offer,
-  description,
-}: Props) => {
+const TourCard2 = ({name, description, price, freeCancellation, destination, duration, images, className=""}: TourCard2Props) => {
   return (
     <div className={`tourCard -type-2 ${className}`}>
       <div className="tourCard__image">
-        <img src={img} alt="image" />
+        <img src={images[0]} alt="image" />
 
-        {offer && (
+        {/* {offer && (
           <div className="tourCard__badge">
             <div className="bg-accent-1 rounded-12 text-white lh-11 text-13 px-15 py-10">
               {offer.percentage} % OFF
             </div>
           </div>
-        )}
+        )} */}
 
         <div className="tourCard__favorite">
           <button className="button -accent-1 size-35 bg-white rounded-full flex-center">
@@ -43,13 +29,13 @@ const TourCard2 = ({
       <div className="tourCard__content">
         <div className="tourCard__location">
           <i className="icon-pin"></i>
-          {location}
+          {destination}
         </div>
 
         <h3 className="tourCard__title mt-2">
-          <span>{title}</span>
+          <span>{name}</span>
         </h3>
-        <Rating rating={rating} reviewCount={reviewCount} />
+        {/* <Rating rating={rating} reviewCount={reviewCount} /> */}
         <p className="tourCard__text mt-2 mb-2">{description}</p>
         {freeCancellation && (
           <div className="d-flex flex-wrap x-gap-20 y-gap-5 pt-30">
@@ -73,7 +59,7 @@ const TourCard2 = ({
           </div>
           <div className="tourCard__price">
             <div>
-              {offer && `$${getOriginalPrice(price, offer.percentage)}`}
+              {/* {offer && `$${getOriginalPrice(price, offer.percentage)}`} */}
             </div>
             <div className="d-flex items-center">
               From <span className="text-20 fw-500 ml-5">${price}</span>

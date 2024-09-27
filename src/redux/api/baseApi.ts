@@ -1,14 +1,17 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import env from "../../config/envConfig";
-import { SearchSuggestions, Tour } from "../../type";
+import { SearchSuggestions, Tour, TourListResponse } from "../../type";
 
 type TourSearchParams = {
   id: string;
-  city: string;
-  state: string;
-  country: string;
+  destination: string;
+  destinationType: string;
+  tourType: string;
   startDate: string;
   endDate: string;
+  adults: number;
+  children: number;
+  infants: number;
   page: number;
 };
 
@@ -20,7 +23,7 @@ export const baseApi = createApi({
     getSearchSuggestionsByText: builder.query<SearchSuggestions, string>({
       query: (searchText) => ({ url: "/tour/search", params: { searchText } }),
     }),
-    getToursBySearch: builder.query<Partial<Tour>[], Omit<TourSearchParams, "id">>({
+    getToursBySearch: builder.query<TourListResponse, Omit<TourSearchParams, "id">>({
       query: (params) => ({ url: "/tour", params }),
     }),
     getTourById: builder.query<Tour, TourSearchParams>({

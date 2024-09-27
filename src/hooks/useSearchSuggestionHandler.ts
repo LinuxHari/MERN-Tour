@@ -6,9 +6,9 @@ import { SearchSuggestions } from "../type";
 const useSearchSuggestionHandler = () => {
 
     const defaultSuggestions: SearchSuggestions = {
-        city: ["Paris", "Bangkok"],
-        state: ["Florida"],
-        country: ["India", "France"],
+        City: ["Paris", "Bangkok"],
+        State: ["Florida"],
+        Country: ["India", "France"],
       };
 
       const [searchText, setSearchText] = useState("");

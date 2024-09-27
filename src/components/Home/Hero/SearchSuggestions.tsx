@@ -9,7 +9,10 @@ const SearchSuggestions = () => {
   const selectedPlace = watch("place");
 
   const handleSelection = (location: string) => {
-    setValue("place", { name: location, type: "State" });
+    const [destination, destinationType] = location.split("-")
+    console.log(destination, destinationType);
+    
+    setValue("place", { name: destination, type: destinationType });
   };
 
   return (
@@ -37,7 +40,7 @@ const SearchSuggestions = () => {
         ) : (
           Object.entries(suggestions).map(([locationType, locations]) =>
             locations.map((location) => (
-              <Select2.Option value={location} key={location + locationType}>
+              <Select2.Option value={location+"-"+locationType} key={location + locationType}>
                 <span className="js-select-control-choice">{location}</span>
                 <span>{locationType}</span>
               </Select2.Option>

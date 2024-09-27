@@ -1,9 +1,10 @@
 import { tourTypes } from "../../config/tourConfig";
 // import DatePicker from "../Shared/DatePicker/DatePicker";
+import { FiltersProps } from "../../type";
 import CheckboxFilter from "./CheckboxFilter";
 import PriceFilter from "./PriceFilter";
 
-const FiltersCard = () => {
+const FiltersCard = (props: FiltersProps) => {
   const filterGroup = {
     "Tour Type": [
      ...tourTypes
@@ -36,7 +37,7 @@ const FiltersCard = () => {
           </div>
         ))}
         <div className="order-1">
-          <PriceFilter />
+          <PriceFilter {...props}/>
         </div>
       </div>
     </div>

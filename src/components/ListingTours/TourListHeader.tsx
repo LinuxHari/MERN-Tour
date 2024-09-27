@@ -8,7 +8,11 @@ type SortProps =
   | "Rating: Low to High"
   | "Rating: High to Low";
 
-const TourListHeader = () => {
+type TourListHeaderProps = {
+  totalCount: number
+}
+
+const TourListHeader = ({totalCount}: TourListHeaderProps) => {
   const [selectedOption, setSelectedOption] =
     useState<SortProps>("Recommended");
 
@@ -27,7 +31,7 @@ const TourListHeader = () => {
   return (
     <div className="row y-gap-5 justify-between mt-30 mt-lg-0">
       <div className="col-auto">
-        <div>1362 results</div>
+        <div>{totalCount} results</div>
       </div>
 
       <div className="col-auto">
