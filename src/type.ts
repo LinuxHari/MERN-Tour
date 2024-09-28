@@ -61,11 +61,14 @@ export type PostResponse = {
   stack?: string
 }
 
+export type Filters =  {"Tour type": string[], Duration: string[], Rating: [{count: number, label: string}], Specials: [string]}
+
 export type TourListResponse = {
   tours: ListingCard2Props[],
   minPrice: number,
   maxPrice: number,
-  totalCount: number
+  totalCount: number,
+  filters?: Filters
 }
 
 // export type TourCategories = "Nature" | "Adventure" | "Cultural" | "Food" | "City" | "Cruises"

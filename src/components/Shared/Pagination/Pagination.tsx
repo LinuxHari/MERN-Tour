@@ -1,4 +1,11 @@
-const Pagination = () => {
+type PaginationProps = {
+  page: number
+  setPage: (page: number) => void
+  totalCount: number
+}
+
+const Pagination = ({page, setPage, totalCount}: PaginationProps) => {
+  const perPage = 10
   return (
     <>
       <div className="pagination justify-center">
@@ -33,7 +40,7 @@ const Pagination = () => {
         </button>
       </div>
       <div className="text-14 text-center mt-20">
-        Showing results 1-30 of 1,415
+        Showing results {page * perPage + 1 } of {totalCount}
       </div>
     </>
   );

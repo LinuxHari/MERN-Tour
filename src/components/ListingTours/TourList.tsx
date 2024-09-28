@@ -1,5 +1,4 @@
 import { ListingCard2Props } from "../../type";
-import Pagination from "../Shared/Pagination/Pagination";
 import TourCard2 from "../Shared/TourCard/TourCard2";
 
 type TourListProps = {
@@ -56,7 +55,6 @@ const TourList = ({ tours }: TourListProps) => {
   // ];
 
   return (
-    <>
       <div className="row y-gap-30 pt-10 pt-lg-30">
         {tours.map((tour) => (
           <div className="col-12" key={tour.name}>
@@ -64,11 +62,6 @@ const TourList = ({ tours }: TourListProps) => {
           </div>
         ))}
       </div>
-
-      <div className="d-flex justify-center flex-column mt-60">
-        <Pagination />
-      </div>
-    </>
   );
 };
 

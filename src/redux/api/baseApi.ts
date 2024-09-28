@@ -13,6 +13,7 @@ type TourSearchParams = {
   children: number;
   infants: number;
   page: number;
+  filters: boolean
 };
 
 export const baseApi = createApi({

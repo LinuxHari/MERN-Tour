@@ -5,6 +5,9 @@ import TourList from "../components/ListingTours/TourList";
 import TourListHeader from "../components/ListingTours/TourListHeader";
 import { listingUrlParamsHandler } from "../utils/urlParamsHandler";
 import { useGetToursBySearchQuery } from "../redux/api/baseApi";
+import { useState } from "react";
+import { Filters as FiltersType } from "../type";
+import Pagination from "../components/Shared/Pagination/Pagination";
 
 const ListingTours = () => {
   const [searchParams, _] = useSearchParams();
@@ -21,6 +24,11 @@ const ListingTours = () => {
       infants: urlParams.infants,
     });
 
+  const [page, setPage] = useState(1);
+  const [filters, setFilters] = useState<FiltersType | null>(null);
+  const [appliedFilters, setAppliedFilters] = useState({});
+  const [sortType, setSortType] = useState("Recommended");
+
   const { data, isLoading } = useGetToursBySearchQuery({
     destination,
     destinationType,
@@ -30,13 +38,18 @@ const ListingTours = () => {
     adults,
     children,
     infants,
-    page: 1,
+    page,
+    filters: filters ? false : true,
   });
 
-  const tours = data?.tours || [] 
-  const totalCount = data?.totalCount || 0
-  const minPrice = data?.minPrice || 0
-  const maxPrice = data?.maxPrice || 100000
+  const tours = data?.tours || [];
+  const totalCount = data?.totalCount || 0;
+  const minPrice = data?.minPrice || 0;
+  const maxPrice = data?.maxPrice || 100000;
+
+  if (data?.filters) {
+    setFilters(data.filters);
+  }
 
   return (
     <>
@@ -50,17 +63,22 @@ const ListingTours = () => {
                   <Filters minPrice={minPrice} maxPrice={maxPrice} />
                 </div>
                 <div className="col-xl-9 col-lg-8">
-                  <TourListHeader totalCount={totalCount} />
-                  <TourList tours = {tours}/>
+                  <TourListHeader
+                    totalCount={totalCount}
+                    sortType={sortType}
+                    setSortType={(type: string) => setSortType(type)}
+                  />
+                  <TourList tours={tours} />
+                  <div className="d-flex justify-center flex-column mt-60">
+                    <Pagination page={page} setPage={(page: number) => setPage(page)} totalCount={totalCount} />
+                  </div>
                 </div>
               </div>
             </div>
           </section>
         </>
       ) : (
-        <div style={{minHeight: "100vh"}}>
-          "Loading..."
-        </div>
+        <div style={{ minHeight: "100vh" }}>"Loading..."</div>
       )}
     </>
   );

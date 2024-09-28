@@ -1,4 +1,4 @@
-import { tourTypes } from "../../config/tourConfig";
+import { categories } from "../../config/tourConfig";
 // import DatePicker from "../Shared/DatePicker/DatePicker";
 import { FiltersProps } from "../../type";
 import CheckboxFilter from "./CheckboxFilter";
@@ -7,7 +7,7 @@ import PriceFilter from "./PriceFilter";
 const FiltersCard = (props: FiltersProps) => {
   const filterGroup = {
     "Tour Type": [
-     ...tourTypes
+     ...categories
     ],
     Duration: ["2 days", "3 days", "5 days", "7 days", "More than 7 days"],
     Language: ["English", "Dutch", "German", "French", "Italian"],
