@@ -1,56 +1,12 @@
-import { useSearchParams } from "react-router-dom";
 import Filters from "../components/ListingTours/Filters";
 import ListingHeader from "../components/ListingTours/ListingHeader";
 import TourList from "../components/ListingTours/TourList";
 import TourListHeader from "../components/ListingTours/TourListHeader";
-import { listingUrlParamsHandler } from "../utils/urlParamsHandler";
-import { useGetToursBySearchQuery } from "../redux/api/baseApi";
-import { useState } from "react";
-import { Filters as FiltersType } from "../type";
 import Pagination from "../components/Shared/Pagination/Pagination";
+import useListingToursHandler from "../hooks/useListingToursHandler";
 
 const ListingTours = () => {
-  const [searchParams, _] = useSearchParams();
-  const urlParams = Object.fromEntries(searchParams);
-  const { destination, destinationType, tourType, startDate, endDate, adults, children, infants } =
-    listingUrlParamsHandler({
-      destination: urlParams.destination,
-      destinationType: urlParams.destinationType,
-      tourType: urlParams.tourType,
-      startDate: urlParams.startDate,
-      endDate: urlParams.endDate,
-      adults: urlParams.adults,
-      children: urlParams.children,
-      infants: urlParams.infants,
-    });
-
-  const [page, setPage] = useState(1);
-  const [filters, setFilters] = useState<FiltersType | null>(null);
-  const [appliedFilters, setAppliedFilters] = useState({});
-  const [sortType, setSortType] = useState("Recommended");
-
-  const { data, isLoading } = useGetToursBySearchQuery({
-    destination,
-    destinationType,
-    tourType,
-    startDate,
-    endDate,
-    adults,
-    children,
-    infants,
-    page,
-    filters: filters ? false : true,
-  });
-
-  const tours = data?.tours || [];
-  const totalCount = data?.totalCount || 0;
-  const minPrice = data?.minPrice || 0;
-  const maxPrice = data?.maxPrice || 100000;
-
-  if (data?.filters) {
-    setFilters(data.filters);
-  }
-
+  const {isLoading, tours, totalCount, setSortType, setAppliedFilters, setPage, setPriceRange, sortType, page, appliedFilters, filters } = useListingToursHandler()
   return (
     <>
       {!isLoading ? (
@@ -60,17 +16,17 @@ const ListingTours = () => {
             <div className="container">
               <div className="row">
                 <div className="col-xl-3 col-lg-4">
-                  <Filters minPrice={minPrice} maxPrice={maxPrice} />
+                  <Filters filters={filters} appliedFilters={appliedFilters} setAppliedFilters={setAppliedFilters} setPriceRange={setPriceRange}/>
                 </div>
                 <div className="col-xl-9 col-lg-8">
                   <TourListHeader
                     totalCount={totalCount}
                     sortType={sortType}
-                    setSortType={(type: string) => setSortType(type)}
+                    setSortType={setSortType}
                   />
                   <TourList tours={tours} />
                   <div className="d-flex justify-center flex-column mt-60">
-                    <Pagination page={page} setPage={(page: number) => setPage(page)} totalCount={totalCount} />
+                    <Pagination page={page} setPage={setPage} totalCount={totalCount} />
                   </div>
                 </div>
               </div>

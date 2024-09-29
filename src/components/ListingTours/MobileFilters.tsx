@@ -1,8 +1,15 @@
 import { useState } from 'react'
 import FiltersCard from './FiltersCard';
-import { FiltersProps } from '../../type';
+import { AppliedFiltersProps, Filters } from '../../type';
 
-const MobileFilters = (props: FiltersProps) => {
+type FilterProps = {
+  filters: Filters
+  appliedFilters: AppliedFiltersProps
+  setAppliedFilters: (key: string, value: string) => void
+  setPriceRange: (minPrice:number, maxPrice: number) => void
+}
+
+const MobileFilters = (props: FilterProps) => {
     const [isShowFilter, setShowFilter] = useState(false);
     const toggleFilter = () => {
         setShowFilter(prev => !prev);

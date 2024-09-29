@@ -1,9 +1,16 @@
 import MobileFilters from "./MobileFilters";
 import FiltersCard from "./FiltersCard";
 import useWindowSize from "../../hooks/useWindowSize";
-import { FiltersProps } from "../../type";
+import { AppliedFiltersProps, Filters as FiltersType } from "../../type";
 
-const Filters = (props: FiltersProps) => {
+type FilterProps = {
+  filters: FiltersType
+  appliedFilters: AppliedFiltersProps
+  setAppliedFilters: (key: string, value: string) => void
+  setPriceRange: (minPrice:number, maxPrice: number) => void
+}
+
+const Filters = (props: FilterProps) => {
   const {width} = useWindowSize()
 
   const isMobile = width < 992  

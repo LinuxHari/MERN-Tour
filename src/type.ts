@@ -61,21 +61,18 @@ export type PostResponse = {
   stack?: string
 }
 
-export type Filters =  {"Tour type": string[], Duration: string[], Rating: [{count: number, label: string}], Specials: [string]}
+export type Filters =  {tourType?: string[], duration?: string[], rating?: {count: number, label: string}[], specials?: [string], languages?: [string]}
 
 export type TourListResponse = {
   tours: ListingCard2Props[],
-  minPrice: number,
-  maxPrice: number,
   totalCount: number,
-  filters?: Filters
+  filters?: Omit<Filters, "rating">
 }
 
 // export type TourCategories = "Nature" | "Adventure" | "Cultural" | "Food" | "City" | "Cruises"
 
-export type FiltersProps = {
-  minPrice: number;
-  maxPrice: number;
+export type AppliedFiltersProps = Omit<Filters, "rating"> & {
+  rating?: number
 }
 
 export enum ImgPath {

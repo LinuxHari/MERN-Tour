@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import env from "../../config/envConfig";
-import { SearchSuggestions, Tour, TourListResponse } from "../../type";
+import { AppliedFiltersProps, SearchSuggestions, Tour, TourListResponse } from "../../type";
 
 type TourSearchParams = {
   id: string;
@@ -13,7 +13,8 @@ type TourSearchParams = {
   children: number;
   infants: number;
   page: number;
-  filters: boolean
+  filters: boolean;
+  appliedFilters: AppliedFiltersProps & {sortType: string, minPrice?: number, maxPrice?: number};
 };
 
 export const baseApi = createApi({

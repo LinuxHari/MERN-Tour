@@ -1,7 +1,11 @@
-import { FiltersProps } from "../../type";
 import Accordion from "../Shared/Accordion/Accordion";
 
-const PriceFilter = ({minPrice, maxPrice}: FiltersProps) => {
+type PriceFilterProps = {
+  setPriceRange: (minPrice: number, maxPrice: number) => void
+}
+
+const PriceFilter = ({setPriceRange}: PriceFilterProps) => {
+  const defaultRange = {minPrice: 1, maxPrice: 25000}
   return (
     <div className="sidebar__item">
       <Accordion>
@@ -20,9 +24,9 @@ const PriceFilter = ({minPrice, maxPrice}: FiltersProps) => {
                 <div className="d-flex justify-between mt-20">
                   <div className="">
                     <span className="">Price: </span>
-                    <span className="fw-500 js-lower">{minPrice}</span>
+                    <span className="fw-500 js-lower">{defaultRange.minPrice}</span>
                     <span> - </span>
-                    <span className="fw-500 js-upper">{maxPrice}</span>
+                    <span className="fw-500 js-upper">{defaultRange.maxPrice}</span>
                   </div>
                 </div>
               </div>

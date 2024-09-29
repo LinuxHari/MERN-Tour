@@ -1,7 +1,5 @@
-import { ListingCard2Props, Tour, TourListResponse } from "../../../type";
-import { getOriginalPrice } from "../../../utils/getOriginalPrice";
+import {  TourListResponse } from "../../../type";
 import Button from "../Button/Button";
-import Rating from "../Rating/Rating";
 
 type TourCard2Props = TourListResponse["tours"][0] & {className?: string}
 
