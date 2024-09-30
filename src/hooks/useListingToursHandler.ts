@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { listingUrlParamsHandler } from "../utils/urlParamsHandler";
 import { useGetToursBySearchQuery } from "../redux/api/baseApi";
@@ -24,6 +24,8 @@ const useListingToursHandler = () => {
       infants: urlParams.infants,
     });
 
+  const filterRef = useRef(true)
+
   const [page, setPage] = useState(1);
   const [sortType, setSortType] = useState("Recommended");
   const [filters, setFilters] = useState<Filters>({
@@ -33,7 +35,7 @@ const useListingToursHandler = () => {
       { count: 3, label: "Satisfactory(3)" },
     ],
   });
-  const [appliedFilters, setAppliedFilters] = useState<AppliedFiltersProps>({ tourType: [tourType] });
+  const [appliedFilters, setAppliedFilters] = useState<AppliedFiltersProps>({ tourTypes: [tourType] });
   const [priceRange, setPriceRange] = useState<PriceRangeProps>({ minPrice: undefined, maxPrice: undefined });
   const { data, isLoading } = useGetToursBySearchQuery({
     destination,
@@ -45,30 +47,36 @@ const useListingToursHandler = () => {
     children,
     infants,
     page,
-    filters: filters ? false : true,
+    filters: filterRef.current,
     appliedFilters: { sortType, ...appliedFilters, ...priceRange },
   });
 
   const tours = data?.tours || [];
   const totalCount = data?.totalCount || 0;
 
-  if (data?.filters) {
-    setFilters(data.filters);
-  }
-
-  console.log(appliedFilters, "filters applied");
 
   const handleSortType = useCallback((type: string) => setSortType(type), []);
   const handleAppliedFilters = useCallback((filterKey: string, value: string) => {
-    const filterValue = appliedFilters[filterKey as keyof typeof appliedFilters] as any;
-    console.log(filterValue)
-    setAppliedFilters({ ...appliedFilters, [filterKey]: Array.isArray(filterKey) ? [...filterValue, value] : value });
-  }, []);
+    const isArrFilter =  Array.isArray(filters[filterKey as keyof typeof filters]) && filterKey !== "rating"
+    const currentFiltervalue = appliedFilters[filterKey as keyof typeof appliedFilters]
+    const filterValue = isArrFilter? currentFiltervalue || []: currentFiltervalue 
+    
+    setAppliedFilters({ ...appliedFilters, [filterKey]: isArrFilter? [...filterValue as String[], value] : value });
+  }, [filters, appliedFilters]);
   const handlePriceRange = useCallback(
     (minPrice: number, maxPrice: number) => setPriceRange({ minPrice, maxPrice }),
     []
   );
   const handlePage = useCallback((page: number) => setPage(page), []);
+
+  useEffect(() => {
+    if (data?.filters && filterRef.current) {
+      setFilters({...filters, ...data.filters});
+      filterRef.current = false
+    };
+  },[data])
+
+  console.log(appliedFilters, "filters applied")
 
   return {
     tours,

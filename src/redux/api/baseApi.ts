@@ -26,7 +26,13 @@ export const baseApi = createApi({
       query: (searchText) => ({ url: "/tour/search", params: { searchText } }),
     }),
     getToursBySearch: builder.query<TourListResponse, Omit<TourSearchParams, "id">>({
-      query: (params) => ({ url: "/tour", params }),
+      query: (params) => {
+        const { appliedFilters, ...restParams } = params;
+        return {
+          url: "/tour",
+          params: { ...restParams, ...appliedFilters }
+        };
+      },
     }),
     getTourById: builder.query<Tour, TourSearchParams>({
       query: ({ id, ...params }) => ({ url: `/tour/${id}`, params }),

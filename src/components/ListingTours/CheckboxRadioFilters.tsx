@@ -16,6 +16,9 @@ const CheckboxRadioFilters = ({ title, filter, appliedFilterValue, setAppliedFil
     .replace(/^./, str => str.toUpperCase())
     .trim();
   }
+
+  console.log(appliedFilterValue, "applied filters")
+
   return (
     <div className="sidebar__item">
       <Accordion>

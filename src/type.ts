@@ -61,7 +61,7 @@ export type PostResponse = {
   stack?: string
 }
 
-export type Filters =  {tourType?: string[], duration?: string[], rating?: {count: number, label: string}[], specials?: [string], languages?: [string]}
+export type Filters =  {tourTypes?: string[], duration?: string[], rating?: {count: number, label: string}[], specials?: [string], languages?: [string]}
 
 export type TourListResponse = {
   tours: ListingCard2Props[],
