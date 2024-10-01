@@ -1,3 +1,5 @@
+import usePagination from "../../../hooks/usePagination";
+
 type PaginationProps = {
   page: number
   setPage: (page: number) => void
@@ -5,42 +7,38 @@ type PaginationProps = {
 }
 
 const Pagination = ({page, setPage, totalCount}: PaginationProps) => {
-  const perPage = 10
+  const {perPage, showRange, prev, next, pages, disableNext, disablePrev, numOfPages} = usePagination(page, setPage, totalCount)
+  console.log(page, "current page", disablePrev);
+  
   return (
     <>
       <div className="pagination justify-center">
-        <button className="pagination__button button -accent-1 mr-15 -prev">
+        <button className="pagination__button button -accent-1 mr-15 -prev" onClick={prev} disabled={disablePrev}>
           <i className="icon-arrow-left text-15"></i>
         </button>
 
         <div className="pagination__count">
-          <a href="#" style={{ color: "black" }}>
-            1
-          </a>
-          <a href="#" className="is-active" style={{ color: "black" }}>
-            2
-          </a>
-          <a href="#" style={{ color: "black" }}>
-            3
-          </a>
-          <a href="#" style={{ color: "black" }}>
-            4
-          </a>
-          <a href="#" style={{ color: "black" }}>
-            5
-          </a>
-          <div>...</div>
-          <a href="#" style={{ color: "black" }}>
-            20
-          </a>
+          {pages.map((pageNumber) => (
+            <button style={{ color: "black" }} className={`${pageNumber === page? "is-active": ""}`} onClick={() => setPage(pageNumber)}>
+            {pageNumber}
+          </button>
+          ))}
+         {
+          showRange && <>
+           <div>...</div>
+          <button style={{ color: "black" }} onClick={() => setPage(numOfPages)}>
+            {numOfPages}
+          </button>
+          </>
+         }
         </div>
 
-        <button className="pagination__button button -accent-1 ml-15 -next">
+        <button className="pagination__button button -accent-1 ml-15 -next" onClick={next} disabled={disableNext}>
           <i className="icon-arrow-right text-15"></i>
         </button>
       </div>
       <div className="text-14 text-center mt-20">
-        Showing results {page * perPage + 1 } of {totalCount}
+        Showing results {(page - 1) * perPage + 1 } - {page * perPage} of {totalCount}
       </div>
     </>
   );
