@@ -14058,3 +14058,20 @@ a{
     margin-left: 4px;
   }
 }
+
+.rc-slider-track, .rc-slider-handle, .rc-slider-rail {
+  background-color: rgb(235, 102, 43) !important;
+}
+
+.rc-slider-rail {
+  opacity: 0.5 !important;
+}
+
+.rc-slider-handle {
+  height: 24px !important;
+  width: 24px !important;
+  border: none !important;
+  opacity: 1 !important;
+  margin-top: -10px !important;
+  box-shadow: 1px 1px 15px 1px rgba(0, 0, 0, 0.15) !important;
+}
