@@ -14035,3 +14035,26 @@ a{
 .tourType .searchFormItemDropdown__container {
   width: 340px !important;
 }
+
+.pagination .-prev{
+  margin-right: 15px;
+}
+
+.pagination .-next{
+  margin-left: 15px;
+}
+
+
+@media (max-width: 479px) {
+  .pagination__count > * + * {
+    margin-left: 4px;
+  }
+
+  .pagination .-prev{
+    margin-right: 4px;
+  }
+  
+  .pagination .-next{
+    margin-left: 4px;
+  }
+}

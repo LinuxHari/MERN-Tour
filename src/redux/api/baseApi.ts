@@ -6,14 +6,14 @@ type TourSearchParams = {
   id: string;
   destination: string;
   destinationType: string;
-  tourType: string;
+  // tourType: string;
   startDate: string;
   endDate: string;
   adults: number;
   children: number;
   infants: number;
   page: number;
-  filters: boolean;
+  filters: number;
   appliedFilters: AppliedFiltersProps & {sortType: string, minPrice?: number, maxPrice?: number};
 };
 

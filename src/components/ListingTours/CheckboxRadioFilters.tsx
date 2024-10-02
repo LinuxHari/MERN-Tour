@@ -6,7 +6,7 @@ type Props = {
   title: string;
   filter: string[] | { count: number; label: string }[];
   appliedFilterValue?: string[] | number;
-  setAppliedFilters: (key: string, value: string) => void;
+  setAppliedFilters: (key: string, value: string, checked?: boolean) => void;
 };
 
 const CheckboxRadioFilters = ({ title, filter, appliedFilterValue, setAppliedFilters }: Props) => {
@@ -16,8 +16,6 @@ const CheckboxRadioFilters = ({ title, filter, appliedFilterValue, setAppliedFil
     .replace(/^./, str => str.toUpperCase())
     .trim();
   }
-
-  console.log(appliedFilterValue, "applied filters")
 
   return (
     <div className="sidebar__item">
@@ -47,7 +45,8 @@ const CheckboxRadioFilters = ({ title, filter, appliedFilterValue, setAppliedFil
                         type="checkbox"
                         label={value}
                         value={value}
-                        onChange={(e) => setAppliedFilters(title, e.currentTarget.value)}
+                        onChange={(e) => setAppliedFilters(title, e.currentTarget.value, e.target.checked)}
+                        
                         checked={
                           appliedFilterValue && typeof appliedFilterValue === "object"
                             ? appliedFilterValue.includes(value as string)
