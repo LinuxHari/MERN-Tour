@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { listingUrlParamsHandler } from "../utils/urlParamsHandler";
 import { useGetToursBySearchQuery } from "../redux/api/baseApi";
@@ -38,10 +38,9 @@ const useListingToursHandler = () => {
   });
   const [appliedFilters, setAppliedFilters] = useState<AppliedFiltersProps>({ tourTypes: [tourType], rating: 0 });
   const [priceRange, setPriceRange] = useState<PriceRangeProps>({ minPrice: undefined, maxPrice: undefined });
-  const { data, isLoading } = useGetToursBySearchQuery({
+  const queryParams = useMemo(() => ({
     destination,
     destinationType,
-    // tourType,
     startDate,
     endDate,
     adults,
@@ -55,7 +54,10 @@ const useListingToursHandler = () => {
       rating: appliedFilters.rating ? appliedFilters.rating : undefined,
       ...priceRange,
     },
-  });
+  }), [destination, destinationType, startDate, endDate, adults, children, infants, page, sortType, appliedFilters, priceRange]);
+  
+  const { data, isLoading } = useGetToursBySearchQuery(queryParams);
+  
 
   const tours = data?.tours || [];
   const totalCount = data?.totalCount || 0;
@@ -95,8 +97,6 @@ const useListingToursHandler = () => {
       filterRef.current = 0;
     }
   }, [data]);
-
-  console.log(appliedFilters, "filters applied");
 
   return {
     tours,
