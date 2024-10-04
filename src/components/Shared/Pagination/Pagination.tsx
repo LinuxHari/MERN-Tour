@@ -29,7 +29,7 @@ const Pagination = ({page, setPage, totalCount}: PaginationProps) => {
         </button>
       </div>
       <div className="text-14 text-center mt-20">
-        Showing results {(page - 1) * perPage + 1 } - {page * perPage} of {totalCount}
+        Showing results {totalCount > perPage? (page - 1) * perPage + 1 + "-" + (page * perPage): totalCount} of {totalCount}
       </div>
     </>
   );

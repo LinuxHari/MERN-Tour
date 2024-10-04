@@ -56,7 +56,7 @@ const useListingToursHandler = () => {
     },
   }), [destination, destinationType, startDate, endDate, adults, children, infants, page, sortType, appliedFilters, priceRange]);
   
-  const { data, isLoading } = useGetToursBySearchQuery(queryParams);
+  const { data, isFetching } = useGetToursBySearchQuery(queryParams);
   
 
   const tours = data?.tours || [];
@@ -79,7 +79,13 @@ const useListingToursHandler = () => {
           let updatedFilter = appliedFilters[filterKey as keyof typeof appliedFilters] as Array<string>;
           updatedFilter = updatedFilter.filter((filterValue) => filterValue !== value);
 
+         if(!updatedFilter.length){
+          const updatedFilters = {...appliedFilters}
+          delete updatedFilters[filterKey as keyof typeof updatedFilters]
+          setAppliedFilters(updatedFilters)
+         } else {
           setAppliedFilters({ ...appliedFilters, [filterKey]: updatedFilter });
+         }
         }
       }
     },
@@ -101,10 +107,11 @@ const useListingToursHandler = () => {
   return {
     tours,
     totalCount,
-    isLoading,
+    isLoading: isFetching,
     page,
     sortType,
     appliedFilters,
+    priceRange,
     setSortType: handleSortType,
     setAppliedFilters: handleAppliedFilters,
     setPriceRange: handlePriceRange,

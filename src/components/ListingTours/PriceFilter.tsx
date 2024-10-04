@@ -1,20 +1,27 @@
 import Accordion from "../Shared/Accordion/Accordion";
 import PriceRangeSlider from "rc-slider";
 import "rc-slider/assets/index.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 type PriceFilterProps = {
   setPriceRange: (minPrice: number, maxPrice: number) => void;
+  priceRange: {minPrice?: number, maxPrice?: number }
 };
 
-const PriceFilter = ({ setPriceRange }: PriceFilterProps) => {
-  const defaultRange = { minPrice: 5, maxPrice: 10000 };
+const PriceFilter = ({ priceRange, setPriceRange }: PriceFilterProps) => {
+  const defaultRange = { minPrice: 5, maxPrice: 2000 };
 
-  const [currentPriceRange, setCurrentRange] = useState([defaultRange.minPrice, defaultRange.maxPrice]);
+  const [currentPriceRange, setCurrentRange] = useState([5, 1500]);
 
   const [currentMinPrice, currentMaxPrice] = currentPriceRange;
 
   const handleRange = (range: number[]) => setPriceRange(range[0], range[1])
+
+  useEffect(() => {
+    const {minPrice, maxPrice} = priceRange
+    if(minPrice && maxPrice)
+      setCurrentRange([minPrice, maxPrice])
+  }, [priceRange])
 
   return (
     <div className="sidebar__item">
@@ -42,7 +49,7 @@ const PriceFilter = ({ setPriceRange }: PriceFilterProps) => {
                     <span className="">Price: </span>
                     <span className="fw-500 js-lower">${currentMinPrice}</span>
                     <span> - </span>
-                    <span className="fw-500 js-upper">${currentMaxPrice}</span>
+                    <span className="fw-500 js-upper">${currentMaxPrice === defaultRange.maxPrice? currentMaxPrice + "+":currentMaxPrice}</span>
                   </div>
                 </div>
               </div>

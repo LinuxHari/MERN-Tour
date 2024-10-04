@@ -8,6 +8,7 @@ type FilterProps = {
   appliedFilters: AppliedFiltersProps
   setAppliedFilters: (key: string, value: string) => void
   setPriceRange: (minPrice:number, maxPrice: number) => void
+  priceRange: {minPrice?: number, maxPrice?: number }
 }
 
 const Filters = (props: FilterProps) => {

@@ -6,7 +6,7 @@ import Pagination from "../components/Shared/Pagination/Pagination";
 import useListingToursHandler from "../hooks/useListingToursHandler";
 
 const ListingTours = () => {
-  const {isLoading, tours, totalCount, setSortType, setAppliedFilters, setPage, setPriceRange, sortType, page, appliedFilters, filters } = useListingToursHandler()
+  const {isLoading, tours, totalCount, setSortType, setAppliedFilters, setPage, setPriceRange, priceRange, sortType, page, appliedFilters, filters } = useListingToursHandler()
   return (
     <>
       {!isLoading ? (
@@ -16,7 +16,7 @@ const ListingTours = () => {
             <div className="container">
               <div className="row">
                 <div className="col-xl-3 col-lg-4">
-                  <Filters filters={filters} appliedFilters={appliedFilters} setAppliedFilters={setAppliedFilters} setPriceRange={setPriceRange}/>
+                  <Filters filters={filters} appliedFilters={appliedFilters} setAppliedFilters={setAppliedFilters} priceRange={priceRange} setPriceRange={setPriceRange}/>
                 </div>
                 <div className="col-xl-9 col-lg-8">
                   <TourListHeader

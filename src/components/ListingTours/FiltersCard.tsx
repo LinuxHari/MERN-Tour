@@ -8,9 +8,10 @@ type FilterProps = {
   appliedFilters: AppliedFiltersProps;
   setAppliedFilters: (key: string, value: string) => void;
   setPriceRange: (minPrice: number, maxPrice: number) => void;
+  priceRange: {minPrice?: number, maxPrice?: number }
 };
 
-const FiltersCard = ({ filters, appliedFilters, setAppliedFilters, setPriceRange }: FilterProps) => {
+const FiltersCard = ({ filters, appliedFilters, setAppliedFilters, priceRange, setPriceRange }: FilterProps) => {
   // const filterGroup = {
   //   "Tour Type": [
   //    ...categories
@@ -46,7 +47,7 @@ const FiltersCard = ({ filters, appliedFilters, setAppliedFilters, setPriceRange
           </div>
         ))}
         <div className="order-1">
-          <PriceFilter setPriceRange={setPriceRange} />
+          <PriceFilter setPriceRange={setPriceRange} priceRange={priceRange}/>
         </div>
       </div>
     </div>

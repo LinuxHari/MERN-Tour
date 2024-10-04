@@ -45,9 +45,6 @@ const Listings = ({render}: RenderProps) => {
       ))
     }
     </div>
-    <div className="mt-30">
-      <Pagination/>
-    </div>
   </div>
     </>
   )
