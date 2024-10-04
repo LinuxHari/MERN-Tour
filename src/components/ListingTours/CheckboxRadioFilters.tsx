@@ -7,9 +7,10 @@ type Props = {
   filter: string[] | { count: number; label: string }[];
   appliedFilterValue?: string[] | number;
   setAppliedFilters: (key: string, value: string, checked?: boolean) => void;
+  index: number
 };
 
-const CheckboxRadioFilters = ({ title, filter, appliedFilterValue, setAppliedFilters }: Props) => {
+const CheckboxRadioFilters = ({ title, filter, appliedFilterValue, setAppliedFilters, index }: Props) => {
   const keyToTile = (key: string) => {
     return key
     .replace(/([A-Z])/g, ' $1')
@@ -19,12 +20,11 @@ const CheckboxRadioFilters = ({ title, filter, appliedFilterValue, setAppliedFil
 
   return (
     <div className="sidebar__item">
-      <Accordion>
-        <Accordion.Item>
+        <Accordion.Item index={index}>
           <Accordion.Button isShowIcon={true}>
             <h5 className="text-18 fw-500">{keyToTile(title)}</h5>
           </Accordion.Button>
-          <Accordion.Content>
+          <Accordion.Content index={index}>
             <div className="pt-15">
               <div className="d-flex flex-column y-gap-15">
                 {filter.map((value, index) =>
@@ -60,7 +60,6 @@ const CheckboxRadioFilters = ({ title, filter, appliedFilterValue, setAppliedFil
             </div>
           </Accordion.Content>
         </Accordion.Item>
-      </Accordion>
     </div>
   );
 };

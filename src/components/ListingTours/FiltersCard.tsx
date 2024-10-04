@@ -1,5 +1,6 @@
 // import DatePicker from "../Shared/DatePicker/DatePicker";
 import { AppliedFiltersProps, Filters } from "../../type";
+import Accordion from "../Shared/Accordion/Accordion";
 import CheckboxRadioFilters from "./CheckboxRadioFilters";
 import PriceFilter from "./PriceFilter";
 
@@ -35,7 +36,7 @@ const FiltersCard = ({ filters, appliedFilters, setAppliedFilters, priceRange, s
         <div className="mt-10">{/* <DatePicker /> */}</div>
       </div>
 
-      <div className="sidebar__content d-flex flex-column">
+      <Accordion type="multiple" className="sidebar__content d-flex flex-column">
         {Object.entries(filters).map(([key, value], index) => (
           <div className={`order-${index === 0 ? index : index + 1}`} key={key}>
             <CheckboxRadioFilters
@@ -43,14 +44,15 @@ const FiltersCard = ({ filters, appliedFilters, setAppliedFilters, priceRange, s
               filter={value}
               setAppliedFilters={setAppliedFilters}
               appliedFilterValue={appliedFilters[key as keyof typeof appliedFilters]}
+              index={index}
             />
           </div>
         ))}
         <div className="order-1">
           <PriceFilter setPriceRange={setPriceRange} priceRange={priceRange}/>
         </div>
+        </Accordion>
       </div>
-    </div>
   );
 };
 

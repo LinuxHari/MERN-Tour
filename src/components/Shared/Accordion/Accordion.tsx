@@ -1,75 +1,74 @@
-import React, {
+import {
   ReactNode,
-  cloneElement,
-  isValidElement,
   useState,
 } from "react";
+import { AccordionContext, useAccordionContext } from "../../../context/AccordionContext";
 
-type AccordionProps = {
-  children: ReactNode;
+type commonProps = {
+  children: ReactNode,
+  className?: string
+}
+
+type AccordionProps = commonProps & {
+  type: "single" | "multiple"
 };
 
-type AccordionItemProps = {
-  children: ReactNode;
-  isActive?: boolean;
-  onToggle?: () => void;
+type AccordionItemProps = commonProps & {
+  index: number;
 };
 
-type AccordionButtonProps = {
-  children: ReactNode;
-  onToggle?: () => void;
+type AccordionButtonProps = commonProps & {
   isShowIcon?: boolean
 };
 
-type AccordionContentProps = {
-  children: ReactNode;
-  isActive?: boolean;
-};
-
-const Accordion = ({ children }: AccordionProps) => {
-  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+const Accordion = ({ type, children, className = "" }: AccordionProps) => {
+  const [activeAccordions, setActiveAccordions] = useState<number[]>([]);
 
   const handleToggle = (index: number) => {
-    setActiveIndex((prevIndex) => (prevIndex === index ? null : index));
+    if(type === "single"){
+      if(activeAccordions.includes(index))
+        setActiveAccordions([])
+      else
+        setActiveAccordions([index])
+    }
+    else{
+      if(activeAccordions.includes(index)){
+        const updatedValue = activeAccordions.filter((activeIndex) => activeIndex !== index)
+        setActiveAccordions(updatedValue) 
+      } else {
+        setActiveAccordions([...activeAccordions, index])
+      }
+    }
   };
 
   return (
-    <div className="accordion -simple-2 js-accordion">
-      {React.Children.map(children, (child, index) => {
-        if (isValidElement<AccordionItemProps>(child)) {
-          return cloneElement(child, {
-            isActive: activeIndex === index,
-            onToggle: () => handleToggle(index),
-          });
-        }
-        return child;
-      })}
+   <AccordionContext.Provider value={{activeAccordions, onToggle: handleToggle}}>
+     <div className={`accordion -simple-2 js-accordion ${className}`}>
+     {children}
     </div>
+   </AccordionContext.Provider>
   );
 };
 
 const AccordionItem = ({
   children,
-  isActive = false,
-  onToggle,
+  index,
+  className = ""
 }: AccordionItemProps) => {
+  const {activeAccordions, onToggle} = useAccordionContext()
+  
+  const isActive = activeAccordions.includes(index)
   return (
-    <div className={`accordion__item js-accordion-item-active ${isActive ? "is-active" : ""}`}>
-      {React.Children.map(children, (child) => {
-        if (
-          isValidElement<AccordionButtonProps | AccordionContentProps>(child)
-        ) {
-          return cloneElement(child, { isActive, onToggle });
-        }
-        return child;
-      })}
+    <div className={`accordion__item js-accordion-item-active ${isActive ? "is-active" : ""} ${className}`} onClick={() => onToggle(index)}>
+      {children}
     </div>
   );
 };
 
-const AccordionButton = ({ children, onToggle, isShowIcon = true }: AccordionButtonProps) => {
+const AccordionButton = ({ children, isShowIcon = true, className="" }: AccordionButtonProps) => {
+  
   return (
-    <div className="accordion__button d-flex items-center justify-between" onClick={onToggle}>
+    <div className={`accordion__button d-flex items-center justify-between ${className}`}>
       {children}
       {isShowIcon && <div className="accordion__icon flex-center">
         <i className="icon-chevron-down"></i>
@@ -81,11 +80,14 @@ const AccordionButton = ({ children, onToggle, isShowIcon = true }: AccordionBut
 
 const AccordionContent = ({
   children,
-  isActive = false,
-}: AccordionContentProps) => {
+  index,
+  className = ""
+}: AccordionItemProps) => {
+  const {activeAccordions} = useAccordionContext()
+  const isActive = activeAccordions.includes(index)
   return (
     <div
-      className="accordion__content"
+      className={`accordion__content ${className}`}
       style={{ display: isActive ? "block" : "none", maxHeight: "300px" }}
     >
       {children}
