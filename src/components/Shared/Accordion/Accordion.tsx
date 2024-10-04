@@ -1,5 +1,6 @@
 import {
   ReactNode,
+  useEffect,
   useState,
 } from "react";
 import { AccordionContext, useAccordionContext } from "../../../context/AccordionContext";
@@ -22,24 +23,27 @@ type AccordionButtonProps = commonProps & {
 };
 
 const Accordion = ({ type, children, className = "" }: AccordionProps) => {
+
   const [activeAccordions, setActiveAccordions] = useState<number[]>([]);
 
   const handleToggle = (index: number) => {
-    if(type === "single"){
-      if(activeAccordions.includes(index))
-        setActiveAccordions([])
-      else
-        setActiveAccordions([index])
-    }
-    else{
-      if(activeAccordions.includes(index)){
-        const updatedValue = activeAccordions.filter((activeIndex) => activeIndex !== index)
-        setActiveAccordions(updatedValue) 
-      } else {
-        setActiveAccordions([...activeAccordions, index])
-      }
+    if (type === "single") {
+      setActiveAccordions((prevState) =>
+        prevState.includes(index) ? [] : [index]
+      );
+    } else {
+      setActiveAccordions((prevState) =>
+        prevState.includes(index)
+          ? prevState.filter((activeIndex) => activeIndex !== index)
+          : [...prevState, index]
+      );
     }
   };
+
+  useEffect(() => {
+    
+    
+  },[])
 
   return (
    <AccordionContext.Provider value={{activeAccordions, onToggle: handleToggle}}>
@@ -66,7 +70,6 @@ const AccordionItem = ({
 };
 
 const AccordionButton = ({ children, isShowIcon = true, className="" }: AccordionButtonProps) => {
-  
   return (
     <div className={`accordion__button d-flex items-center justify-between ${className}`}>
       {children}

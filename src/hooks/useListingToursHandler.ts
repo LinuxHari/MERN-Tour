@@ -92,14 +92,14 @@ const useListingToursHandler = () => {
     [filters, appliedFilters]
   );
   const handlePriceRange = useCallback(
-    (minPrice: number, maxPrice: number) => setPriceRange({ minPrice, maxPrice }),
+    (minPrice: number, maxPrice?: number) => setPriceRange({ minPrice, maxPrice }),
     []
   );
   const handlePage = useCallback((page: number) => setPage(page), []);
 
   useEffect(() => {
     if (data?.filters && filterRef.current) {
-      setFilters({ ...filters, ...data.filters });
+      setFilters({  ...data.filters, ...filters });
       filterRef.current = 0;
     }
   }, [data]);
