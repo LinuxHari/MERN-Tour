@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { listingUrlParamsHandler } from "../utils/urlParamsHandler";
 import { useGetToursBySearchQuery } from "../redux/api/baseApi";
 import { AppliedFiltersProps, Filters } from "../type";
@@ -25,6 +25,8 @@ const useListingToursHandler = () => {
     });
 
   const filterRef = useRef(1);
+
+  const navigate = useNavigate()
 
   const [page, setPage] = useState(1);
   const [sortType, setSortType] = useState("Recommended");
@@ -96,6 +98,10 @@ const useListingToursHandler = () => {
     []
   );
   const handlePage = useCallback((page: number) => setPage(page), []);
+
+  const handleNavigation = useCallback((id: string, duration: number) => {
+    
+  },[])
 
   useEffect(() => {
     if (data?.filters && filterRef.current) {

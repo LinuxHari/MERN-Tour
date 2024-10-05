@@ -3,7 +3,7 @@ import Button from "../Button/Button";
 
 type TourCard2Props = TourListResponse["tours"][0] & {className?: string}
 
-const TourCard2 = ({name, description, price, freeCancellation, destination, duration, images, className=""}: TourCard2Props) => {
+const TourCard2 = ( {tourId ,name, description, price, freeCancellation, destination, duration, images, className=""}: TourCard2Props) => {
   return (
     <div className={`tourCard -type-2 ${className}`}>
       <div className="tourCard__image">

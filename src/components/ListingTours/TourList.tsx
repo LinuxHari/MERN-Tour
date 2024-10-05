@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { ListingCard2Props } from "../../type";
 import TourCard2 from "../Shared/TourCard/TourCard2";
 
@@ -53,6 +54,8 @@ const TourList = ({ tours }: TourListProps) => {
   //     freeCancellation: true,
   //   },
   // ];
+
+  const navigate = useNavigate()
 
   return (
       <div className="row y-gap-30 pt-10 pt-lg-30">

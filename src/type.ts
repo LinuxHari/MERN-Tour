@@ -46,6 +46,7 @@ export type ListingCard2Props =  {
   destination: string;
   duration: number;
   images: [string]
+  tourId: string 
 }
 
 export type SearchSuggestions = {
