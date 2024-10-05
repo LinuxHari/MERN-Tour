@@ -1,9 +1,9 @@
 import {  TourListResponse } from "../../../type";
 import Button from "../Button/Button";
 
-type TourCard2Props = TourListResponse["tours"][0] & {className?: string}
+type TourCard2Props = TourListResponse["tours"][0] & {className?: string, onSelect: (id: string, duration: number) => void}
 
-const TourCard2 = ( {tourId ,name, description, price, freeCancellation, destination, duration, images, className=""}: TourCard2Props) => {
+const TourCard2 = ( {tourId ,name, description, price, freeCancellation, destination, duration, images, onSelect, className=""}: TourCard2Props) => {
   return (
     <div className={`tourCard -type-2 ${className}`}>
       <div className="tourCard__image">
@@ -64,7 +64,7 @@ const TourCard2 = ( {tourId ,name, description, price, freeCancellation, destina
             </div>
           </div>
         </div>
-        <Button buttonType="secondary">View Details</Button>
+        <Button buttonType="secondary" onClick={() => onSelect(tourId, duration)}>View Details</Button>
       </div>
     </div>
   );

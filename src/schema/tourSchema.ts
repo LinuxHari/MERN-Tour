@@ -3,6 +3,8 @@ import { categories, languages, minAge } from "../config/tourConfig";
 
 const sanitizeString = (value: string) => value.trim().replace(/\s+/g, " ");
 
+const allowedAges = Object.values(minAge)
+
 export const TourSchema = z.object({
   name: z
     .string()
@@ -24,12 +26,7 @@ export const TourSchema = z.object({
         .max(400, { message: "Tour description should be maximum 400 characters" })
     ),
 
-  category: z
-    .string()
-    .transform(sanitizeString)
-    .refine((category) => categories.includes(category), {
-      message: "Category is not valid",
-    }),
+  category: z.enum(categories as [string, ...string[]]),
 
   highlights: z
     .array(
@@ -123,12 +120,7 @@ export const TourSchema = z.object({
     .max(10, { message: "Itinerary should not exceed 10 entries" }),
 
   languages: z
-    .array(z.string().transform(sanitizeString))
-    .min(1, { message: "At least one language must be checked" })
-    .max(8, { message: "Languages should not exceed 8 entries" })
-    .refine((langArray) => langArray.every((lang) => languages.includes(lang)), {
-      message: "Invalid language provided",
-    }),
+    .array(z.enum(languages as [string, ...string[]])),
 
   faq: z
     .array(
@@ -169,17 +161,11 @@ export const TourSchema = z.object({
     alcoholicBeverages: z.boolean(),
   }),
 
-  minAge: z
-    .string()
-    .transform((age) => parseInt(age, 10))
-    .refine((age) => !isNaN(age) && Object.values(minAge).includes(age), { message: "Invalid age" })
-    .pipe(
-      z
-        .number()
-        .int()
-        .min(0, { message: "Age must be at least 0" })
-        .max(18, { message: "Age must not be more than 18" })
-    ),
+  minAge: z.union([
+    z.literal(allowedAges[0]),
+    z.literal(allowedAges[1]),
+    z.literal(allowedAges[2]),
+  ]),
 
   images: z
     .array(

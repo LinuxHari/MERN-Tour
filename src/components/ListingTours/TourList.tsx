@@ -1,12 +1,12 @@
-import { useNavigate } from "react-router-dom";
 import { ListingCard2Props } from "../../type";
 import TourCard2 from "../Shared/TourCard/TourCard2";
 
 type TourListProps = {
-  tours: ListingCard2Props[]
+  tours: ListingCard2Props[];
+  onSelectTour: (id: string, duration: number) => void
 }
 
-const TourList = ({ tours }: TourListProps) => {
+const TourList = ({ tours, onSelectTour }: TourListProps) => {
   // const tourListings: ListingCard2Props[] = [
   //   {
   //     img: "img/tourCards/3/1.png",
@@ -55,13 +55,11 @@ const TourList = ({ tours }: TourListProps) => {
   //   },
   // ];
 
-  const navigate = useNavigate()
-
   return (
       <div className="row y-gap-30 pt-10 pt-lg-30">
         {tours.map((tour) => (
           <div className="col-12" key={tour.name}>
-            <TourCard2 {...tour} />
+            <TourCard2 {...tour} onSelect={onSelectTour}/>
           </div>
         ))}
       </div>

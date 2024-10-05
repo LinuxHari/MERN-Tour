@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { createSearchParams, useNavigate, useSearchParams } from "react-router-dom";
 import { listingUrlParamsHandler } from "../utils/urlParamsHandler";
 import { useGetToursBySearchQuery } from "../redux/api/baseApi";
 import { AppliedFiltersProps, Filters } from "../type";
@@ -100,7 +100,19 @@ const useListingToursHandler = () => {
   const handlePage = useCallback((page: number) => setPage(page), []);
 
   const handleNavigation = useCallback((id: string, duration: number) => {
+    const endDate = new Date(new Date(startDate).setDate(new Date(startDate).getDate() + duration)).toISOString().split("T")[0]
+    console.log(endDate, "end date");
     
+    navigate({
+      pathname: `/tours/${id}`,
+      search: createSearchParams({
+        startDate,
+        endDate: String(endDate), 
+        adult: String(adults),
+        children: String(children),
+        infant: String(infants)
+      }).toString()
+    })
   },[])
 
   useEffect(() => {
@@ -122,6 +134,7 @@ const useListingToursHandler = () => {
     setAppliedFilters: handleAppliedFilters,
     setPriceRange: handlePriceRange,
     setPage: handlePage,
+    onSelectTour: handleNavigation,
     filters,
   };
 };

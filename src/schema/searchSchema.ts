@@ -5,7 +5,7 @@ export const searchSchema = z.object({
   place: z.object(
     {
       name: z.string().min(2, { message: "Invalid place name" }).max(85, { message: "Place name is too long" }),
-      type: z.string().refine((value) => destinationTypes.includes(value), { message: "Invalid destination type" }),
+      type: z.enum(destinationTypes as [string, ...string[]], { message: "Invalid destination type" }),
     },
     { required_error: "Destination required" }
   ),
@@ -16,9 +16,7 @@ export const searchSchema = z.object({
     },
     { message: "Dates are required" }
   ),
-  tourType: z
-    .string({ required_error: "Tour type is required" })
-    .refine((type) => tourTypes.includes(type), { message: "Invalid tour type" }),
+  tourType: z.enum(tourTypes as [string, ...string[]], { message: "Invalid tour type" }),
 });
 
 export type SearchSchemaType = z.infer<typeof searchSchema>;

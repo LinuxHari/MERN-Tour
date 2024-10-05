@@ -6,7 +6,21 @@ import Pagination from "../components/Shared/Pagination/Pagination";
 import useListingToursHandler from "../hooks/useListingToursHandler";
 
 const ListingTours = () => {
-  const {isLoading, tours, totalCount, setSortType, setAppliedFilters, setPage, setPriceRange, priceRange, sortType, page, appliedFilters, filters } = useListingToursHandler()
+  const {
+    isLoading,
+    tours,
+    totalCount,
+    setSortType,
+    setAppliedFilters,
+    setPage,
+    setPriceRange,
+    priceRange,
+    sortType,
+    page,
+    appliedFilters,
+    filters,
+    onSelectTour,
+  } = useListingToursHandler();
   return (
     <>
       {!isLoading ? (
@@ -16,15 +30,17 @@ const ListingTours = () => {
             <div className="container">
               <div className="row">
                 <div className="col-xl-3 col-lg-4">
-                  <Filters filters={filters} appliedFilters={appliedFilters} setAppliedFilters={setAppliedFilters} priceRange={priceRange} setPriceRange={setPriceRange}/>
+                  <Filters
+                    filters={filters}
+                    appliedFilters={appliedFilters}
+                    setAppliedFilters={setAppliedFilters}
+                    priceRange={priceRange}
+                    setPriceRange={setPriceRange}
+                  />
                 </div>
                 <div className="col-xl-9 col-lg-8">
-                  <TourListHeader
-                    totalCount={totalCount}
-                    sortType={sortType}
-                    setSortType={setSortType}
-                  />
-                  <TourList tours={tours} />
+                  <TourListHeader totalCount={totalCount} sortType={sortType} setSortType={setSortType} />
+                  <TourList tours={tours} onSelectTour={onSelectTour} />
                   <div className="d-flex justify-center flex-column mt-60">
                     <Pagination page={page} setPage={setPage} totalCount={totalCount} />
                   </div>
