@@ -23,13 +23,12 @@ const faqItems = [
 const TourFAQ = () => {
   return (
     <TourSectionLayout title="FAQ">
-      <div className="accordion -simple row y-gap-20 mt-30 js-accordion">
-        <div className="col-12">
-          <div className="px-20 py-15 border-1 rounded-12">
-            <Accordion type="single">
+            <Accordion type="single" className="-simple row y-gap-20 mt-30">
               {faqItems.map((item, index) => (
-                <Accordion.Item key={index} index={index}>
-                  <Accordion.Button isShowIcon={false}>
+                <div className="col-12" key={index}>
+                  <Accordion.Item key={index} index={index} className="accordion__item px-20 py-15 border-1 rounded-12">
+               
+                  <Accordion.Button className="d-flex items-center justify-between" isShowIcon={false}>
                     <div className="button text-16 text-dark-1">{item.question}</div>
 
                     <div className="accordion__icon size-30 flex-center bg-light-2 rounded-full">
@@ -44,11 +43,9 @@ const TourFAQ = () => {
                     </div>
                   </Accordion.Content>
                 </Accordion.Item>
+                 </div>
               ))}
             </Accordion>
-          </div>
-        </div>
-      </div>
     </TourSectionLayout>
   );
 };

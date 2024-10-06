@@ -47,7 +47,7 @@ const Accordion = ({ type, children, className = "" }: AccordionProps) => {
 
   return (
    <AccordionContext.Provider value={{activeAccordions, onToggle: handleToggle}}>
-     <div className={`accordion -simple-2 js-accordion ${className}`}>
+     <div className={`accordion js-accordion ${className}`}>
      {children}
     </div>
    </AccordionContext.Provider>
@@ -71,7 +71,7 @@ const AccordionItem = ({
 
 const AccordionButton = ({ children, isShowIcon = true, className="" }: AccordionButtonProps) => {
   return (
-    <div className={`accordion__button d-flex items-center justify-between ${className}`}>
+    <div className={`accordion__button d-flex justify-content-between ${className}`}>
       {children}
       {isShowIcon && <div className="accordion__icon flex-center">
         <i className="icon-chevron-down"></i>

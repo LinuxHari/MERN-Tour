@@ -8,7 +8,7 @@ type FilterProps = {
   filters: Filters;
   appliedFilters: AppliedFiltersProps;
   setAppliedFilters: (key: string, value: string) => void;
-  setPriceRange: (minPrice: number, maxPrice: number) => void;
+  setPriceRange: (minPrice: number, maxPrice?: number) => void;
   priceRange: {minPrice?: number, maxPrice?: number }
 };
 
@@ -36,7 +36,7 @@ const FiltersCard = ({ filters, appliedFilters, setAppliedFilters, priceRange, s
         <div className="mt-10">{/* <DatePicker /> */}</div>
       </div>
 
-      <Accordion type="multiple" className="sidebar__content d-flex flex-column">
+      <Accordion type="multiple" className="-simple-2 sidebar__content d-flex flex-column">
         {Object.entries(filters).map(([key, value], index) => (
           <div className={`order-${index === 0 ? index : index + 1}`} key={key}>
             <CheckboxRadioFilters
