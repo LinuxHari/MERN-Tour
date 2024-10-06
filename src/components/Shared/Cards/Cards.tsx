@@ -81,7 +81,6 @@ const Cards = () => {
 
   return (
     <div
-      data-anim-child="slide-up delay-2"
       className="relative pt-40 sm:pt-20 is-in-view"
     >
       <div className="overflow-hidden pb-30">
