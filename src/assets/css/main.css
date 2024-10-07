@@ -12455,6 +12455,10 @@ h6 {
     height: auto;
     border-radius: 12px;
   }
+  .tourSingleGrid.-type-1 img{
+    min-width: 300px;
+    min-height: 300px;
+  }
 }
 
 .tourSingleGrid.-type-1 .tourSingleGrid__button {
@@ -14112,8 +14116,14 @@ a {
   padding-inline: 20px;
 }
 
+@media (max-width: 768px) {
+  .modal-body{
+    padding-inline: 10px;
+  }
+}
+
 .tour__images{
-  width: 900px;
+  width: 750px;
   overflow: hidden;
   height: 500px;
 }
@@ -14129,7 +14139,7 @@ a {
 .tour__image img{
   object-fit: contain;
   height: 100%;
-  padding: 50px;
+  padding: 2px;
 }
 
 @media (max-width: 1200px) {
@@ -14175,10 +14185,6 @@ a {
   .tour__images .navAbsolute{
     left: -20px;
     right: -20px;
-  }
-
-  .tour__image img{
-    padding: 0;
   }
 }
 
