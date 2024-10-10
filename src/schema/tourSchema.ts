@@ -150,7 +150,7 @@ export const TourSchema = z.object({
     .max(10, { message: "FAQ should not exceed 10 entries" }),
 
   included: z.object({
-    beverages: z.boolean(),
+    beveragesAndFood: z.boolean(),
     localTaxes: z.boolean(),
     hotelPickup: z.boolean(),
     insuranceTransfer: z.boolean(),
@@ -230,7 +230,7 @@ export const defaultTourValue: TourSchemaType = {
     },
   ],
   included: {
-    beverages: false,
+    beveragesAndFood: false,
     localTaxes: false,
     hotelPickup: false,
     insuranceTransfer: false,

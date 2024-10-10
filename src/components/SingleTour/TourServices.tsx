@@ -1,26 +1,33 @@
 import TourService from "./TourService";
 
-const TourServices = () => {
+type TourServicesProps = {
+  duration: number;
+  minAge: number;
+  capacity: number;
+  languages: string[];
+}
+
+const TourServices = ({ duration, minAge, capacity, languages }: TourServicesProps) => {
   const tourDetails = [
     {
       icon: "icon-clock",
       title: "Duration",
-      description: "3 days",
+      description: `${duration} days`,
     },
     {
       icon: "icon-teamwork",
       title: "Group Size",
-      description: "10 people",
+      description: `${capacity} people`,
     },
     {
       icon: "icon-birthday-cake",
       title: "Ages",
-      description: "18-99 yrs",
+      description: `${minAge}-99 yrs`,
     },
     {
       icon: "icon-translate",
       title: "Languages",
-      description: "English, Japanese",
+      description: languages.join(", "),
     },
   ];
 
