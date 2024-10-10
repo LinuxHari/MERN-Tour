@@ -70,6 +70,13 @@ export type TourListResponse = {
   filters?: Omit<Filters, "rating">
 }
 
+export type SingleTourResponse = Omit<Tour, "freeCancellation" | "zipCode"> & {
+  tourId: string;
+  freeCancellation: boolean;
+  duration: number;
+};
+
+
 // export type TourCategories = "Nature" | "Adventure" | "Cultural" | "Food" | "City" | "Cruises"
 
 export type AppliedFiltersProps = Omit<Filters, "rating"> & {
