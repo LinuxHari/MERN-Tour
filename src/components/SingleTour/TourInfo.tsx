@@ -7,21 +7,34 @@ import TourOverview from "./TourOverview";
 import TourReviews from "./TourReviews";
 import SideCard from "./SideCard";
 import TourServices from "./TourServices";
+import { TourSchemaType } from "../../schema/tourSchema";
 
-const TourInfo = () => {
+type TourInfoProps = {
+  duration: number;
+  minAge: number;
+  capacity: number;
+  languages: string[];
+  description: string;
+  highlights: string[];
+  itinerary: TourSchemaType["itinerary"];
+  faq: TourSchemaType["faq"]
+  included: TourSchemaType["included"]
+}
+
+const TourInfo = ({duration, minAge, capacity, languages, description, highlights, itinerary, faq, included}: TourInfoProps) => {
   return (
     <section className="layout-pt-md js-pin-container">
       <div className="container">
         <div className="row y-gap-30 justify-between">
           <div className="col-lg-8">
-            <TourServices />
-            <TourOverview />
-            <IncludedServices />
-            <Itinerary />
-            <TourMap />
-            <TourFAQ />
+            <TourServices duration={duration} minAge={minAge} capacity={capacity} languages={languages} />
+            <TourOverview description={description} highlights={highlights} />
+            <IncludedServices included={included}/>
+            <Itinerary itinerary={itinerary} />
+            {/* <TourMap /> */}
+            <TourFAQ faq={faq}/>
             <TourReviews />
-            <PostReview />
+            {/* <PostReview /> */}
           </div>
           <div className="col-lg-4">
             <SideCard />

@@ -132,7 +132,7 @@ const TourReviews = () => {
           </div>
         </div>
       </div>
-      <TourRating/>
+      {/* <TourRating/> */}
       
     </TourSectionLayout>
   );
