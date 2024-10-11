@@ -16,10 +16,10 @@ const Pagination = ({page, setPage, totalCount}: PaginationProps) => {
         </button>
 
         <div className="pagination__count">
-          {pages.map((pageNumber) => (
-            pageNumber? <button style={{ color: "black" }} className={`${pageNumber === page? "is-active": ""}`} onClick={() => setPage(pageNumber)}>
+          {pages.map((pageNumber, index) => (
+            pageNumber? <button key={index} style={{ color: "black" }} className={`${pageNumber === page? "is-active": ""}`} onClick={() => setPage(pageNumber)}>
             {pageNumber}
-          </button>: <div>...</div>
+          </button>: <div key={index}>...</div>
           ))}
 
         </div>

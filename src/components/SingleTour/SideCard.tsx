@@ -1,8 +1,21 @@
-const SideCard = () => {
+import { PaxProps } from "../../type";
+import PaxCounter from "../Shared/PaxCounter/PaxCounter";
+import usePaxHandler from "../../hooks/usePaxHandler";
+
+type SideCardProps = {
+  pax: PaxProps;
+  price: number;
+};
+
+const SideCard = ({ price, pax }: SideCardProps) => {
+  const { currentPax, setPax } = usePaxHandler(pax)
+
+  const total = Object.values(currentPax).reduce((val1, val2) => val1 + val2) * price
+
   return (
-      <div className="d-flex justify-end js-pin-content">
-        <div className="tourSingleSidebar">
-          <div className="d-flex items-center">
+    <div className="d-flex justify-end js-pin-content">
+      <div className="tourSingleSidebar">
+        {/* <div className="d-flex items-center">
             <div>From</div>
             <div className="text-20 fw-500 ml-10">$1,200</div>
           </div>
@@ -47,89 +60,26 @@ const SideCard = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
 
-          <h5 className="text-18 fw-500 mb-20 mt-20">Tickets</h5>
-
-          <div>
-            <div className="d-flex items-center justify-between">
-              <div className="text-14">
-                Adult (18+ years) <span className="fw-500">$94.00</span>
-              </div>
-
-              <div className="d-flex items-center js-counter">
-                <button className="button size-30 border-1 rounded-full js-down">
-                  <i className="icon-minus text-10"></i>
-                </button>
-
-                <div className="flex-center ml-10 mr-10">
-                  <div className="text-14 size-20 js-count">3</div>
-                </div>
-
-                <button className="button size-30 border-1 rounded-full js-up">
-                  <i className="icon-plus text-10"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-15">
-            <div className="d-flex items-center justify-between">
-              <div className="text-14">
-                Youth (13-17 years) <span className="fw-500">$84.00</span>
-              </div>
-
-              <div className="d-flex items-center js-counter">
-                <button className="button size-30 border-1 rounded-full js-down">
-                  <i className="icon-minus text-10"></i>
-                </button>
-
-                <div className="flex-center ml-10 mr-10">
-                  <div className="text-14 size-20 js-count">4</div>
-                </div>
-
-                <button className="button size-30 border-1 rounded-full js-up">
-                  <i className="icon-plus text-10"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-15">
-            <div className="d-flex items-center justify-between">
-              <div className="text-14">
-                Children (0-12 years) <span className="fw-500">$20.00</span>
-              </div>
-
-              <div className="d-flex items-center js-counter">
-                <button className="button size-30 border-1 rounded-full js-down">
-                  <i className="icon-minus text-10"></i>
-                </button>
-
-                <div className="flex-center ml-10 mr-10">
-                  <div className="text-14 size-20 js-count">2</div>
-                </div>
-
-                <button className="button size-30 border-1 rounded-full js-up">
-                  <i className="icon-plus text-10"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div className="line mt-20 mb-20"></div>
-
-          <div className="d-flex items-center justify-between">
-            <div className="text-18 fw-500">Total:</div>
-            <div className="text-18 fw-500">$392.09</div>
-          </div>
-
-          <button className="button -md -dark-1 col-12 bg-accent-1 text-white mt-20">
-            Book Now
-            <i className="icon-arrow-top-right ml-10"></i>
-          </button>
+        <div className="mb-20">
+        <h5 className="text-18 fw-500">Tickets</h5>
+        <p className="text-light-2 text-14">You can book for upto 10 people at a time</p>
         </div>
+        <PaxCounter setPax={setPax} pax={currentPax} price={price}/>
+        <div className="line mt-20 mb-20"></div>
+
+        <div className="d-flex items-center justify-between">
+          <div className="text-18 fw-500">Total:</div>
+          <div className="text-18 fw-500">${total.toFixed(2)}</div>
+        </div>
+
+        <button className="button -md -dark-1 col-12 bg-accent-1 text-white mt-20">
+          Book Now
+          <i className="icon-arrow-top-right ml-10"></i>
+        </button>
       </div>
+    </div>
   );
 };
 

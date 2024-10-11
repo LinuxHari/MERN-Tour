@@ -26,7 +26,7 @@ const IncludedServices = ({ included }: IncludedServicesProps) => {
         <div className="col-lg-6">
           <div className="y-gap-15">
             {Object.keys(includedServices).map((service) => (
-              <div className="d-flex">
+              <div className="d-flex" key={service}>
                 <i className="icon-check flex-center text-10 size-24 rounded-full text-green-2 bg-green-1 mr-15"></i>
                 {keyToTitle(service)}
               </div>
@@ -37,7 +37,7 @@ const IncludedServices = ({ included }: IncludedServicesProps) => {
         <div className="col-lg-6">
           <div className="y-gap-15">
             {Object.keys(serviceNotProvided).map((service) => (
-              <div className="d-flex">
+              <div className="d-flex" key={service}>
                 <i className="icon-cross flex-center text-10 size-24 rounded-full text-red-3 bg-red-4 mr-15"></i>
                 {keyToTitle(service)}
               </div>
