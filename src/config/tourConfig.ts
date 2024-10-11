@@ -22,7 +22,7 @@ export const tourTypes = [...categories, "All tours"]
 
 export const destinationTypes = ["City", "State", "Country"]
 
-export const minAge = { adult: 18, child: 3, infant: 0 };
+export const minAge = { adult: 18, teen: 13, child: 3, infant: 0 };
 
 export const defaultTourLocation = {
   destination: "Paris",

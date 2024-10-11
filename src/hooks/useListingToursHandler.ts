@@ -12,7 +12,7 @@ type PriceRangeProps = {
 const useListingToursHandler = () => {
   const [searchParams, _] = useSearchParams();
   const urlParams = Object.fromEntries(searchParams);
-  const { destination, destinationType, tourType, startDate, endDate, adults, children, infants } =
+  const { destination, destinationType, tourType, startDate, endDate, adults, children, infants, teens } =
     listingUrlParamsHandler({
       destination: urlParams.destination,
       destinationType: urlParams.destinationType,
@@ -22,6 +22,7 @@ const useListingToursHandler = () => {
       adults: urlParams.adults,
       children: urlParams.children,
       infants: urlParams.infants,
+      teens: urlParams.teens
     });
 
   const filterRef = useRef(1);
@@ -48,6 +49,7 @@ const useListingToursHandler = () => {
     adults,
     children,
     infants,
+    teens,
     page,
     filters: filterRef.current,
     appliedFilters: {
@@ -59,12 +61,12 @@ const useListingToursHandler = () => {
   }), [destination, destinationType, startDate, endDate, adults, children, infants, page, sortType, appliedFilters, priceRange]);
   
   const { data, isFetching } = useGetToursBySearchQuery(queryParams);
-  
 
   const tours = data?.tours || [];
   const totalCount = data?.totalCount || 0;
 
   const handleSortType = useCallback((type: string) => setSortType(type), []);
+
   const handleAppliedFilters = useCallback(
     (filterKey: string, value: string, isSelected?: boolean) => {
       const isArrFilter = Array.isArray(filters[filterKey as keyof typeof filters]) && filterKey !== "rating";
@@ -101,16 +103,16 @@ const useListingToursHandler = () => {
 
   const handleNavigation = useCallback((id: string, duration: number) => {
     const endDate = new Date(new Date(startDate).setDate(new Date(startDate).getDate() + duration)).toISOString().split("T")[0]
-    console.log(endDate, "end date");
-    
+
     navigate({
       pathname: `/tours/${id}`,
       search: createSearchParams({
         startDate,
         endDate: String(endDate), 
-        adult: String(adults),
+        adults: String(adults),
         children: String(children),
-        infant: String(infants)
+        infants: String(infants),
+        teens: String(teens)
       }).toString()
     })
   },[])
