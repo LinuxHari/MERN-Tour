@@ -43,7 +43,8 @@ const SearchForm = () => {
         endDate: endDate.toISOString().split("T")[0],
         adults: "1",
         children:"0",
-        infants: "0"
+        infants: "0",
+        teens: "0",
       }).toString(),
     });
   };

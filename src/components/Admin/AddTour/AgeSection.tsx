@@ -26,8 +26,16 @@ const AgeSection = ({ render }: RenderProps) => {
           value={minAge.teen}
           type="radio"
           {...register("minAge")}
-           id="minAge-children"
+           id="minAge-teen"
           checked={currentMinAge === minAge.teen}
+        />
+          <Input
+          label={`Child (${minAge.child - 1})+`}
+          value={minAge.child}
+          type="radio"
+          {...register("minAge")}
+           id="minAge-child"
+          checked={currentMinAge === minAge.child}
         />
         <Input
           label={`Infant (${minAge.infant})`}

@@ -12435,10 +12435,24 @@ h6 {
   grid-column: 2 span;
 }
 
-@media (max-width: 767px) {
+.tourSingleGrid.-type-1 .tourSingleGrid__grid2 {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(2, 50%);
+  grid-template-rows: 500px;
+  border-radius: 12px;
+}
+
+@media (max-width: 992px) {
   .tourSingleGrid.-type-1 .tourSingleGrid__grid {
     overflow-x: scroll;
     display: flex;
+  }
+
+  .tourSingleGrid.-type-1 .tourSingleGrid__grid2 {
+    grid-template-columns: 100% repeat(3, 0px);
+    grid-template-rows: 300px;
+    gap: 0px
   }
 }
 
@@ -12450,12 +12464,12 @@ h6 {
 }
 
 @media (max-width: 767px) {
-  .tourSingleGrid.-type-1 img {
+  .tourSingleGrid.-type-1 .tourSingleGrid__grid img {
     width: calc(100% - 40px);
     height: auto;
     border-radius: 12px;
   }
-  .tourSingleGrid.-type-1 img{
+  .tourSingleGrid.-type-1 .tourSingleGrid__grid img{
     min-width: 300px;
     min-height: 300px;
   }
@@ -14190,9 +14204,13 @@ a {
 
 @media (max-width: 440px) {
   .tour__images{
-    width: 280px;
+    width: 87vw;
   }
-
+  .tour__image img{
+    object-fit: contain;
+    height: 100%;
+    padding: 0px;
+  }
   .tour__images .navAbsolute{
     left: -10px;
     right: -10px;
