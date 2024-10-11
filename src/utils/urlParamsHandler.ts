@@ -12,16 +12,18 @@ type ListingParams = {
   adults: string;
   children: string;
   infants: string;
+  teens: string;
 };
 
 type SingleTourParams = {
-  id?: string;
+  id: string;
   redirect: () => void;
   startDate: string;
   endDate: string;
   adults: string;
   children: string;
   infants: string;
+  teens: string;
 };
 
 const formatPaxNumbers = (value: string, defaultValue: number) => {
@@ -31,7 +33,7 @@ const formatPaxNumbers = (value: string, defaultValue: number) => {
   return formattedValue;
 };
 
-const validatePaxDates = (startDate: string, endDate: string, adults: string, children: string, infants: string) => {
+const validatePaxDates = (startDate: string, endDate: string, adults: string, children: string, infants: string, teens:string) => {
   const today = new Date();
   const formattedStartDate = new Date(startDate);
   const formattedEndDate = new Date(endDate);
@@ -49,12 +51,13 @@ const validatePaxDates = (startDate: string, endDate: string, adults: string, ch
   const formattedAdults = formatPaxNumbers(adults, 1);
   const formattedChildren = formatPaxNumbers(children, 0);
   const formattedInfants = formatPaxNumbers(infants, 0);
+  const formattedTeens = formatPaxNumbers(teens, 0);
 
-  return { startDate, endDate, formattedAdults, formattedChildren, formattedInfants };
+  return { startDate, endDate, formattedAdults, formattedChildren, formattedInfants, formattedTeens };
 };
 
 export const listingUrlParamsHandler = (params: ListingParams) => {
-  let { startDate, endDate, tourType, destination, destinationType, adults, children, infants } = params;
+  let { startDate, endDate, tourType, destination, destinationType, adults, children, infants, teens } = params;
 
   if (!tourType || !tourTypes.includes(tourType)) tourType = tourTypes.lastItem();
 
@@ -69,7 +72,8 @@ export const listingUrlParamsHandler = (params: ListingParams) => {
     formattedAdults,
     formattedChildren,
     formattedInfants,
-  } = validatePaxDates(startDate, endDate, adults, children, infants);
+    formattedTeens
+  } = validatePaxDates(startDate, endDate, adults, children, infants, teens);
 
   return {
     startDate: validatedStartDate,
@@ -80,18 +84,20 @@ export const listingUrlParamsHandler = (params: ListingParams) => {
     adults: formattedAdults,
     children: formattedChildren,
     infants: formattedInfants,
+    teens: formattedTeens
   };
 };
 
 export const singleTourUrlParamsHandler = (params: SingleTourParams) => {
-  let { id, redirect, startDate, endDate, adults, children, infants } = params;
+  let { id, redirect, startDate, endDate, adults, children, infants, teens } = params;
   const {
     startDate: validatedStartDate,
     endDate: validatedEndDate,
     formattedAdults,
     formattedChildren,
     formattedInfants,
-  } = validatePaxDates(startDate, endDate, adults, children, infants);
+    formattedTeens
+  } = validatePaxDates(startDate, endDate, adults, children, infants, teens);
 
   if(!id || id.length !==8)
     redirect()
@@ -102,5 +108,6 @@ export const singleTourUrlParamsHandler = (params: SingleTourParams) => {
     adults: formattedAdults,
     children: formattedChildren,
     infants: formattedInfants,
+    teens: formattedTeens
   };
 };

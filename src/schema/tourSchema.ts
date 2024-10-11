@@ -165,6 +165,7 @@ export const TourSchema = z.object({
     z.literal(allowedAges[0]),
     z.literal(allowedAges[1]),
     z.literal(allowedAges[2]),
+    z.literal(allowedAges[3]),
   ]),
 
   images: z

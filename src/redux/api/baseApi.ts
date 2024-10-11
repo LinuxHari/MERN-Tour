@@ -10,6 +10,7 @@ type TourSearchParams = {
   adults: number;
   children: number;
   infants: number;
+  teens: number;
   page: number;
   filters: number;
   appliedFilters: AppliedFiltersProps & {sortType: string, minPrice?: number, maxPrice?: number};
@@ -22,6 +23,7 @@ type SingleTourParams = {
   adults: number;
   children: number;
   infants: number;
+  teens: number;
 }
 
 export const baseApi = createApi({
