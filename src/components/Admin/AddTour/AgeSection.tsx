@@ -6,7 +6,6 @@ import { minAge } from "../../../config/tourConfig";
 
 const AgeSection = ({ render }: RenderProps) => {
   const { register, watch } = useFormContext();
-
   const currentMinAge = parseInt(watch("minAge"))
 
   return (

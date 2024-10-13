@@ -161,12 +161,15 @@ export const TourSchema = z.object({
     alcoholicBeverages: z.boolean(),
   }),
 
-  minAge: z.union([
-    z.literal(allowedAges[0]),
-    z.literal(allowedAges[1]),
-    z.literal(allowedAges[2]),
-    z.literal(allowedAges[3]),
-  ]),
+  minAge: z
+  .string()
+  .transform((age) => parseInt(age, 10))
+  .pipe(
+    z.union([
+  z.literal(allowedAges[0]),
+  z.literal(allowedAges[1]),
+  z.literal(allowedAges[2]),
+], {message: "Invalid age is selected"})),
 
   images: z
     .array(
