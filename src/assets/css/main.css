@@ -4515,26 +4515,45 @@ h6 {
   height: 80px;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 992px) {
   .searchForm.-type-1 {
     flex-direction: column;
     height: auto;
     padding: 0;
     border-radius: 12px !important;
+    gap: 10px;
   }
 }
 
 .searchForm.-type-1 .searchForm__form {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   width: 100%;
   padding: 5px 10px;
 }
 
+@media (max-width: 992px){
+
+  .searchForm.-type-1 {
+    height: 160px;
+  }
+
+  .searchForm.-type-1 .searchForm__form {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+}
+
 @media (max-width: 767px) {
+
+  .searchForm.-type-1 {
+    height: auto;
+  }
+
   .searchForm.-type-1 .searchForm__form {
     grid-template-columns: 1fr;
     padding: 0;
+    gap: 0
   }
   .searchForm.-type-1 .searchForm__form > * + * {
     border-top: 1px solid #e7e6e6;
@@ -4550,11 +4569,12 @@ h6 {
   padding: 0 30px;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 992px) {
   .searchForm.-type-1 .searchForm__button button {
     height: 60px;
     width: 100%;
     border-radius: 0 0 12px 12px !important;
+    gap: 10px;
   }
 }
 
@@ -4641,7 +4661,7 @@ h6 {
 }
 
 .searchForm.-type-1 .searchFormItemDropdown.-location .searchFormItemDropdown__container {
-  width: 490px;
+  width: 400px;
   max-width: calc(100vw - 14px);
   padding: 20px;
 }
@@ -14063,7 +14083,7 @@ a {
   outline: none !important;
 }
 
-.tourType .searchFormItemDropdown__container {
+.tourType .searchFormItemDropdown__containe, .pax__count .searchFormItemDropdown__container {
   width: 340px !important;
 }
 
@@ -14215,4 +14235,11 @@ a {
     left: -10px;
     right: -10px;
   }
+}
+
+
+.pax__counter{
+  background-color: white;
+  padding: 18px;
+  border-radius: 12px;
 }
