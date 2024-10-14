@@ -10,7 +10,7 @@ const Hero = () => {
   
         <div data-anim-wrap className="container">
           <div className="row justify-center">
-            <div className="col-xl-8 col-lg-10">
+            <div className="col-lg-12 col-xl-10">
               <div data-anim-child="slide-up" className="hero__content is-in-view">
                 <h1 className="hero__title">Your world of joy</h1>
   

@@ -9,6 +9,7 @@ import { useEffect } from "react";
 import { getFormErrorMessages } from "../../../utils/getFormErrorMessages";
 import toast from "react-hot-toast";
 import { createSearchParams, useNavigate } from "react-router-dom";
+import SearchPax from "./SearchPax";
 
 const SearchForm = () => {
   const form = useForm<SearchSchemaType>({ resolver: zodResolver(searchSchema) });
@@ -56,6 +57,7 @@ const SearchForm = () => {
           <SearchSuggestions />
           <SearchDatePicker />
           <TourType />
+          <SearchPax />
         </div>
 
         <div className="searchForm__button">
