@@ -1,6 +1,6 @@
 import { useFormContext } from "react-hook-form";
 import Input from "../../Shared/Input/Input";
-import { languages } from "../../../config/tourConfig";
+import { LANGUAGES } from "../../../config/tourConfig";
 
 const LanguageSection = () => {
   const { register } = useFormContext();
@@ -9,7 +9,7 @@ const LanguageSection = () => {
     <div className="row y-gap-20 justify-between">
       <div className="col-md-8">
         <div className="row y-gap-20">
-          {languages.map((language) => (
+          {LANGUAGES.map((language) => (
             <div className="col-4" key={language}>
               <Input
                 type="checkbox"

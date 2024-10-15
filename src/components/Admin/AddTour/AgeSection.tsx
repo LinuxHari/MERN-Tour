@@ -2,7 +2,7 @@ import { useFormContext } from "react-hook-form";
 import Input from "../../Shared/Input/Input";
 import { RenderProps } from "../../../type";
 import { memo } from "react";
-import { minAge } from "../../../config/tourConfig";
+import { MIN_AGE } from "../../../config/tourConfig";
 
 const AgeSection = ({ render }: RenderProps) => {
   const { register, watch } = useFormContext();
@@ -13,36 +13,36 @@ const AgeSection = ({ render }: RenderProps) => {
       {render("Minimum age")}
       <div className="d-flex justify-content-between">
         <Input
-          label={`Adult (${minAge.adult - 1}+)`}
-          value={minAge.adult}
+          label={`Adult (${MIN_AGE .adult - 1}+)`}
+          value={MIN_AGE .adult}
           type="radio"
           {...register("minAge")}
            id="minAge-adult"
-          checked={currentMinAge === minAge.adult}
+          checked={currentMinAge === MIN_AGE .adult}
         />
         <Input
-          label={`Teen (${minAge.teen - 1})+`}
-          value={minAge.teen}
+          label={`Teen (${MIN_AGE .teen - 1})+`}
+          value={MIN_AGE .teen}
           type="radio"
           {...register("minAge")}
            id="minAge-teen"
-          checked={currentMinAge === minAge.teen}
+          checked={currentMinAge === MIN_AGE .teen}
         />
           <Input
-          label={`Child (${minAge.child - 1})+`}
-          value={minAge.child}
+          label={`Child (${MIN_AGE .child - 1})+`}
+          value={MIN_AGE .child}
           type="radio"
           {...register("minAge")}
            id="minAge-child"
-          checked={currentMinAge === minAge.child}
+          checked={currentMinAge === MIN_AGE .child}
         />
         <Input
-          label={`Infant (${minAge.infant})`}
-          value={minAge.infant}
+          label={`Infant (${MIN_AGE .infant})`}
+          value={MIN_AGE .infant}
           type="radio"
           {...register("minAge")}
           id="minAge-infant"
-          checked={currentMinAge === minAge.infant}
+          checked={currentMinAge === MIN_AGE .infant}
         />
       </div>
     </>

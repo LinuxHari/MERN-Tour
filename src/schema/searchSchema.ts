@@ -1,12 +1,12 @@
 import { z } from "zod";
-import { destinationTypes, maxPaxCount, minPaxCount, tourTypes } from "../config/tourConfig";
+import { DESTINATION_TYPES, MAX_PAX_COUNT, MIN_PAX_COUNT, TOUR_TYPES } from "../config/tourConfig";
 import calculatePaxTotal from "../utils/calculatePaxTotal";
 
 export const searchSchema = z.object({
   place: z.object(
     {
       name: z.string().min(2, { message: "Invalid place name" }).max(85, { message: "Place name is too long" }),
-      type: z.enum(destinationTypes as [string, ...string[]], { message: "Invalid destination type" }),
+      type: z.enum(DESTINATION_TYPES as [string, ...string[]], { message: "Invalid destination type" }),
     },
     { required_error: "Destination required" }
   ),
@@ -17,7 +17,7 @@ export const searchSchema = z.object({
     },
     { message: "Dates are required" }
   ),
-  tourType: z.enum(tourTypes as [string, ...string[]], { message: "Invalid tour type" }),
+  tourType: z.enum(TOUR_TYPES as [string, ...string[]], { message: "Invalid tour type" }),
   pax: z.object(
     {
       adults: z.number().min(1, {message: "Number of adults atleast should be one"}).max(10, {message: "Invalid number of adults"}),
@@ -27,7 +27,7 @@ export const searchSchema = z.object({
     }
   ).refine((pax) => {
     const total = calculatePaxTotal(pax)
-    if(total < minPaxCount || total > maxPaxCount)
+    if(total < MIN_PAX_COUNT || total > MAX_PAX_COUNT)
       return false
     return true
   }, {message: "Invalid passengers count"})

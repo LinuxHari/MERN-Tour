@@ -1,5 +1,5 @@
 import { useFormContext } from "react-hook-form";
-import { tourTypes } from "../../../config/tourConfig";
+import { TOUR_TYPES } from "../../../config/tourConfig";
 import Select2 from "../../Shared/Select/Select2";
 
 const TourType = () => {
@@ -20,7 +20,7 @@ const TourType = () => {
       </Select2.Button>
 
       <Select2.Menu className="w-125">
-        {tourTypes.map((type) => (
+        {TOUR_TYPES.map((type) => (
           <Select2.Option value={type} key={type}>
             <span className="js-select-control-choice">{type}</span>
           </Select2.Option>

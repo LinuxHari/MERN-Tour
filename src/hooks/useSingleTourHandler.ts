@@ -2,7 +2,7 @@ import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { useGetTourByIdQuery } from "../redux/api/baseApi";
 import { singleTourUrlParamsHandler } from "../utils/urlParamsHandler";
 import { useMemo } from "react";
-import { minAge } from "../config/tourConfig";
+import { MIN_AGE } from "../config/tourConfig";
 
 type ParamType = {id: string}
 
@@ -19,13 +19,13 @@ const useSingleTourHandler = () => {
     const tourMinAge = data?.minAge || 0
     
     switch(tourMinAge){
-      case minAge.infant: 
+      case MIN_AGE.infant: 
         return {adults, infants, children, teens}
       
-      case minAge.child:
+      case MIN_AGE.child:
         return {adults, children, teens}
 
-      case minAge.teen: 
+      case MIN_AGE.teen: 
         return {adults, teens}
 
       default: 

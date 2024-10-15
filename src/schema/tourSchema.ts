@@ -1,9 +1,9 @@
 import { z } from "zod";
-import { categories, languages, minAge } from "../config/tourConfig";
+import { CATEGORIES, LANGUAGES, MIN_AGE } from "../config/tourConfig";
 
 const sanitizeString = (value: string) => value.trim().replace(/\s+/g, " ");
 
-const allowedAges = Object.values(minAge)
+const allowedAges = Object.values(MIN_AGE)
 
 export const TourSchema = z.object({
   name: z
@@ -26,7 +26,7 @@ export const TourSchema = z.object({
         .max(400, { message: "Tour description should be maximum 400 characters" })
     ),
 
-  category: z.enum(categories as [string, ...string[]]),
+  category: z.enum(CATEGORIES as [string, ...string[]]),
 
   highlights: z
     .array(
@@ -120,7 +120,7 @@ export const TourSchema = z.object({
     .max(10, { message: "Itinerary should not exceed 10 entries" }),
 
   languages: z
-    .array(z.enum(languages as [string, ...string[]])),
+    .array(z.enum(LANGUAGES as [string, ...string[]])),
 
   faq: z
     .array(

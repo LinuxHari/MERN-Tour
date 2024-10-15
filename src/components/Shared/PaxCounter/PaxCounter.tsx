@@ -1,4 +1,4 @@
-import { minAge } from "../../../config/tourConfig"
+import { MIN_AGE } from "../../../config/tourConfig"
 import { PaxProps } from "../../../type";
 import stringToTitle from "../../../utils/stringToTitle";
 
@@ -9,14 +9,14 @@ type PaxCounterProps = {
   };
 
 const PaxCounter = ({ pax, setPax, price }: PaxCounterProps) => {
-  const paxAgeMap:Record<string, keyof typeof minAge> = {adults: "adult", children: "child", infants: "infant", teens: "teen"}
+  const paxAgeMap:Record<string, keyof typeof MIN_AGE> = {adults: "adult", children: "child", infants: "infant", teens: "teen"}
   return (
     <div className="pax__counter d-flex flex-column w-100">
     {Object.entries(pax).map(([key, value]) => (
         <div className="mb-2">
           <div className="d-flex items-center justify-between">
              <div className="text-14">
-              {stringToTitle(key)} ({minAge[paxAgeMap[key]] ? minAge[paxAgeMap[key]] - 1 : minAge[paxAgeMap[key]]}+)&nbsp;
+              {stringToTitle(key)} ({MIN_AGE[paxAgeMap[key]] ? MIN_AGE[paxAgeMap[key]] - 1 : MIN_AGE[paxAgeMap[key]]}+)&nbsp;
               {
               price && <span className="fw-500">${(price * (pax[key as keyof typeof pax] as number)).toFixed(2)}</span>
             }
