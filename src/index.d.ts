@@ -5,8 +5,8 @@ declare global {
       replaceAll(search: string | RegExp, replace: string): string;
       negativeIndexOf(search: string | number): number
     }
-    interface Array {
-      lastItem(): any
+    interface Array<T> {
+      lastItem(): T
     }
   }
   

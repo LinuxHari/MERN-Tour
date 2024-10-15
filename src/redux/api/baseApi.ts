@@ -3,8 +3,7 @@ import env from "../../config/envConfig";
 import { AppliedFiltersProps, SearchSuggestions, SingleTourResponse, Tour, TourListResponse } from "../../type";
 
 type TourSearchParams = {
-  destination: string;
-  destinationType: string;
+  destinationId: string;
   startDate: string;
   endDate: string;
   adults: number;

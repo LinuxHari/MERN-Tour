@@ -26,7 +26,7 @@ export const TourSchema = z.object({
         .max(400, { message: "Tour description should be maximum 400 characters" })
     ),
 
-  category: z.enum(CATEGORIES as [string, ...string[]]),
+  category: z.enum(CATEGORIES),
 
   highlights: z
     .array(
@@ -120,7 +120,7 @@ export const TourSchema = z.object({
     .max(10, { message: "Itinerary should not exceed 10 entries" }),
 
   languages: z
-    .array(z.enum(LANGUAGES as [string, ...string[]])),
+    .array(z.enum(LANGUAGES)),
 
   faq: z
     .array(
@@ -200,7 +200,7 @@ export type TourSchemaType = z.infer<typeof TourSchema>;
 export const defaultTourValue: TourSchemaType = {
   name: "",
   description: "",
-  category: "",
+  category: "" as any,
   highlights: [{ value: "" }, { value: "" }],
   city: "",
   state: "",

@@ -1,11 +1,10 @@
 import "../polyfills/arrayPolyfills";
 
-import { TOUR_TYPES, DEFAULT_TOUR_LOCATION, DESTINATION_TYPES } from "../config/tourConfig";
+import { TOUR_TYPES } from "../config/tourConfig";
 import { getDefaultDateRange } from "./getDefaultDateRange";
 
 type ListingParams = {
-  destination: string;
-  destinationType: string;
+  destinationId: string;
   tourType: string;
   startDate: string;
   endDate: string;
@@ -57,14 +56,9 @@ const validatePaxDates = (startDate: string, endDate: string, adults: string, ch
 };
 
 export const listingUrlParamsHandler = (params: ListingParams) => {
-  let { startDate, endDate, tourType, destination, destinationType, adults, children, infants, teens } = params;
+  let { startDate, endDate, tourType, destinationId, adults, children, infants, teens } = params;
 
-  if (!tourType || !TOUR_TYPES.includes(tourType)) tourType = TOUR_TYPES.lastItem();
-
-  if (!destination || destination.length < 2 || !destinationType || !DESTINATION_TYPES.includes(destinationType)) {
-    destination = DEFAULT_TOUR_LOCATION.destination;
-    destinationType = DEFAULT_TOUR_LOCATION.destinationType;
-  }
+  if (!tourType || !TOUR_TYPES.includes(tourType as any)) tourType = TOUR_TYPES[TOUR_TYPES.length - 1];
 
   const {
     startDate: validatedStartDate,
@@ -79,8 +73,7 @@ export const listingUrlParamsHandler = (params: ListingParams) => {
     startDate: validatedStartDate,
     endDate: validatedEndDate,
     tourType,
-    destination,
-    destinationType,
+    destinationId,
     adults: formattedAdults,
     children: formattedChildren,
     infants: formattedInfants,

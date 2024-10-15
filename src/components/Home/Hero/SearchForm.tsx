@@ -30,7 +30,7 @@ const SearchForm = () => {
   const handleSearch = (formData: SearchSchemaType) => {
     const {
       dateRange: { startDate, endDate },
-      place: { name, type },
+      destinationId,
       tourType,
       pax: {adults, teens, children, infants}
     } = formData;
@@ -38,8 +38,7 @@ const SearchForm = () => {
     navigate({
       pathname: "/tours",
       search: createSearchParams({
-        destination: name,
-        destinationType: type,
+        destinationId,
         tourType,
         startDate: startDate.toISOString().split("T")[0],
         endDate: endDate.toISOString().split("T")[0],

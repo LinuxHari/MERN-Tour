@@ -12,10 +12,9 @@ type PriceRangeProps = {
 const useListingToursHandler = () => {
   const [searchParams, _] = useSearchParams();
   const urlParams = Object.fromEntries(searchParams);
-  const { destination, destinationType, tourType, startDate, endDate, adults, children, infants, teens } =
+  const { destinationId, tourType, startDate, endDate, adults, children, infants, teens } =
     listingUrlParamsHandler({
-      destination: urlParams.destination,
-      destinationType: urlParams.destinationType,
+      destinationId: urlParams.destinationId,
       tourType: urlParams.tourType,
       startDate: urlParams.startDate,
       endDate: urlParams.endDate,
@@ -42,8 +41,7 @@ const useListingToursHandler = () => {
   const [appliedFilters, setAppliedFilters] = useState<AppliedFiltersProps>({ tourTypes: [tourType], rating: 0 });
   const [priceRange, setPriceRange] = useState<PriceRangeProps>({ minPrice: undefined, maxPrice: undefined });
   const queryParams = useMemo(() => ({
-    destination,
-    destinationType,
+    destinationId,
     startDate,
     endDate,
     adults,
@@ -58,7 +56,7 @@ const useListingToursHandler = () => {
       rating: appliedFilters.rating ? appliedFilters.rating : undefined,
       ...priceRange,
     },
-  }), [destination, destinationType, startDate, endDate, adults, children, infants, page, sortType, appliedFilters, priceRange]);
+  }), [destinationId, startDate, endDate, adults, children, infants, page, sortType, appliedFilters, priceRange]);
   
   const { data, isFetching } = useGetToursBySearchQuery(queryParams);
 

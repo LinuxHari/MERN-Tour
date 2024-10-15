@@ -2,15 +2,17 @@ import { useFormContext } from "react-hook-form";
 import useSearchSuggestionHandler from "../../../hooks/useSearchSuggestionHandler";
 import Input from "../../Shared/Input/Input";
 import Select2 from "../../Shared/Select/Select2";
+import { useState } from "react";
 
 const SearchSuggestions = () => {
   const { suggestions, searchText, setSearchText, isFetching, inputRef } = useSearchSuggestionHandler();
-  const { watch, setValue } = useFormContext();
-  const selectedPlace = watch("place");
+  const { setValue } = useFormContext();
+  const [selectedPlace, setSelectedPlace] = useState("")
 
   const handleSelection = (location: string) => {
-    const [destination, destinationType] = location.split("-")
-    setValue("place", { name: destination, type: destinationType });
+    const [destinationName, _, destinationId] = location.split("-")
+    setValue("destinationId", destinationId);
+    setSelectedPlace(destinationName)
   };
 
   return (
@@ -21,7 +23,7 @@ const SearchSuggestions = () => {
       </div>
       <div className="searchFormItem__content">
         <h5>Where</h5>
-        <p className="js-select-control-chosen">{selectedPlace?.name || "Search destinations"}</p>
+        <p className="js-select-control-chosen">{selectedPlace || "Search destinations"}</p>
         </div>
       </Select2.Button>
       <Select2.Menu>
