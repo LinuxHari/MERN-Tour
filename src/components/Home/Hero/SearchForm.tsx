@@ -32,6 +32,7 @@ const SearchForm = () => {
       dateRange: { startDate, endDate },
       place: { name, type },
       tourType,
+      pax: {adults, teens, children, infants}
     } = formData;
     reset()
     navigate({
@@ -42,10 +43,10 @@ const SearchForm = () => {
         tourType,
         startDate: startDate.toISOString().split("T")[0],
         endDate: endDate.toISOString().split("T")[0],
-        adults: "1",
-        children:"0",
-        infants: "0",
-        teens: "0",
+        adults: String(adults),
+        children: String(children),
+        infants: String(infants),
+        teens: String(teens),
       }).toString(),
     });
   };

@@ -28,3 +28,7 @@ export const defaultTourLocation = {
   destination: "Paris",
   destinationType: "City"
 }
+
+export const maxPaxCount = 10
+
+export const minPaxCount = 1

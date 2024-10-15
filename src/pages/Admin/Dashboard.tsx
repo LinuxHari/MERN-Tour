@@ -1,4 +1,4 @@
-import { DASHBOARD_DATA } from "../../data";
+import { DASHBOARD_DATA } from "../../config/adminConfig";
 import { RenderProps } from "../../type";
 import DetailCard from "../../components/Admin/Dashboard/DetailCard";
 import EarningStatistics from "../../components/Admin/Dashboard/EarningStatistics";

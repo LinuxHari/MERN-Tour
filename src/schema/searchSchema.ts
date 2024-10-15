@@ -1,5 +1,6 @@
 import { z } from "zod";
-import { destinationTypes, tourTypes } from "../config/tourConfig";
+import { destinationTypes, maxPaxCount, minPaxCount, tourTypes } from "../config/tourConfig";
+import calculatePaxTotal from "../utils/calculatePaxTotal";
 
 export const searchSchema = z.object({
   place: z.object(
@@ -17,6 +18,19 @@ export const searchSchema = z.object({
     { message: "Dates are required" }
   ),
   tourType: z.enum(tourTypes as [string, ...string[]], { message: "Invalid tour type" }),
+  pax: z.object(
+    {
+      adults: z.number().min(1, {message: "Number of adults atleast should be one"}).max(10, {message: "Invalid number of adults"}),
+      teens: z.number().min(0, {message: "Number of teens atleast should be one"}).max(10, {message: "Invalid number of teens"}),
+      children: z.number().min(0, {message: "Number of children atleast should be one"}).max(10, {message: "Invalid number of children"}),
+      infants: z.number().min(0, {message: "Number of infants atleast should be one"}).max(10, {message: "Invalid number of infants"})
+    }
+  ).refine((pax) => {
+    const total = calculatePaxTotal(pax)
+    if(total < minPaxCount || total > maxPaxCount)
+      return false
+    return true
+  }, {message: "Invalid passengers count"})
 });
 
 export type SearchSchemaType = z.infer<typeof searchSchema>;

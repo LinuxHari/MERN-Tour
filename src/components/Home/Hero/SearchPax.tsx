@@ -1,6 +1,8 @@
+import { useEffect } from 'react'
 import usePaxHandler from '../../../hooks/usePaxHandler'
 import Dropdown from '../../Shared/Dropdown/Dropdown'
 import PaxCounter from '../../Shared/PaxCounter/PaxCounter'
+import { useFormContext } from 'react-hook-form'
 
 const SearchPax = () => {
     const defaultPax = {
@@ -9,7 +11,12 @@ const SearchPax = () => {
         teens: 0,
         infants: 0
     }
+    const { setValue } = useFormContext()
     const { currentPax, setPax, total } = usePaxHandler(defaultPax)
+
+    useEffect(() => {
+      setValue("pax", currentPax)
+    },[currentPax])
 
   return (
    <Dropdown className='pax__count d-flex flex-column'>

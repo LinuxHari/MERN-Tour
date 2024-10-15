@@ -1,15 +1,9 @@
 import { useRef, useState } from "react";
 import useDebounce from "./useDebounce";
 import { useGetSearchSuggestionsByTextQuery } from "../redux/api/baseApi";
-import { SearchSuggestions } from "../type";
+import { SEARCH_SUGGESTIONS } from "../data";
 
 const useSearchSuggestionHandler = () => {
-
-    const defaultSuggestions: SearchSuggestions = {
-        City: ["Paris", "Bangkok"],
-        State: ["Florida"],
-        Country: ["India", "France"],
-      };
 
       const [searchText, setSearchText] = useState("");
       const debouncedSearchText = useDebounce(searchText, 500);
@@ -17,7 +11,7 @@ const useSearchSuggestionHandler = () => {
       const { data, isFetching } = useGetSearchSuggestionsByTextQuery(debouncedSearchText as string, { skip: !isValidStr });
       const inputRef = useRef<HTMLInputElement>(null)
 
-      const suggestions = isValidStr && data && !isFetching ? data : defaultSuggestions;
+      const suggestions = isValidStr && data && !isFetching ? data : SEARCH_SUGGESTIONS;
 
       // if (showDropdown) {
       //   setTimeout(() => {

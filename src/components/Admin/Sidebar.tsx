@@ -1,4 +1,4 @@
-import { DASHBOARD_NAV } from "../../data";
+import { DASHBOARD_NAV } from "../../config/adminConfig";
 import Header from "./SidebarHeader";
 import { Link, useLocation } from "react-router-dom";
 

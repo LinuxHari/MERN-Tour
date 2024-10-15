@@ -1,3 +1,4 @@
+import { SEARCH_SUGGESTIONS } from "./data";
 import { TourSchemaType } from "./schema/tourSchema";
 
 export type RenderProps = {
@@ -49,11 +50,7 @@ export type ListingCard2Props =  {
   tourId: string 
 }
 
-export type SearchSuggestions = {
-  City?: string[],
-  State?: string[],
-  Country?: string[]
-}
+export type SearchSuggestions = typeof SEARCH_SUGGESTIONS
 
 export type PostResponse = {
   message: string;
@@ -86,6 +83,7 @@ export type AppliedFiltersProps = Omit<Filters, "rating"> & {
 export type PaxProps = {
   adults?: number;
   children?: number;
+  teens?: number;
   infants?: number;
 }
 

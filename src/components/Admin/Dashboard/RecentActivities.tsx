@@ -1,4 +1,4 @@
-import { NOTIFICATIONS } from "../../../data";
+import { NOTIFICATIONS } from "../../../config/adminConfig";
 import Button from "../../Shared/Button/Button";
 
 const RecentActivities = () => {

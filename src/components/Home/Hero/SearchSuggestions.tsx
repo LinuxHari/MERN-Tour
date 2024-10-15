@@ -10,8 +10,6 @@ const SearchSuggestions = () => {
 
   const handleSelection = (location: string) => {
     const [destination, destinationType] = location.split("-")
-    console.log(destination, destinationType);
-    
     setValue("place", { name: destination, type: destinationType });
   };
 
@@ -38,14 +36,12 @@ const SearchSuggestions = () => {
         {isFetching ? (
           <p className="d-flex py-2 js-select-control-choice">Loading...</p>
         ) : (
-          Object.entries(suggestions).map(([locationType, locations]) =>
-            locations.map((location) => (
-              <Select2.Option value={location+"-"+locationType} key={location + locationType}>
-                <span className="js-select-control-choice">{location}</span>
-                <span>{locationType}</span>
+          suggestions.map(({destination, destinationId, destinationType}) => (
+            <Select2.Option value={destination+"-"+destinationType+"-"+destinationId} key={destinationId}>
+                <span className="js-select-control-choice">{destination}</span>
+                <span>{destinationType}</span>
               </Select2.Option>
-            ))
-          )
+          ))
         )}
       </Select2.Menu>
     </Select2>
