@@ -23,9 +23,7 @@ const SingleTour = () => {
       <TourHeader
         name={data.name}
         images={data.images}
-        city={data.city}
-        state={data.state}
-        country={data.country}
+        destination={data.destination}
         freeCancellation={data.freeCancellation}
       />
       <TourInfo

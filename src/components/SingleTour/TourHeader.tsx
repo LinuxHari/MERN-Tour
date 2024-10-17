@@ -7,14 +7,10 @@ type TourHeaderProps = {
   freeCancellation:boolean;
   name:string;
   images:string[];
-  state:string;
-  city:string;
-  country: string
+  destination: string;
 }
 
-const TourHeader = ({freeCancellation, name, images, state, city, country}: TourHeaderProps) => {
-
-  const location = `${city}, ${state}, ${country}`
+const TourHeader = ({freeCancellation, name, images, destination}: TourHeaderProps) => {
   return (
     <section className="">
       <div className="container">
@@ -37,7 +33,7 @@ const TourHeader = ({freeCancellation, name, images, state, city, country}: Tour
               <div className="col-auto">
                 <div className="d-flex items-center">
                   <i className="icon-pin text-16 mr-5"></i>
-                  {location}
+                  {destination}
                 </div>
               </div>
 

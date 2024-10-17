@@ -2,7 +2,7 @@ import { createContext, useContext } from "react";
 
 type SelectContextProps = {
     selectedValue: string;
-    isOpen: boolean;
+    showContent: boolean;
     toggleDropdown: () => void;
     selectOption: (value: string) => void;
   };

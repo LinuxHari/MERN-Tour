@@ -38,7 +38,7 @@ const useListingToursHandler = () => {
       { count: 0, label: "Any" },
     ],
   });
-  const [appliedFilters, setAppliedFilters] = useState<AppliedFiltersProps>({ tourTypes: [tourType], rating: 0 });
+  const [appliedFilters, setAppliedFilters] = useState<AppliedFiltersProps>({ tourTypes: tourType === "All tours"? undefined: [tourType], rating: 0 });
   const [priceRange, setPriceRange] = useState<PriceRangeProps>({ minPrice: undefined, maxPrice: undefined });
   const queryParams = useMemo(() => ({
     destinationId,

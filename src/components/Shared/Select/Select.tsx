@@ -1,5 +1,6 @@
 import { useState, ReactNode } from "react";
 import { SelectContext, useSelectContext } from "../../../context/SelectContext";
+import useFocusHandler from "../../../hooks/useFocusHandler";
 
 type SelectProps = {
   children: ReactNode;
@@ -19,13 +20,13 @@ type OptionProps = ButtonProps & {
 
 const Select = ({ children, defaultValue, onChange, className = "" }: SelectProps) => {
   const [selectedValue, setSelectedValue] = useState<string>(defaultValue || "");
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const {focusRef, showContent, setShowContent} = useFocusHandler()
 
-  const toggleDropdown = () => setIsOpen((prev) => !prev);
+  const toggleDropdown = () => setShowContent((prev) => !prev);
 
   const selectOption = (value: string) => {
     setSelectedValue(value);
-    setIsOpen(false);
+    setShowContent(false);
     if (onChange) {
       onChange(value);
     }
@@ -33,9 +34,9 @@ const Select = ({ children, defaultValue, onChange, className = "" }: SelectProp
 
   return (
     <SelectContext.Provider
-      value={{ selectedValue, isOpen, toggleDropdown, selectOption }}
+      value={{ selectedValue, showContent, toggleDropdown, selectOption }}
     >
-      <div className={`dropdown -type-2 js-dropdown js-form-dd is-active ${className}`}>
+      <div className={`dropdown -type-2 js-dropdown js-form-dd is-active ${className}`} ref={focusRef}>
         {children}
       </div>
     </SelectContext.Provider>
@@ -44,22 +45,22 @@ const Select = ({ children, defaultValue, onChange, className = "" }: SelectProp
 
 
 const Button = ({ children, className = "" }: ButtonProps) => {
-  const { selectedValue, toggleDropdown, isOpen } = useSelectContext();
+  const { selectedValue, toggleDropdown, showContent } = useSelectContext();
 
   return (
     <button type="button" className={`dropdown__button js-button ${className}`} onClick={toggleDropdown}>
       <span className="js-title">{children && <>{children}</>}{selectedValue}</span>
       <i
-        className={`icon-chevron-down ${isOpen ? "rotate-180" : "rotate-0"}`}
+        className={`icon-chevron-down ${showContent ? "rotate-180" : "rotate-0"}`}
       ></i>
     </button>
   );
 };
 
 const Menu = ({ children, className }: ButtonProps) => {
-  const { isOpen } = useSelectContext();
+  const { showContent } = useSelectContext();
 
-  return isOpen ? (
+  return showContent ? (
     <div className={`dropdown__menu js-menu-items ${className}`}>
       {children}
     </div>
@@ -72,7 +73,10 @@ const Option = ({ value, children }: OptionProps) => {
   return (
     <option
       className="dropdown__item"
-      onClick={() => selectOption(value)}
+      onClick={(e) => {
+        e.stopPropagation()
+        selectOption(value)
+      }}
     >
       {children}
     </option>

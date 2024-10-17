@@ -18,7 +18,7 @@ const TourImages = ({ images }: TourImagesProps) => {
   return (
     <>
       <div className="absolute top-5 right-5 text-16 m-3 end-0 bg-dark-1 text-white px-3 py-1 rounded-200">
-        <span>{currentSlide}</span>/{prevImages.length}
+        <span>{currentSlide}</span>/{images.length}
       </div>
       <div className="tour__images">
         <Swiper
@@ -37,7 +37,7 @@ const TourImages = ({ images }: TourImagesProps) => {
           className="tour__images-list"
           onSlideChange={({ activeIndex }) => setCurrentSlide(activeIndex + 1)}
         >
-          {prevImages.map((imageUrl, index) => (
+          {images.map((imageUrl, index) => (
             <SwiperSlide key={index}>
               <div className="tour__image">
                 <img src={imageUrl} />
