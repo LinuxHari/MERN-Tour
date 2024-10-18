@@ -6,6 +6,7 @@ import { useCallback } from "react";
 import Categories from "./Categories";
 import AgeSection from "./AgeSection";
 import FreeCancellation from "./FreeCancellation";
+import PriceSection from "./PriceSection";
 
 const ContentSection = () => {
   const { register } = useFormContext();
@@ -39,10 +40,10 @@ const ContentSection = () => {
         <Input type="text" label="Zip Code" {...register("zipCode")} />
       </div>
       <div className="col-12">
-        <Input label="Tour Price" type="number" {...register("price", { valueAsNumber: true })} />
+        <Input label="Tour Capacity" type="number" {...register("capacity", { valueAsNumber: true })} />
       </div>
       <div className="col-12">
-        <Input label="Tour Capacity" type="number" {...register("capacity", { valueAsNumber: true })} />
+        <PriceSection render={render}/>
       </div>
       <div className="col-12">
         <AgeSection render={render} />

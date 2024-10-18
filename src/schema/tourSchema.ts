@@ -84,7 +84,25 @@ export const TourSchema = z.object({
     .max(10000, { message: "Capacity should not be more than 1000" })
     .transform((value) => parseFloat(value.toFixed(2))),
 
-  price: z
+  adultPrice: z
+    .number()
+    .min(5, { message: "Price should not be less than 5" })
+    .max(10000, { message: "Price should not be more than 10000" })
+    .transform((value) => parseFloat(value.toFixed(2))),
+  
+    teenPrice: z
+    .number()
+    .min(5, { message: "Price should not be less than 5" })
+    .max(10000, { message: "Price should not be more than 10000" })
+    .transform((value) => parseFloat(value.toFixed(2))),
+
+    childPrice: z
+    .number()
+    .min(5, { message: "Price should not be less than 5" })
+    .max(10000, { message: "Price should not be more than 10000" })
+    .transform((value) => parseFloat(value.toFixed(2))),
+
+    infantPrice: z
     .number()
     .min(5, { message: "Price should not be less than 5" })
     .max(10000, { message: "Price should not be more than 10000" })
@@ -206,7 +224,10 @@ export const defaultTourValue: TourSchemaType = {
   state: "",
   country: "",
   zipCode: "123",
-  price: 100,
+  adultPrice: 100,
+  teenPrice: 100,
+  childPrice: 100,
+  infantPrice: 100,
   capacity: 2,
   itinerary: [
     {
