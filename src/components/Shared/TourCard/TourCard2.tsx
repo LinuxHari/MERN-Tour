@@ -1,9 +1,27 @@
-import {  TourListResponse } from "../../../type";
+import { useMemo } from "react";
+import {  PaxProps, TourListResponse } from "../../../type";
 import Button from "../Button/Button";
 
-type TourCard2Props = TourListResponse["tours"][0] & {className?: string, onSelect: (id: string, duration: number) => void}
+type TourCard2Props = TourListResponse["tours"][0] & PaxProps & {className?: string, onSelect: (id: string, duration: number) => void}
 
-const TourCard2 = ( {tourId ,name, description, price, freeCancellation, destination, duration, images, onSelect, className=""}: TourCard2Props) => {
+const TourCard2 = ( {tourId ,name, description, price, freeCancellation, destination, duration, images, onSelect, teens, adults, children, infants, className=""}: TourCard2Props) => {
+  
+  const total = useMemo(() => {
+    let totalPrice = 0
+    console.log(adults, infants, teens, children);
+    
+    if(adults)
+      totalPrice += adults * price.adult
+    if(teens)
+      totalPrice += teens * price.teen
+    if(children)
+      totalPrice += children * price.child
+    if(infants)
+      totalPrice += infants * price.infant
+
+    return totalPrice
+  },[])
+  
   return (
     <div className={`tourCard -type-2 ${className}`}>
       <div className="tourCard__image">
@@ -37,10 +55,10 @@ const TourCard2 = ( {tourId ,name, description, price, freeCancellation, destina
         <p className="tourCard__text mt-2 mb-2">{description}</p>
         {freeCancellation && (
           <div className="d-flex flex-wrap x-gap-20 y-gap-5 pt-30">
-            <div className="text-14 text-accent-1">
+            {/* <div className="text-14 text-accent-1">
               <i className="icon-price-tag mr-10"></i>
               Best Price Guarantee
-            </div>
+            </div> */}
 
             <div className="text-14">
               <i className="icon-check mr-10"></i>
@@ -60,7 +78,7 @@ const TourCard2 = ( {tourId ,name, description, price, freeCancellation, destina
               {/* {offer && `$${getOriginalPrice(price, offer.percentage)}`} */}
             </div>
             <div className="d-flex items-center">
-              From <span className="text-20 fw-500 ml-5">${price}</span>
+              From <span className="text-20 fw-500 ml-5">${total}</span>
             </div>
           </div>
         </div>

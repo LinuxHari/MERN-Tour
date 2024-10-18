@@ -84,29 +84,33 @@ export const TourSchema = z.object({
     .max(10000, { message: "Capacity should not be more than 1000" })
     .transform((value) => parseFloat(value.toFixed(2))),
 
-  adultPrice: z
-    .number()
-    .min(5, { message: "Price should not be less than 5" })
-    .max(10000, { message: "Price should not be more than 10000" })
-    .transform((value) => parseFloat(value.toFixed(2))),
+  price: z.object(
+    {
+      adult: z
+      .number()
+      .min(5, { message: "Price should not be less than 5" })
+      .max(10000, { message: "Price should not be more than 10000" })
+      .transform((value) => parseFloat(value.toFixed(2))),
+    
+      teen: z
+      .number()
+      .min(5, { message: "Price should not be less than 5" })
+      .max(10000, { message: "Price should not be more than 10000" })
+      .transform((value) => parseFloat(value.toFixed(2))),
   
-    teenPrice: z
-    .number()
-    .min(5, { message: "Price should not be less than 5" })
-    .max(10000, { message: "Price should not be more than 10000" })
-    .transform((value) => parseFloat(value.toFixed(2))),
-
-    childPrice: z
-    .number()
-    .min(5, { message: "Price should not be less than 5" })
-    .max(10000, { message: "Price should not be more than 10000" })
-    .transform((value) => parseFloat(value.toFixed(2))),
-
-    infantPrice: z
-    .number()
-    .min(5, { message: "Price should not be less than 5" })
-    .max(10000, { message: "Price should not be more than 10000" })
-    .transform((value) => parseFloat(value.toFixed(2))),
+      child: z
+      .number()
+      .min(5, { message: "Price should not be less than 5" })
+      .max(10000, { message: "Price should not be more than 10000" })
+      .transform((value) => parseFloat(value.toFixed(2))),
+  
+      infant: z
+      .number()
+      .min(5, { message: "Price should not be less than 5" })
+      .max(10000, { message: "Price should not be more than 10000" })
+      .transform((value) => parseFloat(value.toFixed(2))),
+    }
+  ),
 
   itinerary: z
     .array(
@@ -224,10 +228,12 @@ export const defaultTourValue: TourSchemaType = {
   state: "",
   country: "",
   zipCode: "123",
-  adultPrice: 100,
-  teenPrice: 100,
-  childPrice: 100,
-  infantPrice: 100,
+  price: {
+    adult: 100,
+  teen: 100,
+  child: 100,
+  infant: 100
+  },
   capacity: 2,
   itinerary: [
     {

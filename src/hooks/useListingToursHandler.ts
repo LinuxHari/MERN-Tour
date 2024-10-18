@@ -62,6 +62,12 @@ const useListingToursHandler = () => {
 
   const tours = data?.tours || [];
   const totalCount = data?.totalCount || 0;
+  const pax = {
+    adults,
+    teens,
+    children,
+    infants
+  }
 
   const handleSortType = useCallback((type: string) => setSortType(type), []);
 
@@ -136,6 +142,7 @@ const useListingToursHandler = () => {
     setPage: handlePage,
     onSelectTour: handleNavigation,
     filters,
+    pax
   };
 };
 

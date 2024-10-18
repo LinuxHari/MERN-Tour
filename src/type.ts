@@ -42,7 +42,7 @@ export type ListingCardProps = {
 export type ListingCard2Props =  {
   name: string;
   description: string;
-  price: number;
+  price: TourSchemaType["price"];
   freeCancellation: boolean;
   destination: string;
   duration: number;
