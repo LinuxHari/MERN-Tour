@@ -90,25 +90,25 @@ export const TourSchema = z.object({
       .number()
       .min(5, { message: "Price should not be less than 5" })
       .max(10000, { message: "Price should not be more than 10000" })
-      .transform((value) => parseFloat(value.toFixed(2))),
+      .transform((value) => parseFloat(value.toFixed(2))).optional(),
     
       teen: z
       .number()
       .min(5, { message: "Price should not be less than 5" })
       .max(10000, { message: "Price should not be more than 10000" })
-      .transform((value) => parseFloat(value.toFixed(2))),
+      .transform((value) => parseFloat(value.toFixed(2))).optional(),
   
       child: z
       .number()
       .min(5, { message: "Price should not be less than 5" })
       .max(10000, { message: "Price should not be more than 10000" })
-      .transform((value) => parseFloat(value.toFixed(2))),
+      .transform((value) => parseFloat(value.toFixed(2))).optional(),
   
       infant: z
       .number()
       .min(5, { message: "Price should not be less than 5" })
       .max(10000, { message: "Price should not be more than 10000" })
-      .transform((value) => parseFloat(value.toFixed(2))),
+      .transform((value) => parseFloat(value.toFixed(2))).optional(),
     }
   ),
 
@@ -215,7 +215,15 @@ export const TourSchema = z.object({
       message: "Invalid value provided",
     })
     .default("yes"),
-});
+}).transform((tour) => {
+  const { minAge, price } = tour
+  Object.entries(MIN_AGE).forEach(([type, age]) => {
+    if(minAge >= age)
+      delete price[type as keyof typeof price]
+  })
+  tour.price = price
+  return tour
+})
 
 export type TourSchemaType = z.infer<typeof TourSchema>;
 
@@ -230,9 +238,6 @@ export const defaultTourValue: TourSchemaType = {
   zipCode: "123",
   price: {
     adult: 100,
-  teen: 100,
-  child: 100,
-  infant: 100
   },
   capacity: 2,
   itinerary: [

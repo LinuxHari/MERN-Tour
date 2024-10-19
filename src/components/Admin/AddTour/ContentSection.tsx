@@ -43,10 +43,10 @@ const ContentSection = () => {
         <Input label="Tour Capacity" type="number" {...register("capacity", { valueAsNumber: true })} />
       </div>
       <div className="col-12">
-        <PriceSection render={render}/>
+        <AgeSection render={render} />
       </div>
       <div className="col-12">
-        <AgeSection render={render} />
+        <PriceSection render={render}/>
       </div>
       <div className="col-12">
         <FreeCancellation render={render} />
