@@ -26,7 +26,7 @@ export const TourSchema = z.object({
         .max(400, { message: "Tour description should be maximum 400 characters" })
     ),
 
-  category: z.enum(CATEGORIES),
+  category: z.enum(CATEGORIES, {message: "Invalid tour category"}),
 
   highlights: z
     .array(
@@ -90,7 +90,7 @@ export const TourSchema = z.object({
       .number()
       .min(5, { message: "Price should not be less than 5" })
       .max(10000, { message: "Price should not be more than 10000" })
-      .transform((value) => parseFloat(value.toFixed(2))).optional(),
+      .transform((value) => parseFloat(value.toFixed(2))),
     
       teen: z
       .number()
@@ -142,7 +142,9 @@ export const TourSchema = z.object({
     .max(10, { message: "Itinerary should not exceed 10 entries" }),
 
   languages: z
-    .array(z.enum(LANGUAGES)),
+    .array(z.enum(LANGUAGES), {message: "Invalid language has selected"})
+    .min(1, {message: "atleast one language should be selected"})
+    .max(8, { message: "Languages should not be more than 8" }),
 
   faq: z
     .array(
@@ -218,7 +220,7 @@ export const TourSchema = z.object({
 }).transform((tour) => {
   const { minAge, price } = tour
   Object.entries(MIN_AGE).forEach(([type, age]) => {
-    if(minAge >= age)
+    if(minAge > age)
       delete price[type as keyof typeof price]
   })
   tour.price = price
@@ -238,6 +240,9 @@ export const defaultTourValue: TourSchemaType = {
   zipCode: "123",
   price: {
     adult: 100,
+    teen: 100,
+    child: 100,
+    infant: 100
   },
   capacity: 2,
   itinerary: [

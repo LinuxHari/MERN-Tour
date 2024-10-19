@@ -23,9 +23,12 @@ const TourForm = () => {
   const tabMap = {itinerary: 1, faq:2, images: 3, included: 4, languages: 5}
 
   const [currentTab, setCurrentTab] = useState(0);
+  const [showSubmit, setShowSubmit] = useState(false)
   const form = useForm<TourSchemaType>({ defaultValues: defaultTourValue, resolver: zodResolver(TourSchema), shouldFocusError: false });
   const { handleSubmit, formState: { errors }, setFocus, reset } = form;
   const { tourSubmitHandler, isLoading } = useTourSubmitHandler(reset);
+  const showSubmitBtn = currentTab === lastIndex || showSubmit
+  
 
   useLayoutEffect(() => {
     const keys = Object.keys(errors)
@@ -40,6 +43,9 @@ const TourForm = () => {
       } else {
         setCurrentTab(0)
       }
+
+      if(!showSubmit)
+        setShowSubmit(true)
       
       setTimeout(() => {
         const firstRef = refs[0]
@@ -93,7 +99,7 @@ const TourForm = () => {
           nextClick={() => setCurrentTab(currentTab + 1)}
           prevClick={() => setCurrentTab(currentTab - 1)}
         />
-        {currentTab === lastIndex && (
+        {showSubmitBtn && (
           <div className="col-12 mt-40">
             <Button buttonType="primary" type="submit" isLoading={isLoading} disabled={isLoading}>Add tour</Button>
           </div>

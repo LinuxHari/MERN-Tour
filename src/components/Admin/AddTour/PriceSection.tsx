@@ -15,7 +15,7 @@ const PriceSection = ({ render }: RenderProps) => {
 
   return (
     <>
-      {render("Price")}
+      {render("Price ($)")}
       {priceFields.map((field, index) =>
         minAge <= MIN_AGE[field.label.toLowerCase() as keyof typeof MIN_AGE] ? (
           <div key={field.name} className={index % 2 === 1 ? "my-4" : ""}>

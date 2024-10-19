@@ -21,7 +21,7 @@ const useTourSubmitHandler = (reset: UseFormReset<TourSchemaType>) => {
         toast.error('Failed to add tour', { id: toastId });
       } else {
         toast.success('Tour added successfully!', { id: toastId });
-        reset();
+        // reset();
       }
      }
     },[isLoading, toastId, isError, isSuccess])
