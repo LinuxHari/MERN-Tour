@@ -144,7 +144,7 @@ const useListingToursHandler = () => {
     onSelectTour: handleNavigation,
     filters,
     pax,
-    isFiltersApplied: Object.keys(appliedFilters).length > 2
+    isFiltersApplied: Object.keys(appliedFilters).length > 2 || priceRange.maxPrice || priceRange.minPrice
   };
 };
 

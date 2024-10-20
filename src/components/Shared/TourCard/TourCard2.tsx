@@ -76,9 +76,8 @@ const TourCard2 = ( {tourId ,name, description, price, freeCancellation, destina
               {/* {offer && `$${getOriginalPrice(price, offer.percentage)}`} */}
             </div>
             <div className="d-flex items-center">
-              From <span className="text-20 fw-500 ml-5">${total}</span>
+              Total <span className="text-20 fw-500 ml-5">${total}</span>
             </div>
-            <span>Total </span>
           </div>
         </div>
         <Button buttonType="secondary" onClick={() => onSelect(tourId, duration)}>View Details</Button>

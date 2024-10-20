@@ -7,10 +7,11 @@ import useListingToursHandler from "../hooks/useListingToursHandler";
 
 const ListingTours = () => {
   const { isLoading, isFetching, tours, totalCount, setSortType, setAppliedFilters, setPage, setPriceRange, priceRange, sortType, page, appliedFilters, filters, onSelectTour, pax, isFiltersApplied } = useListingToursHandler();
+  console.log(isFiltersApplied, "is filters applied", appliedFilters)
   return (
     <>
       {!isLoading ? 
-        !Boolean(tours.length)? <p>No tours found.</p>: <>
+        !Boolean(tours.length) && !isFiltersApplied? <p style={{ minHeight: "100vh", margin: "200px" }}>No tours found.</p>: <>
         <ListingHeader />
         <section className="layout-pb-xl">
           <div className="container">
@@ -27,13 +28,13 @@ const ListingTours = () => {
               <div className="col-xl-9 col-lg-8">
                 {
                   !isFetching? 
-                  !Boolean(tours.length) && isFiltersApplied? <>
+                  !Boolean(tours.length) && isFiltersApplied? <div><p>No Tours found, try changing filters.</p></div>:  <>
                   <TourListHeader totalCount={totalCount} sortType={sortType} setSortType={setSortType} />
                      <TourList tours={tours} onSelectTour={onSelectTour} pax={pax}/>
                   <div className="d-flex justify-center flex-column mt-60">
                     <Pagination page={page} setPage={setPage} totalCount={totalCount} />
                   </div>
-                  </>: <div><p>No Tours found, try changing filters.</p></div>: <div>Loading...</div>
+                  </>: <div>Loading...</div>
                 }
               </div>
             </div>
