@@ -143,7 +143,8 @@ const useListingToursHandler = () => {
     setPage: handlePage,
     onSelectTour: handleNavigation,
     filters,
-    pax
+    pax,
+    isFiltersApplied: Object.keys(appliedFilters).length > 2
   };
 };
 

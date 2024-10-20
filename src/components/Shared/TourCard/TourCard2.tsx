@@ -1,4 +1,3 @@
-import { useMemo } from "react";
 import {  PaxProps, TourListResponse } from "../../../type";
 import Button from "../Button/Button";
 
@@ -6,9 +5,8 @@ type TourCard2Props = TourListResponse["tours"][0] & PaxProps & {className?: str
 
 const TourCard2 = ( {tourId ,name, description, price, freeCancellation, destination, duration, images, onSelect, teens, adults, children, infants, className=""}: TourCard2Props) => {
   
-  const total = useMemo(() => {
+  const total = (() => {
     let totalPrice = 0
-    console.log(adults, infants, teens, children);
     
     if(adults)
       totalPrice += adults * price.adult
@@ -20,7 +18,7 @@ const TourCard2 = ( {tourId ,name, description, price, freeCancellation, destina
       totalPrice += infants * (price?.infant || 0)
 
     return totalPrice
-  },[])
+  })()
   
   return (
     <div className={`tourCard -type-2 ${className}`}>
@@ -80,6 +78,7 @@ const TourCard2 = ( {tourId ,name, description, price, freeCancellation, destina
             <div className="d-flex items-center">
               From <span className="text-20 fw-500 ml-5">${total}</span>
             </div>
+            <span>Total </span>
           </div>
         </div>
         <Button buttonType="secondary" onClick={() => onSelect(tourId, duration)}>View Details</Button>

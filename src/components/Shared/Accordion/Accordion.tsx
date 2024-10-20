@@ -92,6 +92,7 @@ const AccordionContent = ({
     <div
       className={`accordion__content ${className}`}
       style={{ display: isActive ? "block" : "none", maxHeight: "300px" }}
+      onClick={(e) => e.stopPropagation()}
     >
       {children}
     </div>
