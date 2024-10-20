@@ -82,10 +82,10 @@ export type AppliedFiltersProps = Omit<Filters, "rating"> & {
 }
 
 export type PaxProps = {
-  adults?: number;
-  children?: number;
-  teens?: number;
-  infants?: number;
+  adults: number;
+  children: number;
+  teens: number;
+  infants: number;
 }
 
 export enum ImgPath {

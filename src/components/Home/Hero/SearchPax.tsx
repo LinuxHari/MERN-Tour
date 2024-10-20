@@ -30,7 +30,7 @@ const SearchPax = () => {
       </div>
     </Dropdown.Toggle>
     <Dropdown.Content className='searchFormItemDropdown__container absolute top-100 start-50 translate-middle-x z-5'>
-        <PaxCounter pax={currentPax} setPax={setPax} />
+        <PaxCounter pax={currentPax} setPax={setPax} className='px-20 py-20'/>
     </Dropdown.Content>
    </Dropdown>  
 )}

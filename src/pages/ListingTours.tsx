@@ -8,6 +8,7 @@ import useListingToursHandler from "../hooks/useListingToursHandler";
 const ListingTours = () => {
   const {
     isLoading,
+    isFetching,
     tours,
     totalCount,
     setSortType,
@@ -40,11 +41,16 @@ const ListingTours = () => {
                   />
                 </div>
                 <div className="col-xl-9 col-lg-8">
-                  <TourListHeader totalCount={totalCount} sortType={sortType} setSortType={setSortType} />
-                  <TourList tours={tours} onSelectTour={onSelectTour} pax={pax}/>
-                  <div className="d-flex justify-center flex-column mt-60">
-                    <Pagination page={page} setPage={setPage} totalCount={totalCount} />
-                  </div>
+                  {
+                    !isFetching? 
+                    <>
+                    <TourListHeader totalCount={totalCount} sortType={sortType} setSortType={setSortType} />
+                    <TourList tours={tours} onSelectTour={onSelectTour} pax={pax}/>
+                    <div className="d-flex justify-center flex-column mt-60">
+                      <Pagination page={page} setPage={setPage} totalCount={totalCount} />
+                    </div>
+                    </>: <div>Loading...</div>
+                  }
                 </div>
               </div>
             </div>

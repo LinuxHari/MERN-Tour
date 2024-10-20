@@ -13,11 +13,11 @@ const TourCard2 = ( {tourId ,name, description, price, freeCancellation, destina
     if(adults)
       totalPrice += adults * price.adult
     if(teens)
-      totalPrice += teens * price.teen
+      totalPrice += teens * (price?.teen || 0)
     if(children)
-      totalPrice += children * price.child
+      totalPrice += children * (price?.child || 0)
     if(infants)
-      totalPrice += infants * price.infant
+      totalPrice += infants * (price?.infant || 0)
 
     return totalPrice
   },[])

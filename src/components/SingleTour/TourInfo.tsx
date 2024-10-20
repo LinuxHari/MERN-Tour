@@ -21,7 +21,7 @@ type TourInfoProps = {
   faq: TourSchemaType["faq"];
   included: TourSchemaType["included"];
   pax: PaxProps;
-  price: number;
+  price: TourSchemaType["price"];
 };
 
 const TourInfo = ({

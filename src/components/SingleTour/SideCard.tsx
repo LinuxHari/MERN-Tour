@@ -1,16 +1,25 @@
 import { PaxProps } from "../../type";
 import PaxCounter from "../Shared/PaxCounter/PaxCounter";
 import usePaxHandler from "../../hooks/usePaxHandler";
+import { TourSchemaType } from "../../schema/tourSchema";
 
 type SideCardProps = {
   pax: PaxProps;
-  price: number;
+  price: TourSchemaType["price"];
 };
 
 const SideCard = ({ price, pax }: SideCardProps) => {
   const { currentPax, setPax } = usePaxHandler(pax)
-
-  const total = Object.values(currentPax).reduce((val1, val2) => val1 + val2) * price
+  const total = (() => {
+    let totalAmount = currentPax.adults * price.adult
+    if(price.teen)
+      totalAmount += (price?.teen || 0) * currentPax.teens
+    if(price.child)
+      totalAmount += (price?.child || 0) * currentPax.children
+    if(price.infant)
+      totalAmount += (price?.infant || 0) * currentPax.infants
+    return totalAmount
+  })()
 
   return (
     <div className="d-flex justify-end js-pin-content">
@@ -66,7 +75,7 @@ const SideCard = ({ price, pax }: SideCardProps) => {
         <h5 className="text-18 fw-500">Tickets</h5>
         <p className="text-light-2 text-14">You can book for upto 10 people at a time</p>
         </div>
-        <PaxCounter setPax={setPax} pax={currentPax} price={price}/>
+        <PaxCounter setPax={setPax} pax={currentPax} price={price} />
         <div className="line mt-20 mb-20"></div>
 
         <div className="d-flex items-center justify-between">

@@ -58,7 +58,7 @@ const useListingToursHandler = () => {
     },
   }), [destinationId, startDate, endDate, adults, children, infants, page, sortType, appliedFilters, priceRange]);
   
-  const { data, isFetching } = useGetToursBySearchQuery(queryParams);
+  const { data, isFetching, isLoading } = useGetToursBySearchQuery(queryParams);
 
   const tours = data?.tours || [];
   const totalCount = data?.totalCount || 0;
@@ -131,7 +131,8 @@ const useListingToursHandler = () => {
   return {
     tours,
     totalCount,
-    isLoading: isFetching,
+    isLoading,
+    isFetching,
     page,
     sortType,
     appliedFilters,
