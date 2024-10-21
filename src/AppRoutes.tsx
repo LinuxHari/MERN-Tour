@@ -1,6 +1,8 @@
 import { lazy, useCallback, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 import AppLayout from "./layouts/AppLayout";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 
 const Home = lazy(() => import('./pages/Home'))
 const AdminLayout = lazy(() => import("./layouts/AdminLayout")) ;
@@ -28,6 +30,8 @@ const AppRoutes = () => {
         <Route path="tours/:id" element={<Tour/>}/>
         <Route path="checkout" element={<Checkout/>}/>
         <Route path="success" element={<BookingSuccess/>}/>
+        <Route path="login" element={<Login/>}/>
+        <Route path="signup" element={<Signup/>}/>
       </Route>
       <Route path="/dashboard" element={<AdminLayout />}>
         <Route index element={<Dashboard render={render} />} />
