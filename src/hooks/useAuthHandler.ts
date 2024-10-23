@@ -1,11 +1,12 @@
 import { useLocation } from "react-router-dom";
+import { LoginSchema, SignupSchema } from "../schema/AuthSchema";
 
 enum Path {
   login = "login",
   signup = "signup",
 }
 
-type FieldType = { type: "text" | "email" | "password"; label: string }
+type FieldType = { type: "text" | "email" | "password"; name: string }
 
 const useAuthHandler = () => {
     const authConf = {
@@ -16,10 +17,8 @@ const useAuthHandler = () => {
         urlText: "Sign up",
         url: "/signup",
         fields: [
-          { type: "text", label: "Name" },
-          { type: "email", label: "Email" },
-          { type: "password", label: "Password" },
-          { type: "password", label: "Confirm password" },
+          { type: "email", name: "email" },
+          { type: "password", name: "password" },
         ] as Array<FieldType>,
       },
       signup: {
@@ -29,16 +28,23 @@ const useAuthHandler = () => {
         urlText: "Log in",
         url: "/login",
         fields: [
-          { type: "email", label: "Email" },
-          { type: "password", label: "Password" },
+          { type: "text", name: "firstName" },
+          { type: "text", name: "lastName" },
+          { type: "email", name: "email" },
+          { type: "password", name: "password" },
+          { type: "password", name: "confirmPassword" },
         ] as Array<FieldType>,
       },
-    } as const;
+    }
   
     const { pathname } = useLocation();
     const page = pathname.slice(1) as Path;
+    const authSchema = Path.login === page? LoginSchema: SignupSchema
+    const onSubmit = (data: typeof authSchema) => {
+
+    }
   
-    return { authConf: authConf[page] };
+    return { authConf: authConf[page], authSchema, onSubmit };
   };  
 
 export default useAuthHandler;

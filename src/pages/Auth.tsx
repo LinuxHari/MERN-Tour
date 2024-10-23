@@ -3,8 +3,8 @@ import AuthForm from "../components/Auth/AuthForm"
 import useAuthHandler from "../hooks/useAuthHandler"
 
 const Auth = () => {
-  const {authConf} = useAuthHandler()
-  const {authType, fields, urlLabel, urlText, url, desc} = authConf
+  const {authConf, authSchema, onSubmit} = useAuthHandler()
+  const {authType, fields, urlLabel, urlText, url, desc } = authConf
 
   return (
     <section className="mt-header layout-pt-lg layout-pb-lg">
@@ -18,7 +18,7 @@ const Auth = () => {
                 {urlLabel} <Link to={url} className="text-accent-1">{urlText}</Link>
               </div>
             </div>
-            <AuthForm fields={fields} buttonText={authType}/>
+            <AuthForm fields={fields} buttonText={authType} authSchema={authSchema} onSubmit={onSubmit}/>
           </div>
         </div>
       </div>

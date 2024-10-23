@@ -22,11 +22,8 @@ export const adminApi = baseApi.injectEndpoints({
 
         try {
           const imageUrls = await uploadImages(formData.images, formData.name);
-
           const highlights = formData.highlights.map((highlight) => highlight.value)
-
           const tourData:Tour = {...formData, images: imageUrls, highlights}
-
           const response = await baseQuery({
             url: "/admin/tour",
             method: "POST",
