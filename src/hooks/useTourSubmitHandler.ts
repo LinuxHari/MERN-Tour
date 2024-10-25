@@ -13,7 +13,7 @@ const useTourSubmitHandler = (reset: UseFormReset<TourSchemaType>) => {
     const toastId = toast.loading('Adding new tour...');
       setToastId(toastId)
       await createTour({ ...formData });
-    } 
+  } 
 
     useAfterEffect(() => {
      if(!isLoading && toastId){
