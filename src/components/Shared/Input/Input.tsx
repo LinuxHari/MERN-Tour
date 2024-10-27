@@ -54,7 +54,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
 
   return (
     <div className={`form-input ${wrapperClassName}`}>
-      <input {...inputProps} ref={ref} />
+      <input {...inputProps} type={type} ref={ref} />
       <label className="lh-1 text-16 text-light-1">{label}</label>
     </div>
   );

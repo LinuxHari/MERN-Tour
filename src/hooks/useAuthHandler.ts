@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { useLoginMutation, useSignupMutation } from "../redux/api/authApi";
-import { LoginSchemaType, SignupSchemaType } from "../schema/AuthSchema";
+import { LoginSchemaType, SignupSchemaType } from "../schema/authSchema";
 import useAfterEffect from "./useAfterEffect";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 
 const useAuthHandler = () => {
-  const [login, { isLoading: isLoginLoading, isError: isLoginError, isSuccess: isLoginSuccess, error: loginError }] = useLoginMutation();
+  const [login, { isLoading: isLoginLoading, isError: isLoginError, error: loginError }] = useLoginMutation();
   const [signup, { isLoading: isSignupLoading, isError: isSignupError, isSuccess: isSignupSuccess, error: signupError }] = useSignupMutation();
   const [toastId, setToastId] = useState<string | null>(null)
   const navigate = useNavigate()
@@ -26,7 +26,7 @@ const useAuthHandler = () => {
 
   useAfterEffect(() => {
     if(!isSignupLoading && !isLoginLoading && toastId){
-      if(isSignupError || isLoginError || !isLoginSuccess || !isSignupSuccess){
+      if(isSignupError || isLoginError){
         const assertedSignupError = signupError as FetchBaseQueryError
         const assertedLoginError = loginError as FetchBaseQueryError
         const status = assertedLoginError ? assertedLoginError.status: assertedSignupError.status

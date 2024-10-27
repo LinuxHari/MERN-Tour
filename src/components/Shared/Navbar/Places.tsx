@@ -52,6 +52,4 @@ const Places = ({ data, title, dataClick }: PlacesProps) => {
   );
 };
 
-const MemoizedPlaces = React.memo(Places);
-
-export default MemoizedPlaces;
+export default Places;

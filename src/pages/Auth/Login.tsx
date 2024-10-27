@@ -1,7 +1,7 @@
 import SimpleForm from "../../components/Auth/SimpleForm";
 import useAuthHandler from "../../hooks/useAuthHandler";
 import AuthLayout from "../../layouts/AuthLayout";
-import { LoginSchema } from "../../schema/AuthSchema";
+import { LoginSchema } from "../../schema/authSchema";
 
 type LoginFormFields = {
   email: string;

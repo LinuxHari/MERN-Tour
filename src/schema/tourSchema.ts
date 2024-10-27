@@ -1,14 +1,43 @@
 import { z } from "zod";
 import { CATEGORIES, LANGUAGES, MIN_AGE } from "../config/tourConfig";
-
-const sanitizeString = (value: string) => value.trim().replace(/\s+/g, " ");
+import removeSpaces from "../utils/removeSpaces";
 
 const allowedAges = Object.values(MIN_AGE)
+
+export const LocationSchema = z.object({city: z
+  .string()
+  .transform(removeSpaces)
+  .pipe(
+    z
+      .string()
+      .min(2, { message: "City name must be at least 2 characters" })
+      .max(168, { message: "City name must not exceed 168 characters" })
+  ),
+
+state: z
+  .string()
+  .transform(removeSpaces)
+  .pipe(
+    z
+      .string()
+      .min(2, { message: "State name must be at least 2 characters" })
+      .max(50, { message: "State name must not exceed 50 characters" })
+  ),
+
+country: z
+  .string()
+  .transform(removeSpaces)
+  .pipe(
+    z
+      .string()
+      .min(3, { message: "Country name must be at least 3 characters" })
+      .max(56, { message: "Country name must not exceed 56 characters" })
+  )})
 
 export const TourSchema = z.object({
   name: z
     .string()
-    .transform(sanitizeString)
+    .transform(removeSpaces)
     .pipe(
       z
         .string()
@@ -18,7 +47,7 @@ export const TourSchema = z.object({
 
   description: z
     .string()
-    .transform(sanitizeString)
+    .transform(removeSpaces)
     .pipe(
       z
         .string()
@@ -33,7 +62,7 @@ export const TourSchema = z.object({
       z.object({
         value: z
           .string()
-          .transform(sanitizeString)
+          .transform(removeSpaces)
           .pipe(
             z
               .string()
@@ -44,35 +73,6 @@ export const TourSchema = z.object({
     )
     .min(2, { message: "Highlights must have at least 2 entries" })
     .max(10, { message: "Highlights should not exceed 10 entries" }),
-  city: z
-    .string()
-    .transform(sanitizeString)
-    .pipe(
-      z
-        .string()
-        .min(2, { message: "City name must be at least 2 characters" })
-        .max(168, { message: "City name must not exceed 168 characters" })
-    ),
-
-  state: z
-    .string()
-    .transform(sanitizeString)
-    .pipe(
-      z
-        .string()
-        .min(2, { message: "State name must be at least 2 characters" })
-        .max(50, { message: "State name must not exceed 50 characters" })
-    ),
-
-  country: z
-    .string()
-    .transform(sanitizeString)
-    .pipe(
-      z
-        .string()
-        .min(3, { message: "Country name must be at least 3 characters" })
-        .max(56, { message: "Country name must not exceed 56 characters" })
-    ),
   zipCode: z
     .string()
     .refine((code) => /^(?:[A-Z0-9]{2,4}\s?[A-Z0-9]{2,4}|[A-Z0-9]{5,7}|[0-9]{4,5}[A-Z]{2})$/i.test(code), {
@@ -117,7 +117,7 @@ export const TourSchema = z.object({
       z.object({
         activity: z
           .string()
-          .transform(sanitizeString)
+          .transform(removeSpaces)
           .pipe(
             z
               .string()
@@ -127,7 +127,7 @@ export const TourSchema = z.object({
 
         details: z
           .string()
-          .transform(sanitizeString)
+          .transform(removeSpaces)
           .pipe(
             z
               .string()
@@ -151,7 +151,7 @@ export const TourSchema = z.object({
       z.object({
         question: z
           .string()
-          .transform(sanitizeString)
+          .transform(removeSpaces)
           .pipe(
             z
               .string()
@@ -161,7 +161,7 @@ export const TourSchema = z.object({
 
         answer: z
           .string()
-          .transform(sanitizeString)
+          .transform(removeSpaces)
           .pipe(
             z
               .string()
@@ -217,7 +217,7 @@ export const TourSchema = z.object({
       message: "Invalid value provided",
     })
     .default("yes"),
-}).transform((tour) => {
+}).extend(LocationSchema.shape).transform((tour) => {
   const { minAge, price } = tour
   Object.entries(MIN_AGE).forEach(([type, age]) => {
     if(minAge > age)

@@ -74,7 +74,6 @@ export type SingleTourResponse = Omit<Tour, "freeCancellation" | "zipCode" | "ci
   destination: string;
 };
 
-
 // export type TourCategories = "Nature" | "Adventure" | "Cultural" | "Food" | "City" | "Cruises"
 
 export type AppliedFiltersProps = Omit<Filters, "rating"> & {

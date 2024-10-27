@@ -14,8 +14,8 @@ const PaxCounter = ({ pax, setPax, price, className }: PaxCounterProps) => {
   const paxAgeMap:Record<string, keyof typeof MIN_AGE> = {adults: "adult", children: "child", infants: "infant", teens: "teen"}
   return (
     <div className={`pax__counter d-flex flex-column w-100 ${className}`}>
-    {Object.entries(pax).map(([key, value]) => (
-        (Boolean(value) || (!price || price[paxAgeMap[key]])) && <div className="mb-2">
+    {Object.entries(pax).map(([key, value], index) => (
+        (Boolean(value) || (!price || price[paxAgeMap[key]])) && <div className="mb-2" key={index}> 
         <div className="d-flex items-center justify-between">
            <div className="text-14">
             {stringToTitle(key)} ({MIN_AGE[paxAgeMap[key]] ? MIN_AGE[paxAgeMap[key]] - 1 : MIN_AGE[paxAgeMap[key]]}+)&nbsp;
