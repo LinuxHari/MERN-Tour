@@ -37,7 +37,7 @@ export const LoginSchema = z.object({
 
 export const SignupSchema = z.object({
     confirmPassword: LoginSchema.shape.password,
-  }).extend(LoginSchema.shape)
+  }).extend(LoginSchema.shape).extend(NameSchema.shape)
   .refine(({ password, confirmPassword }) => password === confirmPassword, {
     message: "Password did not match",
   });  

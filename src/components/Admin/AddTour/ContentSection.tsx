@@ -36,9 +36,9 @@ const ContentSection = () => {
       {/* <div className="col-12">
         <Input type="text" label="Address" {...register("address")} />
       </div> */}
-      <div className="col-12">
+      {/* <div className="col-12">
         <Input type="text" label="Zip Code" {...register("zipCode")} />
-      </div>
+      </div> */}
       <div className="col-12">
         <Input label="Tour Capacity" type="number" {...register("capacity", { valueAsNumber: true })} />
       </div>

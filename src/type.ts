@@ -8,8 +8,9 @@ export type RenderProps = {
 export type Status = "Confirmed" | "Pending" | "Cancelled";
 
 export type Tour = Omit<TourSchemaType, "images" | "highlights"> & {
-  highlights: string[]
-  images: string[]
+  tourId: string;
+  highlights: string[];
+  images: string[];
 };
 
 export type Bookings = {
@@ -52,13 +53,6 @@ export type ListingCard2Props =  {
 
 export type SearchSuggestions = typeof SEARCH_SUGGESTIONS
 
-export type PostResponse = {
-  message: string;
-  error?: boolean;
-  data?: Object | Object[];
-  stack?: string
-}
-
 export type Filters =  {tourTypes?: string[], duration?: string[], rating?: {count: number, label: string}[], specials?: [string], languages?: [string]}
 
 export type TourListResponse = {
@@ -67,8 +61,7 @@ export type TourListResponse = {
   filters?: Omit<Filters, "rating">
 }
 
-export type SingleTourResponse = Omit<Tour, "freeCancellation" | "zipCode" | "city" | "state" | "country"> & {
-  tourId: string;
+export type SingleTourResponse = Omit<Tour, "freeCancellation" | "city" | "state" | "country"> & {
   freeCancellation: boolean;
   duration: number;
   destination: string;

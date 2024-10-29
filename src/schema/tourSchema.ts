@@ -73,11 +73,6 @@ export const TourSchema = z.object({
     )
     .min(2, { message: "Highlights must have at least 2 entries" })
     .max(10, { message: "Highlights should not exceed 10 entries" }),
-  zipCode: z
-    .string()
-    .refine((code) => /^(?:[A-Z0-9]{2,4}\s?[A-Z0-9]{2,4}|[A-Z0-9]{5,7}|[0-9]{4,5}[A-Z]{2})$/i.test(code), {
-      message: "Invalid zip code",
-    }),
   capacity: z
     .number()
     .min(2, { message: "Capacity should not be less than 2" })
@@ -237,7 +232,6 @@ export const defaultTourValue: TourSchemaType = {
   city: "",
   state: "",
   country: "",
-  zipCode: "123",
   price: {
     adult: 100,
     teen: 100,

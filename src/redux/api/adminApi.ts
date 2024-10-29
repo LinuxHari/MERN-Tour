@@ -1,51 +1,61 @@
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
-import { ImgPath, PostResponse, Tour } from "../../type";
+import { ImgPath, Tour } from "../../type";
 import { baseApi } from "./baseApi";
 import { TourSchemaType } from "../../schema/tourSchema";
 import useFirebaseUpload from "../../hooks/useFirebaseUpload";
 import { extractFirebaseImgPath } from "../../utils/extractFirebaseImgPath";
 
+type CreateTourResponse = {
+  publisherId: string;
+};
+
+type GetToursResponse = {
+  tours: Tour[];
+} & CreateTourResponse;
+
 export const adminApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    getAdminPublishedTours: builder.query<Tour, string>({
+    getAdminPublishedTours: builder.query<GetToursResponse, string>({
       query: () => "/admin",
-      providesTags: (_, __, id) => [{ type: "Tour", id }],
-      transformResponse: (response: { data: Tour }) => response.data,
-      transformErrorResponse: (response) => {
-        const errorData = response.data as { message?: string };
-        return errorData.message || "Something went wrong";
-      },
+      providesTags: (data) =>  data? [
+        ...data.tours.map((tour) => ({
+          type: "Tour" as const,
+          id: tour.tourId,
+        })),
+        { type: "Tour", id: data.publisherId }
+      ]: []
     }),
-    createTour: builder.mutation<PostResponse, TourSchemaType>({
+    createTour: builder.mutation<CreateTourResponse, TourSchemaType>({
       queryFn: async (formData, _, __, baseQuery) => {
         const { uploadImages, deleteImages } = useFirebaseUpload();
 
         try {
           const imageUrls = await uploadImages(formData.images, formData.name);
-          const highlights = formData.highlights.map((highlight) => highlight.value)
-          const tourData:Tour = {...formData, images: imageUrls, highlights}
+          const highlights = formData.highlights.map((highlight) => highlight.value);
+          const tourData = { ...formData, images: imageUrls, highlights };
           const response = await baseQuery({
             url: "/admin/tour",
             method: "POST",
             body: tourData,
-          });     
+          });
 
           if (response.error) {
             const imagesToDelete = extractFirebaseImgPath(imageUrls, ImgPath.tours);
-            await deleteImages(imagesToDelete);    
-            throw new Error("Failed to add tour")
+            await deleteImages(imagesToDelete);
+            throw new Error("Failed to add tour");
           }
 
-          return { data: response.data as PostResponse };
+          return { data: response.data as CreateTourResponse };
         } catch (error) {
-          if (error instanceof Error) {            
+          if (error instanceof Error) {
             return { error: { error: error.message } as FetchBaseQueryError };
           }
           return { error: { error: "Network Error" } as FetchBaseQueryError };
         }
       },
+      invalidatesTags: (data) => data?.publisherId? [{ type: "Tour", id: data.publisherId }]: []
+      }),
     }),
-  }),
-});
+  })
 
 export const { useGetAdminPublishedToursQuery, useCreateTourMutation } = adminApi;

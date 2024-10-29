@@ -6,6 +6,7 @@ import Places from "./Places";
 import { ACTIVITIES, DESTINATIONS } from "../../../data";
 
 const Navbar = () => {
+  
   return (
     <header className="header -type-1 js-header">
       <div data-anim="fade delay-3" className="header__container container is-in-view">
