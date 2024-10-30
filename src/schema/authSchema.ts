@@ -33,11 +33,11 @@ export const LoginSchema = z.object({
       message:
         "Password must contain atleast one lowercase, one uppercase and one special character",
     })
-}).extend(EmailSchema.shape);
+}).merge(EmailSchema);
 
 export const SignupSchema = z.object({
     confirmPassword: LoginSchema.shape.password,
-  }).extend(LoginSchema.shape).extend(NameSchema.shape)
+  }).merge(LoginSchema).merge(NameSchema)
   .refine(({ password, confirmPassword }) => password === confirmPassword, {
     message: "Password did not match",
   });  

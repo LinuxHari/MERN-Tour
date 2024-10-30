@@ -2235,9 +2235,9 @@ h6 {
   line-height: 266.667%;
 }
 
-.headerDropdown .headerDropdown__item button:hover {
-  -webkit-text-decoration-line: underline;
-  text-decoration-line: underline;
+.headerDropdown .headerDropdown__item button:hover, .headerDropdown .headerDropdown__item a:hover {
+  -webkit-text-decoration-line: underline !important;
+  text-decoration-line: underline !important;
   color: var(--color-primary, #eb662b);
 }
 

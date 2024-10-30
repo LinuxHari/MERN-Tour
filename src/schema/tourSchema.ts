@@ -212,7 +212,7 @@ export const TourSchema = z.object({
       message: "Invalid value provided",
     })
     .default("yes"),
-}).extend(LocationSchema.shape).transform((tour) => {
+}).merge(LocationSchema).transform((tour) => {
   const { minAge, price } = tour
   Object.entries(MIN_AGE).forEach(([type, age]) => {
     if(minAge > age)

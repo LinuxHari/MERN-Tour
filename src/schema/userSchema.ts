@@ -3,7 +3,8 @@ import removeSpaces from "../utils/removeSpaces";
 import { LocationSchema } from "./tourSchema";
 import { EmailSchema, NameSchema } from "./authSchema";
 
-export const UserSchema = z.object({
+export const BaseUserSchema = z.object({
+    email: EmailSchema.shape.email,
     phone: z.number().min(4).max(11),
     profile:  
       z.object({
@@ -17,6 +18,8 @@ export const UserSchema = z.object({
           }),
       }),
     address: z.string({message: "Invalid address"}).transform(removeSpaces).pipe(z.string().min(10).max(200))
-  }).extend(NameSchema.shape).extend(LocationSchema.shape).extend(EmailSchema.shape)
+  }).merge(NameSchema) // Adding 3 merges in a row caused https://github.com/colinhacks/zod/issues/2697, so added email with shape merged and extended
+
+  const UserSchema = z.intersection(BaseUserSchema, LocationSchema)
 
   export type UserSchemaType = z.infer<typeof UserSchema>

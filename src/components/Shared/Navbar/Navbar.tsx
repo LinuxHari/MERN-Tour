@@ -1,12 +1,14 @@
-import { Link } from "react-router-dom";
 import Currency from "./Currency";
 import Logo from "./Logo";
 import Search from "./Search";
 import Places from "./Places";
 import { ACTIVITIES, DESTINATIONS } from "../../../data";
+import useUserHandler from "../../../hooks/useUserHandler";
+import AuthSection from "./AuthSection";
 
 const Navbar = () => {
-  
+  const {data, isLoggedIn} = useUserHandler()
+  console.log(data, isLoggedIn)
   return (
     <header className="header -type-1 js-header">
       <div data-anim="fade delay-3" className="header__container container is-in-view">
@@ -29,16 +31,7 @@ const Navbar = () => {
           <Places data={DESTINATIONS} title="Destinations" dataClick = "headerDestinations"/>
           <Places data={ACTIVITIES} title="Activities" dataClick = "header-activities"/>
           <Currency />
-          <Link to="/signup" className="ml-10">
-            Sign up
-          </Link>
-
-          <Link
-            to="/login"
-            className="button -sm -dark-1 bg-accent-1 rounded-200 text-white ml-30"
-          >
-            Log in
-          </Link>
+         <AuthSection name={data?.firstName} isLoggedIn={isLoggedIn}/>
         </div>
       </div>
     </header>
