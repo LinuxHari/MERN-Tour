@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useLoginMutation, useSignupMutation } from "../redux/api/authApi";
+import { useLoginMutation, useLogoutMutation, useSignupMutation } from "../redux/api/authApi";
 import { LoginSchemaType, SignupSchemaType } from "../schema/authSchema";
 import useAfterEffect from "./useAfterEffect";
 import toast from "react-hot-toast";
@@ -9,31 +9,47 @@ import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 const useAuthHandler = () => {
   const [login, { isLoading: isLoginLoading, isError: isLoginError, error: loginError }] = useLoginMutation();
   const [signup, { isLoading: isSignupLoading, isError: isSignupError, isSuccess: isSignupSuccess, error: signupError }] = useSignupMutation();
+  const [logout, { isLoading: isLogoutLoading, isError: isLogoutError, isSuccess: isLogoutSuccess }] = useLogoutMutation();
   const [toastId, setToastId] = useState<string | null>(null)
   const navigate = useNavigate()
 
-  const onLogin = async (data: LoginSchemaType) => {
-    const toastId = toast.loading('Signing up...');
+  const handleToast = (message: string) => {
+    const toastId = toast.loading(message);
     setToastId(toastId)
+  }
+
+  const onLogin = async (data: LoginSchemaType) => {
+    handleToast('Signing up...');
     await login(data);
   };
 
   const onSignup = async (data: SignupSchemaType) => {
-    const toastId = toast.loading('Logging in...');
-    setToastId(toastId)
+    handleToast('Logging in...');
     await signup(data);
   };
 
+
+  const onLogout = async (email: LoginSchemaType["email"]) => {
+    handleToast('Logging out...');
+    await logout(email);
+  };
+
+
   useAfterEffect(() => {
-    if(!isSignupLoading && !isLoginLoading && toastId){
-      if(isSignupError || isLoginError){
+    if(!isSignupLoading && !isLoginLoading && !isLogoutLoading && toastId){
+      if(isSignupError || isLoginError || isLogoutError){
         const assertedSignupError = signupError as FetchBaseQueryError
         const assertedLoginError = loginError as FetchBaseQueryError
-        const status = assertedLoginError ? assertedLoginError.status: assertedSignupError.status
-        const message = status === 409? "User with given email already exists": status === 500? "Something went wrong": "Invalid email or password"
+        const status = assertedLoginError ? assertedLoginError.status: assertedSignupError? assertedSignupError.status: null
+        const message = (() => {
+          if (isLogoutError) return "Failed logging out";
+          if (status === 409) return "User with given email already exists";
+          if (status === 500) return "Something went wrong";
+          return "Invalid email or password";
+        })();        
         toast.error(message, { id: toastId });
       } else {
-        const message = isSignupSuccess? "Account created": "Logged in"
+        const message = isSignupSuccess? "Account created": isLogoutSuccess? "Logged out": "Logged in"
         toast.success(`${message} successfully`, { id: toastId });
         setTimeout(() => {
           if(isSignupSuccess)
@@ -43,9 +59,9 @@ const useAuthHandler = () => {
         }, 1000)
       }
      }
-  }, [isLoginError, isSignupError, isLoginLoading, isSignupLoading])
+  }, [isLoginError, isSignupError, isLogoutError, isLoginLoading, isSignupLoading, isLogoutLoading])
 
-  return { onLogin, onSignup, isLoginLoading, isSignupLoading };
+  return { onLogin, onSignup, isLoginLoading, isSignupLoading, onLogout };
 };
 
 export default useAuthHandler;

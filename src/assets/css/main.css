@@ -2236,8 +2236,8 @@ h6 {
 }
 
 .headerDropdown .headerDropdown__item button:hover, .headerDropdown .headerDropdown__item a:hover {
-  -webkit-text-decoration-line: underline !important;
-  text-decoration-line: underline !important;
+  -webkit-text-decoration-line: underline;
+  text-decoration-line: underline;
   color: var(--color-primary, #eb662b);
 }
 
@@ -14241,4 +14241,19 @@ a {
 .pax__counter{
   background-color: white;
   border-radius: 12px;
+}
+
+.text-clamp-10{
+    width: "fit-content";
+    max-width: 10ch;         
+    white-space: nowrap;
+    overflow: hidden;     
+    text-overflow: ellipsis;
+}
+
+.line-clamp-4{
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical; 
 }

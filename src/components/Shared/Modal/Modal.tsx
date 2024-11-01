@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { ModalContext, useModalContext } from "../../../context/ModalContext";
 import useFocusHandler from "../../../hooks/useFocusHandler";
 import Button from "../Button/Button";
@@ -8,6 +8,11 @@ type ModalProps = {
   children: React.ReactNode;
   className?: string;
 };
+
+type ModalContainerProps = ModalProps & {
+  show?: boolean;
+  onClose?: () => void;
+}
 
 const Trigger = ({ children, className = "" }: ModalProps) => {
   const { onOpen, isOpen } = useModalContext();
@@ -19,11 +24,23 @@ const Trigger = ({ children, className = "" }: ModalProps) => {
   )
 };
 
-const Modal = ({ children, className = "" }: ModalProps) => {
+const Modal = ({ children, className = "", show, onClose: onModalClose }: ModalContainerProps) => {
   const { showContent, setShowContent, focusRef } = useFocusHandler();
 
   const onOpen = () => setShowContent(true);
   const onClose = () => setShowContent(false);
+
+  useEffect(() => {
+    if(show)
+      onOpen()
+    else 
+      onClose()
+  },[show])
+
+  useEffect(() => {
+    if(!showContent && onModalClose)
+      onModalClose()
+  },[showContent])
 
   return (
     <ModalContext.Provider value={{ isOpen: showContent, onClose, onOpen }}>
@@ -60,7 +77,7 @@ const Footer = ({ children, className = "" }: ModalProps) => <div className={` p
 const Close = ({ children, className = "" }: ModalProps) => {
   const { onClose } = useModalContext();
   return (
-    <Button type="button" buttonType="primary" className={`px-5 py-2  ${className}`} onClick={onClose} showIcon={false}>
+    <Button type="button" buttonType="secondary" className={`px-5 py-2  ${className}`} onClick={onClose} showIcon={false}>
       {children}
     </Button>
   );

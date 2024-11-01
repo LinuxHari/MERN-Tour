@@ -50,7 +50,7 @@ const TourCard2 = ( {tourId ,name, description, price, freeCancellation, destina
           <span>{name}</span>
         </h3>
         {/* <Rating rating={rating} reviewCount={reviewCount} /> */}
-        <p className="tourCard__text mt-2 mb-2">{description}</p>
+        <p className="tourCard__text mt-2 mb-2 line-clamp-4">{description}</p>
         {freeCancellation && (
           <div className="d-flex flex-wrap x-gap-20 y-gap-5 pt-30">
             {/* <div className="text-14 text-accent-1">
@@ -58,7 +58,7 @@ const TourCard2 = ( {tourId ,name, description, price, freeCancellation, destina
               Best Price Guarantee
             </div> */}
 
-            <div className="text-14">
+            <div className="text-14 text-success">
               <i className="icon-check mr-10"></i>
               Free Cancellation
             </div>

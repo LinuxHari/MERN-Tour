@@ -3,12 +3,9 @@ import Logo from "./Logo";
 import Search from "./Search";
 import Places from "./Places";
 import { ACTIVITIES, DESTINATIONS } from "../../../data";
-import useUserHandler from "../../../hooks/useUserHandler";
 import AuthSection from "./AuthSection";
 
 const Navbar = () => {
-  const {data, isLoggedIn} = useUserHandler()
-  console.log(data, isLoggedIn)
   return (
     <header className="header -type-1 js-header">
       <div data-anim="fade delay-3" className="header__container container is-in-view">
@@ -31,7 +28,7 @@ const Navbar = () => {
           <Places data={DESTINATIONS} title="Destinations" dataClick = "headerDestinations"/>
           <Places data={ACTIVITIES} title="Activities" dataClick = "header-activities"/>
           <Currency />
-         <AuthSection name={data?.firstName} isLoggedIn={isLoggedIn}/>
+         <AuthSection />
         </div>
       </div>
     </header>
