@@ -34,7 +34,6 @@ const useAuthHandler = () => {
     await logout(email);
   };
 
-
   useAfterEffect(() => {
     if(!isSignupLoading && !isLoginLoading && !isLogoutLoading && toastId){
       if(isSignupError || isLoginError || isLogoutError){
