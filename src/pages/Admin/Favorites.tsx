@@ -1,5 +1,5 @@
 import { RenderProps } from "../../type";
-import Pagination from "../../components/Shared/Pagination/Pagination";
+// import Pagination from "../../components/Shared/Pagination/Pagination";
 import TourCard from "../../components/Admin/Favorites/TourCard";
 
 const Favorites = ({ render }: RenderProps) => {
@@ -104,7 +104,7 @@ const Favorites = ({ render }: RenderProps) => {
           )}
         </div>
         <div className="mt-60">
-          <Pagination />
+          {/* <Pagination /> */}
         </div>
       </div>
     </>

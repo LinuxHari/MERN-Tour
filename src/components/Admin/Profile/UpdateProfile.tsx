@@ -1,7 +1,7 @@
 import Button from "../../Shared/Button/Button"
 import Input from "../../Shared/Input/Input"
 import Textarea from "../../Shared/Teaxtarea/Textarea"
-import ImagePlaceholder from "../AddTour/ImagePlaceholder"
+// import ImagePlaceholder from "../AddTour/ImagePlaceholder"
 
 const UpdateProfile = () => {
   return (
@@ -34,7 +34,7 @@ const UpdateProfile = () => {
 
             <div className="row x-gap-20 y-gap">
               <div className="col-auto">
-                <ImagePlaceholder size={2}/>
+                {/* <ImagePlaceholder size={2}/> */}
               </div>
             </div>
           </div>

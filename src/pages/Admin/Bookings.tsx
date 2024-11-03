@@ -1,5 +1,5 @@
 import { Bookings as BookingsType, RenderProps } from "../../type";
-import Pagination from "../../components/Shared/Pagination/Pagination";
+// import Pagination from "../../components/Shared/Pagination/Pagination";
 import Tabs from "../../components/Shared/Tabs/Tabs";
 import Table from "../../components/Admin/Bookings/Table";
 
@@ -198,7 +198,7 @@ const Bookings = ({ render }: RenderProps) => {
               (data: BookingsType[], index: number) => (
                 <Tabs.TabContent key={index} index={index}>
                   <Table headers={tableHeaders} showEdit={true} data={data} />
-                  <Pagination />
+                  {/* <Pagination /> */}
                 </Tabs.TabContent>
               )
             )}

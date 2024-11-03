@@ -32,7 +32,7 @@ const AppRoutes = () => {
         <Route path="success" element={<BookingSuccess/>}/>
         <Route path="login" element={<Login/>}/>
         <Route path="signup" element={<Signup/>}/>
-        <Route path="checkout" element={<Checkout/>}/>
+        <Route path="checkout/:id" element={<Checkout/>}/>
       </Route>
       <Route path="/dashboard" element={<AdminLayout />}>
         <Route index element={<Dashboard render={render} />} />

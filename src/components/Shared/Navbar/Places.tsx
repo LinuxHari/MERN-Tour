@@ -1,4 +1,3 @@
-import React from "react";
 import { ACTIVITIES, DESTINATIONS } from "../../../data";
 import Dropdown from "../Dropdown/Dropdown";
 import Tabs from "../Tabs/Tabs";

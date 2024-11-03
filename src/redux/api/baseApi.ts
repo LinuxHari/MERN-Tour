@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import env from "../../config/envConfig";
-import { AppliedFiltersProps, SearchSuggestions, SingleTourResponse, Tour, TourListResponse } from "../../type";
+import { AppliedFiltersProps, SearchSuggestions, SingleTourResponse, TourListResponse } from "../../type";
 
 type TourSearchParams = {
   destinationId: string;

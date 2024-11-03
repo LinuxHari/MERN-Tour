@@ -14,7 +14,7 @@ const useWindowSize = () => {
 
     // Prevent unnecessary re-renders with debouncing
 
-    let resizeTimeout: number | null = null;
+    let resizeTimeout: ReturnType<typeof setTimeout> | null = null;
     const debouncedHandleSize = () => {
       if (resizeTimeout) clearTimeout(resizeTimeout);
 

@@ -1,8 +1,8 @@
 import IncludedServices from "./IncludedServices";
 import Itinerary from "./Itinerary";
-import PostReview from "./PostReview";
+// import PostReview from "./PostReview";
 import TourFAQ from "./TourFAQ";
-import TourMap from "./TourMap";
+// import TourMap from "./TourMap";
 import TourOverview from "./TourOverview";
 import TourReviews from "./TourReviews";
 import SideCard from "./SideCard";

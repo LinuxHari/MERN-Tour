@@ -23,13 +23,13 @@ const useSingleTourHandler = () => {
         return {adults, infants, children, teens}
       
       case MIN_AGE.child:
-        return {adults, children, teens}
+        return {adults, children, teens, infants: 0}
 
       case MIN_AGE.teen: 
-        return {adults, teens}
+        return {adults, teens, children: 0, infants: 0}
 
       default: 
-        return {adults}
+        return {adults, children: 0, teens: 0, infants: 0}
     }
 
   },[data])

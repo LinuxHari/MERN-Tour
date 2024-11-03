@@ -12,8 +12,8 @@ const TableDataCell = ({ type, value, color }: TableDataCellProps) => {
     return (
       <td className="min-w-300">
         <div className="d-flex items-center">
-          <img src={tour.imgUrl} alt={tour.title} />
-          <div className="ml-20">{tour.title}</div>
+          <img src={tour.images[0]} alt={tour.name} />
+          <div className="ml-20">{tour.name}</div>
         </div>
       </td>
     );

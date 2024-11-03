@@ -7,7 +7,7 @@ import useListingToursHandler from "../hooks/useListingToursHandler";
 
 const ListingTours = () => {
   const { isLoading, isFetching, tours, totalCount, setSortType, setAppliedFilters, setPage, setPriceRange, priceRange, sortType, page, appliedFilters, filters, onSelectTour, pax, isFiltersApplied } = useListingToursHandler();
-  console.log(isFiltersApplied, "is filters applied", appliedFilters)
+
   return (
     <>
       {!isLoading ? 

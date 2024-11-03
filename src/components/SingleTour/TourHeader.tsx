@@ -1,6 +1,6 @@
-import { SingleTourResponse } from "../../type"
+// import { SingleTourResponse } from "../../type"
 import Label from "../Shared/Label/Label"
-import Rating from "../Shared/Rating/Rating"
+// import Rating from "../Shared/Rating/Rating"
 import TourGallery from "./TourGallery"
 
 type TourHeaderProps = {

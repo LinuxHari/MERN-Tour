@@ -6,13 +6,13 @@ type TourImagesProps = {
   images: string[];
 };
 const TourImages = ({ images }: TourImagesProps) => {
-  const prevImages = [
-    "https://i.pinimg.com/236x/d3/45/11/d3451114ab4e1d55ead624930bcff60c.jpg",
-    "https://media.istockphoto.com/id/1414814850/photo/summer-blue-sky-cloud-gradient-light-white-background-beauty-clear-cloudy-in-sunshine-calm.jpg?s=612x612&w=0&k=20&c=AB8i_X54iwA5B8u3EmkmduL37-W35mYuUmHmOeCSiGw=",
-    "https://img.freepik.com/free-photo/view-rock-formations-with-nature-landscape_23-2151723154.jpg?size=626&ext=jpg&ga=GA1.1.513430824.1714959571&semt=ais_hybrid",
-    "https://i.pinimg.com/236x/d3/45/11/d3451114ab4e1d55ead624930bcff60c.jpg",
-    "https://i.pinimg.com/236x/d3/45/11/d3451114ab4e1d55ead624930bcff60c.jpg",
-  ];
+  // const prevImages = [
+  //   "https://i.pinimg.com/236x/d3/45/11/d3451114ab4e1d55ead624930bcff60c.jpg",
+  //   "https://media.istockphoto.com/id/1414814850/photo/summer-blue-sky-cloud-gradient-light-white-background-beauty-clear-cloudy-in-sunshine-calm.jpg?s=612x612&w=0&k=20&c=AB8i_X54iwA5B8u3EmkmduL37-W35mYuUmHmOeCSiGw=",
+  //   "https://img.freepik.com/free-photo/view-rock-formations-with-nature-landscape_23-2151723154.jpg?size=626&ext=jpg&ga=GA1.1.513430824.1714959571&semt=ais_hybrid",
+  //   "https://i.pinimg.com/236x/d3/45/11/d3451114ab4e1d55ead624930bcff60c.jpg",
+  //   "https://i.pinimg.com/236x/d3/45/11/d3451114ab4e1d55ead624930bcff60c.jpg",
+  // ];
 
   const [currentSlide, setCurrentSlide] = useState(1);
   return (

@@ -1,5 +1,5 @@
 import { RenderProps } from "../../type";
-import Pagination from "../../components/Shared/Pagination/Pagination";
+// import Pagination from "../../components/Shared/Pagination/Pagination";
 import ListingCard from "../../components/Admin/Listings/ListingCard";
 
 const Listings = ({render}: RenderProps) => {
