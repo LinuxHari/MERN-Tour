@@ -12,7 +12,7 @@ const LoginModal = ({showModal, onClose, onConfirm, isLoading}: LoginModalProps)
       <Modal.Title>Log In</Modal.Title>
     </Modal.Header>
     <Modal.Content>
-      <LoginForm isLoading={isLoading} onLogin={onConfirm} />
+      <LoginForm isLoading={isLoading} onLogin={onConfirm} isModal={true} modalClassName="px-10 py-10" />
     </Modal.Content>
   </Modal>
   )

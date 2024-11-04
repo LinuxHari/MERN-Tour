@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 
 type LoginData = LoginSchemaType & {
-  redirectUrl?: string
+  skipRedirect?: boolean
 }
 
 const useAuthHandler = () => {
@@ -15,7 +15,7 @@ const useAuthHandler = () => {
   const [signup, { isLoading: isSignupLoading, isError: isSignupError, isSuccess: isSignupSuccess, error: signupError }] = useSignupMutation();
   const [logout, { isLoading: isLogoutLoading, isError: isLogoutError, isSuccess: isLogoutSuccess }] = useLogoutMutation();
   const [toastId, setToastId] = useState<string | null>(null)
-  const [redirectUrl, setRedirectUrl] = useState("/")
+  const [skipRedirect, setSkipRedirect] = useState(false)
   const navigate = useNavigate()
 
   const handleToast = (message: string) => {
@@ -25,9 +25,9 @@ const useAuthHandler = () => {
 
   const onLogin = async (data: LoginData) => {
     handleToast('Signing up...');
-    const {redirectUrl, ...loginData} = data
-    if(redirectUrl)
-      setRedirectUrl(redirectUrl)
+    const { skipRedirect, ...loginData } = data
+    if(skipRedirect)
+      setSkipRedirect(skipRedirect)
     await login(loginData);
   };
 
@@ -35,7 +35,6 @@ const useAuthHandler = () => {
     handleToast('Logging in...');
     await signup(data);
   };
-
 
   const onLogout = async (email: LoginSchemaType["email"]) => {
     handleToast('Logging out...');
@@ -58,12 +57,14 @@ const useAuthHandler = () => {
       } else {
         const message = isSignupSuccess? "Account created": isLogoutSuccess? "Logged out": "Logged in"
         toast.success(`${message} successfully`, { id: toastId });
-        setTimeout(() => {
-          if(isSignupSuccess)
-            navigate("/login")
-          else
-            navigate(redirectUrl)
-        }, 1000)
+        if(skipRedirect){
+          setTimeout(() => {
+            if(isSignupSuccess)
+              navigate("/login")
+            else
+              navigate("/")
+          }, 1000)
+        }
       }
      }
   }, [isLoginError, isSignupError, isLogoutError, isLoginLoading, isSignupLoading, isLogoutLoading])

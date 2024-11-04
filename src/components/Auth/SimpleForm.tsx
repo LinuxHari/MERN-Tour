@@ -17,9 +17,10 @@ type SimpleFormProps<T extends FieldValues> = {
   schema: ZodSchema<T>;
   buttonText: string;
   isLoading: boolean;
+  className?: string
 };
 
-const SimpleForm = <T extends FieldValues>({ fields, onSubmit, schema, buttonText, isLoading }: SimpleFormProps<T>) => {
+const SimpleForm = <T extends FieldValues>({ fields, onSubmit, schema, buttonText, isLoading, className="border-1 rounded-12 px-60 py-60 md:px-25 md:py-30" }: SimpleFormProps<T>) => {
   const { register, handleSubmit, formState: { errors } } = useForm<T>({ resolver: zodResolver(schema) });
 
   useAfterEffect(() => {
@@ -30,7 +31,7 @@ const SimpleForm = <T extends FieldValues>({ fields, onSubmit, schema, buttonTex
   },[errors])
 
   return (
-    <form className="contactForm border-1 rounded-12 px-60 py-60 md:px-25 md:py-30" onSubmit={handleSubmit(onSubmit)} noValidate>
+    <form className={`contactForm ${className}`} onSubmit={handleSubmit(onSubmit)} noValidate>
       {fields.map(({ type, name }) => (
         <Input key={name} wrapperClassName="my-4" type={type} label={keyToTitle(name)} {...register(name)} />
       ))}

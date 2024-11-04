@@ -7,7 +7,6 @@ import useUserHandler from "../../hooks/useUserHandler";
 import LoginModal from "../Auth/LoginModal";
 import useModal from "../../hooks/useModal";
 import useAuthHandler from "../../hooks/useAuthHandler";
-import { useLocation } from "react-router-dom";
 import { LoginSchemaType } from "../../schema/authSchema";
 
 type SideCardProps = {
@@ -29,11 +28,16 @@ const SideCard = ({ price, pax }: SideCardProps) => {
   })()
 
   const { isLoggedIn } = useUserHandler()
-  const { showModal, onClose, onConfirm, openModal } = useModal()
+  const { showModal, onClose, openModal } = useModal()
   const {onLogin, isLoginLoading} = useAuthHandler()
-  const { pathname } = useLocation()
-  const handleLogin = (data: LoginSchemaType) => onLogin({...data, redirectUrl: pathname})
+  const handleLogin = (data: LoginSchemaType) => {
+    onClose()
+    onLogin({skipRedirect: false, ...data})
+  }
+  console.log(isLoggedIn, showModal)
   const handleBooking = () => {
+    console.log("called");
+    
     if(!isLoggedIn)
       openModal()
   }
@@ -94,14 +98,13 @@ const SideCard = ({ price, pax }: SideCardProps) => {
         </div>
         <PaxCounter setPax={setPax} pax={currentPax} price={price} />
         <div className="line mt-20 mb-20"></div>
-
         <div className="d-flex items-center justify-between">
           <div className="text-18 fw-500">Total:</div>
           <div className="text-18 fw-500">${total.toFixed(2)}</div>
         </div>
         <Button buttonType="primary" className="w-100 mt-3" onClick={handleBooking}>{isLoggedIn? "Book Now": "Log In"}</Button>
       </div>
-      {showModal && <LoginModal onClose={onClose} onConfirm={handleLogin} showModal={true} isLoading={isLoginLoading}/>}
+     <LoginModal onClose={onClose} onConfirm={handleLogin} showModal={showModal} isLoading={isLoginLoading}/>
     </div>
   );
 };
