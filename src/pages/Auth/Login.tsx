@@ -1,14 +1,6 @@
-import SimpleForm from "../../components/Auth/SimpleForm";
+import LoginForm from "../../components/Auth/LoginForm";
 import useAuthHandler from "../../hooks/useAuthHandler";
 import AuthLayout from "../../layouts/AuthLayout";
-import { LoginSchema } from "../../schema/authSchema";
-
-type LoginFormFields = {
-  email: string;
-  password: string;
-};
-
-type FieldType = { type: "email" | "password"; name: keyof LoginFormFields }[];
 
 const Login = () => {
   const conf = {
@@ -19,22 +11,11 @@ const Login = () => {
     url: "/signup",
   } as const;
 
-  const fields: FieldType = [
-    { type: "email", name: "email" },
-    { type: "password", name: "password" },
-  ];
-
   const { onLogin, isLoginLoading } = useAuthHandler();
 
   return (
     <AuthLayout {...conf}>
-      <SimpleForm
-        fields={fields}
-        schema={LoginSchema}
-        buttonText={conf.authType}
-        onSubmit={onLogin}
-        isLoading={isLoginLoading}
-      />
+        <LoginForm onLogin={onLogin} isLoading={isLoginLoading}/>
     </AuthLayout>
   );
 };

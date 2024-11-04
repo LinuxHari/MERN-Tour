@@ -30,11 +30,11 @@ const SimpleForm = <T extends FieldValues>({ fields, onSubmit, schema, buttonTex
   },[errors])
 
   return (
-    <form className="contactForm border-1 rounded-12 px-60 py-60 md:px-25 md:py-30" onSubmit={handleSubmit(onSubmit)}>
+    <form className="contactForm border-1 rounded-12 px-60 py-60 md:px-25 md:py-30" onSubmit={handleSubmit(onSubmit)} noValidate>
       {fields.map(({ type, name }) => (
         <Input key={name} wrapperClassName="my-4" type={type} label={keyToTitle(name)} {...register(name)} />
       ))}
-      <Button type="submit" buttonType="primary" className="my-4" disabled={isLoading}>
+      <Button type="submit" buttonType="primary" className="my-4 w-100" disabled={isLoading}>
         {buttonText}
       </Button>
     </form>

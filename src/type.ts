@@ -80,6 +80,12 @@ export type PaxProps = {
   infants: number;
 }
 
+export type ModalProps = {
+  showModal: boolean;
+  onClose: () => void;
+  onConfirm: () => void;
+}
+
 export enum ImgPath {
   tours = "/tours",
   profile = "/profile"

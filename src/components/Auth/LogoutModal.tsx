@@ -1,13 +1,8 @@
+import { ModalProps } from "../../type";
 import Button from "../Shared/Button/Button";
 import Modal from "../Shared/Modal/Modal";
 
-type LogoutModalProps = {
-  showModal: boolean;
-  onClose: () => void;
-  onConfirm: () => void;
-};
-
-const LogoutModal = ({ showModal, onClose, onConfirm }: LogoutModalProps) => (
+const LogoutModal = ({ showModal, onClose, onConfirm }: ModalProps) => (
   <Modal show={showModal} onClose={onClose}>
     <Modal.Header>
       <Modal.Title>Confirm Logout</Modal.Title>

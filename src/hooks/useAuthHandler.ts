@@ -6,11 +6,16 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 
+type LoginData = LoginSchemaType & {
+  redirectUrl?: string
+}
+
 const useAuthHandler = () => {
   const [login, { isLoading: isLoginLoading, isError: isLoginError, error: loginError }] = useLoginMutation();
   const [signup, { isLoading: isSignupLoading, isError: isSignupError, isSuccess: isSignupSuccess, error: signupError }] = useSignupMutation();
   const [logout, { isLoading: isLogoutLoading, isError: isLogoutError, isSuccess: isLogoutSuccess }] = useLogoutMutation();
   const [toastId, setToastId] = useState<string | null>(null)
+  const [redirectUrl, setRedirectUrl] = useState("/")
   const navigate = useNavigate()
 
   const handleToast = (message: string) => {
@@ -18,9 +23,12 @@ const useAuthHandler = () => {
     setToastId(toastId)
   }
 
-  const onLogin = async (data: LoginSchemaType) => {
+  const onLogin = async (data: LoginData) => {
     handleToast('Signing up...');
-    await login(data);
+    const {redirectUrl, ...loginData} = data
+    if(redirectUrl)
+      setRedirectUrl(redirectUrl)
+    await login(loginData);
   };
 
   const onSignup = async (data: SignupSchemaType) => {
@@ -54,7 +62,7 @@ const useAuthHandler = () => {
           if(isSignupSuccess)
             navigate("/login")
           else
-            navigate("/")
+            navigate(redirectUrl)
         }, 1000)
       }
      }

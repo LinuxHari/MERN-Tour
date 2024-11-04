@@ -2,6 +2,13 @@ import { PaxProps } from "../../type";
 import PaxCounter from "../Shared/PaxCounter/PaxCounter";
 import usePaxHandler from "../../hooks/usePaxHandler";
 import { TourSchemaType } from "../../schema/tourSchema";
+import Button from "../Shared/Button/Button";
+import useUserHandler from "../../hooks/useUserHandler";
+import LoginModal from "../Auth/LoginModal";
+import useModal from "../../hooks/useModal";
+import useAuthHandler from "../../hooks/useAuthHandler";
+import { useLocation } from "react-router-dom";
+import { LoginSchemaType } from "../../schema/authSchema";
 
 type SideCardProps = {
   pax: PaxProps;
@@ -20,6 +27,16 @@ const SideCard = ({ price, pax }: SideCardProps) => {
       totalAmount += (price?.infant || 0) * currentPax.infants
     return totalAmount
   })()
+
+  const { isLoggedIn } = useUserHandler()
+  const { showModal, onClose, onConfirm, openModal } = useModal()
+  const {onLogin, isLoginLoading} = useAuthHandler()
+  const { pathname } = useLocation()
+  const handleLogin = (data: LoginSchemaType) => onLogin({...data, redirectUrl: pathname})
+  const handleBooking = () => {
+    if(!isLoggedIn)
+      openModal()
+  }
 
   return (
     <div className="d-flex justify-end js-pin-content">
@@ -82,12 +99,9 @@ const SideCard = ({ price, pax }: SideCardProps) => {
           <div className="text-18 fw-500">Total:</div>
           <div className="text-18 fw-500">${total.toFixed(2)}</div>
         </div>
-
-        <button className="button -md -dark-1 col-12 bg-accent-1 text-white mt-20">
-          Book Now
-          <i className="icon-arrow-top-right ml-10"></i>
-        </button>
+        <Button buttonType="primary" className="w-100 mt-3" onClick={handleBooking}>{isLoggedIn? "Book Now": "Log In"}</Button>
       </div>
+      {showModal && <LoginModal onClose={onClose} onConfirm={handleLogin} showModal={true} isLoading={isLoginLoading}/>}
     </div>
   );
 };
