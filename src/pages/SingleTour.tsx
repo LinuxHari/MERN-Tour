@@ -5,7 +5,7 @@ import TourSuggestions from "../components/SingleTour/TourSuggestions";
 import useSingleTourHandler from "../hooks/useSingleTourHandler";
 
 const SingleTour = () => {
-  const { data, isLoading, pax } = useSingleTourHandler();
+  const { data, isLoading, pax, startDate, endDate, tourId } = useSingleTourHandler();
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -38,6 +38,9 @@ const SingleTour = () => {
         included={data.included}
         pax={pax}
         price={data.price}
+        startDate={startDate}
+        endDate={endDate}
+        tourId={tourId}
       />
       <TourSuggestions />
     </>

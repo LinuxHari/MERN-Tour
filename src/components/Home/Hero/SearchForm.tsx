@@ -36,9 +36,8 @@ const SearchForm = () => {
     } = formData;
     reset()
     navigate({
-      pathname: "/tours",
+      pathname: `/tours/${destinationId}`,
       search: createSearchParams({
-        destinationId,
         tourType,
         startDate: startDate.toISOString().split("T")[0],
         endDate: endDate.toISOString().split("T")[0],

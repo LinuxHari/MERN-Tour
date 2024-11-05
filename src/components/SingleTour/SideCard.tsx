@@ -8,38 +8,49 @@ import LoginModal from "../Auth/LoginModal";
 import useModal from "../../hooks/useModal";
 import useAuthHandler from "../../hooks/useAuthHandler";
 import { LoginSchemaType } from "../../schema/authSchema";
+import useBookingHandler from "../../hooks/useBookingHandler";
 
 type SideCardProps = {
   pax: PaxProps;
   price: TourSchemaType["price"];
+  startDate: string;
+  endDate: string;
+  tourId: string;
 };
 
-const SideCard = ({ price, pax }: SideCardProps) => {
+const SideCard = ({ price, pax, startDate, endDate, tourId}: SideCardProps) => {
   const { currentPax, setPax } = usePaxHandler(pax)
   const total = (() => {
     let totalAmount = currentPax.adults * price.adult
-    if(price.teen)
-      totalAmount += (price?.teen || 0) * currentPax.teens
-    if(price.child)
-      totalAmount += (price?.child || 0) * currentPax.children
-    if(price.infant)
-      totalAmount += (price?.infant || 0) * currentPax.infants
+    if(price?.teen)
+      totalAmount += price.teen * currentPax.teens
+    if(price?.child)
+      totalAmount += price.child * currentPax.children
+    if(price?.infant)
+      totalAmount += price?.infant * currentPax.infants
     return totalAmount
   })()
 
   const { isLoggedIn } = useUserHandler()
   const { showModal, onClose, openModal } = useModal()
   const {onLogin, isLoginLoading} = useAuthHandler()
+  const { reserve, isLoading } = useBookingHandler()
   const handleLogin = (data: LoginSchemaType) => {
     onClose()
     onLogin({skipRedirect: false, ...data})
   }
-  console.log(isLoggedIn, showModal)
-  const handleBooking = () => {
-    console.log("called");
-    
+
+  const handleReserve = () => {    
     if(!isLoggedIn)
       openModal()
+    else {
+      const paxToSend = {...pax}
+      Object.keys(paxToSend).forEach((key) => {
+        if(!paxToSend[key as keyof PaxProps])
+          delete paxToSend[key as keyof PaxProps]
+      })
+      reserve({startDate, endDate, pax, tourId})
+    }
   }
 
   return (
@@ -102,7 +113,7 @@ const SideCard = ({ price, pax }: SideCardProps) => {
           <div className="text-18 fw-500">Total:</div>
           <div className="text-18 fw-500">${total.toFixed(2)}</div>
         </div>
-        <Button buttonType="primary" className="w-100 mt-3" onClick={handleBooking}>{isLoggedIn? "Book Now": "Log In"}</Button>
+        <Button buttonType="primary" className="w-100 mt-3" onClick={handleReserve} disabled={isLoading}>{isLoggedIn? "Book Now": "Log In"}</Button>
       </div>
      <LoginModal onClose={onClose} onConfirm={handleLogin} showModal={showModal} isLoading={isLoginLoading}/>
     </div>

@@ -22,6 +22,9 @@ type TourInfoProps = {
   included: TourSchemaType["included"];
   pax: PaxProps;
   price: TourSchemaType["price"];
+  startDate: string;
+  endDate: string;
+  tourId: string
 };
 
 const TourInfo = ({
@@ -35,7 +38,10 @@ const TourInfo = ({
   faq,
   included,
   pax,
-  price
+  price,
+  startDate,
+  endDate,
+  tourId
 }: TourInfoProps) => {
   return (
     <section className="layout-pt-md js-pin-container">
@@ -52,7 +58,7 @@ const TourInfo = ({
             {/* <PostReview /> */}
           </div>
           <div className="col-lg-4">
-            <SideCard pax={pax} price={price} />
+            <SideCard pax={pax} price={price} startDate={startDate} endDate={endDate} tourId={tourId}/>
           </div>
         </div>
       </div>

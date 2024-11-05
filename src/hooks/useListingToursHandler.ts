@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { createSearchParams, useNavigate, useSearchParams } from "react-router-dom";
+import { createSearchParams, useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { listingUrlParamsHandler } from "../utils/urlParamsHandler";
 import { useGetToursBySearchQuery } from "../redux/api/baseApi";
 import { AppliedFiltersProps, Filters } from "../type";
@@ -9,19 +9,22 @@ type PriceRangeProps = {
   maxPrice?: number;
 };
 
+type ParamType = { destinationId: string };
+
 const useListingToursHandler = () => {
+  const { destinationId } = useParams() as ParamType
   const [searchParams, _] = useSearchParams();
   const urlParams = Object.fromEntries(searchParams);
-  const { destinationId, tourType, startDate, endDate, adults, children, infants, teens } =
+  const { tourType, startDate, endDate, adults, children, infants, teens } =
     listingUrlParamsHandler({
-      destinationId: urlParams.destinationId,
       tourType: urlParams.tourType,
       startDate: urlParams.startDate,
       endDate: urlParams.endDate,
       adults: urlParams.adults,
       children: urlParams.children,
       infants: urlParams.infants,
-      teens: urlParams.teens
+      teens: urlParams.teens,
+      destinationId
     });
 
   const filterRef = useRef(1);
@@ -109,7 +112,7 @@ const useListingToursHandler = () => {
     const endDate = new Date(new Date(startDate).setDate(new Date(startDate).getDate() + duration)).toISOString().split("T")[0]
 
     navigate({
-      pathname: `/tours/${id}`,
+      pathname: `/tours/${destinationId}/${id}`,
       search: createSearchParams({
         startDate,
         endDate: String(endDate), 

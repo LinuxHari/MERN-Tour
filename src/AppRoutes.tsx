@@ -26,13 +26,13 @@ const AppRoutes = () => {
     <Routes>
       <Route path="/" element={<AppLayout/>}>
         <Route index element={<Home/>}/>
-        <Route path="tours" element={<ListingTours/>}/>
-        <Route path="tours/:id" element={<Tour/>}/>
+        <Route path="tours/:destinationId" element={<ListingTours/>}/>
+        <Route path="tours/:destinationId/:tourId" element={<Tour/>}/>
         <Route path="checkout" element={<Checkout/>}/>
         <Route path="success" element={<BookingSuccess/>}/>
         <Route path="login" element={<Login/>}/>
         <Route path="signup" element={<Signup/>}/>
-        <Route path="checkout/:id" element={<Checkout/>}/>
+        <Route path="checkout/:reserveId" element={<Checkout/>}/>
       </Route>
       <Route path="/dashboard" element={<AdminLayout />}>
         <Route index element={<Dashboard render={render} />} />

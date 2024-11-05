@@ -4,7 +4,7 @@ export const toasterConfig:ToasterProps = {
   position: "top-right",
   reverseOrder: false,
   toastOptions: {
-    duration: 5000,
+    duration: 2000,
     success: {
       style: { background: "#EB662B", color: "white" },
     },

@@ -86,6 +86,22 @@ export type ModalProps = {
   onConfirm: () => void;
 }
 
+export type ReserveBody = {
+  tourId: string,
+  pax: {
+      adults: number,
+      teens?: number,
+      children?: number,
+      infants?: number
+  },
+  startDate: string,
+  endDate: string
+}
+
+export type ReserveResponse = {
+  reserveId: string
+}
+
 export enum ImgPath {
   tours = "/tours",
   profile = "/profile"
