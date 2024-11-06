@@ -23,6 +23,7 @@ const useBookingHandler = () => {
       } else {
         toast.success('Tour reserved successfully!', { id: toastId });
         navigate(`/checkout/${data.reserveId}`)
+        window.scrollTo(0, 0);
       }
      }
   },[isLoading, isError, isSuccess])

@@ -37,7 +37,7 @@ const SideCard = ({ price, pax, startDate, endDate, tourId}: SideCardProps) => {
   const { reserve, isLoading } = useBookingHandler()
   const handleLogin = (data: LoginSchemaType) => {
     onClose()
-    onLogin({skipRedirect: false, ...data})
+    onLogin({skipRedirect: true, ...data})
   }
 
   const handleReserve = () => {    

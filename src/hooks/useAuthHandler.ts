@@ -57,7 +57,7 @@ const useAuthHandler = () => {
       } else {
         const message = isSignupSuccess? "Account created": isLogoutSuccess? "Logged out": "Logged in"
         toast.success(`${message} successfully`, { id: toastId });
-        if(skipRedirect){
+        if(!skipRedirect){
           setTimeout(() => {
             if(isSignupSuccess)
               navigate("/login")
