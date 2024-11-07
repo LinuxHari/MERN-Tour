@@ -1,6 +1,14 @@
+import { useParams } from 'react-router-dom'
+import { useGetReservedTourQuery } from '../../redux/api/baseApi'
 import Button from '../Shared/Button/Button'
 
+type Params = {
+  reserveId: string
+}
+
 const BookingDetailsCard = () => {
+  const { reserveId } = useParams() as Params
+  const {data, isLoading, isError} = useGetReservedTourQuery(reserveId)
   return (
 
     <div className="pl-50 md:pl-0">
@@ -19,11 +27,6 @@ const BookingDetailsCard = () => {
           <div className="d-flex items-center justify-between">
             <div className="fw-500">Date:</div>
             <div className="">06 April 2023</div>
-          </div>
-
-          <div className="d-flex items-center justify-between">
-            <div className="fw-500">Time:</div>
-            <div className="">10:00 am</div>
           </div>
 
           <div className="d-flex items-center justify-between">
@@ -62,7 +65,7 @@ const BookingDetailsCard = () => {
             <div className="">$23</div>
           </div>
 
-          <div className="d-flex items-center justify-between">
+          {/* <div className="d-flex items-center justify-between">
             <div className="fw-500">Amount Paid</div>
             <div className="">$3.482</div>
           </div>
@@ -70,7 +73,7 @@ const BookingDetailsCard = () => {
           <div className="d-flex items-center justify-between">
             <div className="fw-500">Amount Due</div>
             <div className="">$43.242</div>
-          </div>
+          </div> */}
 
         </div>
       </div>

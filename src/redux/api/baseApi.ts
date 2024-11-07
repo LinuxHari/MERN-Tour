@@ -25,6 +25,15 @@ type SingleTourParams = {
   teens: number;
 }
 
+type ReservedTourResponse = ReserveBody & {
+  expiresAt: number;
+  tourDetails: {
+    duration: number;
+    price: SingleTourResponse["price"],
+    images: string[]
+  }
+}
+
 export const baseApi = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({ baseUrl: `${env.API_BASE_URL}` }),
@@ -47,8 +56,11 @@ export const baseApi = createApi({
     }),
     reserveTour: builder.mutation<ReserveResponse, ReserveBody>({
       query: (reserveData) => ({url: `/tour/reserve`, method: "POST", body: reserveData, credentials: "include"}),
-  })
+  }),
+    getReservedTour: builder.query<ReservedTourResponse, string>({
+      query: (id) => `/tour/reserve/${id}`
+    })
   }),
 });
 
-export const { useGetTourByIdQuery, useGetToursBySearchQuery, useGetSearchSuggestionsByTextQuery, useReserveTourMutation } = baseApi;
+export const { useGetTourByIdQuery, useGetToursBySearchQuery, useGetSearchSuggestionsByTextQuery, useReserveTourMutation, useGetReservedTourQuery } = baseApi;
