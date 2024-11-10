@@ -25,13 +25,16 @@ type SingleTourParams = {
   teens: number;
 }
 
-type ReservedTourResponse = ReserveBody & {
+type ReservedTourResponse = Omit<ReserveBody, "tourId" | "pax"> & {
   expiresAt: number;
+  passengers: ReserveBody["pax"];
   tourDetails: {
     duration: number;
     price: SingleTourResponse["price"],
-    images: string[]
-  }
+    images: string[];
+    name: string;
+    minAge: string;
+  };
 }
 
 export const baseApi = createApi({
@@ -58,7 +61,7 @@ export const baseApi = createApi({
       query: (reserveData) => ({url: `/tour/reserve`, method: "POST", body: reserveData, credentials: "include"}),
   }),
     getReservedTour: builder.query<ReservedTourResponse, string>({
-      query: (id) => `/tour/reserve/${id}`
+      query: (id) => ({url: `/tour/reserve/${id}`, credentials: "include"})
     })
   }),
 });

@@ -9,15 +9,33 @@ type Params = {
 const BookingDetailsCard = () => {
   const { reserveId } = useParams() as Params
   const {data, isLoading, isError} = useGetReservedTourQuery(reserveId)
-  return (
 
+  if(isLoading)
+    return "Loading..."
+
+  else if(isError || !data)
+    return "Something went wrong"
+
+  const total = (() => {
+    const {passengers, tourDetails:{price} } = data
+    let totalAmount = passengers.adults * price.adult
+    if(price?.teen)
+      totalAmount += price.teen * (passengers.teens || 0)
+    if(price?.child)
+      totalAmount += price.child * (passengers.children || 0)
+    if(price?.infant)
+      totalAmount += price.infant * (passengers.infants || 0)
+    return totalAmount
+  })()
+
+  return (
     <div className="pl-50 md:pl-0">
       <div className="bg-white rounded-12 shadow-2 py-30 px-30 md:py-20 md:px-20">
         <h2 className="text-20 fw-500">Your booking details</h2>
 
-        <div className="d-flex mt-30">
-          <img src="img/tourSingle/booking/1.png" alt="image"/>
-          <div className="ml-20">Zipline 18 Platform and ATV Adventure Tour From Phuket</div>
+        <div className="d-flex flex-column mt-30">
+          <img src={data.tourDetails.images[0]} className='rounded' alt="image"/>
+          <div className="pt-2 fw-500">{data.tourDetails.name}</div>
         </div>
 
         <div className="line mt-20 mb-20"></div>
@@ -26,28 +44,39 @@ const BookingDetailsCard = () => {
 
           <div className="d-flex items-center justify-between">
             <div className="fw-500">Date:</div>
-            <div className="">06 April 2023</div>
+            <div className="">{data.startDate.toString()}</div>
           </div>
 
           <div className="d-flex items-center justify-between">
             <div className="fw-500">Duration:</div>
-            <div className="">12 Days</div>
+            <div className="">{data.tourDetails.duration} Days</div>
           </div>
 
           <div className="d-flex items-center justify-between">
             <div className="fw-500">Tickets:</div>
-            <div className="">Adult x2 = $98</div>
+            <div className="">Adult x{data.passengers.adults} = ${data.passengers.adults * data.tourDetails.price.adult}</div>
           </div>
 
-          <div className="d-flex items-center justify-between">
+          {
+            data.passengers.teens? <div className="d-flex items-center justify-between">
             <div className="fw-500"></div>
-            <div className="">Youth x3 = $383</div>
-          </div>
+            <div className="">Teens x{data.passengers.teens} = ${data.passengers.teens * (data.tourDetails.price?.teen || 0)}</div>
+          </div>: null
+          }
 
-          <div className="d-flex items-center justify-between">
+          {
+            data.passengers.children? <div className="d-flex items-center justify-between">
             <div className="fw-500"></div>
-            <div className="">Children x6 = $394</div>
-          </div>
+            <div className="">Children x{data.passengers.children} = ${data.passengers.children * (data.tourDetails.price?.child || 0)}</div>
+          </div>: null
+          }
+
+          {
+            data.passengers.infants? <div className="d-flex items-center justify-between">
+            <div className="fw-500"></div>
+            <div className="">Infants x{data.passengers.infants} = ${data.passengers.infants * (data.tourDetails.price?.infant || 0)}</div>
+          </div>: null
+          }
 
         </div>
 
@@ -55,14 +84,14 @@ const BookingDetailsCard = () => {
 
         <div className="">
 
-          <div className="d-flex items-center justify-between">
+          {/* <div className="d-flex items-center justify-between">
             <div className="fw-500">Subtotal</div>
             <div className="">$382</div>
-          </div>
+          </div> */}
 
           <div className="d-flex items-center justify-between">
             <div className="fw-500">Total</div>
-            <div className="">$23</div>
+            <div className="">${total}</div>
           </div>
 
           {/* <div className="d-flex items-center justify-between">
