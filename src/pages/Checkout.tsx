@@ -7,19 +7,23 @@ import BookingSchema, { BookingSchemaType } from "../schema/bookingSchema";
 
 const Checkout = () => {
 
-  const { register, handleSubmit, formState: { errors } } = useForm<BookingSchemaType>({ resolver: zodResolver(BookingSchema) });
+  const defaultValue = {}
+  const { register, handleSubmit, formState: { errors }, setValue } = useForm<BookingSchemaType>({ resolver: zodResolver(BookingSchema) });
+  const submitForm = (data: BookingSchemaType) => {
+    console.log(data, "data submitted")
+  }
+
+  console.log(errors, "errors")
   return (
    <main className="bg-light-1">
      <section className="layout-pt-md layout-pb-lg mt-header">
       <div className="container">
-        <form className="row" >
-          <div className="col-lg-8">
-            <TravellerInfoForm/>
+        <form className="row d-flex" onSubmit={handleSubmit(submitForm)}  noValidate>
+          <div className="col-lg-8 order-lg-1">
+            <TravellerInfoForm register={register} setValue={setValue}/>
             <PaymentForm/>
           </div>
-          <div className="col-lg-4">
           <BookingDetailsCard/>
-          </div>
         </form>
       </div>
     </section>

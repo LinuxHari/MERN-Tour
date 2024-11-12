@@ -14257,3 +14257,7 @@ a {
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical; 
 }
+
+.flag-dropdown:hover .selected-flag{
+  border-radius: 12px 0px 0px 12px !important;
+}

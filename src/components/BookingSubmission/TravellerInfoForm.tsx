@@ -2,25 +2,25 @@ import Input from "../Shared/Input/Input";
 import PhoneInput, { CountryData } from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import keyToTitle from "../../utils/keyToTitle";
+import { UseFormRegister, UseFormSetValue } from "react-hook-form";
+import { BookingSchemaType } from "../../schema/bookingSchema";
+import phone from "phone"
 
-const TravellerInfoForm = () => {
-  const formFields = [
-    {
-      type: "text",
-      name: "fullName",
-    },
-    {
-      type: "text",
-      name: "email",
-    },
-    {
-      type: "text",
-      name: "state",
-    },
-  ] as const
+type TravellerInfoFormProps = {
+  register: UseFormRegister<BookingSchemaType>;
+  setValue: UseFormSetValue<BookingSchemaType> 
+}
+
+const TravellerInfoForm = ({register, setValue}: TravellerInfoFormProps) => {
+  const formFields = [{type: "text",name: "fullName"},{type: "text", name: "email"},{type: "text", name: "country"},{type: "text", name: "state"}] as const
 
   const handlePhoneChange = (value: string, countryData: CountryData) => {
-    console.log(value, countryData);
+    const number = value.toString().slice(countryData.dialCode.length)
+    const { isValid } = phone(value, {country: countryData.countryCode})
+    if(isValid){
+      setValue("phone", parseInt(number))
+      setValue("countryCode", parseInt(countryData.dialCode))
+    }
   }
 
   return (
@@ -29,7 +29,7 @@ const TravellerInfoForm = () => {
       <div className="d-flex flex-wrap gap-30 contactForm pt-30">
         {formFields.map(({type, name}) => (
           <div key={name} className="mb-4 col-12">
-            <Input label={keyToTitle(name)} type={type} name={name} />
+            <Input label={keyToTitle(name)} type={type} {...register(name)}/>
           </div>
         ))}
        <div className="col-12">
@@ -38,12 +38,13 @@ const TravellerInfoForm = () => {
           inputProps={{
             name: "phone",
           }}
-          inputClass="shadow-none"
+          inputClass="shadow-none overflow-hidden"
           country="us"
           placeholder="Enter phone number"
           onChange={handlePhoneChange}
           buttonStyle={{borderRadius: "12px 0px 0px 12px"}}
           inputStyle={{paddingLeft: "45px"}}
+          
         />
       </div>
        </div>
