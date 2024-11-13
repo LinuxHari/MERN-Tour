@@ -7,7 +7,11 @@ type Params = {
   reserveId: string;
 };
 
-const BookingDetailsCard = () => {
+type BookingDetailsCardProps = {
+  isPayformLoaded: boolean
+}
+
+const BookingDetailsCard = ({isPayformLoaded}: BookingDetailsCardProps) => {
   const { reserveId } = useParams() as Params;
   const { data, isLoading, isError } = useGetReservedTourQuery(reserveId);
 
@@ -114,7 +118,7 @@ const BookingDetailsCard = () => {
         </div>
 
         <div className="mt-30">
-          <Button buttonType="primary" type="submit" className="w-100">
+          <Button buttonType="primary" type="submit" className="w-100" disabled={isPayformLoaded}>
             Complete My Order
           </Button>
         </div>

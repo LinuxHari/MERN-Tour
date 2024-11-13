@@ -1,11 +1,11 @@
 import { useForm, FieldValues, Path } from "react-hook-form";
-import Button from "../Shared/Button/Button";
-import Input from "../Shared/Input/Input";
+import Button from "../Button/Button";
+import Input from "../Input/Input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ZodSchema } from "zod";
-import keyToTitle from "../../utils/keyToTitle";
-import useAfterEffect from "../../hooks/useAfterEffect";
-import { getFormErrorMessages } from "../../utils/getFormErrorMessages";
+import keyToTitle from "../../../utils/keyToTitle";
+import useAfterEffect from "../../../hooks/useAfterEffect";
+import { getFormErrorMessages } from "../../../utils/getFormErrorMessages";
 import toast from "react-hot-toast";
 
 type SimpleFormProps<T extends FieldValues> = {

@@ -1,4 +1,4 @@
-import SimpleForm from "../../components/Auth/SimpleForm";
+import SimpleForm from "../../components/Shared/Forms/SimpleForm";
 import useAuthHandler from "../../hooks/useAuthHandler";
 import AuthLayout from "../../layouts/AuthLayout";
 import { SignupSchema } from "../../schema/authSchema";

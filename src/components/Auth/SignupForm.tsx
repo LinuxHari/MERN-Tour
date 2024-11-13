@@ -1,5 +1,5 @@
 import { SignupSchema, SignupSchemaType } from "../../schema/authSchema";
-import SimpleForm from "./SimpleForm";
+import SimpleForm from "../Shared/Forms/SimpleForm";
 
 type FieldType = { type: "email" | "password" | "text"; name: keyof SignupSchemaType }[]
 
