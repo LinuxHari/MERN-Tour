@@ -102,6 +102,18 @@ export type ReserveResponse = {
   reserveId: string
 }
 
+export type ReservedTourResponse = Omit<ReserveBody, "tourId" | "pax"> & {
+  expiresAt: number;
+  passengers: ReserveBody["pax"];
+  tourDetails: {
+    duration: number;
+    price: SingleTourResponse["price"],
+    images: string[];
+    name: string;
+    minAge: string;
+  };
+}
+
 export enum ImgPath {
   tours = "/tours",
   profile = "/profile"

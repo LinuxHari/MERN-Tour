@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import env from "../../config/envConfig";
-import { AppliedFiltersProps, ReserveBody, ReserveResponse, SearchSuggestions, SingleTourResponse, TourListResponse } from "../../type";
+import { AppliedFiltersProps, ReserveBody, ReservedTourResponse, ReserveResponse, SearchSuggestions, SingleTourResponse, TourListResponse } from "../../type";
 
 type TourSearchParams = {
   destinationId: string;
@@ -23,18 +23,6 @@ type SingleTourParams = {
   children: number;
   infants: number;
   teens: number;
-}
-
-type ReservedTourResponse = Omit<ReserveBody, "tourId" | "pax"> & {
-  expiresAt: number;
-  passengers: ReserveBody["pax"];
-  tourDetails: {
-    duration: number;
-    price: SingleTourResponse["price"],
-    images: string[];
-    name: string;
-    minAge: string;
-  };
 }
 
 export const baseApi = createApi({

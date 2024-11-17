@@ -21,7 +21,7 @@ const Timeout = ({ expiresAt }: TimeoutProps) => {
   const seconds = count % 60;
 
   return (
-    <div className="col-8 my-2">
+    <div className="col-8 my-2 px-0">
       {count > 0 ? (
         <div className="bg-white px-4 fw-500 py-2 rounded-12">
           Booking has to be done within {minutes}:{seconds < 10 ? `0${seconds}` : seconds} Minutes
