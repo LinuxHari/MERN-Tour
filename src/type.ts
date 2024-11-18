@@ -1,5 +1,6 @@
 import { SEARCH_SUGGESTIONS } from "./data";
 import { TourSchemaType } from "./schema/tourSchema";
+import { UserSchemaType } from "./schema/userSchema";
 
 export type RenderProps = {
   render: (title: string, desc?: string) => React.JSX.Element;
@@ -113,6 +114,8 @@ export type ReservedTourResponse = Omit<ReserveBody, "tourId" | "pax"> & {
     minAge: string;
   };
 }
+
+export type UserInfoResponse = Omit<UserSchemaType, "profile"> & { profile: string }
 
 export enum ImgPath {
   tours = "/tours",

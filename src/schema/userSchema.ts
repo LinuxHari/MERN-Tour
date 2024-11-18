@@ -5,7 +5,8 @@ import { EmailSchema, NameSchema } from "./authSchema";
 
 export const BaseUserSchema = z.object({
     email: EmailSchema.shape.email,
-    phone: z.number().min(4).max(11),
+    phone: z.number().min(1111).max(99999999999),
+    countryCode: z.number().min(0).max(998),
     profile:  
       z.object({
         file: z

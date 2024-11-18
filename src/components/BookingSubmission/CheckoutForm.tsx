@@ -8,10 +8,14 @@ import Timeout from "./Timeout";
 import { Elements, PaymentElement } from "@stripe/react-stripe-js";
 import {loadStripe} from '@stripe/stripe-js';
 import envConfig from "../../config/envConfig";
+import useUserHandler from "../../hooks/useUserHandler";
+import { UserInfoResponse } from "../../type";
 
 const CheckoutForm = () => {
-  const defaultValue = {};
-  const { register, handleSubmit, formState: { errors }, setValue } = useForm<BookingSchemaType>({ resolver: zodResolver(BookingSchema) });
+  const {data} = useUserHandler()
+  const user = data as UserInfoResponse
+  const defaultValues: Partial<BookingSchemaType> = {fullName: user.firstName + user.lastName, country: user.country, phone: user.phone, email: user.email, countryCode: user.countryCode };
+  const { register, handleSubmit, formState: { errors }, setValue } = useForm<BookingSchemaType>({ resolver: zodResolver(BookingSchema), defaultValues });
   const { book, reservedTour, isReservedDetailsError, isReservedDetailsLoading } = useBookingHandler()
   const stripePromise = loadStripe(envConfig.STRIPE_PK)
 
