@@ -24,7 +24,7 @@ const TravellerInfoForm = ({register, setValue}: TravellerInfoFormProps) => {
   }
 
   return (
-    <div className="bg-white rounded-12 shadow-2 py-30 px-30 md:py-20 md:px-20">
+    <div className="bg-white rounded-12 shadow-2">
       <h2 className="text-30 md:text-24 fw-700">Let us know who you are</h2>
       <div className="d-flex flex-wrap gap-30 contactForm pt-30">
         {formFields.map(({type, name}) => (

@@ -9,21 +9,10 @@ type BookingDetailsCardProps = {
 }
 
 const BookingDetailsCard = ({isPayformLoaded, isLoading, isError, reservedTour}: BookingDetailsCardProps) => {
+  console.log(isPayformLoaded, "is pay form loaded")
 
   if (isLoading) return "Loading...";
   else if (isError || !reservedTour) return "Something went wrong";
-
-  const total = (() => {
-    const {
-      passengers,
-      tourDetails: { price },
-    } = reservedTour;
-    let totalAmount = passengers.adults * price.adult;
-    if (price?.teen) totalAmount += price.teen * (passengers.teens || 0);
-    if (price?.child) totalAmount += price.child * (passengers.children || 0);
-    if (price?.infant) totalAmount += price.infant * (passengers.infants || 0);
-    return totalAmount;
-  })();
 
   return (
     <>
@@ -96,7 +85,7 @@ const BookingDetailsCard = ({isPayformLoaded, isLoading, isError, reservedTour}:
 
             <div className="d-flex items-center justify-between">
               <div className="fw-500">Total</div>
-              <div className="">${total}</div>
+              <div className="">${reservedTour.totalAmount}</div>
             </div>
 
             {/* <div className="d-flex items-center justify-between">
@@ -112,7 +101,7 @@ const BookingDetailsCard = ({isPayformLoaded, isLoading, isError, reservedTour}:
         </div>
 
         <div className="mt-30">
-          <Button buttonType="primary" type="submit" className="w-100" disabled={isPayformLoaded}>
+          <Button buttonType="primary" type="submit" className="w-100" disabled={!isPayformLoaded}>
             Complete My Order
           </Button>
         </div>

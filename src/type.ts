@@ -106,6 +106,7 @@ export type ReserveResponse = {
 export type ReservedTourResponse = Omit<ReserveBody, "tourId" | "pax"> & {
   expiresAt: number;
   passengers: ReserveBody["pax"];
+  totalAmount: number;
   tourDetails: {
     duration: number;
     price: SingleTourResponse["price"],
