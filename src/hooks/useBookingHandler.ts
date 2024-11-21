@@ -1,10 +1,10 @@
 import { useState } from "react"
-import { useGetReservedTourQuery, useReserveTourMutation } from "../redux/api/baseApi"
-import { ReserveBody } from "../type"
+import { useBookTourMutation, useGetReservedTourQuery, useReserveTourMutation } from "../redux/api/baseApi"
+import { BookingBody, ReserveBody } from "../type"
 import toast from "react-hot-toast"
 import useAfterEffect from "./useAfterEffect"
 import { useNavigate, useParams } from "react-router-dom"
-import { BookingSchemaType } from "../schema/bookingSchema"
+import {Stripe, StripeElements} from "@stripe/stripe-js"
 
 type Params = {
   reserveId: string;
@@ -14,6 +14,7 @@ const useBookingHandler = () => {
   const { reserveId } = useParams() as Params;
   const [reserveTour, { isLoading, isError, isSuccess, data }] = useReserveTourMutation()
   const { data: reservedTour, isLoading: isReservedDetailsLoading, isError: isReservedDetailsError } = useGetReservedTourQuery(reserveId, {skip: !reserveId});
+  const [bookTour, { isLoading: isBookingLoading, isError: isBookingError, isSuccess: isBookingSuccess, data: clientSecret }] = useBookTourMutation()
   const [toastId, setToastId] = useState<string | null>(null)
   const navigate = useNavigate()
 
@@ -23,20 +24,21 @@ const useBookingHandler = () => {
     await reserveTour(data)
   }
 
-  const book = async (data: BookingSchemaType) => {
-    // if (!stripe || !elements) {
-    //   toast.error("Payment is not submitted")
-    //   return;
-    // }
-    // const { error } = await stripe.confirmPayment({
-    //   elements,
-    //   confirmParams: {
-    //     return_url: `${window.location.origin}/booking`,
-    //   },
-    // });
-
-    // if(error)
-    //   toast.error("Payment failed")
+  const book = async (data: BookingBody, stripe: Stripe | null, elements: StripeElements | null) => {
+    if (!stripe || !elements) {
+      toast.error("Payment is not submitted")
+      return;
+    }
+    await bookTour(data)
+    const { error } = await stripe.confirmPayment({
+      clientSecret: clientSecret as string,
+      elements,
+      confirmParams: {
+        return_url: `${window.location.origin}/booking`,
+      },
+    });
+    if(error)
+      toast.error("Payment failed")
   }
 
   useAfterEffect(() => {

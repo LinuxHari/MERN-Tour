@@ -1,4 +1,5 @@
 import { SEARCH_SUGGESTIONS } from "./data";
+import { BookingSchemaType } from "./schema/bookingSchema";
 import { TourSchemaType } from "./schema/tourSchema";
 import { UserSchemaType } from "./schema/userSchema";
 
@@ -117,6 +118,10 @@ export type ReservedTourResponse = Omit<ReserveBody, "tourId" | "pax"> & {
 }
 
 export type UserInfoResponse = Omit<UserSchemaType, "profile"> & { profile: string }
+
+export type BookingBody = BookingSchemaType & {
+  id: String
+}
 
 export enum ImgPath {
   tours = "/tours",

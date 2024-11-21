@@ -9,8 +9,6 @@ type BookingDetailsCardProps = {
 }
 
 const BookingDetailsCard = ({isPayformLoaded, isLoading, isError, reservedTour}: BookingDetailsCardProps) => {
-  console.log(isPayformLoaded, "is pay form loaded")
-
   if (isLoading) return "Loading...";
   else if (isError || !reservedTour) return "Something went wrong";
 
