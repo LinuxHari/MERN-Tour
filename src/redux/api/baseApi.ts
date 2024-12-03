@@ -51,7 +51,7 @@ export const baseApi = createApi({
     getReservedTour: builder.query<ReservedTourResponse, string>({
       query: (id) => ({url: `/tour/reserve/${id}`, credentials: "include"})
     }),
-    bookTour: builder.mutation<string, BookingBody>({
+    bookTour: builder.mutation<{clientSecret: string, bookingId: string}, BookingBody>({
       query: ({ id, ...bookingData }) => ({ url: `/tour/book/${id}`, method: "POST", body: bookingData, credentials: "include" })
     })
   }),

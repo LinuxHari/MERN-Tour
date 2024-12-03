@@ -14,7 +14,7 @@ const useBookingHandler = () => {
   const { reserveId } = useParams() as Params;
   const [reserveTour, { isLoading, isError, isSuccess, data }] = useReserveTourMutation()
   const { data: reservedTour, isLoading: isReservedDetailsLoading, isError: isReservedDetailsError } = useGetReservedTourQuery(reserveId, {skip: !reserveId});
-  const [bookTour, { isLoading: isBookingLoading, isError: isBookingError, isSuccess: isBookingSuccess, data: clientSecret }] = useBookTourMutation()
+  const [bookTour, { isLoading: isBookingLoading, isError: isBookingError, isSuccess: isBookingSuccess, data: bookingData }] = useBookTourMutation()
   const [toastId, setToastId] = useState<string | null>(null)
   const navigate = useNavigate()
 
@@ -31,7 +31,7 @@ const useBookingHandler = () => {
     }
     await bookTour(data)
     const { error } = await stripe.confirmPayment({
-      clientSecret: clientSecret as string,
+      clientSecret: bookingData?.clientSecret || "",
       elements,
       confirmParams: {
         return_url: `${window.location.origin}/booking`,
@@ -42,16 +42,23 @@ const useBookingHandler = () => {
   }
 
   useAfterEffect(() => {
-    if(!isLoading && toastId){
-      if(isError || !isSuccess){
-        toast.error('Failed to reserve tour', { id: toastId });
+    if(!isLoading && !isBookingLoading && toastId){
+      if((isError && !isSuccess) || (isBookingError && !isBookingSuccess)){
+        if(isError || !isSuccess)
+          toast.error('Failed to reserve tour', { id: toastId });
+        else 
+          toast.error('Failed to book tour', { id: toastId });
       } else {
-        toast.success('Tour reserved successfully!', { id: toastId });
-        navigate(`/checkout/${data.reserveId}`)
-        window.scrollTo(0, 0);
+        if(isSuccess){
+          toast.success('Tour reserved successfully!', { id: toastId });
+          navigate(`/checkout/${data.reserveId}`)
+        } else {
+          toast.success('Tour booked successfully!', { id: toastId });
+          navigate(`/success/${bookingData?.bookingId}`)
+        }
       }
      }
-  },[isLoading, isError, isSuccess])
+  },[isLoading, isError, isSuccess, isBookingError, isBookingLoading, isBookingSuccess])
 
   return {reserve, isLoading, book, reservedTour, isReservedDetailsLoading, isReservedDetailsError}
 }
