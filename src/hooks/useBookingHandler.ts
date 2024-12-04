@@ -14,7 +14,7 @@ const useBookingHandler = () => {
   const { reserveId } = useParams() as Params;
   const [reserveTour, { isLoading, isError, isSuccess, data }] = useReserveTourMutation()
   const { data: reservedTour, isLoading: isReservedDetailsLoading, isError: isReservedDetailsError } = useGetReservedTourQuery(reserveId, {skip: !reserveId});
-  const [bookTour, { isLoading: isBookingLoading, isError: isBookingError, isSuccess: isBookingSuccess, data: bookingData }] = useBookTourMutation()
+  const [bookTour, { isLoading: isBookingLoading, isError: isBookingError, isSuccess: isBookingSuccess }] = useBookTourMutation()
   const [toastId, setToastId] = useState<string | null>(null)
   const navigate = useNavigate()
 
@@ -29,12 +29,15 @@ const useBookingHandler = () => {
       toast.error("Payment is not submitted")
       return;
     }
-    await bookTour(data)
+    const {error: submitError} = await elements.submit()
+    if(submitError)
+      return toast.error("Invalid card details")
+    const {data: bookingData} = await bookTour(data)
     const { error } = await stripe.confirmPayment({
       clientSecret: bookingData?.clientSecret || "",
       elements,
       confirmParams: {
-        return_url: `${window.location.origin}/booking`,
+        return_url: `${window.location.origin}/success/${bookingData?.bookingId}`,
       },
     });
     if(error)
@@ -52,15 +55,16 @@ const useBookingHandler = () => {
         if(isSuccess){
           toast.success('Tour reserved successfully!', { id: toastId });
           navigate(`/checkout/${data.reserveId}`)
-        } else {
-          toast.success('Tour booked successfully!', { id: toastId });
-          navigate(`/success/${bookingData?.bookingId}`)
-        }
+        } 
+        // else {
+        //   toast.success('Tour booked successfully!', { id: toastId });
+        //   navigate(`/success/${bookingData?.bookingId}`)
+        // }
       }
      }
   },[isLoading, isError, isSuccess, isBookingError, isBookingLoading, isBookingSuccess])
 
-  return {reserve, isLoading, book, reservedTour, isReservedDetailsLoading, isReservedDetailsError}
+  return {reserve, isLoading, book, reservedTour, isReservedDetailsLoading, isReservedDetailsError }
 }
 
 export default useBookingHandler

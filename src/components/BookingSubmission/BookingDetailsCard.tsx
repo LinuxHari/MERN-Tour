@@ -99,7 +99,7 @@ const BookingDetailsCard = ({isPayformLoaded, isLoading, isError, reservedTour}:
         </div>
 
         <div className="mt-30">
-          <Button buttonType="primary" type="submit" className="w-100" disabled={!isPayformLoaded}>
+          <Button buttonType="primary" type="submit" className="w-100" isLoading={isLoading} disabled={!isPayformLoaded || isLoading}>
             Complete My Order
           </Button>
         </div>

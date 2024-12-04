@@ -35,7 +35,7 @@ const CheckoutForm = () => {
       <form className="row d-flex" onSubmit={handleSubmit((data) => book({...data, id: reserveId as string }, stripe, elements))} noValidate>
       <div className="col-lg-8 order-lg-1 bg-white px-4 py-4 rounded-12">
         <TravellerInfoForm register={register} setValue={setValue} expiresAt={reservedTour.expiresAt} />
-        <PaymentElement className="my-5"/>
+        <PaymentElement className="my-5" />
       </div>
       <BookingDetailsCard isPayformLoaded={true} reservedTour={reservedTour} isLoading={isReservedDetailsLoading} isError={isReservedDetailsError} />
     </form>

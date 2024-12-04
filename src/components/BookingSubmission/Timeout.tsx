@@ -10,7 +10,7 @@ const Timeout = ({ expiresAt }: TimeoutProps) => {
   useEffect(() => {
     const id = setInterval(() => {
       const remainingTime = Math.max(0, count - 1);
-      if (remainingTime === 0) clearInterval(id);
+      if (remainingTime === -1) clearInterval(id);
       else setCount(remainingTime);
     }, 1000);
 
@@ -31,7 +31,7 @@ const Timeout = ({ expiresAt }: TimeoutProps) => {
           <span className="mx-2">Minutes remaining</span>
         </>
       ) : (
-        <div>Time's up!</div>
+        <div>Time's up</div>
       )}
     </div>
   );
