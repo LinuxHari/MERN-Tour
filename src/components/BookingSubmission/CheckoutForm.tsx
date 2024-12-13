@@ -11,6 +11,8 @@ import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { getFormErrorMessages } from "../../utils/getFormErrorMessages";
 import toast from "react-hot-toast";
+import CheckoutModal from "./CheckoutModal";
+import useModal from "../../hooks/useModal";
 
 const CheckoutForm = () => {
   const {data} = useUserHandler()
@@ -20,7 +22,8 @@ const CheckoutForm = () => {
   const { book, reservedTour, isReservedDetailsError, isReservedDetailsLoading } = useBookingHandler()
   const stripe = useStripe()
   const elements = useElements()
-  const {reserveId} = useParams()
+  const {reserveId } = useParams()
+  const { showModal, onClose } = useModal()
 
   useEffect(() => {
     if (Object.keys(errors).length) {
@@ -38,6 +41,7 @@ const CheckoutForm = () => {
         <PaymentElement className="my-5" />
       </div>
       <BookingDetailsCard isPayformLoaded={true} reservedTour={reservedTour} isLoading={isReservedDetailsLoading} isError={isReservedDetailsError} />
+      <CheckoutModal showModal={showModal} onClose={onClose}  />
     </form>
   );
 };

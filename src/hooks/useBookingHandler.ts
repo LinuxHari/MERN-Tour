@@ -16,6 +16,24 @@ const useBookingHandler = () => {
   const { data: reservedTour, isLoading: isReservedDetailsLoading, isError: isReservedDetailsError } = useGetReservedTourQuery(reserveId, {skip: !reserveId});
   const [bookTour, { isLoading: isBookingLoading, isError: isBookingError, isSuccess: isBookingSuccess }] = useBookTourMutation()
   const [toastId, setToastId] = useState<string | null>(null)
+  const modalConfig = {
+    failed: {
+      title: "Booking Failed",
+      content: "Booking has failed, try booking another tour.",
+      closeText: "Go to home"
+  },
+    retry: {
+      title: "Card Failed",
+      content: "Try booking again with different card!",
+      closeText: "Try again"
+  },
+    gone: {
+      title: "Reservation Expired",
+      content: "Reservation has exipired, try booking another tour.",
+      closeText: "Go to home"
+  }
+  }
+  
   const navigate = useNavigate()
 
   const reserve = async (data: ReserveBody) => {
@@ -31,7 +49,7 @@ const useBookingHandler = () => {
     }
     const {error: submitError} = await elements.submit()
     if(submitError)
-      return toast.error("Invalid card details")
+      return toast.error("Invalid card details") // Have to manage booking data and card error handling in frontend and test, have to also manage payment history with attempts
     const {data: bookingData} = await bookTour(data)
     const { error } = await stripe.confirmPayment({
       clientSecret: bookingData?.clientSecret || "",
@@ -41,7 +59,7 @@ const useBookingHandler = () => {
       },
     });
     if(error)
-      toast.error("Payment failed")
+     return toast.error("Payment failed, try different card")
   }
 
   useAfterEffect(() => {
