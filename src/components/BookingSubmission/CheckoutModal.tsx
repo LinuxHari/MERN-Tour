@@ -1,7 +1,7 @@
 import { ModalProps } from "../../type";
 import Modal from "../Shared/Modal/Modal";
 
-type CheckoutModal = ModalProps & {
+type CheckoutModal = Omit<ModalProps, "onConfirm"> & {
   title: string
   content: string
   closeText: string

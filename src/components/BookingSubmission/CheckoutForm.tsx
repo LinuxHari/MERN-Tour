@@ -12,18 +12,16 @@ import { useEffect } from "react";
 import { getFormErrorMessages } from "../../utils/getFormErrorMessages";
 import toast from "react-hot-toast";
 import CheckoutModal from "./CheckoutModal";
-import useModal from "../../hooks/useModal";
 
 const CheckoutForm = () => {
   const {data} = useUserHandler()
   const user = data as UserInfoResponse
   const defaultValues: Partial<BookingSchemaType> = {fullName: user.firstName + user.lastName, country: user.country, phone: user.phone, email: user.email, countryCode: user.countryCode };
   const { register, handleSubmit, formState: { errors }, setValue } = useForm<BookingSchemaType>({ resolver: zodResolver(BookingSchema), defaultValues });
-  const { book, reservedTour, isReservedDetailsError, isReservedDetailsLoading } = useBookingHandler()
+  const { book, reservedTour, isReservedDetailsError, isReservedDetailsLoading, modalInfo } = useBookingHandler()
   const stripe = useStripe()
   const elements = useElements()
   const {reserveId } = useParams()
-  const { showModal, onClose } = useModal()
 
   useEffect(() => {
     if (Object.keys(errors).length) {
@@ -41,7 +39,7 @@ const CheckoutForm = () => {
         <PaymentElement className="my-5" />
       </div>
       <BookingDetailsCard isPayformLoaded={true} reservedTour={reservedTour} isLoading={isReservedDetailsLoading} isError={isReservedDetailsError} />
-      <CheckoutModal showModal={showModal} onClose={onClose}  />
+      { modalInfo && <CheckoutModal showModal={Boolean(modalInfo)} onClose={modalInfo.onClose} title={modalInfo.title} content={modalInfo.content} closeText={modalInfo.closeText} /> }
     </form>
   );
 };
