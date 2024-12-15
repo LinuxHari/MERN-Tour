@@ -1,13 +1,15 @@
 import { ButtonHTMLAttributes } from "react";
+import { Link } from "react-router-dom";
 // import Spinner from "../Spinner/Spinner";
 
 type ExtendedButtonProps = {
   type?: "button" | "submit";
   className?: string;
   children: React.ReactNode;
-  buttonType: "primary" | "secondary" | "icon";
+  buttonType: "primary" | "secondary" | "icon" | "link";
   showIcon?: boolean;
   isLoading?: boolean;
+  to?: string;
 };
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & ExtendedButtonProps;
@@ -19,6 +21,7 @@ const Button = ({
   buttonType,
   showIcon = true,
   isLoading = false,
+  to,
   ...buttonProps
 }: ButtonProps) => {
   if (buttonType === "icon") {
@@ -40,6 +43,10 @@ const Button = ({
         {showIcon && <i className="icon-arrow-top-right text-16 ml-10"></i>}
       </button>
     );
+  }
+
+  if (buttonType === "link"){
+    return <Link className={`button -md -dark-1 bg-accent-1 text-white ${className}`} to={to || "/"}>{children}</Link>
   }
 
   return (

@@ -1,4 +1,3 @@
-import { UserSchemaType } from "../../schema/userSchema";
 import { UserInfoResponse } from "../../type";
 import { baseApi } from "./baseApi";
 

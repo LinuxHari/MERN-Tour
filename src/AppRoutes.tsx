@@ -29,7 +29,7 @@ const AppRoutes = () => {
         <Route path="tours/:destinationId" element={<ListingTours/>}/>
         <Route path="tours/:destinationId/:tourId" element={<Tour/>}/>
         <Route path="checkout" element={<Checkout/>}/>
-        <Route path="success" element={<BookingSuccess/>}/>
+        <Route path="success/:bookingId" element={<BookingSuccess/>}/>
         <Route path="login" element={<Login/>}/>
         <Route path="signup" element={<Signup/>}/>
         <Route path="checkout/:reserveId" element={<Checkout/>}/>

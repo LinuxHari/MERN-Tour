@@ -1,5 +1,5 @@
-import BookingDetailsCard from "../components/BookingSubmission/BookingDetailsCard"
 import BookingInfo from "../components/BookingSuccess/BookingInfo"
+import TourDetails from "../components/BookingSuccess/TourDetails"
 
 const BookingSuccess = () => {
   return (
@@ -11,7 +11,7 @@ const BookingSuccess = () => {
            <BookingInfo/>
           </div>
           <div className="col-lg-4">
-          <BookingDetailsCard/>
+          <TourDetails />
           </div>
         </div>
       </div>
