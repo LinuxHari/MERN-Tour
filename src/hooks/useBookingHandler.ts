@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { useBookTourMutation, useGetReservedTourQuery, useReserveTourMutation } from "../redux/api/baseApi"
 import { BookingBody, ReserveBody } from "../type"
 import toast from "react-hot-toast"
@@ -18,28 +18,32 @@ const useBookingHandler = () => {
   const [bookTour, { isLoading: isBookingLoading, isError: isBookingError, isSuccess: isBookingSuccess }] = useBookTourMutation()
   const navigate = useNavigate()
   const [toastId, setToastId] = useState<string | null>(null)
+  const [isTimeout, setTimeoutStatus] = useState(false)
+
+  const goHome = () => navigate("/")
+
   const modalConfig = {
     failed: {
       title: "Booking Failed",
       content: "Booking has failed, try booking another tour.",
       closeText: "Go to home",
-      onClose: () => navigate("/")
+      onClose:() => goHome
   },
-  //   retry: {
-  //     title: "Card Failed",
-  //     content: "Try booking again with different card!",
-  //     closeText: "Try again",
-  //     onClose: () => setModalInfo(null)
-  // },
+  timeout: {
+    title: "Reservation Expired",
+    content: "Reservation has exipired, try booking again.",
+    closeText: "Go to home",
+    onClose: () => goHome
+},
     gone: {
       title: "Reservation Expired",
       content: "Reservation has exipired, try booking another tour.",
       closeText: "Go to home",
-      onClose: () => navigate("/")
+      onClose: () => goHome
   }
   } as const
 
-  const [modalInfo, setModalInfo] = useState<typeof modalConfig["failed"] | typeof modalConfig["gone"] | null>(null)
+  const [modalInfo, setModalInfo] = useState<typeof modalConfig["failed"] | typeof modalConfig["gone"] | typeof modalConfig["timeout"] | null>(null)
 
   const reserve = async (data: ReserveBody) => {
     const toastId = toast.loading("Reserving tour")
@@ -74,6 +78,12 @@ const useBookingHandler = () => {
      return toast.error("Payment failed, try different card")
   }
 
+  const onTimeout = () => useCallback(() => setTimeoutStatus(true), [])
+
+  useEffect(() => {
+    setModalInfo(modalConfig["timeout"])
+  }, [isTimeout])
+
   useAfterEffect(() => {
     if(!isLoading && !isBookingLoading && toastId){
       if((isError && !isSuccess) || (isBookingError && !isBookingSuccess)){
@@ -94,7 +104,7 @@ const useBookingHandler = () => {
      }
   },[isLoading, isError, isSuccess, isBookingError, isBookingLoading, isBookingSuccess])
 
-  return { reserve, isLoading, book, reservedTour, isReservedDetailsLoading, isReservedDetailsError, modalInfo }
+  return { reserve, isLoading, book, reservedTour, isReservedDetailsLoading, isReservedDetailsError, modalInfo, onTimeout }
 }
 
 export default useBookingHandler

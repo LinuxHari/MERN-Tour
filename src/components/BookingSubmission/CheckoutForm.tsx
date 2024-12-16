@@ -18,7 +18,7 @@ const CheckoutForm = () => {
   const user = data as UserInfoResponse
   const defaultValues: Partial<BookingSchemaType> = {fullName: user.firstName + user.lastName, country: user.country, phone: user.phone, email: user.email, countryCode: user.countryCode };
   const { register, handleSubmit, formState: { errors }, setValue } = useForm<BookingSchemaType>({ resolver: zodResolver(BookingSchema), defaultValues });
-  const { book, reservedTour, isReservedDetailsError, isReservedDetailsLoading, modalInfo } = useBookingHandler()
+  const { book, reservedTour, isReservedDetailsError, isReservedDetailsLoading, modalInfo, onTimeout } = useBookingHandler()
   const stripe = useStripe()
   const elements = useElements()
   const {reserveId } = useParams()
@@ -35,7 +35,7 @@ const CheckoutForm = () => {
   return (
       <form className="row d-flex" onSubmit={handleSubmit((data) => book({...data, id: reserveId as string }, stripe, elements))} noValidate>
       <div className="col-lg-8 order-lg-1 bg-white px-4 py-4 rounded-12">
-        <TravellerInfoForm register={register} setValue={setValue} expiresAt={reservedTour.expiresAt} />
+        <TravellerInfoForm register={register} setValue={setValue} expiresAt={reservedTour.expiresAt} onTimeout={onTimeout} />
         <PaymentElement className="my-5" />
       </div>
       <BookingDetailsCard isPayformLoaded={true} reservedTour={reservedTour} isLoading={isReservedDetailsLoading} isError={isReservedDetailsError} />

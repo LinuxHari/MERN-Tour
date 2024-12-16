@@ -2,15 +2,19 @@ import { useEffect, useState } from "react";
 
 type TimeoutProps = {
   expiresAt: number;
+  onTimeout: () => void
 };
 
-const Timeout = ({ expiresAt }: TimeoutProps) => {
+const Timeout = ({ expiresAt, onTimeout }: TimeoutProps) => {
   const [count, setCount] = useState(Math.max(0, Math.floor((expiresAt - Date.now()) / 1000)));
 
   useEffect(() => {
     const id = setInterval(() => {
       const remainingTime = Math.max(0, count - 1);
-      if (remainingTime === -1) clearInterval(id);
+      if (remainingTime === -1) {
+        onTimeout()
+        clearInterval(id)
+      }
       else setCount(remainingTime);
     }, 1000);
 
