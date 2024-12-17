@@ -1,6 +1,21 @@
+import { useParams } from "react-router-dom";
 import Button from "../Shared/Button/Button";
+import { useGetBookingQuery } from "../../redux/api/baseApi";
+
+type Params = {
+  bookingId: string
+}
 
 const BookingInfo = () => {
+  const { bookingId } = useParams() as Params
+  const {data: booking, isLoading, isError} = useGetBookingQuery(bookingId)
+
+  if(isError || !booking)
+    return <></>
+
+  if(isLoading)
+    return <></>
+
   return (
     <div className="bg-white rounded-12 shadow-2 py-30 px-30 md:py-20 md:px-20">
       <div className="d-flex flex-column items-center text-center">
@@ -9,7 +24,7 @@ const BookingInfo = () => {
         </div>
 
         <h2 className="text-30 md:text-24 fw-700 mt-20">
-          System, your order was submitted successfully!
+          {booking.name}, your order was submitted successfully!
         </h2>
         <div className="mt-10">
           Booking details has been sent to: booking@tourz.com
@@ -20,22 +35,22 @@ const BookingInfo = () => {
         <div className="row y-gap-15">
           <div className="col-md-3 col-6">
             <div>Order Number</div>
-            <div className="text-accent-2">13119</div>
+            <div className="text-accent-2">{bookingId}</div>
           </div>
 
           <div className="col-md-3 col-6">
             <div>Date</div>
-            <div className="text-accent-2">27/07/2021</div>
+            <div className="text-accent-2">{booking.bookDate.toString()}</div>
           </div>
 
           <div className="col-md-3 col-6">
             <div>Total</div>
-            <div className="text-accent-2">$40.10</div>
+            <div className="text-accent-2">${booking.tourInfo.amount}</div>
           </div>
 
           <div className="col-md-3 col-6">
             <div>Payment Method</div>
-            <div className="text-accent-2">Direct Bank Transfer</div>
+            <div className="text-accent-2">{booking.paymentMethod}</div>
           </div>
         </div>
       </div>
@@ -70,25 +85,3 @@ const BookingInfo = () => {
 };
 
 export default BookingInfo;
-
-
-// {
-//   tourId: string,
-//   bookDate: Date,
-//   totalAmount: number,
-//   paymentMethod: "Card", 
-//   bookInfo: {
-//       startDate: Date,
-//       duration: number,
-//       passengers: {
-//           adults: number;
-//           children: number;
-//           teens: number;
-//           infants: number;
-//       },
-//       email: string
-//   },
-//   tourInfo: {
-//   tour
-// }
-// }

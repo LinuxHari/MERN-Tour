@@ -123,6 +123,20 @@ export type BookingBody = BookingSchemaType & {
   id: String
 }
 
+export type BookingDetailsResponse = {
+  bookDate: Date;
+  paymentMethod: "Card";
+  name: string;
+  email: string;  
+  tourInfo: {
+  tourName: string;
+  startDate: Date;
+  duration: number;
+  passengers: ReserveBody["pax"];
+  amount: number
+}
+}
+
 export enum ImgPath {
   tours = "/tours",
   profile = "/profile"

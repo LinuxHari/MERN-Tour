@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import env from "../../config/envConfig";
-import { AppliedFiltersProps, BookingBody, ReserveBody, ReservedTourResponse, ReserveResponse, SearchSuggestions, SingleTourResponse, TourListResponse } from "../../type";
+import { AppliedFiltersProps, BookingBody, BookingDetailsResponse, ReserveBody, ReservedTourResponse, ReserveResponse, SearchSuggestions, SingleTourResponse, TourListResponse } from "../../type";
 
 type TourSearchParams = {
   destinationId: string;
@@ -53,8 +53,11 @@ export const baseApi = createApi({
     }),
     bookTour: builder.mutation<{clientSecret: string, bookingId: string}, BookingBody>({
       query: ({ id, ...bookingData }) => ({ url: `/tour/book/${id}`, method: "POST", body: bookingData, credentials: "include" })
-    })
+    }),
+    getBooking: builder.query<BookingDetailsResponse, string>({
+      query: (id) => ({ url: `/tour/book/${id}` }),
+    }),
   }),
 });
 
-export const { useGetTourByIdQuery, useGetToursBySearchQuery, useGetSearchSuggestionsByTextQuery, useReserveTourMutation, useGetReservedTourQuery, useBookTourMutation } = baseApi;
+export const { useGetTourByIdQuery, useGetToursBySearchQuery, useGetSearchSuggestionsByTextQuery, useReserveTourMutation, useGetReservedTourQuery, useBookTourMutation, useGetBookingQuery } = baseApi;
