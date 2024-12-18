@@ -2,7 +2,7 @@ import { ButtonHTMLAttributes } from "react";
 import { Link } from "react-router-dom";
 // import Spinner from "../Spinner/Spinner";
 
-type ExtendedButtonProps = {
+type ExtendedButtonPropsBase = {
   type?: "button" | "submit";
   className?: string;
   children: React.ReactNode;
@@ -11,6 +11,10 @@ type ExtendedButtonProps = {
   isLoading?: boolean;
   to?: string;
 };
+
+type ExtendedButtonProps = 
+  | (ExtendedButtonPropsBase & { buttonType: Exclude<ExtendedButtonPropsBase["buttonType"], "link">; to?: never })
+  | (ExtendedButtonPropsBase & { buttonType: "link"; to: string });
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & ExtendedButtonProps;
 

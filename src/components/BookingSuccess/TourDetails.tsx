@@ -1,7 +1,9 @@
 import { BookingDetailsResponse } from "../../type";
 import Button from "../Shared/Button/Button";
 
-const TourDetails = ({tourName, startDate, duration, passengers: pax, amount }: BookingDetailsResponse["tourInfo"]) => {
+type TourDetailsProps = BookingDetailsResponse["tourInfo"] & { amount: number }
+
+const TourDetails = ({tourName, startDate, duration, passengers: pax, amount }: TourDetailsProps) => {
   return (
     <div className="pl-50 md:pl-0">
       <div className="bg-white rounded-12 shadow-2 py-30 px-30 md:py-20 md:px-20">

@@ -57,7 +57,10 @@ export const baseApi = createApi({
     getBooking: builder.query<BookingDetailsResponse, string>({
       query: (id) => ({ url: `/tour/book/${id}` }),
     }),
+    cancelBooking: builder.mutation<void, string>({
+      query: (id) => ({ url: `/tour/book/cancel/${id}` }),
+    })
   }),
 });
 
-export const { useGetTourByIdQuery, useGetToursBySearchQuery, useGetSearchSuggestionsByTextQuery, useReserveTourMutation, useGetReservedTourQuery, useBookTourMutation, useGetBookingQuery } = baseApi;
+export const { useGetTourByIdQuery, useGetToursBySearchQuery, useGetSearchSuggestionsByTextQuery, useReserveTourMutation, useGetReservedTourQuery, useBookTourMutation, useGetBookingQuery, useCancelBookingMutation } = baseApi;

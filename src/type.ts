@@ -126,15 +126,22 @@ export type BookingBody = BookingSchemaType & {
 export type BookingDetailsResponse = {
   bookDate: Date;
   paymentMethod: "Card";
+  status: "success" | "pending";
   name: string;
-  email: string;  
+  email: string;
+  amount: number;
   tourInfo: {
   tourName: string;
   startDate: Date;
   duration: number;
   passengers: ReserveBody["pax"];
-  amount: number
-}
+};
+  paymentInfo?: {
+    cardNumber: string;
+    cardBrand: string;
+    paymentDate: Date;
+    recipetUrl: string;
+  }
 }
 
 export enum ImgPath {
