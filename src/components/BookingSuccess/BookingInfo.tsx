@@ -1,11 +1,11 @@
 import { BookingDetailsResponse } from "../../type";
-import Button from "../Shared/Button/Button";
 
-type BookingInfoProps = Omit<BookingDetailsResponse, "tourInfo"> & { bookingId: string, cancel: () => void }
+type BookingInfoProps = Omit<BookingDetailsResponse, "tourInfo"> & { bookingId: string }
 
-const BookingInfo = ({ name, email, bookingId, bookDate, amount, paymentMethod, paymentInfo, status, cancel }: BookingInfoProps) => {
+const BookingInfo = ({ name, email, bookingId, bookDate, amount, paymentMethod, paymentInfo, status, freeCancellation, isCancellable }: BookingInfoProps) => {
   return (
-    <div className="bg-white rounded-12 shadow-2 py-30 px-30 md:py-20 md:px-20">
+  <>
+      { freeCancellation && isCancellable && <div className="bg-success text-white px-5 py-2 fw-400 rounded-pill absolute top-1 end-1">Free cancellation</div> }
       <div className="d-flex flex-column items-center text-center">
         <div className="size-80 rounded-full flex-center bg-accent-1 text-white">
           <i className="icon-check text-26"></i>
@@ -66,11 +66,7 @@ const BookingInfo = ({ name, email, bookingId, bookDate, amount, paymentMethod, 
         </div>
       </div>
       }
-        <div className="d-flex items-center justify-end mt-3">
-            <Button buttonType="secondary" onClick={cancel}>Cancel</Button>
-            <Button className="ml-20" buttonType="link" to="/">Book again</Button>
-          </div>
-    </div>
+    </>
   );
 };
 

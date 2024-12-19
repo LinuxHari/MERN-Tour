@@ -130,6 +130,8 @@ export type BookingDetailsResponse = {
   name: string;
   email: string;
   amount: number;
+  freeCancellation: boolean;
+  isCancellable: boolean;
   tourInfo: {
   tourName: string;
   startDate: Date;

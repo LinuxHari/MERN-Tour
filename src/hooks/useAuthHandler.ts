@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { useLoginMutation, useLogoutMutation, useSignupMutation } from "../redux/api/authApi";
 import { LoginSchemaType, SignupSchemaType } from "../schema/authSchema";
 import useAfterEffect from "./useAfterEffect";
@@ -23,23 +23,23 @@ const useAuthHandler = () => {
     setToastId(toastId)
   }
 
-  const onLogin = async (data: LoginData) => {
+  const onLogin = useCallback(async (data: LoginData) => {
     handleToast('Signing up...');
     const { skipRedirect, ...loginData } = data
     if(skipRedirect)
       setSkipRedirect(skipRedirect)
     await login(loginData);
-  };
+  },[]);
 
-  const onSignup = async (data: SignupSchemaType) => {
+  const onSignup = useCallback(async (data: SignupSchemaType) => {
     handleToast('Logging in...');
     await signup(data);
-  };
+  },[]);
 
-  const onLogout = async (email: LoginSchemaType["email"]) => {
+  const onLogout = useCallback(async (email: LoginSchemaType["email"]) => {
     handleToast('Logging out...');
     await logout(email);
-  };
+  }, []);
 
   useAfterEffect(() => {
     if(!isSignupLoading && !isLoginLoading && !isLogoutLoading && toastId){

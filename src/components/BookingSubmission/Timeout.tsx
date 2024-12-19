@@ -11,7 +11,8 @@ const Timeout = ({ expiresAt, onTimeout }: TimeoutProps) => {
   useEffect(() => {
     const id = setInterval(() => {
       const remainingTime = Math.max(0, count - 1);
-      if (remainingTime === -1) {
+      console.log(remainingTime, "remaining time")
+      if (remainingTime <= 0) {
         onTimeout()
         clearInterval(id)
       }
