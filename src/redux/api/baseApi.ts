@@ -28,7 +28,7 @@ type SingleTourParams = {
 export const baseApi = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({ baseUrl: `${env.API_BASE_URL}` }),
-  tagTypes: ["Tour", "User", "UNAUTHORIZED"],
+  tagTypes: ["Tour", "User", "Book", "UNAUTHORIZED"],
   endpoints: (builder) => ({
     getSearchSuggestionsByText: builder.query<SearchSuggestions, string>({
       query: (searchText) => ({ url: "/tour/search", params: { searchText } }),
@@ -56,9 +56,11 @@ export const baseApi = createApi({
     }),
     getBooking: builder.query<BookingDetailsResponse, string>({
       query: (id) => ({ url: `/tour/book/${id}` }),
+      providesTags: (_, __, bookingId) => [{type: "Book", id: bookingId}]
     }),
     cancelBooking: builder.mutation<void, string>({
       query: (id) => ({ url: `/tour/book/cancel/${id}` }),
+      invalidatesTags: (_, __, bookingId) => [{type: "Book", id: bookingId}]
     })
   }),
 });

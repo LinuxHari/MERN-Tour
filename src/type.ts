@@ -132,6 +132,7 @@ export type BookingDetailsResponse = {
   amount: number;
   freeCancellation: boolean;
   isCancellable: boolean;
+  refundableAmount: number;
   tourInfo: {
   tourName: string;
   startDate: Date;
