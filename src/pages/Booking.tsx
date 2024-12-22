@@ -2,11 +2,14 @@ import BookingInfo from "../components/BookingSuccess/BookingInfo"
 import CancelModal from "../components/BookingSuccess/CancelModal"
 import TourDetails from "../components/BookingSuccess/TourDetails"
 import Button from "../components/Shared/Button/Button"
+import withAuth from "../hocs/withAuth"
 import useAfterBookingHandler from "../hooks/useAfterBookingHandler"
 import useModal from "../hooks/useModal"
+import useUserHandler from "../hooks/useUserHandler"
 
-const BookingSuccess = () => {
+const Booking = () => {
   const { booking, isBookingLoading, isBookingError, isCancelLoading, cancelBooking, bookingId } = useAfterBookingHandler()
+  const { user } = useUserHandler()
   const { onClose, showModal, onConfirm, openModal } = useModal()
 
   if(isBookingError || !booking)
@@ -25,7 +28,7 @@ const BookingSuccess = () => {
         <div className="col-lg-8 bg-white rounded-12 shadow-2 py-30 px-30 md:py-20 md:px-20 relative">
            <BookingInfo {...bookingInfo} amount={amount} bookingId={bookingId} />
            <div className="d-flex items-center justify-end mt-3">
-            {bookingInfo.isCancellable && <Button buttonType="secondary" onClick={openModal} disabled={isCancelLoading}>Cancel</Button>}
+            {bookingInfo.isCancellable && user && <Button buttonType="secondary" onClick={openModal} disabled={isCancelLoading}>Cancel</Button>}
             <Button className="ml-20" buttonType="link" to="/">Book again</Button>
           </div>
           </div>
@@ -40,4 +43,4 @@ const BookingSuccess = () => {
   )
 }
 
-export default BookingSuccess
+export default withAuth(Booking)

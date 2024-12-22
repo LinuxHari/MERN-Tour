@@ -1,5 +1,6 @@
 import CheckoutForm from "../components/BookingSubmission/CheckoutForm";
 import PayElement from "../components/Shared/PayElement/PayElement";
+import withAuth from "../hocs/withAuth";
 
 const Checkout = () => { 
   return (
@@ -15,4 +16,4 @@ const Checkout = () => {
   );
 };
 
-export default Checkout;
+export default withAuth(Checkout);

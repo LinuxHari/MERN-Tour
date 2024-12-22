@@ -8,22 +8,22 @@ import useModal from "../../../hooks/useModal";
 
 
 const AuthSection = () => {
-  const {data, isLoggedIn} = useUserHandler()
+  const {user, isLoggedIn} = useUserHandler()
   const { onLogout } = useAuthHandler();
   const { showModal, onClose, onConfirm, openModal } = useModal()
 
   const handleLogout = async() => {
-    if(data && isLoggedIn){
-      await onLogout(data.email) 
+    if(user && isLoggedIn){
+      await onLogout(user.email) 
     }
   }
   return (
     <>
-      {isLoggedIn && data ? (
+      {isLoggedIn && user? (
          <Dropdown className="js-form-dd">
          <Dropdown.Toggle className="px-0" dataClick="header-currency">
-          <Avatar type="small" email={data.email} profile={data.profile} />
-          <p className="text-clamp-10 m-0">{data.firstName}</p>
+          <Avatar type="small" email={user.email} profile={user.profile} />
+          <p className="text-clamp-10 m-0">{user.firstName}</p>
           <i className="icon-chevron-down text-18"></i>
          </Dropdown.Toggle>
          <Dropdown.Content dataClick="header-currency">
