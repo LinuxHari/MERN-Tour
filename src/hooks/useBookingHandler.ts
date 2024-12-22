@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react"
+import { useCallback, useState } from "react"
 import { useBookTourMutation, useGetReservedTourQuery, useReserveTourMutation } from "../redux/api/baseApi"
 import { BookingBody, ReserveBody } from "../type"
 import toast from "react-hot-toast"
@@ -29,12 +29,12 @@ const useBookingHandler = () => {
       closeText: "Go to home",
       onClose:() => goHome
   },
-  timeout: {
+    timeout: {
     title: "Reservation Expired",
     content: "Reservation has exipired, try booking again.",
     closeText: "Go to home",
     onClose: () => goHome
-},
+  },
     gone: {
       title: "Reservation Expired",
       content: "Reservation has exipired, try booking another tour.",
@@ -53,13 +53,14 @@ const useBookingHandler = () => {
 
   const book = useCallback(
     async (data: BookingBody, stripe: Stripe | null, elements: StripeElements | null) => {
+      const toastId = toast.loading("Reserving tour")
       if (!stripe || !elements) {
-        toast.error("Payment is not submitted")
+        toast.error("Payment is not submitted", {id: toastId})
         return;
       }
       const {error: submitError} = await elements.submit()
       if(submitError)
-        return toast.error("Invalid card details") // Have to manage booking data and card error handling in frontend and test, have to also manage payment history with attempts
+        return toast.error("Invalid card details", {id: toastId}) // Have to manage booking data and card error handling in frontend and test, have to also manage payment history with attempts
       const {data: bookingData, error: bookingError} = await bookTour(data)
       const bookError = bookingError as FetchBaseQueryError
       if(bookError){
@@ -67,16 +68,19 @@ const useBookingHandler = () => {
           setModalInfo(modalConfig["failed"])
         else if(bookError.status === 410)
           setModalInfo(modalConfig["gone"])
+        else 
+          toast.error("Something went wrong", {id: toastId})
       }
       const { error } = await stripe.confirmPayment({
         clientSecret: bookingData?.clientSecret || "",
         elements,
         confirmParams: {
-          return_url: `${window.location.origin}/success/${bookingData?.bookingId}`,
+          return_url: `${window.location.origin}/booking/${bookingData?.bookingId}`,
         },
       });
       if(error)
        return toast.error("Payment failed, try different card")
+      toast.success("Tour booked successfully", {id: toastId})
     },[])
 
   const onTimeout = useCallback(() => setTimeoutStatus(true), [])
@@ -106,7 +110,7 @@ const useBookingHandler = () => {
      }
   },[isLoading, isError, isSuccess, isBookingError, isBookingLoading, isBookingSuccess])
 
-  return { reserve, isLoading, book, reservedTour, isReservedDetailsLoading, isReservedDetailsError, modalInfo, onTimeout }
+  return { reserve, isLoading, book, reservedTour, isReservedDetailsLoading, isReservedDetailsError, isBookingLoading, modalInfo, onTimeout }
 }
 
 export default useBookingHandler

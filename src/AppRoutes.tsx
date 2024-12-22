@@ -1,8 +1,6 @@
 import { lazy, useCallback, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 import AppLayout from "./layouts/AppLayout";
-import Login from "./pages/Auth/Login";
-import Signup from "./pages/Auth/Signup";
 
 const Home = lazy(() => import('./pages/Home'))
 const AdminLayout = lazy(() => import("./layouts/AdminLayout")) ;
@@ -15,8 +13,12 @@ const Profile = lazy(() => import('./pages/Admin/Profile'));
 const CommonHeader = lazy(() => import('./components/Admin/CommonHeader'));
 const ListingTours = lazy(() => import('./pages/ListingTours'))
 const Tour = lazy(() => import('./pages/SingleTour'))
-const BookingSuccess = lazy(() => import('./pages/BookingSuccess'));
+const Booking = lazy(() => import('./pages/Booking'));
 const Checkout = lazy(() => import('./pages/Checkout'));
+const Login = lazy(() => import('./pages/Auth/Login'))
+const Signup = lazy(() => import('./pages/Auth/Signup'))
+const NotFound = lazy(() => import('./pages/NotFound'))
+
 
 const AppRoutes = () => {
   const render = useCallback((title: string, desc: string = "") => <CommonHeader title={title} desc={desc}/>,[])
@@ -28,11 +30,10 @@ const AppRoutes = () => {
         <Route index element={<Home/>}/>
         <Route path="tours/:destinationId" element={<ListingTours/>}/>
         <Route path="tours/:destinationId/:tourId" element={<Tour/>}/>
-        <Route path="checkout" element={<Checkout/>}/>
-        <Route path="success/:bookingId" element={<BookingSuccess/>}/>
+        <Route path="checkout/:reserveId" element={<Checkout/>}/>
+        <Route path="booking/:bookingId" element={<Booking/>}/>
         <Route path="login" element={<Login/>}/>
         <Route path="signup" element={<Signup/>}/>
-        <Route path="checkout/:reserveId" element={<Checkout/>}/>
       </Route>
       <Route path="/dashboard" element={<AdminLayout />}>
         <Route index element={<Dashboard render={render} />} />
@@ -42,6 +43,7 @@ const AppRoutes = () => {
         <Route path="favorites" element={<Favorites render={render} />} />
         <Route path="profile" element={<Profile render={render} />} />
       </Route>
+      <Route path="*" element={<NotFound />}/>
     </Routes>
   </Suspense>
   );

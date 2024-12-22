@@ -14,11 +14,11 @@ import toast from "react-hot-toast";
 import CheckoutModal from "./CheckoutModal";
 
 const CheckoutForm = () => {
-  const {data} = useUserHandler()
-  const user = data as UserInfoResponse
+  const {user: userData} = useUserHandler()
+  const user = userData as UserInfoResponse
   const defaultValues: Partial<BookingSchemaType> = {fullName: user.firstName + user.lastName, country: user.country, phone: user.phone, email: user.email, countryCode: user.countryCode };
   const { register, handleSubmit, formState: { errors }, setValue } = useForm<BookingSchemaType>({ resolver: zodResolver(BookingSchema), defaultValues });
-  const { book, reservedTour, isReservedDetailsError, isReservedDetailsLoading, modalInfo, onTimeout } = useBookingHandler()
+  const { book, reservedTour, isReservedDetailsError, isReservedDetailsLoading, isBookingLoading, modalInfo, onTimeout } = useBookingHandler()
   const stripe = useStripe()
   const elements = useElements()
   const {reserveId } = useParams()
@@ -38,7 +38,7 @@ const CheckoutForm = () => {
         <TravellerInfoForm register={register} setValue={setValue} expiresAt={reservedTour.expiresAt} onTimeout={onTimeout} />
         <PaymentElement className="my-5" />
       </div>
-      <BookingDetailsCard isPayformLoaded={true} reservedTour={reservedTour} isLoading={isReservedDetailsLoading} isError={isReservedDetailsError} />
+      <BookingDetailsCard isPayformLoaded={true} reservedTour={reservedTour} isLoading={isReservedDetailsLoading || isBookingLoading} isError={isReservedDetailsError} />
       { modalInfo && <CheckoutModal showModal={Boolean(modalInfo)} onClose={modalInfo.onClose} title={modalInfo.title} content={modalInfo.content} closeText={modalInfo.closeText} /> }
     </form>
   );

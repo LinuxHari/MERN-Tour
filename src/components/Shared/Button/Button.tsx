@@ -50,7 +50,9 @@ const Button = ({
   }
 
   if (buttonType === "link"){
-    return <Link className={`button -md -dark-1 bg-accent-1 text-white ${className}`} to={to || "/"}>{children}</Link>
+    return (<Link className={`button -md -dark-1 bg-accent-1 text-white ${className}`} to={to || "/"}>{children}
+    {showIcon && <i className="icon-arrow-top-right text-16 ml-10"></i>}
+    </Link>)
   }
 
   return (

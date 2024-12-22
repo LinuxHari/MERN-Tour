@@ -1,8 +1,23 @@
+import { useMemo } from "react";
 import { BookingDetailsResponse } from "../../type";
 
 type BookingInfoProps = Omit<BookingDetailsResponse, "tourInfo"> & { bookingId: string }
 
 const BookingInfo = ({ name, email, bookingId, bookDate, amount, paymentMethod, paymentInfo, status, freeCancellation, isCancellable }: BookingInfoProps) => {
+
+  const message = useMemo(() => {
+    switch(status){
+      case "success": 
+        return "your tour is booked successfully!"
+      case "failed": 
+        return "we regret to inform you that your booking has failed"
+      case "canceled": 
+        return "your booking has been canceled"
+      default: 
+        return "your booking is pending. You will receive an email confirmation once it is successful"
+    }
+  }, [status])
+
   return (
   <>
       { freeCancellation && isCancellable && <div className="bg-success text-white px-5 py-2 fw-400 rounded-pill absolute top-1 end-1">Free cancellation</div> }
@@ -12,7 +27,7 @@ const BookingInfo = ({ name, email, bookingId, bookDate, amount, paymentMethod, 
         </div>
 
         <h2 className="text-30 md:text-24 fw-700 mt-20">
-          {name}, {status === "success"? "you have order booked successfully!": "your booking is pending. You will receive an email confirmation once it is successful" }
+          {name}, {message}
         </h2>
         <div className="mt-10">
           Booking details has been sent to: {email}

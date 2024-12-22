@@ -126,7 +126,7 @@ export type BookingBody = BookingSchemaType & {
 export type BookingDetailsResponse = {
   bookDate: Date;
   paymentMethod: "Card";
-  status: "success" | "pending";
+  status: "success" | "init" | "canceled" | "failed";
   name: string;
   email: string;
   amount: number;
