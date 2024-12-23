@@ -1,7 +1,6 @@
-import { useCallback, useState } from "react";
+import { useCallback } from "react";
 import { useLoginMutation, useLogoutMutation, useSignupMutation } from "../redux/api/authApi";
 import { LoginSchemaType, SignupSchemaType } from "../schema/authSchema";
-import useAfterEffect from "./useAfterEffect";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
@@ -10,64 +9,59 @@ type LoginData = LoginSchemaType & {
   skipRedirect?: boolean
 }
 
+// Custom hooks in this project may look like it does not follow interface segregation from SOLID principle but it is arguable and hooks here does not force components to use props returned
+
 const useAuthHandler = () => {
-  const [login, { isLoading: isLoginLoading, isError: isLoginError, error: loginError }] = useLoginMutation();
-  const [signup, { isLoading: isSignupLoading, isError: isSignupError, isSuccess: isSignupSuccess, error: signupError }] = useSignupMutation();
-  const [logout, { isLoading: isLogoutLoading, isError: isLogoutError, isSuccess: isLogoutSuccess }] = useLogoutMutation();
-  const [toastId, setToastId] = useState<string | null>(null)
-  const [skipRedirect, setSkipRedirect] = useState(false)
+  const [login, { isLoading: isLoginLoading }] = useLoginMutation();
+  const [signup, { isLoading: isSignupLoading }] = useSignupMutation();
+  const [logout] = useLogoutMutation();
   const navigate = useNavigate()
 
-  const handleToast = (message: string) => {
-    const toastId = toast.loading(message);
-    setToastId(toastId)
-  }
-
   const onLogin = useCallback(async (data: LoginData) => {
-    handleToast('Signing up...');
+    const toastId = toast.loading('Signing up...');
     const { skipRedirect, ...loginData } = data
-    if(skipRedirect)
-      setSkipRedirect(skipRedirect)
-    await login(loginData);
+
+    const { error } = await login(loginData)
+    if(error){
+      const loginError = error as FetchBaseQueryError
+      if(loginError.status === 500)
+        return toast.error("Something went wrong", {id: toastId})
+      else
+        return toast.error("Invalid email or password", {id: toastId})
+    }
+    toast.success("Logged in successfully", {id: toastId})
+    if(!skipRedirect)
+      setTimeout(() => {
+        navigate("/")
+    }, 1000)
   },[]);
 
   const onSignup = useCallback(async (data: SignupSchemaType) => {
-    handleToast('Logging in...');
-    await signup(data);
+    const toastId = toast.loading('Logging in...');
+    const {error} = await signup(data);
+    if(error){
+      const signupError = error as FetchBaseQueryError
+      if(signupError.status === 500)
+       return toast.error("User with given email already exists", {id: toastId})
+      else
+       return toast.error("Something went wrong", {id: toastId})
+    }
+    toast.success("Account created successfully", {id: toastId})
+    setTimeout(() => {
+        navigate("/login")
+    }, 1000)
   },[]);
 
   const onLogout = useCallback(async (email: LoginSchemaType["email"]) => {
-    handleToast('Logging out...');
-    await logout(email);
+    const toastId = toast.loading('Logging out...');
+    const {error} = await logout(email);
+    if(error)
+       return toast.error("Failed to logout", {id: toastId})
+    toast.success("Logged out successfully", {id: toastId})
+    setTimeout(() => {
+      navigate("/")
+  }, 1000)
   }, []);
-
-  useAfterEffect(() => {
-    if(!isSignupLoading && !isLoginLoading && !isLogoutLoading && toastId){
-      if(isSignupError || isLoginError || isLogoutError){
-        const assertedSignupError = signupError as FetchBaseQueryError
-        const assertedLoginError = loginError as FetchBaseQueryError
-        const status = assertedLoginError ? assertedLoginError.status: assertedSignupError? assertedSignupError.status: null
-        const message = (() => {
-          if (isLogoutError) return "Failed logging out";
-          if (status === 409) return "User with given email already exists";
-          if (status === 500) return "Something went wrong";
-          return "Invalid email or password";
-        })();        
-        toast.error(message, { id: toastId });
-      } else {
-        const message = isSignupSuccess? "Account created": isLogoutSuccess? "Logged out": "Logged in"
-        toast.success(`${message} successfully`, { id: toastId });
-        if(!skipRedirect){
-          setTimeout(() => {
-            if(isSignupSuccess)
-              navigate("/login")
-            else
-              navigate("/")
-          }, 1000)
-        }
-      }
-     }
-  }, [isLoginError, isSignupError, isLogoutError, isLoginLoading, isSignupLoading, isLogoutLoading])
 
   return { onLogin, onSignup, isLoginLoading, isSignupLoading, onLogout };
 };

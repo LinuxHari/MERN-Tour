@@ -2,7 +2,6 @@ import { useCallback, useState } from "react"
 import { useBookTourMutation, useGetReservedTourQuery, useReserveTourMutation } from "../redux/api/baseApi"
 import { BookingBody, ReserveBody } from "../type"
 import toast from "react-hot-toast"
-import useAfterEffect from "./useAfterEffect"
 import { useNavigate, useParams } from "react-router-dom"
 import {Stripe, StripeElements} from "@stripe/stripe-js"
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query"
@@ -13,12 +12,10 @@ type Params = {
 
 const useBookingHandler = () => {
   const { reserveId } = useParams() as Params;
-  const [reserveTour, { isLoading, isError, isSuccess, data }] = useReserveTourMutation()
+  const [reserveTour, { isLoading }] = useReserveTourMutation()
   const { data: reservedTour, isLoading: isReservedDetailsLoading, isError: isReservedDetailsError } = useGetReservedTourQuery(reserveId, {skip: !reserveId});
-  const [bookTour, { isLoading: isBookingLoading, isError: isBookingError, isSuccess: isBookingSuccess }] = useBookTourMutation()
+  const [bookTour, { isLoading: isBookingLoading }] = useBookTourMutation()
   const navigate = useNavigate()
-  const [toastId, setToastId] = useState<string | null>(null)
-  const [isTimeout, setTimeoutStatus] = useState(false)
 
   const goHome = () => navigate("/")
 
@@ -47,16 +44,18 @@ const useBookingHandler = () => {
 
   const reserve = useCallback(async (data: ReserveBody) => {
     const toastId = toast.loading("Reserving tour")
-    setToastId(toastId)
-    await reserveTour(data)
+    const {error, data: reserveData} = await reserveTour(data)
+    if(error)
+     return toast.error('Failed to reserve tour', { id: toastId });
+    toast.success('Tour reserved successfully!', { id: toastId });
+    navigate(`/checkout/${reserveData.reserveId}`)
   }, [])
 
   const book = useCallback(
     async (data: BookingBody, stripe: Stripe | null, elements: StripeElements | null) => {
       const toastId = toast.loading("Reserving tour")
       if (!stripe || !elements) {
-        toast.error("Payment is not submitted", {id: toastId})
-        return;
+        return toast.error("Payment is not submitted", {id: toastId})
       }
       const {error: submitError} = await elements.submit()
       if(submitError)
@@ -69,7 +68,7 @@ const useBookingHandler = () => {
         else if(bookError.status === 410)
           setModalInfo(modalConfig["gone"])
         else 
-          toast.error("Something went wrong", {id: toastId})
+          return toast.error("Something went wrong", {id: toastId})
       }
       const { error } = await stripe.confirmPayment({
         clientSecret: bookingData?.clientSecret || "",
@@ -83,32 +82,7 @@ const useBookingHandler = () => {
       toast.success("Tour booked successfully", {id: toastId})
     },[])
 
-  const onTimeout = useCallback(() => setTimeoutStatus(true), [])
-
-  useAfterEffect(() => {
-    if(isTimeout)
-      setModalInfo(modalConfig["timeout"])
-  }, [isTimeout])
-
-  useAfterEffect(() => {
-    if(!isLoading && !isBookingLoading && toastId){
-      if((isError && !isSuccess) || (isBookingError && !isBookingSuccess)){
-        if(isError || !isSuccess)
-          toast.error('Failed to reserve tour', { id: toastId });
-        else 
-          toast.error('Failed to book tour', { id: toastId });
-      } else {
-        if(isSuccess){
-          toast.success('Tour reserved successfully!', { id: toastId });
-          navigate(`/checkout/${data.reserveId}`)
-        } 
-        // else {
-        //   toast.success('Tour booked successfully!', { id: toastId });
-        //   navigate(`/success/${bookingData?.bookingId}`)
-        // }
-      }
-     }
-  },[isLoading, isError, isSuccess, isBookingError, isBookingLoading, isBookingSuccess])
+  const onTimeout = useCallback(() =>  setModalInfo(modalConfig["timeout"]), [])
 
   return { reserve, isLoading, book, reservedTour, isReservedDetailsLoading, isReservedDetailsError, isBookingLoading, modalInfo, onTimeout }
 }

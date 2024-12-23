@@ -1,35 +1,26 @@
-import { useParams } from "react-router-dom"
-import { useCancelBookingMutation, useGetBookingQuery } from "../redux/api/baseApi"
-import { useCallback, useState } from "react"
-import toast from "react-hot-toast"
-import useAfterEffect from "./useAfterEffect"
+import { useParams } from "react-router-dom";
+import { useCancelBookingMutation, useGetBookingQuery } from "../redux/api/baseApi";
+import { useCallback } from "react";
+import toast from "react-hot-toast";
 
 type Params = {
-    bookingId: string
-}
+  bookingId: string;
+};
 
 const useAfterBookingHandler = () => {
-    const { bookingId } = useParams() as Params
-    const {data: booking, isLoading: isBookingLoading, isError: isBookingError} = useGetBookingQuery(bookingId)
-    const [cancelBooking, {isLoading: isCancelLoading, isError: isCancelError, isSuccess: isCancelSuccess}] = useCancelBookingMutation()
-    const [toastId, setToastId] = useState<string | null>(null)
+  const { bookingId } = useParams() as Params;
+  const { data: booking, isLoading: isBookingLoading, isError: isBookingError } = useGetBookingQuery(bookingId);
+  const [cancelBooking, { isLoading: isCancelLoading }] = useCancelBookingMutation();
 
-    const cancel = () => useCallback(async() => {
-        const toastId = toast.loading("Cancelling booking");
-        setToastId(toastId)
-        await cancelBooking(bookingId)
-    }, [])
+  const cancel = () =>
+    useCallback(async () => {
+      const toastId = toast.loading("Cancelling booking");
+      const { error } = await cancelBooking(bookingId);
+      if (error) return toast.error("Failed to cancel booking", { id: toastId });
+      toast.success("Booking cancelled successfully", { id: toastId });
+    }, []);
 
-    useAfterEffect(() => {
-        if(!isCancelLoading && toastId){
-            if(isCancelSuccess)
-                toast.success("Booking cancelled successfully", {id: toastId})
-            else
-                toast.error("Failed to cancel booking", {id: toastId})
-        }
-    },[isCancelLoading, isCancelError, isCancelSuccess])
-
-    return { booking, isBookingError, isBookingLoading, isCancelLoading, cancelBooking: cancel, bookingId }
-}
+  return { booking, isBookingError, isBookingLoading, isCancelLoading, cancelBooking: cancel, bookingId };
+};
 
 export default useAfterBookingHandler;

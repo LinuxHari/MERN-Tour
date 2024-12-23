@@ -2,29 +2,18 @@ import { UseFormReset } from "react-hook-form";
 import { useCreateTourMutation } from "../redux/api/adminApi";
 import { TourSchemaType } from "../schema/tourSchema";
 import toast from "react-hot-toast";
-import useAfterEffect from "./useAfterEffect";
-import { useState } from "react";
 
 const useTourSubmitHandler = (reset: UseFormReset<TourSchemaType>) => {
-  const [createTour, {isLoading, isError, isSuccess }] = useCreateTourMutation();
-  const [toastId, setToastId] = useState<string | null>(null)
+  const [createTour, {isLoading}] = useCreateTourMutation();
 
   const tourSubmitHandler = async (formData: TourSchemaType) => {
     const toastId = toast.loading('Adding new tour...');
-      setToastId(toastId)
-      await createTour({ ...formData });
+      const {error} = await createTour({ ...formData });
+      if(error)
+        return toast.error('Failed to reserve tour', { id: toastId });
+      toast.success('Tour added successfully!', { id: toastId });
+      reset()
   } 
-
-    useAfterEffect(() => {
-     if(!isLoading && toastId){
-      if(isError || !isSuccess){
-        toast.error('Failed to add tour', { id: toastId });
-      } else {
-        toast.success('Tour added successfully!', { id: toastId });
-        reset();
-      }
-     }
-    },[isLoading, toastId, isError, isSuccess])
 
   return { tourSubmitHandler, isLoading };
 };
