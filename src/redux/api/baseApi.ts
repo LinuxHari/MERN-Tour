@@ -52,14 +52,14 @@ export const baseApi = createApi({
       query: (id) => ({url: `/tour/reserve/${id}`, credentials: "include"})
     }),
     bookTour: builder.mutation<{clientSecret: string, bookingId: string}, BookingBody>({
-      query: ({ id, ...bookingData }) => ({ url: `/tour/book/${id}`, method: "POST", body: bookingData, credentials: "include" })
+      query: ({ id, ...bookingData }) => ({ url: `/tour/book/${id}`, method: "POST", body: bookingData, credentials: "include"})
     }),
     getBooking: builder.query<BookingDetailsResponse, string>({
-      query: (id) => ({ url: `/tour/book/${id}` }),
+      query: (id) => ({ url: `/tour/book/${id}`, credentials: "include"}),
       providesTags: (_, __, bookingId) => [{type: "Book", id: bookingId}]
     }),
     cancelBooking: builder.mutation<void, string>({
-      query: (id) => ({ url: `/tour/book/cancel/${id}` }),
+      query: (id) => ({ url: `/tour/book/cancel/${id}`,  method: "POST", credentials: "include"}),
       invalidatesTags: (_, __, bookingId) => [{type: "Book", id: bookingId}]
     })
   }),

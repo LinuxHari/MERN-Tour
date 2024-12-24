@@ -20,10 +20,10 @@ const BookingInfo = ({ name, email, bookingId, bookDate, amount, paymentMethod, 
 
   return (
   <>
-      { freeCancellation && isCancellable && <div className="bg-success text-white px-5 py-2 fw-400 rounded-pill absolute top-1 end-1">Free cancellation</div> }
-      <div className="d-flex flex-column items-center text-center">
-        <div className="size-80 rounded-full flex-center bg-accent-1 text-white">
-          <i className="icon-check text-26"></i>
+      <div className="d-flex flex-column items-center text-center relative">
+      { freeCancellation && isCancellable && <div className="bg-success text-white px-5 py-2 fw-400 rounded-pill position-absolute top-0 end-0">Free cancellation</div> }
+        <div className="size-80 rounded-full flex-center bg-accent-1 text-white relative">
+          <i className="icon-check text-26"/>
         </div>
 
         <h2 className="text-30 md:text-24 fw-700 mt-20">
@@ -43,7 +43,7 @@ const BookingInfo = ({ name, email, bookingId, bookDate, amount, paymentMethod, 
 
           <div className="col-md-3 col-6">
             <div>Date</div>
-            <div className="text-accent-2">{bookDate.toString()}</div>
+            <div className="text-accent-2">{bookDate.toString().split("T")[0]}</div>
           </div>
 
           <div className="col-md-3 col-6">
@@ -58,11 +58,12 @@ const BookingInfo = ({ name, email, bookingId, bookDate, amount, paymentMethod, 
         </div>
       </div>
 
-      <h2 className="text-30 md:text-24 fw-700 mt-60 md:mt-30">
+      {
+        paymentInfo && <>
+        <h2 className="text-30 md:text-24 fw-700 mt-60 md:mt-30">
         Payment Details
       </h2>
-      {
-        paymentInfo && <div className="">
+       <div className="">
         <div className="d-flex items-center justify-between">
           <div className="fw-500">Card:</div>
           <div className="">{paymentInfo.cardNumber}</div>
@@ -80,6 +81,7 @@ const BookingInfo = ({ name, email, bookingId, bookDate, amount, paymentMethod, 
           <a className="text-accent-2" href={paymentInfo.recipetUrl} target="_blank">View</a>
         </div>
       </div>
+        </>
       }
     </>
   );

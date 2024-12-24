@@ -12,13 +12,12 @@ const useAfterBookingHandler = () => {
   const { data: booking, isLoading: isBookingLoading, isError: isBookingError } = useGetBookingQuery(bookingId);
   const [cancelBooking, { isLoading: isCancelLoading }] = useCancelBookingMutation();
 
-  const cancel = () =>
-    useCallback(async () => {
-      const toastId = toast.loading("Cancelling booking");
-      const { error } = await cancelBooking(bookingId);
-      if (error) return toast.error("Failed to cancel booking", { id: toastId });
-      toast.success("Booking cancelled successfully", { id: toastId });
-    }, []);
+  const cancel = useCallback(async () => {
+    const toastId = toast.loading("Cancelling booking");
+    const { error } = await cancelBooking(bookingId);
+    if (error) return toast.error("Failed to cancel booking", { id: toastId });
+    toast.success("Booking cancelled successfully", { id: toastId });
+  }, []);
 
   return { booking, isBookingError, isBookingLoading, isCancelLoading, cancelBooking: cancel, bookingId };
 };

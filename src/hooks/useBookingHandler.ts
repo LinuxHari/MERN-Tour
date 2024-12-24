@@ -44,7 +44,12 @@ const useBookingHandler = () => {
 
   const reserve = useCallback(async (data: ReserveBody) => {
     const toastId = toast.loading("Reserving tour")
-    const {error, data: reserveData} = await reserveTour(data)
+    const pax = {} as any
+    Object.entries(data.pax).forEach(([key, value]) => {
+      if(pax[key]) // Removing passenger types with 0 as value
+        pax[key] = value
+    })
+    const {error, data: reserveData} = await reserveTour({...data, pax})  
     if(error)
      return toast.error('Failed to reserve tour', { id: toastId });
     toast.success('Tour reserved successfully!', { id: toastId });
@@ -54,14 +59,16 @@ const useBookingHandler = () => {
   const book = useCallback(
     async (data: BookingBody, stripe: Stripe | null, elements: StripeElements | null) => {
       const toastId = toast.loading("Reserving tour")
-      if (!stripe || !elements) {
+      if (!stripe || !elements) 
         return toast.error("Payment is not submitted", {id: toastId})
-      }
-      const {error: submitError} = await elements.submit()
+
+      const {error: submitError} = await elements.submit()      
       if(submitError)
-        return toast.error("Invalid card details", {id: toastId}) // Have to manage booking data and card error handling in frontend and test, have to also manage payment history with attempts
+        return toast.error("Invalid card details", {id: toastId})
+
       const {data: bookingData, error: bookingError} = await bookTour(data)
       const bookError = bookingError as FetchBaseQueryError
+      
       if(bookError){
         if(bookError.status === 429)
           setModalInfo(modalConfig["failed"])
@@ -70,6 +77,7 @@ const useBookingHandler = () => {
         else 
           return toast.error("Something went wrong", {id: toastId})
       }
+      
       const { error } = await stripe.confirmPayment({
         clientSecret: bookingData?.clientSecret || "",
         elements,

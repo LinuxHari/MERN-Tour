@@ -130,6 +130,7 @@ export type BookingDetailsResponse = {
   name: string;
   email: string;
   amount: number;
+  amountPaid: number;
   freeCancellation: boolean;
   isCancellable: boolean;
   refundableAmount: number;
@@ -138,7 +139,7 @@ export type BookingDetailsResponse = {
   startDate: Date;
   duration: number;
   passengers: ReserveBody["pax"];
-};
+  };
   paymentInfo?: {
     cardNumber: string;
     cardBrand: string;
