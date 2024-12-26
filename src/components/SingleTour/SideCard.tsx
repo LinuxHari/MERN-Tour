@@ -44,12 +44,12 @@ const SideCard = ({ price, pax, startDate, endDate, tourId}: SideCardProps) => {
     if(!isLoggedIn)
       openModal()
     else {
-      const paxToSend = {...pax}
+      const paxToSend = {...currentPax}
       Object.keys(paxToSend).forEach((key) => {
         if(!paxToSend[key as keyof PaxProps])
           delete paxToSend[key as keyof PaxProps]
       })
-      reserve({startDate, endDate, pax, tourId})
+      reserve({startDate, endDate, pax: paxToSend, tourId})
     }
   }
 

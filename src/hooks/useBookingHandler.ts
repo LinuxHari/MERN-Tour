@@ -46,7 +46,7 @@ const useBookingHandler = () => {
     const toastId = toast.loading("Reserving tour")
     const pax = {} as any
     Object.entries(data.pax).forEach(([key, value]) => {
-      if(pax[key]) // Removing passenger types with 0 as value
+      if(value) // Removing passenger types with 0 as value
         pax[key] = value
     })
     const {error, data: reserveData} = await reserveTour({...data, pax})  
