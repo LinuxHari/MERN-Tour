@@ -9,6 +9,7 @@ import SideCard from "./SideCard";
 import TourServices from "./TourServices";
 import { TourSchemaType } from "../../schema/tourSchema";
 import { PaxProps } from "../../type";
+import PostReview from "./PostReview";
 
 type TourInfoProps = {
   duration: number;
@@ -55,7 +56,7 @@ const TourInfo = ({
             {/* <TourMap /> */}
             <TourFAQ faq={faq} />
             <TourReviews />
-            {/* <PostReview /> */}
+            <PostReview />
           </div>
           <div className="col-lg-4">
             <SideCard pax={pax} price={price} startDate={startDate} endDate={endDate} tourId={tourId}/>
