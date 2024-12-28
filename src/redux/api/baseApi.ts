@@ -1,6 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import env from "../../config/envConfig";
 import { AppliedFiltersProps, BookingBody, BookingDetailsResponse, ReserveBody, ReservedTourResponse, ReserveResponse, SearchSuggestions, SingleTourResponse, TourListResponse } from "../../type";
+import { StarRatingType } from "../../schema/reviewSchema";
 
 type TourSearchParams = {
   destinationId: string;
@@ -28,7 +29,7 @@ type SingleTourParams = {
 export const baseApi = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({ baseUrl: `${env.API_BASE_URL}` }),
-  tagTypes: ["Tour", "User", "Book", "UNAUTHORIZED"],
+  tagTypes: ["Tour", "User", "Book", "Review", "UNAUTHORIZED"],
   endpoints: (builder) => ({
     getSearchSuggestionsByText: builder.query<SearchSuggestions, string>({
       query: (searchText) => ({ url: "/tour/search", params: { searchText } }),
@@ -61,6 +62,9 @@ export const baseApi = createApi({
     cancelBooking: builder.mutation<void, string>({
       query: (id) => ({ url: `/tour/book/cancel/${id}`,  method: "POST", credentials: "include"}),
       invalidatesTags: (_, __, bookingId) => [{type: "Book", id: bookingId}]
+    }),
+    review: builder.mutation<void, StarRatingType>({
+      query: (id) => ({ url: `/tour/review/${id}`,  method: "POST", credentials: "include"}),
     })
   }),
 });

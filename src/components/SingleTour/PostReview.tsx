@@ -4,7 +4,7 @@ import Button from "../Shared/Button/Button";
 import Input from "../Shared/Input/Input";
 import Textarea from "../Shared/Teaxtarea/Textarea";
 import StarRating from "./StarRating";
-import StarRatingSchema, { StarRatingType } from "../../schema/ratingSchema";
+import StarRatingSchema, { StarRatingType } from "../../schema/reviewSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 const PostReview = () => {
