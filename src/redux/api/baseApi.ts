@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import env from "../../config/envConfig";
 import { AppliedFiltersProps, BookingBody, BookingDetailsResponse, ReserveBody, ReservedTourResponse, ReserveResponse, SearchSuggestions, SingleTourResponse, TourListResponse } from "../../type";
-import { StarRatingType } from "../../schema/reviewSchema";
+import { RatingType } from "../../schema/reviewSchema";
 
 type TourSearchParams = {
   destinationId: string;
@@ -63,10 +63,15 @@ export const baseApi = createApi({
       query: (id) => ({ url: `/tour/book/cancel/${id}`,  method: "POST", credentials: "include"}),
       invalidatesTags: (_, __, bookingId) => [{type: "Book", id: bookingId}]
     }),
-    review: builder.mutation<void, StarRatingType>({
+    getReview: builder.query<void, string>({
+      query: (id) => ({ url: `/tour/review/${id}`,  method: "GET", credentials: "include"}),
+      providesTags: (_, __, tourId) => [{type: "Review", id: tourId}]
+    }),
+    review: builder.mutation<void, RatingType & {tourId: string}>({
       query: (id) => ({ url: `/tour/review/${id}`,  method: "POST", credentials: "include"}),
+      invalidatesTags: (_, __, { tourId }) => [{type: "Review", id: tourId}]
     })
   }),
 });
 
-export const { useGetTourByIdQuery, useGetToursBySearchQuery, useGetSearchSuggestionsByTextQuery, useReserveTourMutation, useGetReservedTourQuery, useBookTourMutation, useGetBookingQuery, useCancelBookingMutation } = baseApi;
+export const { useGetTourByIdQuery, useGetToursBySearchQuery, useGetSearchSuggestionsByTextQuery, useReserveTourMutation, useGetReservedTourQuery, useBookTourMutation, useGetBookingQuery, useCancelBookingMutation, useGetReviewQuery, useReviewMutation } = baseApi;
