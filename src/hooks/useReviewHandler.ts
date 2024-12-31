@@ -1,8 +1,26 @@
-import { useGetReviewQuery } from "../redux/api/baseApi"
+import toast from "react-hot-toast"
+import { useGetReviewQuery, useReviewMutation } from "../redux/api/baseApi"
+import { RatingType } from "../schema/reviewSchema"
+import { FetchBaseQueryError } from "@reduxjs/toolkit/query"
 
 const useReviewHandler = (tourId: string) => {
-  const { isLoading, isError, data: reviews } = useGetReviewQuery(tourId)
-    return 
+  const { isLoading, data: reviews } = useGetReviewQuery(tourId)
+  const [ review, {isLoading: isReviewLoading}] = useReviewMutation()
+
+  const reviewTour = async(data: RatingType) => {
+    const toastId = toast.loading("Reserving tour")
+    const { error } = await review({...data, tourId})
+    const reviewError = error as FetchBaseQueryError
+    if(reviewError)
+      if(reviewError.status === 400)
+        return toast.error("Failed to add review", {id: toastId})
+      else if(reviewError.status === 401)
+        return toast.error("You must be logged in to post reviews", {id: toastId})
+      else 
+        return toast.error("Something went wrong", {id: toastId})
+  }
+
+  return {reviews, isLoading, isReviewLoading, reviewTour} 
 }
 
 export default useReviewHandler
