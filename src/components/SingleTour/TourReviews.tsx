@@ -1,5 +1,4 @@
 import TourSectionLayout from "../../layouts/TourSectionLayout";
-// import TourRating from "./TourRating";
 
 const TourReviews = () => {
   return (

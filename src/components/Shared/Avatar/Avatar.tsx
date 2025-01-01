@@ -1,10 +1,10 @@
 type AvatarProps = {
   type: "small" | "large";
-  email: string;
+  string: string; //Name or email
   profile?: string;
 };
 
-const Avatar = ({ type, email, profile }: AvatarProps) => {
+const Avatar = ({ type, string, profile }: AvatarProps) => {
   const size = type === "small" ? "30px" : "60px";
   const style = { height: size, width: size };
 
@@ -14,7 +14,7 @@ const Avatar = ({ type, email, profile }: AvatarProps) => {
         <img src={profile} style={style} />
       ) : (
         <div style={style} className="-dark-1 bg-accent-1 text-white d-flex align-items-center justify-content-center">
-          {email[0].toUpperCase()}
+          {string[0].toUpperCase()}
         </div>
       )}
     </figure>

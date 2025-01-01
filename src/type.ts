@@ -148,6 +148,23 @@ export type BookingDetailsResponse = {
   }
 }
 
+export type ReviewResponse = {
+  location: number,
+  food: number,
+  price: number,
+  rooms: number,
+  amenities: number,
+  totalCount: number,
+  userReviews: {
+    name: string,
+    postedAt: Date,
+    overallRating: number,
+    title: string,
+    comment: string,
+    profile: string,
+   }[]
+}
+
 export enum ImgPath {
   tours = "/tours",
   profile = "/profile"

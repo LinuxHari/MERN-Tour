@@ -4,7 +4,7 @@ import { RatingType } from "../schema/reviewSchema"
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query"
 
 const useReviewHandler = (tourId: string) => {
-  const { isLoading, data: reviews } = useGetReviewQuery(tourId)
+  const { isLoading, data: reviews, isError } = useGetReviewQuery(tourId)
   const [ review, {isLoading: isReviewLoading}] = useReviewMutation()
 
   const reviewTour = async(data: RatingType) => {
@@ -20,7 +20,7 @@ const useReviewHandler = (tourId: string) => {
         return toast.error("Something went wrong", {id: toastId})
   }
 
-  return {reviews, isLoading, isReviewLoading, reviewTour} 
+  return {reviews, isLoading, isError, isReviewLoading, reviewTour} 
 }
 
 export default useReviewHandler

@@ -22,7 +22,7 @@ const AuthSection = () => {
       {isLoggedIn && user? (
          <Dropdown className="js-form-dd">
          <Dropdown.Toggle className="px-0" dataClick="header-currency">
-          <Avatar type="small" email={user.email} profile={user.profile} />
+          <Avatar type="small" string={user.email} profile={user.profile} />
           <p className="text-clamp-10 m-0">{user.firstName}</p>
           <i className="icon-chevron-down text-18"></i>
          </Dropdown.Toggle>

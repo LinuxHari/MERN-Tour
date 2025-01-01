@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import env from "../../config/envConfig";
-import { AppliedFiltersProps, BookingBody, BookingDetailsResponse, ReserveBody, ReservedTourResponse, ReserveResponse, SearchSuggestions, SingleTourResponse, TourListResponse } from "../../type";
+import { AppliedFiltersProps, BookingBody, BookingDetailsResponse, ReserveBody, ReservedTourResponse, ReserveResponse, ReviewResponse, SearchSuggestions, SingleTourResponse, TourListResponse } from "../../type";
 import { RatingType } from "../../schema/reviewSchema";
 
 type TourSearchParams = {
@@ -63,7 +63,7 @@ export const baseApi = createApi({
       query: (id) => ({ url: `/tour/book/cancel/${id}`,  method: "POST", credentials: "include"}),
       invalidatesTags: (_, __, bookingId) => [{type: "Book", id: bookingId}]
     }),
-    getReview: builder.query<void, string>({
+    getReview: builder.query<ReviewResponse, string>({
       query: (id) => ({ url: `/tour/review/${id}`,  method: "GET", credentials: "include"}),
       providesTags: (_, __, tourId) => [{type: "Review", id: tourId}]
     }),

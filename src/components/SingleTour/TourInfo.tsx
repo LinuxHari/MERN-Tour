@@ -1,15 +1,13 @@
 import IncludedServices from "./IncludedServices";
 import Itinerary from "./Itinerary";
-// import PostReview from "./PostReview";
 import TourFAQ from "./TourFAQ";
 // import TourMap from "./TourMap";
 import TourOverview from "./TourOverview";
-import TourReviews from "./TourReviews";
 import SideCard from "./SideCard";
 import TourServices from "./TourServices";
 import { TourSchemaType } from "../../schema/tourSchema";
 import { PaxProps } from "../../type";
-import PostReview from "./PostReview";
+import Reviews from "./Reviews";
 
 type TourInfoProps = {
   duration: number;
@@ -54,9 +52,8 @@ const TourInfo = ({
             <IncludedServices included={included} />
             <Itinerary itinerary={itinerary} />
             {/* <TourMap /> */}
+            <Reviews tourId={tourId} />
             <TourFAQ faq={faq} />
-            <TourReviews />
-            <PostReview />
           </div>
           <div className="col-lg-4">
             <SideCard pax={pax} price={price} startDate={startDate} endDate={endDate} tourId={tourId}/>

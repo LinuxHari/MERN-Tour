@@ -4,16 +4,20 @@ import Button from "../Shared/Button/Button";
 import Input from "../Shared/Input/Input";
 import Textarea from "../Shared/Teaxtarea/Textarea";
 import StarRating from "./StarRating";
-import StarRatingSchema, { StarRatingType } from "../../schema/reviewSchema";
+import StarRatingSchema, { RatingType } from "../../schema/reviewSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-const PostReview = () => {
-  const form = useForm<StarRatingType>({ resolver: zodResolver(StarRatingSchema) });
-  const { control } = form;
+type PostReviewProps = {
+  onSubmit: (data: RatingType) => void
+  isLoading: boolean
+}
+
+const PostReview = ({ onSubmit, isLoading }: PostReviewProps) => {
+  const form = useForm<RatingType>({ resolver: zodResolver(StarRatingSchema) });
+  const { control, handleSubmit } = form;
   return (
     <TourSectionLayout title="Leave a Review" showBorder={false}>
-      <p className="mt-30">Your email address will not be published. Required fields are marked *</p>
-
+      <form onSubmit={handleSubmit(onSubmit)}>
       <div className="reviewsGrid pt-30">
         <Controller
           control={control}
@@ -58,22 +62,23 @@ const PostReview = () => {
         </div> */}
       </div>
 
-      <form className="contactForm y-gap-30 pt-30">
+      <div className="contactForm y-gap-30 pt-30">
         <div className="col-12">
-          <Input type="text" required label="Title" />
+          <Input type="text" required label="How was the tour?" name="title" />
         </div>
 
         <div className="row">
           <div className="col-12">
-            <Textarea label="Comment" rows={8} />
+            <Textarea label="What do you think?" name="comment" rows={8} />
           </div>
         </div>
 
         <div className="row">
           <div className="col-12">
-            <Button buttonType="primary">Post Comment</Button>
+            <Button buttonType="primary" isLoading={isLoading} disabled={isLoading}>Post Review</Button>
           </div>
         </div>
+      <div/>
       </form>
     </TourSectionLayout>
   );
