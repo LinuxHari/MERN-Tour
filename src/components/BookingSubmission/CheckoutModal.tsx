@@ -1,13 +1,13 @@
-import { ModalProps } from "../../type";
+import {ModalProps} from "../../type";
 import Modal from "../Shared/Modal/Modal";
 
 type CheckoutModal = Omit<ModalProps, "onConfirm"> & {
-  title: string
-  content: string
-  closeText: string
-}
+  title: string;
+  content: string;
+  closeText: string;
+};
 
-const CheckoutModal = ({ showModal, onClose, title, content, closeText }: CheckoutModal) => (
+const CheckoutModal = ({showModal, onClose, title, content, closeText}: CheckoutModal) => (
   <Modal show={showModal} onClose={onClose}>
     <Modal.Header>
       <Modal.Title>{title}</Modal.Title>

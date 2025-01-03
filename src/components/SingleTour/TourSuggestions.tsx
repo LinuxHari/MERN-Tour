@@ -7,9 +7,9 @@ const TourSuggestions = () => {
         <div className="row">
           <div className="col-auto">
             <h2 className="text-30">You might also like...</h2>
-          </div>       
+          </div>
         </div>
-        <Cards/>
+        <Cards />
       </div>
     </section>
   );

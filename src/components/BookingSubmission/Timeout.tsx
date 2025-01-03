@@ -1,21 +1,21 @@
-import { useEffect, useState } from "react";
+import {useEffect, useState} from "react";
 
 type TimeoutProps = {
   expiresAt: number;
-  onTimeout: () => void
+  onTimeout: () => void;
 };
 
-const Timeout = ({ expiresAt, onTimeout }: TimeoutProps) => {
+const Timeout = ({expiresAt, onTimeout}: TimeoutProps) => {
   const [count, setCount] = useState(Math.max(0, Math.floor((expiresAt - Date.now()) / 1000)));
 
   useEffect(() => {
     const id = setInterval(() => {
       const remainingTime = Math.max(0, count - 1);
+
       if (remainingTime <= -1) {
-        onTimeout()
-        clearInterval(id)
-      }
-      else setCount(remainingTime);
+        onTimeout();
+        clearInterval(id);
+      } else setCount(remainingTime);
     }, 1000);
 
     return () => clearInterval(id);
@@ -35,7 +35,7 @@ const Timeout = ({ expiresAt, onTimeout }: TimeoutProps) => {
           <span className="mx-2">Minutes remaining</span>
         </>
       ) : (
-        <div>Time's up</div>
+        <div>Time&apos;s up</div>
       )}
     </div>
   );

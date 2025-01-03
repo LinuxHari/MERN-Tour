@@ -1,8 +1,8 @@
-import { ModalProps } from "../../type";
+import {ModalProps} from "../../type";
 import Button from "../Shared/Button/Button";
 import Modal from "../Shared/Modal/Modal";
 
-const LogoutModal = ({ showModal, onClose, onConfirm }: ModalProps) => (
+const LogoutModal = ({showModal, onClose, onConfirm}: ModalProps) => (
   <Modal show={showModal} onClose={onClose}>
     <Modal.Header>
       <Modal.Title>Confirm Logout</Modal.Title>
@@ -13,15 +13,8 @@ const LogoutModal = ({ showModal, onClose, onConfirm }: ModalProps) => (
     </Modal.Content>
 
     <Modal.Footer className="d-flex">
-      <Modal.Close className="mr-5 px-4">
-        Cancel
-      </Modal.Close>
-      <Button
-        className="py-2 px-5"
-        buttonType="primary"
-        onClick={onConfirm}
-        showIcon={false}
-      >
+      <Modal.Close className="mr-5 px-4">Cancel</Modal.Close>
+      <Button className="py-2 px-5" buttonType="primary" onClick={onConfirm} showIcon={false}>
         Confirm
       </Button>
     </Modal.Footer>

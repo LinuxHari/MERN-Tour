@@ -1,8 +1,8 @@
-import { RenderProps } from "../../type";
+import {RenderProps} from "../../type";
 // import Pagination from "../../components/Shared/Pagination/Pagination";
 import TourCard from "../../components/Admin/Favorites/TourCard";
 
-const Favorites = ({ render }: RenderProps) => {
+const Favorites = ({render}: RenderProps) => {
   const favTours = [
     {
       location: "Paris, France",
@@ -69,8 +69,7 @@ const Favorites = ({ render }: RenderProps) => {
     },
     {
       location: "New York, USA",
-      title:
-        "Mauna Kea Summit Sunset and Stars Free Astro Photos Hilo Kona Waikoloa Pick Up",
+      title: "Mauna Kea Summit Sunset and Stars Free Astro Photos Hilo Kona Waikoloa Pick Up",
       rating: 4.8,
       reviews: 269,
       duration: 4,
@@ -84,28 +83,21 @@ const Favorites = ({ render }: RenderProps) => {
       {render("Favorites", "My Favorites")}
       <div className="rounded-12 bg-white shadow-2 px-40 pt-40 pb-30 mt-60">
         <div className="row y-gap-30">
-          {favTours.map(
-            (
-              { image, location, title, rating, reviews, duration, price },
-              i
-            ) => (
-              <TourCard
-                key={i}
-                img={image}
-                location={location}
-                title={title}
-                rating={rating}
-                reviewCount={reviews}
-                duration={duration}
-                price={price}
-                className="col-lg-3 col-md-6"
-              />
-            )
-          )}
+          {favTours.map(({image, location, title, rating, reviews, duration, price}, i) => (
+            <TourCard
+              key={i}
+              img={image}
+              location={location}
+              title={title}
+              rating={rating}
+              reviewCount={reviews}
+              duration={duration}
+              price={price}
+              className="col-lg-3 col-md-6"
+            />
+          ))}
         </div>
-        <div className="mt-60">
-          {/* <Pagination /> */}
-        </div>
+        <div className="mt-60">{/* <Pagination /> */}</div>
       </div>
     </>
   );

@@ -1,18 +1,18 @@
-import { useState } from "react"
+import {useState} from "react";
 
 const useModal = () => {
-  const [showModal, setShowModal] = useState(false)
+  const [showModal, setShowModal] = useState(false);
 
-  const onClose = () => setShowModal(false)
+  const onClose = () => setShowModal(false);
 
-  const onConfirm = (fn: Function) => {
-    fn()
-    setShowModal(false)
-  }  
+  const onConfirm = (fn: () => void) => {
+    fn();
+    setShowModal(false);
+  };
 
-  const openModal = () => setShowModal(true)
+  const openModal = () => setShowModal(true);
 
-  return {showModal, onClose, onConfirm, openModal}
-}
+  return {showModal, onClose, onConfirm, openModal};
+};
 
-export default useModal
+export default useModal;

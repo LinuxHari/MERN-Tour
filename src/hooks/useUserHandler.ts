@@ -1,8 +1,9 @@
-import { useGetUserInfoQuery } from "../redux/api/userApi"
+import {useGetUserInfoQuery} from "../redux/api/userApi";
 
 const useUserHandler = () => {
-    const { data, isError, isLoading } = useGetUserInfoQuery()
-    return { user: data, isLoggedIn: !isError && data? true: false, isLoading}
-}
+  const {data, isError, isLoading} = useGetUserInfoQuery();
 
-export default useUserHandler
+  return {user: data, isLoggedIn: !isError && data ? true : false, isLoading};
+};
+
+export default useUserHandler;

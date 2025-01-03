@@ -1,13 +1,13 @@
-import { Link } from "react-router-dom"
+import {Link} from "react-router-dom";
 
 type AuthLayoutProps = {
-    authType: "Log In" | "Sign Up"
-    description: string
-    urlText: string
-    urlLabel: string
-    url: string
-    children: React.ReactNode
-}
+  authType: "Log In" | "Sign Up";
+  description: string;
+  urlText: string;
+  urlLabel: string;
+  url: string;
+  children: React.ReactNode;
+};
 
 const AuthLayout = ({authType, description, urlText, url, urlLabel, children}: AuthLayoutProps) => {
   return (
@@ -19,7 +19,10 @@ const AuthLayout = ({authType, description, urlText, url, urlLabel, children}: A
               <h1 className="text-30">{authType}</h1>
               <div className="text-18 fw-500 mt-20 md:mt-15">{description}</div>
               <div className="mt-5">
-                {urlLabel} <Link to={url} className="text-accent-1">{urlText}</Link>
+                {urlLabel}{" "}
+                <Link to={url} className="text-accent-1">
+                  {urlText}
+                </Link>
               </div>
             </div>
             {children}
@@ -27,7 +30,7 @@ const AuthLayout = ({authType, description, urlText, url, urlLabel, children}: A
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default AuthLayout
+export default AuthLayout;

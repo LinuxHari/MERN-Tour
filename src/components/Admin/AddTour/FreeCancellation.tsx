@@ -1,9 +1,9 @@
-import { useFormContext } from "react-hook-form";
-import { RenderProps } from "../../../type";
+import {useFormContext} from "react-hook-form";
+import {RenderProps} from "../../../type";
 import Input from "../../Shared/Input/Input";
 
-const FreeCancellation = ({ render }: RenderProps) => {
-  const { register } = useFormContext();
+const FreeCancellation = ({render}: RenderProps) => {
+  const {register} = useFormContext();
 
   return (
     <>

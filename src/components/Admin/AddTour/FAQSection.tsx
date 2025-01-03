@@ -1,10 +1,13 @@
-import { useFieldArray, useFormContext } from "react-hook-form";
+import {useFieldArray, useFormContext} from "react-hook-form";
 import Input from "../../Shared/Input/Input";
 import Button from "../../Shared/Button/Button";
 
 const FAQSection = () => {
-  const { register } = useFormContext();
-  const { fields, append, remove } = useFieldArray({ name: "faq", rules: { minLength: 2, maxLength: 10 } });
+  const {register} = useFormContext();
+  const {fields, append, remove} = useFieldArray({
+    name: "faq",
+    rules: {minLength: 2, maxLength: 10},
+  });
 
   return (
     <>
@@ -29,7 +32,12 @@ const FAQSection = () => {
               type="text"
               {...register(`faq.${index}.question`)}
             />
-            <Input wrapperClassName="mt-30" label="Answer" type="text" {...register(`faq.${index}.answer`)} />
+            <Input
+              wrapperClassName="mt-30"
+              label="Answer"
+              type="text"
+              {...register(`faq.${index}.answer`)}
+            />
           </div>
         ))}
         {fields.length < 10 && (
@@ -37,8 +45,8 @@ const FAQSection = () => {
             buttonType="primary"
             className="button mt-30 -md -outline-dark-1 text-dark bg-light-1 ml-15"
             showIcon={false}
-            onClick={() => append({ question: "", answer: "" })}
-            style={{ width: "fit-content" }}
+            onClick={() => append({question: "", answer: ""})}
+            style={{width: "fit-content"}}
           >
             <i className="icon-add-button text-16 mr-10" />
             Add FAQ

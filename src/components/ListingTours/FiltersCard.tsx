@@ -1,5 +1,5 @@
 // import DatePicker from "../Shared/DatePicker/DatePicker";
-import { AppliedFiltersProps, Filters } from "../../type";
+import {AppliedFiltersProps, Filters} from "../../type";
 import Accordion from "../Shared/Accordion/Accordion";
 import CheckboxRadioFilters from "./CheckboxRadioFilters";
 import PriceFilter from "./PriceFilter";
@@ -9,10 +9,16 @@ type FilterProps = {
   appliedFilters: AppliedFiltersProps;
   setAppliedFilters: (key: string, value: string) => void;
   setPriceRange: (minPrice: number, maxPrice?: number) => void;
-  priceRange: {minPrice?: number, maxPrice?: number }
+  priceRange: {minPrice?: number; maxPrice?: number};
 };
 
-const FiltersCard = ({ filters, appliedFilters, setAppliedFilters, priceRange, setPriceRange }: FilterProps) => {
+const FiltersCard = ({
+  filters,
+  appliedFilters,
+  setAppliedFilters,
+  priceRange,
+  setPriceRange,
+}: FilterProps) => {
   // const filterGroup = {
   //   "Tour Type": [
   //    ...categories
@@ -49,10 +55,10 @@ const FiltersCard = ({ filters, appliedFilters, setAppliedFilters, priceRange, s
           </div>
         ))}
         <div className="order-1">
-          <PriceFilter setPriceRange={setPriceRange} priceRange={priceRange}/>
+          <PriceFilter setPriceRange={setPriceRange} priceRange={priceRange} />
         </div>
-        </Accordion>
-      </div>
+      </Accordion>
+    </div>
   );
 };
 

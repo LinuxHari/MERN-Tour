@@ -1,14 +1,14 @@
 type Props = {
-    icon: string
-    title: string
-    description: string
-}
+  icon: string;
+  title: string;
+  description: string;
+};
 
 const TourService = ({icon, title, description}: Props) => {
   return (
     <div className="d-flex items-center">
       <div className="flex-center size-50 rounded-12 border-1">
-        <i className={`text-20 ${icon}`}></i>
+        <i className={`text-20 ${icon}`} />
       </div>
 
       <div className="ml-10">

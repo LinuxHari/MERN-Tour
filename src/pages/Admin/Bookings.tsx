@@ -1,10 +1,9 @@
-import { Bookings as BookingsType, RenderProps } from "../../type";
+import {Bookings as BookingsType, RenderProps} from "../../type";
 // import Pagination from "../../components/Shared/Pagination/Pagination";
 import Tabs from "../../components/Shared/Tabs/Tabs";
 import Table from "../../components/Admin/Bookings/Table";
 
-const Bookings = ({ render }: RenderProps) => {
-
+const Bookings = ({render}: RenderProps) => {
   const tableHeaders = [
     "ID",
     "Title",
@@ -23,8 +22,7 @@ const Bookings = ({ render }: RenderProps) => {
       id: 484,
       tour: {
         imgUrl: "img/dashboard/booking/1.jpg",
-        title:
-          "Phi Phi Islands Adventure Day Trip with Seaview Lunch by V. Marine Tour",
+        title: "Phi Phi Islands Adventure Day Trip with Seaview Lunch by V. Marine Tour",
       },
       startDate: "11 April 2023",
       endDate: "11 April 2023",
@@ -194,14 +192,12 @@ const Bookings = ({ render }: RenderProps) => {
           </Tabs.TabList>
 
           <Tabs.TabContents>
-            {bookingData.map(
-              (data: BookingsType[], index: number) => (
-                <Tabs.TabContent key={index} index={index}>
-                  <Table headers={tableHeaders} showEdit={true} data={data} />
-                  {/* <Pagination /> */}
-                </Tabs.TabContent>
-              )
-            )}
+            {bookingData.map((data: BookingsType[], index: number) => (
+              <Tabs.TabContent key={index} index={index}>
+                <Table headers={tableHeaders} showEdit={true} data={data} />
+                {/* <Pagination /> */}
+              </Tabs.TabContent>
+            ))}
           </Tabs.TabContents>
         </Tabs>
       </div>

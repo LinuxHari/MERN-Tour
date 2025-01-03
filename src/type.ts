@@ -1,7 +1,7 @@
-import { SEARCH_SUGGESTIONS } from "./data";
-import { BookingSchemaType } from "./schema/bookingSchema";
-import { TourSchemaType } from "./schema/tourSchema";
-import { UserSchemaType } from "./schema/userSchema";
+import {SEARCH_SUGGESTIONS} from "./data";
+import {BookingSchemaType} from "./schema/bookingSchema";
+import {TourSchemaType} from "./schema/tourSchema";
+import {UserSchemaType} from "./schema/userSchema";
 
 export type RenderProps = {
   render: (title: string, desc?: string) => React.JSX.Element;
@@ -42,26 +42,32 @@ export type ListingCardProps = {
   price: number;
 };
 
-export type ListingCard2Props =  {
+export type ListingCard2Props = {
   name: string;
   description: string;
   price: TourSchemaType["price"];
   freeCancellation: boolean;
   destination: string;
   duration: number;
-  images: [string]
-  tourId: string 
-}
+  images: [string];
+  tourId: string;
+};
 
-export type SearchSuggestions = typeof SEARCH_SUGGESTIONS
+export type SearchSuggestions = typeof SEARCH_SUGGESTIONS;
 
-export type Filters =  {tourTypes?: string[], duration?: string[], rating?: {count: number, label: string}[], specials?: [string], languages?: [string]}
+export type Filters = {
+  tourTypes?: string[];
+  duration?: string[];
+  rating?: {count: number; label: string}[];
+  specials?: [string];
+  languages?: [string];
+};
 
 export type TourListResponse = {
-  tours: ListingCard2Props[],
-  totalCount: number,
-  filters?: Omit<Filters, "rating">
-}
+  tours: ListingCard2Props[];
+  totalCount: number;
+  filters?: Omit<Filters, "rating">;
+};
 
 export type SingleTourResponse = Omit<Tour, "freeCancellation" | "city" | "state" | "country"> & {
   freeCancellation: boolean;
@@ -72,37 +78,37 @@ export type SingleTourResponse = Omit<Tour, "freeCancellation" | "city" | "state
 // export type TourCategories = "Nature" | "Adventure" | "Cultural" | "Food" | "City" | "Cruises"
 
 export type AppliedFiltersProps = Omit<Filters, "rating"> & {
-  rating?: number
-}
+  rating?: number;
+};
 
 export type PaxProps = {
   adults: number;
   children: number;
   teens: number;
   infants: number;
-}
+};
 
 export type ModalProps = {
   showModal: boolean;
   onClose: () => void;
   onConfirm: () => void;
-}
+};
 
 export type ReserveBody = {
-  tourId: string,
+  tourId: string;
   pax: {
-      adults: number,
-      teens?: number,
-      children?: number,
-      infants?: number
-  },
-  startDate: string,
-  endDate: string
-}
+    adults: number;
+    teens?: number;
+    children?: number;
+    infants?: number;
+  };
+  startDate: string;
+  endDate: string;
+};
 
 export type ReserveResponse = {
-  reserveId: string
-}
+  reserveId: string;
+};
 
 export type ReservedTourResponse = Omit<ReserveBody, "tourId" | "pax"> & {
   expiresAt: number;
@@ -110,18 +116,18 @@ export type ReservedTourResponse = Omit<ReserveBody, "tourId" | "pax"> & {
   totalAmount: number;
   tourDetails: {
     duration: number;
-    price: SingleTourResponse["price"],
+    price: SingleTourResponse["price"];
     images: string[];
     name: string;
     minAge: string;
   };
-}
+};
 
-export type UserInfoResponse = Omit<UserSchemaType, "profile"> & { profile: string }
+export type UserInfoResponse = Omit<UserSchemaType, "profile"> & {profile: string};
 
 export type BookingBody = BookingSchemaType & {
-  id: String
-}
+  id: string;
+};
 
 export type BookingDetailsResponse = {
   bookDate: Date;
@@ -135,37 +141,37 @@ export type BookingDetailsResponse = {
   isCancellable: boolean;
   refundableAmount: number;
   tourInfo: {
-  tourName: string;
-  startDate: Date;
-  duration: number;
-  passengers: ReserveBody["pax"];
+    tourName: string;
+    startDate: Date;
+    duration: number;
+    passengers: ReserveBody["pax"];
   };
   paymentInfo?: {
     cardNumber: string;
     cardBrand: string;
     paymentDate: Date;
     recipetUrl: string;
-  }
-}
+  };
+};
 
 export type ReviewResponse = {
-  location: number,
-  food: number,
-  price: number,
-  rooms: number,
-  amenities: number,
-  totalCount: number,
+  location: number;
+  food: number;
+  price: number;
+  rooms: number;
+  amenities: number;
+  totalCount: number;
   userReviews: {
-    name: string,
-    postedAt: Date,
-    overallRating: number,
-    title: string,
-    comment: string,
-    profile: string,
-   }[]
-}
+    name: string;
+    postedAt: Date;
+    overallRating: number;
+    title: string;
+    comment: string;
+    profile: string;
+  }[];
+};
 
 export enum ImgPath {
   tours = "/tours",
-  profile = "/profile"
+  profile = "/profile",
 }

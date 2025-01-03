@@ -1,14 +1,14 @@
 // import { SingleTourResponse } from "../../type"
-import Label from "../Shared/Label/Label"
+import Label from "../Shared/Label/Label";
 // import Rating from "../Shared/Rating/Rating"
-import TourGallery from "./TourGallery"
+import TourGallery from "./TourGallery";
 
 type TourHeaderProps = {
-  freeCancellation:boolean;
-  name:string;
-  images:string[];
+  freeCancellation: boolean;
+  name: string;
+  images: string[];
   destination: string;
-}
+};
 
 const TourHeader = ({freeCancellation, name, images, destination}: TourHeaderProps) => {
   return (
@@ -17,13 +17,11 @@ const TourHeader = ({freeCancellation, name, images, destination}: TourHeaderPro
         <div className="row y-gap-20 justify-between items-end">
           <div className="col-auto">
             <div className="row x-gap-10 y-gap-10 items-center">
-             {/* {freeCancellation && <Label type={1}>Best seller</Label>} */}
-             {freeCancellation && <Label>Free cancellation</Label>}
+              {/* {freeCancellation && <Label type={1}>Best seller</Label>} */}
+              {freeCancellation && <Label>Free cancellation</Label>}
             </div>
 
-            <h2 className="text-40 sm:text-30 lh-14 mt-20">
-              {name}
-            </h2>
+            <h2 className="text-40 sm:text-30 lh-14 mt-20">{name}</h2>
 
             <div className="row x-gap-20 y-gap-20 items-center pt-20">
               {/* <div className="col-auto">
@@ -32,7 +30,7 @@ const TourHeader = ({freeCancellation, name, images, destination}: TourHeaderPro
 
               <div className="col-auto">
                 <div className="d-flex items-center">
-                  <i className="icon-pin text-16 mr-5"></i>
+                  <i className="icon-pin text-16 mr-5" />
                   {destination}
                 </div>
               </div>
@@ -48,22 +46,22 @@ const TourHeader = ({freeCancellation, name, images, destination}: TourHeaderPro
 
           <div className="col-auto">
             <div className="d-flex x-gap-30 y-gap-10">
-              <a href="#" className="d-flex items-center">
-                <i className="icon-share flex-center text-16 mr-10"></i>
+              <a href="/" className="d-flex items-center">
+                <i className="icon-share flex-center text-16 mr-10" />
                 Share
               </a>
 
-              <a href="#" className="d-flex items-center">
-                <i className="icon-heart flex-center text-16 mr-10"></i>
+              <a href="/" className="d-flex items-center">
+                <i className="icon-heart flex-center text-16 mr-10" />
                 Wishlist
               </a>
             </div>
           </div>
         </div>
-        <TourGallery images={images}/>
+        <TourGallery images={images} />
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default TourHeader
+export default TourHeader;

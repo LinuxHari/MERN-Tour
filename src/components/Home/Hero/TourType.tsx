@@ -1,9 +1,9 @@
-import { useFormContext } from "react-hook-form";
-import { TOUR_TYPES } from "../../../config/tourConfig";
+import {useFormContext} from "react-hook-form";
+import {TOUR_TYPES} from "../../../config/tourConfig";
 import Select2 from "../../Shared/Select/Select2";
 
 const TourType = () => {
-  const { setValue, watch } = useFormContext();
+  const {setValue, watch} = useFormContext();
 
   const tourType = watch("tourType");
 
@@ -11,7 +11,7 @@ const TourType = () => {
     <Select2 onSelect={(value: string) => setValue("tourType", value)} className="tourType">
       <Select2.Button>
         <div className="searchFormItem__icon size-50 rounded-12 border-1 flex-center">
-          <i className="text-20 icon-flag"></i>
+          <i className="text-20 icon-flag" />
         </div>
         <div className="searchFormItem__content">
           <h5>Tour Type</h5>

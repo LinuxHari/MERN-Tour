@@ -11,11 +11,11 @@ const Login = () => {
     url: "/signup",
   } as const;
 
-  const { onLogin, isLoginLoading } = useAuthHandler();
+  const {onLogin, isLoginLoading} = useAuthHandler();
 
   return (
     <AuthLayout {...conf}>
-        <LoginForm onLogin={onLogin} isLoading={isLoginLoading}/>
+      <LoginForm onLogin={onLogin} isLoading={isLoginLoading} />
     </AuthLayout>
   );
 };

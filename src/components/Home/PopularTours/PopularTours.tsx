@@ -3,41 +3,41 @@ import TourCard from "../../Admin/Favorites/TourCard";
 const PopularTours = () => {
   const tourCards = [
     {
-        location: "Paris, France",
-        title: "Centipede Tour - Guided Arizona Desert Tour by ATV",
-        rating: 4.8,
-        reviews: 269,
-        duration: 4,
-        price: 189,
-        image: "img/tourCards/1/1.png",
-      },
-      {
-        location: "New York, USA",
-        title: "Molokini and Turtle Town Snorkeling Adventure Aboard",
-        rating: 4.8,
-        reviews: 269,
-        duration: 4,
-        price: 225,
-        image: "img/tourCards/1/2.png",
-      },
-      {
-        location: "London, UK",
-        title: "Westminster Walking Tour & Westminster Abbey Entry",
-        rating: 4.8,
-        reviews: 269,
-        duration: 4,
-        price: 943,
-        image: "img/tourCards/1/3.png",
-      },
-      {
-        location: "New York, USA",
-        title: "All Inclusive Ultimate Circle Island Day Tour with Lunch",
-        rating: 4.8,
-        reviews: 269,
-        duration: 4,
-        price: 771,
-        image: "img/tourCards/1/4.png",
-      },
+      location: "Paris, France",
+      title: "Centipede Tour - Guided Arizona Desert Tour by ATV",
+      rating: 4.8,
+      reviews: 269,
+      duration: 4,
+      price: 189,
+      image: "img/tourCards/1/1.png",
+    },
+    {
+      location: "New York, USA",
+      title: "Molokini and Turtle Town Snorkeling Adventure Aboard",
+      rating: 4.8,
+      reviews: 269,
+      duration: 4,
+      price: 225,
+      image: "img/tourCards/1/2.png",
+    },
+    {
+      location: "London, UK",
+      title: "Westminster Walking Tour & Westminster Abbey Entry",
+      rating: 4.8,
+      reviews: 269,
+      duration: 4,
+      price: 943,
+      image: "img/tourCards/1/3.png",
+    },
+    {
+      location: "New York, USA",
+      title: "All Inclusive Ultimate Circle Island Day Tour with Lunch",
+      rating: 4.8,
+      reviews: 269,
+      duration: 4,
+      price: 771,
+      image: "img/tourCards/1/4.png",
+    },
     {
       location: "Paris, France",
       title: "Space Center Houston Admission Ticket",
@@ -67,8 +67,7 @@ const PopularTours = () => {
     },
     {
       location: "New York, USA",
-      title:
-        "Mauna Kea Summit Sunset and Stars Free Astro Photos Hilo Kona Waikoloa Pick Up",
+      title: "Mauna Kea Summit Sunset and Stars Free Astro Photos Hilo Kona Waikoloa Pick Up",
       rating: 4.8,
       reviews: 269,
       duration: 4,
@@ -85,24 +84,19 @@ const PopularTours = () => {
         </div>
 
         <div className="row y-gap-30 justify-content-center justify-content-md-between pt-40 sm:pt-20 mobile-css-slider -w-300">
-          {tourCards.map(
-            (
-              { location, title, rating, reviews, duration, price, image },
-              index
-            ) => (
-              <TourCard
-                key={index}
-                img={image}
-                rating={rating}
-                reviewCount={reviews}
-                duration={duration}
-                price={price}
-                title={title}
-                location={location}
-                className="col-lg-3 col-md-6"
-              />
-            )
-          )}
+          {tourCards.map(({location, title, rating, reviews, duration, price, image}, index) => (
+            <TourCard
+              key={index}
+              img={image}
+              rating={rating}
+              reviewCount={reviews}
+              duration={duration}
+              price={price}
+              title={title}
+              location={location}
+              className="col-lg-3 col-md-6"
+            />
+          ))}
         </div>
       </div>
     </section>

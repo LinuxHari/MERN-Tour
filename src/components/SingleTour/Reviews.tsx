@@ -7,14 +7,17 @@ type ReviewsProps = {
   tourId: string;
 };
 
-const Reviews = ({ tourId }: ReviewsProps) => {
-  const { reviews, isError, isLoading, reviewTour, isReviewLoading } = useReviewHandler(tourId);
+const Reviews = ({tourId}: ReviewsProps) => {
+  const {reviews, isError, isLoading, reviewTour, isReviewLoading} = useReviewHandler(tourId);
+
   return (
     <>
       {!isError && !isLoading && reviews && (
         <>
           <TourReviews />
-          {Boolean(reviews.userReviews) && <TourRating reviews={reviews.userReviews} isLoading={isLoading} />}
+          {Boolean(reviews.userReviews) && (
+            <TourRating reviews={reviews.userReviews} isLoading={isLoading} />
+          )}
         </>
       )}
       <PostReview onSubmit={reviewTour} isLoading={isReviewLoading} />

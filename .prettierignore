@@ -3,3 +3,8 @@ node_modules
 build
 scripts
 .git
+*.config.js
+*.config.ts
+*.cjs
+*.json
+*.md

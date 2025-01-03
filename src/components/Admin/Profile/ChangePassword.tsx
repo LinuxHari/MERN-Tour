@@ -27,9 +27,7 @@ const ChangePassword = () => {
 
         <div className="row">
           <div className="col-12">
-            <Button buttonType="primary">
-              Save Changes
-            </Button>
+            <Button buttonType="primary">Save Changes</Button>
           </div>
         </div>
       </div>

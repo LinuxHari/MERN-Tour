@@ -1,17 +1,20 @@
-import { useFormContext } from "react-hook-form";
+import {useCallback} from "react";
+import {useFormContext} from "react-hook-form";
 import Input from "../../Shared/Input/Input";
 import Textarea from "../../Shared/Teaxtarea/Textarea";
 import TourHighlights from "./TourHighlights";
-import { useCallback } from "react";
 import Categories from "./Categories";
 import AgeSection from "./AgeSection";
 import FreeCancellation from "./FreeCancellation";
 import PriceSection from "./PriceSection";
 
 const ContentSection = () => {
-  const { register } = useFormContext();
+  const {register} = useFormContext();
 
-  const render = useCallback((title: string) => <h4 className="text-18 fw-500 mb-20">{title}</h4>, []);
+  const render = useCallback(
+    (title: string) => <h4 className="text-18 fw-500 mb-20">{title}</h4>,
+    [],
+  );
 
   return (
     <div className="contactForm row y-gap-30">
@@ -40,13 +43,17 @@ const ContentSection = () => {
         <Input type="text" label="Zip Code" {...register("zipCode")} />
       </div> */}
       <div className="col-12">
-        <Input label="Tour Capacity" type="number" {...register("capacity", { valueAsNumber: true })} />
+        <Input
+          label="Tour Capacity"
+          type="number"
+          {...register("capacity", {valueAsNumber: true})}
+        />
       </div>
       <div className="col-12">
         <AgeSection render={render} />
       </div>
       <div className="col-12">
-        <PriceSection render={render}/>
+        <PriceSection render={render} />
       </div>
       <div className="col-12">
         <FreeCancellation render={render} />

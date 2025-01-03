@@ -1,5 +1,5 @@
-import { Bookings } from "../../../type";
-import { formatTableData } from "../../../utils/formatTableData";
+import {Bookings} from "../../../type";
+import {formatTableData} from "../../../utils/formatTableData";
 import Button from "../../Shared/Button/Button";
 import TableDataCell from "./TableDataCell";
 
@@ -9,7 +9,7 @@ type TableProps = {
   data: Bookings[];
 };
 
-const Table = ({ headers, showEdit, data }: TableProps) => {
+const Table = ({headers, showEdit, data}: TableProps) => {
   const formattedData = formatTableData(data);
 
   return (
@@ -33,11 +33,11 @@ const Table = ({ headers, showEdit, data }: TableProps) => {
                 <div className="d-flex items-center">
                   {showEdit && (
                     <Button buttonType="icon">
-                      <i className="icon-pencil text-14"></i>
+                      <i className="icon-pencil text-14" />
                     </Button>
                   )}
                   <Button buttonType="icon" className="ml-10">
-                    <i className="icon-delete text-14"></i>
+                    <i className="icon-delete text-14" />
                   </Button>
                 </div>
               </td>

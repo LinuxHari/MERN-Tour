@@ -1,60 +1,78 @@
+import {useLayoutEffect, useState} from "react";
+import {FormProvider, useForm} from "react-hook-form";
+import {zodResolver} from "@hookform/resolvers/zod";
+import toast from "react-hot-toast";
 import Tabs from "../../components/Shared/Tabs/Tabs";
 import ContentForm from "../../components/Admin/AddTour/ContentSection";
 import ItineraryForm from "../../components/Admin/AddTour/ItinerarySection";
 import FAQForm from "../../components/Admin/AddTour/FAQSection";
 import IncludedForm from "../../components/Admin/AddTour/IncludedSection";
-import { FormProvider, useForm } from "react-hook-form";
-import { defaultTourValue, TourSchema, TourSchemaType } from "../../schema/tourSchema";
-import { zodResolver } from "@hookform/resolvers/zod";
+import {defaultTourValue, TourSchema, TourSchemaType} from "../../schema/tourSchema";
 import Button from "../../components/Shared/Button/Button";
 import LanguageForm from "../../components/Admin/AddTour/LanguageSection";
-import { useLayoutEffect, useState } from "react";
 import StepNavigator from "../../components/Shared/Navigator/StepNavigator";
 import useTourSubmitHandler from "../../hooks/useTourSubmitHandler";
-import { getFormErrorMessages } from "../../utils/getFormErrorMessages";
-import toast from "react-hot-toast";
+import {getFormErrorMessages} from "../../utils/getFormErrorMessages";
 import GallerySection from "../../components/Admin/AddTour/GallerySection";
 
 const TourForm = () => {
   const formTabs = ["Content", "Itinerary", "FAQ", "Gallery", "Included", "Languages"];
-  const formComponents = [<ContentForm />, <ItineraryForm />, <FAQForm />,<GallerySection/>, <IncludedForm />, <LanguageForm />];
+  const formComponents = [
+    <ContentForm key="content" />,
+    <ItineraryForm key="itinerary" />,
+    <FAQForm key="faq" />,
+    <GallerySection key="gallery" />,
+    <IncludedForm key="included" />,
+    <LanguageForm key="languages" />,
+  ];
   const lastIndex = formComponents.length - 1;
 
-  const tabMap = {itinerary: 1, faq:2, images: 3, included: 4, languages: 5}
+  const tabMap = {itinerary: 1, faq: 2, images: 3, included: 4, languages: 5};
 
   const [currentTab, setCurrentTab] = useState(0);
-  const [showSubmit, setShowSubmit] = useState(false)
-  const form = useForm<TourSchemaType>({ defaultValues: defaultTourValue, resolver: zodResolver(TourSchema), shouldFocusError: false });
-  const { handleSubmit, formState: { errors }, setFocus, reset } = form;
-  const { tourSubmitHandler, isLoading } = useTourSubmitHandler(reset);
-  const showSubmitBtn = currentTab === lastIndex || showSubmit
-  
+  const [showSubmit, setShowSubmit] = useState(false);
+  const form = useForm<TourSchemaType>({
+    defaultValues: defaultTourValue,
+    resolver: zodResolver(TourSchema),
+    shouldFocusError: false,
+  });
+  const {
+    handleSubmit,
+    formState: {errors},
+    setFocus,
+    reset,
+  } = form;
+  const {tourSubmitHandler, isLoading} = useTourSubmitHandler(reset);
+  const showSubmitBtn = currentTab === lastIndex || showSubmit;
 
   useLayoutEffect(() => {
-    const keys = Object.keys(errors)
+    const keys = Object.keys(errors);
+
     if (keys.length) {
       const {errorMessages, refs} = getFormErrorMessages(errors);
+
       toast.error(errorMessages[0]);
-      setFocus(keys[0] as keyof TourSchemaType)
-      const tabToSet = tabMap[keys[0] as keyof typeof tabMap]
-    
-      if(tabToSet){
-        setCurrentTab(tabToSet)
+      setFocus(keys[0] as keyof TourSchemaType);
+      const tabToSet = tabMap[keys[0] as keyof typeof tabMap];
+
+      if (tabToSet) {
+        setCurrentTab(tabToSet);
       } else {
-        setCurrentTab(0)
+        setCurrentTab(0);
       }
 
-      if(!showSubmit)
-        setShowSubmit(true)
-      
+      if (!showSubmit) setShowSubmit(true);
+
       setTimeout(() => {
-        const firstRef = refs[0]
+        const firstRef = refs[0];
+
         if (firstRef?.focus) {
           const elementPosition = firstRef.getBoundingClientRect().top + window.scrollY;
           const offsetPosition = elementPosition - 50;
-          window.scrollTo({top: offsetPosition,behavior: "smooth"})
+
+          window.scrollTo({top: offsetPosition, behavior: "smooth"});
           firstRef.focus();
-        } 
+        }
       }, 100);
     }
   }, [errors]);
@@ -66,7 +84,11 @@ const TourForm = () => {
         encType="multipart/form-data"
         onSubmit={handleSubmit(tourSubmitHandler)}
       >
-        <Tabs className="-underline-2" defaultIndex={currentTab} onTabChange={(index: number) => setCurrentTab(index)}>
+        <Tabs
+          className="-underline-2"
+          defaultIndex={currentTab}
+          onTabChange={(index: number) => setCurrentTab(index)}
+        >
           <Tabs.TabList className="row x-gap-40 y-gap-10 lg:x-gap-20 js-tabs-controls">
             {formTabs.map((tab, index) => (
               <div className="col-auto" key={index}>
@@ -101,7 +123,9 @@ const TourForm = () => {
         />
         {showSubmitBtn && (
           <div className="col-12 mt-40">
-            <Button buttonType="primary" type="submit" isLoading={isLoading} disabled={isLoading}>Add tour</Button>
+            <Button buttonType="primary" type="submit" isLoading={isLoading} disabled={isLoading}>
+              Add tour
+            </Button>
           </div>
         )}
       </form>

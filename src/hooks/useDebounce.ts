@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import {useEffect, useState} from "react";
 
-type Value = string | number | (() => void)
+type Value = string | number | (() => void);
 
 const useDebounce = (value: Value, duration: number) => {
   const [debouncedValue, setDebouncedValue] = useState<Value>();
@@ -12,6 +12,7 @@ const useDebounce = (value: Value, duration: number) => {
       clearTimeout(id);
     };
   }, [value, duration]);
+
   return debouncedValue;
 };
 

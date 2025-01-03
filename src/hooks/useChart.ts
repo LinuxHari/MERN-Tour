@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import {useMemo} from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -10,17 +10,9 @@ import {
   Legend,
 } from "chart.js";
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend
-);
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
-type PassedDataType = { hours: number[]; weekly: number[]; monthly: number[] };
+type PassedDataType = {hours: number[]; weekly: number[]; monthly: number[]};
 
 const useChart = (data: PassedDataType) => {
   const chartConfig = useMemo(
@@ -41,7 +33,7 @@ const useChart = (data: PassedDataType) => {
         },
       },
     }),
-    []
+    [],
   );
 
   const chartData = useMemo(
@@ -112,10 +104,10 @@ const useChart = (data: PassedDataType) => {
         ],
       },
     ],
-    [data]
+    [data],
   );
 
-  return { chartConfig, chartData };
+  return {chartConfig, chartData};
 };
 
 export default useChart;

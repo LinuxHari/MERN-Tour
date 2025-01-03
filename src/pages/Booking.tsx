@@ -7,15 +7,15 @@ import useAfterBookingHandler from "../hooks/useAfterBookingHandler";
 import useModal from "../hooks/useModal";
 
 const Booking = () => {
-  const { booking, isBookingLoading, isBookingError, isCancelLoading, cancelBooking, bookingId } =
+  const {booking, isBookingLoading, isBookingError, isCancelLoading, cancelBooking, bookingId} =
     useAfterBookingHandler();
-  const { onClose, showModal, onConfirm, openModal } = useModal();
+  const {onClose, showModal, onConfirm, openModal} = useModal();
 
   if (isBookingError || !booking) return <></>;
 
   if (isBookingLoading) return <></>;
 
-  const { tourInfo, amount, ...bookingInfo } = booking;
+  const {tourInfo, amount, ...bookingInfo} = booking;
 
   return (
     <main className="bg-light-1">
@@ -25,11 +25,13 @@ const Booking = () => {
             <div className="col-lg-8 bg-white rounded-12 shadow-2 py-30 px-30 md:py-20 md:px-20 relative">
               <BookingInfo {...bookingInfo} amount={amount} bookingId={bookingId} />
               <div className="d-flex items-center justify-end mt-3">
-                {bookingInfo.isCancellable && bookingInfo.status !== "canceled" && bookingInfo.status !== "failed" && (
-                  <Button buttonType="secondary" onClick={openModal} disabled={isCancelLoading}>
-                    Cancel
-                  </Button>
-                )}
+                {bookingInfo.isCancellable &&
+                  bookingInfo.status !== "canceled" &&
+                  bookingInfo.status !== "failed" && (
+                    <Button buttonType="secondary" onClick={openModal} disabled={isCancelLoading}>
+                      Cancel
+                    </Button>
+                  )}
                 <Button className="ml-20" buttonType="link" to="/">
                   Book again
                 </Button>
@@ -52,4 +54,6 @@ const Booking = () => {
   );
 };
 
-export default withAuth(Booking);
+const AuthorizedBooking = withAuth(Booking);
+
+export default AuthorizedBooking;

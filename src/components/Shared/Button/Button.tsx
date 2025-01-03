@@ -1,5 +1,5 @@
-import { ButtonHTMLAttributes } from "react";
-import { Link } from "react-router-dom";
+import {ButtonHTMLAttributes} from "react";
+import {Link} from "react-router-dom";
 // import Spinner from "../Spinner/Spinner";
 
 type ExtendedButtonPropsBase = {
@@ -12,9 +12,12 @@ type ExtendedButtonPropsBase = {
   to?: string;
 };
 
-type ExtendedButtonProps = 
-  | (ExtendedButtonPropsBase & { buttonType: Exclude<ExtendedButtonPropsBase["buttonType"], "link">; to?: never })
-  | (ExtendedButtonPropsBase & { buttonType: "link"; to: string });
+type ExtendedButtonProps =
+  | (ExtendedButtonPropsBase & {
+      buttonType: Exclude<ExtendedButtonPropsBase["buttonType"], "link">;
+      to?: never;
+    })
+  | (ExtendedButtonPropsBase & {buttonType: "link"; to: string});
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & ExtendedButtonProps;
 
@@ -42,24 +45,35 @@ const Button = ({
 
   if (buttonType === "secondary") {
     return (
-      <button type={type} className={`button -md -outline-accent-1 text-accent-1 ${className}`} {...buttonProps}>
+      <button
+        type={type}
+        className={`button -md -outline-accent-1 text-accent-1 ${className}`}
+        {...buttonProps}
+      >
         {children}
-        {showIcon && <i className="icon-arrow-top-right text-16 ml-10"></i>}
+        {showIcon && <i className="icon-arrow-top-right text-16 ml-10" />}
       </button>
     );
   }
 
-  if (buttonType === "link"){
-    return (<Link className={`button -md -dark-1 bg-accent-1 text-white ${className}`} to={to || "/"}>{children}
-    {showIcon && <i className="icon-arrow-top-right text-16 ml-10"></i>}
-    </Link>)
+  if (buttonType === "link") {
+    return (
+      <Link className={`button -md -dark-1 bg-accent-1 text-white ${className}`} to={to || "/"}>
+        {children}
+        {showIcon && <i className="icon-arrow-top-right text-16 ml-10" />}
+      </Link>
+    );
   }
 
   return (
-    <button type={type} className={`button -md -dark-1 bg-accent-1 text-white ${className}`} {...buttonProps}>
-        {/* {isLoading && <Spinner/>} */}
+    <button
+      type={type}
+      className={`button -md -dark-1 bg-accent-1 text-white ${className}`}
+      {...buttonProps}
+    >
+      {/* {isLoading && <Spinner/>} */}
       {children}
-      {showIcon && <i className="icon-arrow-top-right text-16 ml-10"></i>}
+      {showIcon && <i className="icon-arrow-top-right text-16 ml-10" />}
     </button>
   );
 };

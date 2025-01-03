@@ -19,7 +19,7 @@ type PlacesLocationsProps = {
       };
 };
 
-const PlacesLocations = ({ data }: PlacesLocationsProps) => {
+const PlacesLocations = ({data}: PlacesLocationsProps) => {
   return (
     <div className="tabsMenu__lists">
       {Object.entries(data).map(([title, placeData], index) => (
@@ -29,6 +29,6 @@ const PlacesLocations = ({ data }: PlacesLocationsProps) => {
   );
 };
 
-const MemoizedPlaceLocations = React.memo(PlacesLocations)
+const MemoizedPlaceLocations = React.memo(PlacesLocations);
 
-export default MemoizedPlaceLocations
+export default MemoizedPlaceLocations;

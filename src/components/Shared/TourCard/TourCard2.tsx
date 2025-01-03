@@ -1,29 +1,40 @@
-import {  PaxProps, TourListResponse } from "../../../type";
+import {PaxProps, TourListResponse} from "../../../type";
 import Button from "../Button/Button";
 
-type TourCard2Props = TourListResponse["tours"][0] & PaxProps & {className?: string, onSelect: (id: string, duration: number) => void}
+type TourCard2Props = TourListResponse["tours"][0] &
+  PaxProps & {className?: string; onSelect: (id: string, duration: number) => void};
 
-const TourCard2 = ( {tourId ,name, description, price, freeCancellation, destination, duration, images, onSelect, teens, adults, children, infants, className=""}: TourCard2Props) => {
-  
+const TourCard2 = ({
+  tourId,
+  name,
+  description,
+  price,
+  freeCancellation,
+  destination,
+  duration,
+  images,
+  onSelect,
+  teens,
+  adults,
+  children,
+  infants,
+  className = "",
+}: TourCard2Props) => {
   const total = (() => {
-    let totalPrice = 0
-    
-    if(adults)
-      totalPrice += adults * price.adult
-    if(teens)
-      totalPrice += teens * (price?.teen || 0)
-    if(children)
-      totalPrice += children * (price?.child || 0)
-    if(infants)
-      totalPrice += infants * (price?.infant || 0)
+    let totalPrice = 0;
 
-    return totalPrice
-  })()
-  
+    if (adults) totalPrice += adults * price.adult;
+    if (teens) totalPrice += teens * (price?.teen || 0);
+    if (children) totalPrice += children * (price?.child || 0);
+    if (infants) totalPrice += infants * (price?.infant || 0);
+
+    return totalPrice;
+  })();
+
   return (
     <div className={`tourCard -type-2 ${className}`}>
       <div className="tourCard__image">
-        <img src={images[0]} alt="image" />
+        <img src={images[0]} alt="" />
 
         {/* {offer && (
           <div className="tourCard__badge">
@@ -35,14 +46,14 @@ const TourCard2 = ( {tourId ,name, description, price, freeCancellation, destina
 
         <div className="tourCard__favorite">
           <button className="button -accent-1 size-35 bg-white rounded-full flex-center">
-            <i className="icon-heart text-15"></i>
+            <i className="icon-heart text-15" />
           </button>
         </div>
       </div>
 
       <div className="tourCard__content">
         <div className="tourCard__location">
-          <i className="icon-pin"></i>
+          <i className="icon-pin" />
           {destination}
         </div>
 
@@ -59,7 +70,7 @@ const TourCard2 = ( {tourId ,name, description, price, freeCancellation, destina
             </div> */}
 
             <div className="text-14 text-success">
-              <i className="icon-check mr-10"></i>
+              <i className="icon-check mr-10" />
               Free Cancellation
             </div>
           </div>
@@ -68,19 +79,19 @@ const TourCard2 = ( {tourId ,name, description, price, freeCancellation, destina
       <div className="tourCard__info">
         <div>
           <div className="d-flex items-center text-14">
-            <i className="icon-clock mr-10"></i>
+            <i className="icon-clock mr-10" />
             {duration} Days
           </div>
           <div className="tourCard__price">
-            <div>
-              {/* {offer && `$${getOriginalPrice(price, offer.percentage)}`} */}
-            </div>
+            <div>{/* {offer && `$${getOriginalPrice(price, offer.percentage)}`} */}</div>
             <div className="d-flex items-center">
               Total <span className="text-20 fw-500 ml-5">${total}</span>
             </div>
           </div>
         </div>
-        <Button buttonType="secondary" onClick={() => onSelect(tourId, duration)}>View Details</Button>
+        <Button buttonType="secondary" onClick={() => onSelect(tourId, duration)}>
+          View Details
+        </Button>
       </div>
     </div>
   );

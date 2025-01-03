@@ -1,13 +1,13 @@
-import { ListingCard2Props, PaxProps } from "../../type";
+import {ListingCard2Props, PaxProps} from "../../type";
 import TourCard2 from "../Shared/TourCard/TourCard2";
 
 type TourListProps = {
   tours: ListingCard2Props[];
   onSelectTour: (id: string, duration: number) => void;
   pax: PaxProps;
-}
+};
 
-const TourList = ({ tours, onSelectTour, pax }: TourListProps) => {
+const TourList = ({tours, onSelectTour, pax}: TourListProps) => {
   // const tourListings: ListingCard2Props[] = [
   //   {
   //     img: "img/tourCards/3/1.png",
@@ -57,13 +57,20 @@ const TourList = ({ tours, onSelectTour, pax }: TourListProps) => {
   // ];
 
   return (
-      <div className="row y-gap-30 pt-10 pt-lg-30">
-        {tours.map((tour) => (
-          <div className="col-12" key={tour.name}>
-            <TourCard2 {...tour} adults={pax.adults} children={pax.children} infants={pax.infants} teens={pax.teens} onSelect={onSelectTour}/>
-          </div>
-        ))}
-      </div>
+    <div className="row y-gap-30 pt-10 pt-lg-30">
+      {tours.map((tour) => (
+        <div className="col-12" key={tour.name}>
+          <TourCard2
+            {...tour}
+            adults={pax.adults}
+            children={pax.children}
+            infants={pax.infants}
+            teens={pax.teens}
+            onSelect={onSelectTour}
+          />
+        </div>
+      ))}
+    </div>
   );
 };
 

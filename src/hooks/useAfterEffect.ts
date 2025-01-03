@@ -1,7 +1,7 @@
-import { useEffect, useRef } from "react";
+import {useEffect, useRef} from "react";
 
 type EffectCallback = () => void;
-type DependencyList = ReadonlyArray<any>;
+type DependencyList = ReadonlyArray<unknown>;
 
 const useAfterEffect = (fn: EffectCallback, dependencies: DependencyList) => {
   const isMountingRef = useRef(false);

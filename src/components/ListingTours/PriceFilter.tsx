@@ -1,22 +1,25 @@
-import Accordion from "../Shared/Accordion/Accordion";
 import PriceRangeSlider from "rc-slider";
 import "rc-slider/assets/index.css";
-import { useEffect, useState } from "react";
+import {useEffect, useState} from "react";
+import Accordion from "../Shared/Accordion/Accordion";
 
 type PriceFilterProps = {
   setPriceRange: (minPrice: number, maxPrice?: number) => void;
-  priceRange: { minPrice?: number; maxPrice?: number };
+  priceRange: {minPrice?: number; maxPrice?: number};
 };
 
-const PriceFilter = ({ priceRange, setPriceRange }: PriceFilterProps) => {
-  const defaultRange = { minPrice: 5, maxPrice: 2000 };
+const PriceFilter = ({priceRange, setPriceRange}: PriceFilterProps) => {
+  const defaultRange = {minPrice: 5, maxPrice: 2000};
   const [currentPriceRange, setCurrentRange] = useState([5, 1500]);
   const [currentMinPrice, currentMaxPrice] = currentPriceRange;
   const handleRange = (range: number[]) =>
-    range[1] === defaultRange.maxPrice || range[1] === currentMaxPrice? setPriceRange(range[0]) : setPriceRange(range[0], range[1]);
+    range[1] === defaultRange.maxPrice || range[1] === currentMaxPrice
+      ? setPriceRange(range[0])
+      : setPriceRange(range[0], range[1]);
 
   useEffect(() => {
-    const { minPrice, maxPrice } = priceRange;
+    const {minPrice, maxPrice} = priceRange;
+
     if (minPrice && maxPrice) setCurrentRange([minPrice, maxPrice]);
   }, [priceRange]);
 
@@ -36,7 +39,7 @@ const PriceFilter = ({ priceRange, setPriceRange }: PriceFilterProps) => {
                     min={defaultRange.minPrice}
                     value={currentPriceRange}
                     max={defaultRange.maxPrice}
-                    range={{ minCount: 2, maxCount: 2 }}
+                    range={{minCount: 2, maxCount: 2}}
                     onChange={(range) => setCurrentRange(range as number[])}
                     onChangeComplete={(range) => handleRange(range as number[])}
                   />
@@ -47,7 +50,10 @@ const PriceFilter = ({ priceRange, setPriceRange }: PriceFilterProps) => {
                     <span className="fw-500 js-lower">${currentMinPrice}</span>
                     <span> - </span>
                     <span className="fw-500 js-upper">
-                      ${currentMaxPrice === defaultRange.maxPrice ? currentMaxPrice + "+" : currentMaxPrice}
+                      $
+                      {currentMaxPrice === defaultRange.maxPrice
+                        ? currentMaxPrice + "+"
+                        : currentMaxPrice}
                     </span>
                   </div>
                 </div>

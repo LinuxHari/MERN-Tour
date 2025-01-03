@@ -1,18 +1,18 @@
-import { useNavigate, useParams, useSearchParams } from "react-router-dom";
-import { useGetTourByIdQuery } from "../redux/api/baseApi";
-import { singleTourUrlParamsHandler } from "../utils/urlParamsHandler";
-import { useMemo } from "react";
-import { MIN_AGE } from "../config/tourConfig";
+import {useMemo} from "react";
+import {useNavigate, useParams, useSearchParams} from "react-router-dom";
+import {useGetTourByIdQuery} from "../redux/api/baseApi";
+import {singleTourUrlParamsHandler} from "../utils/urlParamsHandler";
+import {MIN_AGE} from "../config/tourConfig";
 
-type ParamType = { tourId: string; destinationId: string };
+type ParamType = {tourId: string; destinationId: string};
 
 const useSingleTourHandler = () => {
   const [searchParams, _] = useSearchParams();
   const urlParams = Object.fromEntries(searchParams);
-  const { tourId } = useParams() as ParamType;
+  const {tourId} = useParams() as ParamType;
   const navigate = useNavigate();
   const redirect = () => navigate(-1);
-  const { startDate, endDate, adults, children, infants, teens } = singleTourUrlParamsHandler({
+  const {startDate, endDate, adults, children, infants, teens} = singleTourUrlParamsHandler({
     id: tourId,
     redirect,
     startDate: urlParams.startDate,
@@ -22,23 +22,31 @@ const useSingleTourHandler = () => {
     infants: urlParams.infants,
     teens: urlParams.teens,
   });
-  const { data, isLoading } = useGetTourByIdQuery({ id: tourId, startDate, endDate, adults, children, infants, teens });
+  const {data, isLoading} = useGetTourByIdQuery({
+    id: tourId,
+    startDate,
+    endDate,
+    adults,
+    children,
+    infants,
+    teens,
+  });
 
   const pax = useMemo(() => {
     const tourMinAge = data?.minAge || 0;
 
     switch (tourMinAge) {
       case MIN_AGE.infant:
-        return { adults, infants, children, teens };
+        return {adults, infants, children, teens};
 
       case MIN_AGE.child:
-        return { adults, children, teens, infants: 0 };
+        return {adults, children, teens, infants: 0};
 
       case MIN_AGE.teen:
-        return { adults, teens, children: 0, infants: 0 };
+        return {adults, teens, children: 0, infants: 0};
 
       default:
-        return { adults, children: 0, teens: 0, infants: 0 };
+        return {adults, children: 0, teens: 0, infants: 0};
     }
   }, [data]);
 

@@ -2,19 +2,19 @@ const BreadCrumbs = () => {
   return (
     <div className="breadcrumbs">
       <span className="breadcrumbs__item">
-        <a href="#">Home</a>
+        <a href="/">Home</a>
       </span>
       &nbsp;
       <span>&gt;</span>
       &nbsp;
       <span className="breadcrumbs__item">
-        <a href="#">Tours</a>
+        <a href="/">Tours</a>
       </span>
       &nbsp;
       <span>&gt;</span>
       &nbsp;
       <span className="breadcrumbs__item">
-        <a href="#">Phuket</a>
+        <a href="/">Phuket</a>
       </span>
     </div>
   );

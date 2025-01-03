@@ -1,26 +1,32 @@
-import { useFormContext } from "react-hook-form";
+import {useState} from "react";
+import {useFormContext} from "react-hook-form";
 import DatePicker from "../../Shared/DatePicker/DatePicker";
-import { formatDate } from "../../../utils/formatDate";
+import {formatDate} from "../../../utils/formatDate";
 import Dropdown from "../../Shared/Dropdown/Dropdown";
-import { useState } from "react";
 
 const SearchDatePicker = () => {
-  const { setValue, watch } = useFormContext();
-  const [close, setClose] = useState(false)
+  const {setValue, watch} = useFormContext();
+  const [close, setClose] = useState(false);
 
   const dateRange = watch("dateRange");
-  const onChange = (dates: any) => {
-    const { startDate, endDate } = dates;
+
+  interface DateRange {
+    startDate: Date | null;
+    endDate: Date | null;
+  }
+
+  const onChange = (dates: DateRange) => {
+    const {startDate, endDate} = dates;
 
     if (startDate && endDate) {
-      setValue("dateRange", dates);      
-      if(startDate.toString() !== endDate.toString()){
-        setClose(true)
-      } else{
-        setClose(false)
+      setValue("dateRange", dates);
+      if (startDate.toString() !== endDate.toString()) {
+        setClose(true);
+      } else {
+        setClose(false);
       }
-    } else{
-      setClose(false)
+    } else {
+      setClose(false);
     }
   };
 
@@ -28,10 +34,14 @@ const SearchDatePicker = () => {
   const endDate = dateRange ? formatDate(dateRange.endDate, "MMM-DD") : "";
 
   return (
-    <Dropdown className="searchFormItem js-select-control js-form-dd js-calendar" close={close} setClose={(value: boolean) => setClose(value)}>
+    <Dropdown
+      className="searchFormItem js-select-control js-form-dd js-calendar"
+      close={close}
+      setClose={(value: boolean) => setClose(value)}
+    >
       <Dropdown.Toggle className="searchFormItem__button" data-x-click="calendar">
         <div className="searchFormItem__icon size-50 rounded-12 border-1 flex-center">
-          <i className="text-20 icon-calendar"></i>
+          <i className="text-20 icon-calendar" />
         </div>
         <div className="searchFormItem__content">
           <h5 className="mb-1">When</h5>
@@ -41,9 +51,8 @@ const SearchDatePicker = () => {
         </div>
       </Dropdown.Toggle>
       <Dropdown.Content className="absolute top-500 start-50 translate-middle-x z-5">
-      <DatePicker onChange={onChange} />
+        <DatePicker onChange={onChange} />
       </Dropdown.Content>
-
     </Dropdown>
   );
 };

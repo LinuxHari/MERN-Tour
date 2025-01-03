@@ -4,13 +4,12 @@ type StepNavigatorProps = {
   prevClick: () => void;
   nextClick: () => void;
   lastIndex: number;
-  activeTab: number
+  activeTab: number;
 };
 
-const StepNavigator = ({ prevClick, nextClick, lastIndex, activeTab }: StepNavigatorProps) => {
-
-    const disablePrev = activeTab === 0
-    const disableNext = activeTab === lastIndex
+const StepNavigator = ({prevClick, nextClick, lastIndex, activeTab}: StepNavigatorProps) => {
+  const disablePrev = activeTab === 0;
+  const disableNext = activeTab === lastIndex;
 
   return (
     <div className="col-9 mt-20 d-flex justify-content-between">

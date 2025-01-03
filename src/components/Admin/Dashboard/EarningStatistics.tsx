@@ -1,6 +1,6 @@
-import { Line } from "react-chartjs-2";
+import {Line} from "react-chartjs-2";
 import Tabs from "../../Shared/Tabs/Tabs";
-import useChart from "../../../hooks/useChart"
+import useChart from "../../../hooks/useChart";
 
 const EarningStatistics = () => {
   const tabs = ["Hours", "Weekly", "Monthly"];
@@ -11,7 +11,7 @@ const EarningStatistics = () => {
     monthly: [148, 100, 205, 110, 165, 145, 180, 156, 148, 220, 180, 245],
   };
 
-  const { chartConfig, chartData } = useChart(data)
+  const {chartConfig, chartData} = useChart(data);
 
   return (
     <div className="col-xl-8 col-lg-12 col-md-6">
@@ -23,10 +23,7 @@ const EarningStatistics = () => {
               <Tabs.TabList className="row x-gap-20 y-gap-10 lg:x-gap-20">
                 {tabs.map((tab, index) => (
                   <div className="col-auto" key={index}>
-                    <Tabs.Tab
-                      index={index}
-                      className="fw-500"
-                    >
+                    <Tabs.Tab index={index} className="fw-500">
                       {tab}
                     </Tabs.Tab>
                   </div>

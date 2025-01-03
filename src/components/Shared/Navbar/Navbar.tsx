@@ -1,8 +1,8 @@
+import {ACTIVITIES, DESTINATIONS} from "../../../data";
 import Currency from "./Currency";
 import Logo from "./Logo";
 import Search from "./Search";
 import Places from "./Places";
-import { ACTIVITIES, DESTINATIONS } from "../../../data";
 import AuthSection from "./AuthSection";
 
 const Navbar = () => {
@@ -17,18 +17,18 @@ const Navbar = () => {
         </div>
         <div className="headerMobile__right">
           <button className="d-flex">
-            <i className="icon-search text-18"></i>
+            <i className="icon-search text-18" />
           </button>
 
           <button className="d-flex ml-20">
-            <i className="icon-person text-18"></i>
+            <i className="icon-person text-18" />
           </button>
         </div>
         <div className="header__right">
-          <Places data={DESTINATIONS} title="Destinations" dataClick = "headerDestinations"/>
-          <Places data={ACTIVITIES} title="Activities" dataClick = "header-activities"/>
+          <Places data={DESTINATIONS} title="Destinations" dataClick="headerDestinations" />
+          <Places data={ACTIVITIES} title="Activities" dataClick="header-activities" />
           <Currency />
-         <AuthSection />
+          <AuthSection />
         </div>
       </div>
     </header>

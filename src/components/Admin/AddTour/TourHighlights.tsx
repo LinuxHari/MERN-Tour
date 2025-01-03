@@ -1,13 +1,13 @@
-import { useFieldArray, useFormContext } from "react-hook-form";
+import {useFieldArray, useFormContext} from "react-hook-form";
 import Input from "../../Shared/Input/Input";
 import Button from "../../Shared/Button/Button";
-import { RenderProps } from "../../../type";
+import {RenderProps} from "../../../type";
 
-const TourHighlights = ({ render }: RenderProps) => {
-  const { register } = useFormContext();
-  const { fields, append, remove } = useFieldArray({
+const TourHighlights = ({render}: RenderProps) => {
+  const {register} = useFormContext();
+  const {fields, append, remove} = useFieldArray({
     name: "highlights",
-    rules: { minLength: 2, maxLength: 10 },
+    rules: {minLength: 2, maxLength: 10},
   });
 
   return (
@@ -15,13 +15,13 @@ const TourHighlights = ({ render }: RenderProps) => {
       {render("Highlights")}
       {fields.map((field, index: number) => (
         <div key={field.id} className="d-flex gap-3 align-items-center mt-30 w-100">
-         <div className="flex-grow-1">
-         <Input
-            type="text"
-            label={`Hightlight ${index + 1}`}
-            {...register(`highlights.${index}.value`)}
-          />
-         </div>
+          <div className="flex-grow-1">
+            <Input
+              type="text"
+              label={`Hightlight ${index + 1}`}
+              {...register(`highlights.${index}.value`)}
+            />
+          </div>
           {index > 1 && (
             <Button
               buttonType="icon"

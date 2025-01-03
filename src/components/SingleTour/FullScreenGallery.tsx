@@ -1,11 +1,5 @@
-
-
 const FullScreenGallery = () => {
-  return (
-    <div className="fixed w-100 h-100 bg-dark">
+  return <div className="fixed w-100 h-100 bg-dark"></div>;
+};
 
-    </div>
-  )
-}
-
-export default FullScreenGallery
+export default FullScreenGallery;

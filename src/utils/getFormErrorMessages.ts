@@ -1,12 +1,16 @@
-export const getFormErrorMessages = (errors: Object, messages:string[] = [], refs:any=[]) => {
-    for(const error of Object.values(errors)){ 
-        if(typeof error.message !== "string"){
-            getFormErrorMessages(error, messages, refs)
-            continue
-        }      
-        messages.push(error.message)
-        refs.push(error.ref)
+export const getFormErrorMessages = (
+  errors: object,
+  messages: string[] = [],
+  refs: HTMLElement[] = [],
+) => {
+  for (const error of Object.values(errors)) {
+    if (typeof error.message !== "string") {
+      getFormErrorMessages(error, messages, refs);
+      continue;
     }
-    
-    return {errorMessages: messages, refs}
-}
+    messages.push(error.message);
+    refs.push(error.ref);
+  }
+
+  return {errorMessages: messages, refs};
+};

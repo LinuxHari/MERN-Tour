@@ -1,7 +1,10 @@
-import { useLayoutEffect, useState } from "react";
+import {useLayoutEffect, useState} from "react";
 
 const useWindowSize = () => {
-  const [windowSize, setWindowSize] = useState({ width: window.innerWidth, height: window.innerHeight });
+  const [windowSize, setWindowSize] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
 
   const handleSize = () => {
     setWindowSize({
@@ -11,7 +14,6 @@ const useWindowSize = () => {
   };
 
   useLayoutEffect(() => {
-
     // Prevent unnecessary re-renders with debouncing
 
     let resizeTimeout: ReturnType<typeof setTimeout> | null = null;
@@ -28,7 +30,7 @@ const useWindowSize = () => {
 
     return () => {
       if (resizeTimeout) clearTimeout(resizeTimeout);
-      
+
       window.removeEventListener("resize", debouncedHandleSize);
     };
   }, []);
@@ -36,4 +38,4 @@ const useWindowSize = () => {
   return windowSize;
 };
 
-export default useWindowSize
+export default useWindowSize;

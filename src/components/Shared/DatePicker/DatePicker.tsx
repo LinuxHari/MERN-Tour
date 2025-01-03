@@ -1,17 +1,22 @@
 import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
 
-import { DateRange, Range } from "react-date-range";
-import React, { useState } from "react";
-import { getDefaultDateRange } from "../../../utils/getDefaultDateRange";
+import {DateRange, Range, RangeKeyDict} from "react-date-range";
+import React, {useState} from "react";
+import {getDefaultDateRange} from "../../../utils/getDefaultDateRange";
 import useWindowSize from "../../../hooks/useWindowSize";
 
-type DatePickerProps = {
-  onChange: (dates: any) => void;
+type DateRangeType = {
+  startDate: Date | null; // Adjust type as necessary
+  endDate: Date | null; // Adjust type as necessary
 };
 
-const DatePicker = ({ onChange }: DatePickerProps) => {
-  const { startDate, endDate, maxDate } = getDefaultDateRange();
+type DatePickerProps = {
+  onChange: (dates: DateRangeType) => void; // Use the defined type for dates
+};
+
+const DatePicker = ({onChange}: DatePickerProps) => {
+  const {startDate, endDate, maxDate} = getDefaultDateRange();
   const [dateRange, setDateRange] = useState<Range[]>([
     {
       startDate: new Date(startDate),
@@ -20,27 +25,29 @@ const DatePicker = ({ onChange }: DatePickerProps) => {
     },
   ]);
 
-  const { width } = useWindowSize()
-  const isLaptop = width >= 1200
+  const {width} = useWindowSize();
+  const isLaptop = width >= 1200;
 
-  const handleChange = (dates: any) => {
+  const handleChange = (dates: RangeKeyDict) => {
     setDateRange([dates.selection]);
-    onChange({ startDate: dates.selection.startDate, endDate: dates.selection.endDate });
+    onChange({startDate: dates.selection.startDate, endDate: dates.selection.endDate});
   };
 
   return (
-      <DateRange
-        className="searchFormItemDropdown__container"
-        months={isLaptop? 2: 1}
-        direction="horizontal"
-        minDate={new Date(startDate)}
-        maxDate={new Date(maxDate)}
-        ranges={dateRange}
-        rangeColors={["#EB662B"]}
-        editableDateInputs
-        onChange={handleChange}
-      />
+    <DateRange
+      className="searchFormItemDropdown__container"
+      months={isLaptop ? 2 : 1}
+      direction="horizontal"
+      minDate={new Date(startDate)}
+      maxDate={new Date(maxDate)}
+      ranges={dateRange}
+      rangeColors={["#EB662B"]}
+      editableDateInputs
+      onChange={handleChange}
+    />
   );
 };
 
-export default React.memo(DatePicker);
+const MemoizedDatePicker = React.memo(DatePicker);
+
+export default MemoizedDatePicker;

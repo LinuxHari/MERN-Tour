@@ -3,10 +3,16 @@ type ImagePlaceholderProps = {
   byteSize: "KB" | "MB";
 };
 
-const ImagePlaceholder = ({ size, byteSize }: ImagePlaceholderProps) => {
+const ImagePlaceholder = ({size, byteSize}: ImagePlaceholderProps) => {
   return (
     <div className="size-200 rounded-12 border-dash-1 bg-accent-1-05 flex-center flex-column">
-      <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg
+        width="40"
+        height="40"
+        viewBox="0 0 40 40"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
         <path
           fillRule="evenodd"
           clipRule="evenodd"
@@ -40,7 +46,7 @@ const ImagePlaceholder = ({ size, byteSize }: ImagePlaceholderProps) => {
       </svg>
 
       <div className="text-16 fw-500 text-accent-1 mt-10">Upload Images</div>
-      <span className="mx-4 mt-2" style={{ fontSize: "12px" }}>
+      <span className="mx-4 mt-2" style={{fontSize: "12px"}}>
         Maximum size: {size}
         {byteSize}
       </span>

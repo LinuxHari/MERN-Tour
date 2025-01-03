@@ -1,6 +1,6 @@
-import { Swiper, SwiperSlide } from "swiper/react";
+import {Swiper, SwiperSlide} from "swiper/react";
+import {Navigation} from "swiper/modules";
 import TourCard from "../../Admin/Favorites/TourCard";
-import { Navigation } from "swiper/modules";
 
 const Cards = () => {
   const tourCards = [
@@ -69,8 +69,7 @@ const Cards = () => {
     },
     {
       location: "New York, USA",
-      title:
-        "Mauna Kea Summit Sunset and Stars Free Astro Photos Hilo Kona Waikoloa Pick Up",
+      title: "Mauna Kea Summit Sunset and Stars Free Astro Photos Hilo Kona Waikoloa Pick Up",
       rating: 4.8,
       reviews: 269,
       duration: 4,
@@ -80,9 +79,7 @@ const Cards = () => {
   ];
 
   return (
-    <div
-      className="relative pt-40 sm:pt-20 is-in-view"
-    >
+    <div className="relative pt-40 sm:pt-20 is-in-view">
       <div className="overflow-hidden pb-30">
         <Swiper
           modules={[Navigation]}
@@ -93,39 +90,34 @@ const Cards = () => {
           spaceBetween={25}
           slidesPerView={4}
           breakpoints={{
-            320: { slidesPerView: 1 },
-            640: { slidesPerView: 2 },
-            1024: { slidesPerView: 3 },
-            1280: { slidesPerView: 4 },
+            320: {slidesPerView: 1},
+            640: {slidesPerView: 2},
+            1024: {slidesPerView: 3},
+            1280: {slidesPerView: 4},
           }}
         >
-          {tourCards.map(
-            (
-              { location, title, reviews, rating, duration, price, image },
-              index
-            ) => (
-              <SwiperSlide key={index}>
-                <TourCard
-                  location={location}
-                  title={title}
-                  reviewCount={reviews}
-                  rating={rating}
-                  duration={duration}
-                  price={price}
-                  img={image}
-                />
-              </SwiperSlide>
-            )
-          )}
+          {tourCards.map(({location, title, reviews, rating, duration, price, image}, index) => (
+            <SwiperSlide key={index}>
+              <TourCard
+                location={location}
+                title={title}
+                reviewCount={reviews}
+                rating={rating}
+                duration={duration}
+                price={price}
+                img={image}
+              />
+            </SwiperSlide>
+          ))}
         </Swiper>
       </div>
 
       <div className="navAbsolute">
         <button className="navAbsolute__button bg-white js-slider1-prev">
-          <i className="icon-arrow-left text-14"></i>
+          <i className="icon-arrow-left text-14" />
         </button>
         <button className="navAbsolute__button bg-white js-slider1-next">
-          <i className="icon-arrow-right text-14"></i>
+          <i className="icon-arrow-right text-14" />
         </button>
       </div>
     </div>

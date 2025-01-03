@@ -1,21 +1,29 @@
-import { LoginSchemaType } from "../../schema/authSchema"
-import { ModalProps } from "../../type"
-import Modal from "../Shared/Modal/Modal"
-import LoginForm from "./LoginForm"
+import {LoginSchemaType} from "../../schema/authSchema";
+import {ModalProps} from "../../type";
+import Modal from "../Shared/Modal/Modal";
+import LoginForm from "./LoginForm";
 
-type LoginModalProps = Omit<ModalProps, "onConfirm"> & { isLoading: boolean, onConfirm: (data: LoginSchemaType) => void }
+type LoginModalProps = Omit<ModalProps, "onConfirm"> & {
+  isLoading: boolean;
+  onConfirm: (data: LoginSchemaType) => void;
+};
 
 const LoginModal = ({showModal, onClose, onConfirm, isLoading}: LoginModalProps) => {
   return (
-    <Modal show={showModal} onClose={onClose} >
-    <Modal.Header>
-      <Modal.Title>Log In</Modal.Title>
-    </Modal.Header>
-    <Modal.Content>
-      <LoginForm isLoading={isLoading} onLogin={onConfirm} isModal={true} modalClassName="px-10 py-10" />
-    </Modal.Content>
-  </Modal>
-  )
-}
+    <Modal show={showModal} onClose={onClose}>
+      <Modal.Header>
+        <Modal.Title>Log In</Modal.Title>
+      </Modal.Header>
+      <Modal.Content>
+        <LoginForm
+          isLoading={isLoading}
+          onLogin={onConfirm}
+          isModal={true}
+          modalClassName="px-10 py-10"
+        />
+      </Modal.Content>
+    </Modal>
+  );
+};
 
-export default LoginModal
+export default LoginModal;

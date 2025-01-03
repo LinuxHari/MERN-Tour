@@ -38,7 +38,7 @@ module.exports = {
     "unused-imports/no-unused-imports": "warn",
     "object-curly-spacing": ["error", "never"],
     "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
-    printWidth: off,
+    printWidth: "off",
     "@typescript-eslint/no-unused-vars": [
       "warn",
       {
@@ -58,19 +58,18 @@ module.exports = {
             position: "after",
           },
         ],
-        "newlines-between": "always",
       },
     ],
     "react/self-closing-comp": "warn",
-    "react/jsx-sort-props": [
-      "warn",
-      {
-        callbacksLast: true,
-        shorthandFirst: true,
-        noSortAlphabetically: false,
-        reservedFirst: true,
-      },
-    ],
+    // "react/jsx-sort-props": [
+    //   "warn",
+    //   {
+    //     callbacksLast: true,
+    //     shorthandFirst: true,
+    //     noSortAlphabetically: false,
+    //     reservedFirst: true,
+    //   },
+    // ],
     "padding-line-between-statements": [
       "warn",
       {

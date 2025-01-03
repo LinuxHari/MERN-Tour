@@ -1,11 +1,14 @@
-import { useFieldArray, useFormContext } from "react-hook-form";
-import Input from "../../Shared/Input/Input";
 import React from "react";
+import {useFieldArray, useFormContext} from "react-hook-form";
+import Input from "../../Shared/Input/Input";
 import Button from "../../Shared/Button/Button";
 
 const ItinerarySection = () => {
-  const { register } = useFormContext();
-  const { fields, append, remove } = useFieldArray({ name: "itinerary", rules: { minLength: 2, maxLength: 10 } });
+  const {register} = useFormContext();
+  const {fields, append, remove} = useFieldArray({
+    name: "itinerary",
+    rules: {minLength: 2, maxLength: 10},
+  });
 
   return (
     <>
@@ -20,7 +23,7 @@ const ItinerarySection = () => {
                   className="px-3 py-4 -outline-accent-1 text-accent-1"
                   showIcon={false}
                   onClick={() => remove(index)}
-                  style={{ width: "fit-content" }}
+                  style={{width: "fit-content"}}
                 >
                   <i className="icon-delete text-20" />
                 </Button>
@@ -37,14 +40,14 @@ const ItinerarySection = () => {
               <Input
                 type="number"
                 label="Map Latitude"
-                {...register(`itinerary.${index}.lat`, { valueAsNumber: true })}
+                {...register(`itinerary.${index}.lat`, {valueAsNumber: true})}
               />
             </div>
             <div className="col-lg-6">
               <Input
                 type="number"
                 label="Map Longitude"
-                {...register(`itinerary.${index}.lon`, { valueAsNumber: true })}
+                {...register(`itinerary.${index}.lon`, {valueAsNumber: true})}
               />
             </div>
           </React.Fragment>
@@ -54,8 +57,8 @@ const ItinerarySection = () => {
             buttonType="primary"
             className="button -md -outline-dark-1 text-dark bg-light-1 ml-15 mt-30"
             showIcon={false}
-            onClick={() => append({ question: "", answer: "" })}
-            style={{ width: "fit-content" }}
+            onClick={() => append({question: "", answer: ""})}
+            style={{width: "fit-content"}}
           >
             <i className="icon-add-button text-16 mr-10" />
             Add Itinerary

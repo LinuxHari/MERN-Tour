@@ -1,51 +1,53 @@
-import { lazy, useCallback, Suspense } from "react";
-import { Route, Routes } from "react-router-dom";
+import {lazy, useCallback, Suspense} from "react";
+import {Route, Routes} from "react-router-dom";
 import AppLayout from "./layouts/AppLayout";
 
-const Home = lazy(() => import('./pages/Home'))
-const AdminLayout = lazy(() => import("./layouts/AdminLayout")) ;
-const Dashboard = lazy(() => import('./pages/Admin/Dashboard'));
-const Bookings = lazy(() => import('./pages/Admin/Bookings'));
-const Listings = lazy(() => import('./pages/Admin/Listings'));
-const AddTour = lazy(() => import('./pages/Admin/AddTour'));
-const Favorites = lazy(() => import('./pages/Admin/Favorites'));
-const Profile = lazy(() => import('./pages/Admin/Profile'));
-const CommonHeader = lazy(() => import('./components/Admin/CommonHeader'));
-const ListingTours = lazy(() => import('./pages/ListingTours'))
-const Tour = lazy(() => import('./pages/SingleTour'))
-const Booking = lazy(() => import('./pages/Booking'));
-const Checkout = lazy(() => import('./pages/Checkout'));
-const Login = lazy(() => import('./pages/Auth/Login'))
-const Signup = lazy(() => import('./pages/Auth/Signup'))
-const NotFound = lazy(() => import('./pages/NotFound'))
-
+const Home = lazy(() => import("./pages/Home"));
+const AdminLayout = lazy(() => import("./layouts/AdminLayout"));
+const Dashboard = lazy(() => import("./pages/Admin/Dashboard"));
+const Bookings = lazy(() => import("./pages/Admin/Bookings"));
+const Listings = lazy(() => import("./pages/Admin/Listings"));
+const AddTour = lazy(() => import("./pages/Admin/AddTour"));
+const Favorites = lazy(() => import("./pages/Admin/Favorites"));
+const Profile = lazy(() => import("./pages/Admin/Profile"));
+const CommonHeader = lazy(() => import("./components/Admin/CommonHeader"));
+const ListingTours = lazy(() => import("./pages/ListingTours"));
+const Tour = lazy(() => import("./pages/SingleTour"));
+const Booking = lazy(() => import("./pages/Booking"));
+const Checkout = lazy(() => import("./pages/Checkout"));
+const Login = lazy(() => import("./pages/Auth/Login"));
+const Signup = lazy(() => import("./pages/Auth/Signup"));
+const NotFound = lazy(() => import("./pages/NotFound"));
 
 const AppRoutes = () => {
-  const render = useCallback((title: string, desc: string = "") => <CommonHeader title={title} desc={desc}/>,[])
+  const render = useCallback(
+    (title: string, desc: string = "") => <CommonHeader title={title} desc={desc} />,
+    [],
+  );
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
-    <Routes>
-      <Route path="/" element={<AppLayout/>}>
-        <Route index element={<Home/>}/>
-        <Route path="tours/:destinationId" element={<ListingTours/>}/>
-        <Route path="tours/:destinationId/:tourId" element={<Tour/>}/>
-        <Route path="checkout/:reserveId" element={<Checkout/>}/>
-        <Route path="booking/:bookingId" element={<Booking/>}/>
-        <Route path="login" element={<Login/>}/>
-        <Route path="signup" element={<Signup/>}/>
-      </Route>
-      <Route path="/dashboard" element={<AdminLayout />}>
-        <Route index element={<Dashboard render={render} />} />
-        <Route path="booking" element={<Bookings render={render} />} />
-        <Route path="listings" element={<Listings render={render} />} />
-        <Route path="addtour" element={<AddTour render={render} />} />
-        <Route path="favorites" element={<Favorites render={render} />} />
-        <Route path="profile" element={<Profile render={render} />} />
-      </Route>
-      <Route path="*" element={<NotFound />}/>
-    </Routes>
-  </Suspense>
+      <Routes>
+        <Route path="/" element={<AppLayout />}>
+          <Route index element={<Home />} />
+          <Route path="tours/:destinationId" element={<ListingTours />} />
+          <Route path="tours/:destinationId/:tourId" element={<Tour />} />
+          <Route path="checkout/:reserveId" element={<Checkout />} />
+          <Route path="booking/:bookingId" element={<Booking />} />
+          <Route path="login" element={<Login />} />
+          <Route path="signup" element={<Signup />} />
+        </Route>
+        <Route path="/dashboard" element={<AdminLayout />}>
+          <Route index element={<Dashboard render={render} />} />
+          <Route path="booking" element={<Bookings render={render} />} />
+          <Route path="listings" element={<Listings render={render} />} />
+          <Route path="addtour" element={<AddTour render={render} />} />
+          <Route path="favorites" element={<Favorites render={render} />} />
+          <Route path="profile" element={<Profile render={render} />} />
+        </Route>
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </Suspense>
   );
 };
 

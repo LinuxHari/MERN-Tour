@@ -8,13 +8,12 @@ import Select from "../Shared/Select/Select";
 //   | "Rating: High to Low";
 
 type TourListHeaderProps = {
-  totalCount: number
+  totalCount: number;
   sortType: string;
-  setSortType: (type: string) => void
-}
+  setSortType: (type: string) => void;
+};
 
 const TourListHeader = ({totalCount, sortType, setSortType}: TourListHeaderProps) => {
-
   const sortOptions = [
     "Recommended",
     "Price: High to Low",
@@ -34,7 +33,9 @@ const TourListHeader = ({totalCount, sortType, setSortType}: TourListHeaderProps
           <Select.Button>Sort by: </Select.Button>
           <Select.Menu>
             {sortOptions.map((sortType) => (
-              <Select.Option key={sortType} value={sortType}>{sortType}</Select.Option>
+              <Select.Option key={sortType} value={sortType}>
+                {sortType}
+              </Select.Option>
             ))}
           </Select.Menu>
         </Select>

@@ -5,6 +5,7 @@ public/*
 tests/*
 scripts/*
 *.config.js
+*.config.ts
 node_modules
 coverage
 build

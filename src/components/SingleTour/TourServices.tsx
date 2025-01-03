@@ -5,9 +5,9 @@ type TourServicesProps = {
   minAge: number;
   capacity: number;
   languages: string[];
-}
+};
 
-const TourServices = ({ duration, minAge, capacity, languages }: TourServicesProps) => {
+const TourServices = ({duration, minAge, capacity, languages}: TourServicesProps) => {
   const tourDetails = [
     {
       icon: "icon-clock",

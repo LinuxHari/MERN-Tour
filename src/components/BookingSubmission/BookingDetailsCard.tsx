@@ -1,14 +1,19 @@
-import { ReservedTourResponse } from "../../type";
+import {ReservedTourResponse} from "../../type";
 import Button from "../Shared/Button/Button";
 
 type BookingDetailsCardProps = {
   isPayformLoaded: boolean;
   isLoading: boolean;
   isError: boolean;
-  reservedTour: ReservedTourResponse
-}
+  reservedTour: ReservedTourResponse;
+};
 
-const BookingDetailsCard = ({isPayformLoaded, isLoading, isError, reservedTour}: BookingDetailsCardProps) => {
+const BookingDetailsCard = ({
+  isPayformLoaded,
+  isLoading,
+  isError,
+  reservedTour,
+}: BookingDetailsCardProps) => {
   if (isLoading) return "Loading...";
   else if (isError || !reservedTour) return "Something went wrong";
 
@@ -19,11 +24,11 @@ const BookingDetailsCard = ({isPayformLoaded, isLoading, isError, reservedTour}:
           <h2 className="text-20 fw-500">Your booking details</h2>
 
           <div className="d-flex flex-column mt-30">
-            <img src={reservedTour.tourDetails.images[0]} className="rounded" alt="image" />
+            <img src={reservedTour.tourDetails.images[0]} className="rounded" alt="" />
             <div className="pt-2 fw-500">{reservedTour.tourDetails.name}</div>
           </div>
 
-          <div className="line mt-20 mb-20"></div>
+          <div className="line mt-20 mb-20" />
 
           <div className="">
             <div className="d-flex items-center justify-between">
@@ -39,22 +44,24 @@ const BookingDetailsCard = ({isPayformLoaded, isLoading, isError, reservedTour}:
             <div className="d-flex items-center justify-between">
               <div className="fw-500">Tickets:</div>
               <div className="">
-                Adult x{reservedTour.passengers.adults} = ${reservedTour.passengers.adults * reservedTour.tourDetails.price.adult}
+                Adult x{reservedTour.passengers.adults} = $
+                {reservedTour.passengers.adults * reservedTour.tourDetails.price.adult}
               </div>
             </div>
 
             {reservedTour.passengers.teens ? (
               <div className="d-flex items-center justify-between">
-                <div className="fw-500"></div>
+                <div className="fw-500" />
                 <div className="">
-                  Teens x{reservedTour.passengers.teens} = ${reservedTour.passengers.teens * (reservedTour.tourDetails.price?.teen || 0)}
+                  Teens x{reservedTour.passengers.teens} = $
+                  {reservedTour.passengers.teens * (reservedTour.tourDetails.price?.teen || 0)}
                 </div>
               </div>
             ) : null}
 
             {reservedTour.passengers.children ? (
               <div className="d-flex items-center justify-between">
-                <div className="fw-500"></div>
+                <div className="fw-500" />
                 <div className="">
                   Children x{reservedTour.passengers.children} = $
                   {reservedTour.passengers.children * (reservedTour.tourDetails.price?.child || 0)}
@@ -64,7 +71,7 @@ const BookingDetailsCard = ({isPayformLoaded, isLoading, isError, reservedTour}:
 
             {reservedTour.passengers.infants ? (
               <div className="d-flex items-center justify-between">
-                <div className="fw-500"></div>
+                <div className="fw-500" />
                 <div className="">
                   Infants x{reservedTour.passengers.infants} = $
                   {reservedTour.passengers.infants * (reservedTour.tourDetails.price?.infant || 0)}
@@ -73,7 +80,7 @@ const BookingDetailsCard = ({isPayformLoaded, isLoading, isError, reservedTour}:
             ) : null}
           </div>
 
-          <div className="line mt-20 mb-20"></div>
+          <div className="line mt-20 mb-20" />
 
           <div className="">
             {/* <div className="d-flex items-center justify-between">
@@ -99,7 +106,13 @@ const BookingDetailsCard = ({isPayformLoaded, isLoading, isError, reservedTour}:
         </div>
 
         <div className="mt-30">
-          <Button buttonType="primary" type="submit" className="w-100" isLoading={isLoading} disabled={!isPayformLoaded || isLoading}>
+          <Button
+            buttonType="primary"
+            type="submit"
+            className="w-100"
+            isLoading={isLoading}
+            disabled={!isPayformLoaded || isLoading}
+          >
             Complete My Order
           </Button>
         </div>

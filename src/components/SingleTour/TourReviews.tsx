@@ -8,7 +8,7 @@ const TourReviews = () => {
           <div className="overallRating__item">
             <div className="overallRating__content">
               <div className="overallRating__icon">
-                <i className="icon-star-2 text-30 text-accent-1"></i>
+                <i className="icon-star-2 text-30 text-accent-1" />
               </div>
 
               <div className="overallRating__info">
@@ -18,7 +18,7 @@ const TourReviews = () => {
             </div>
 
             <div className="overallRating__rating d-flex items-center">
-              <i className="icon-star text-yellow-2 text-16"></i>
+              <i className="icon-star text-yellow-2 text-16" />
               <div className="text-16 fw-500 ml-10">5.0</div>
             </div>
           </div>
@@ -26,7 +26,7 @@ const TourReviews = () => {
           <div className="overallRating__item">
             <div className="overallRating__content">
               <div className="overallRating__icon">
-                <i className="icon-pin-2 text-30 text-accent-1"></i>
+                <i className="icon-pin-2 text-30 text-accent-1" />
               </div>
 
               <div className="overallRating__info">
@@ -36,7 +36,7 @@ const TourReviews = () => {
             </div>
 
             <div className="overallRating__rating d-flex items-center">
-              <i className="icon-star text-yellow-2 text-16"></i>
+              <i className="icon-star text-yellow-2 text-16" />
               <div className="text-16 fw-500 ml-10">5.0</div>
             </div>
           </div>
@@ -44,7 +44,7 @@ const TourReviews = () => {
           <div className="overallRating__item">
             <div className="overallRating__content">
               <div className="overallRating__icon">
-                <i className="icon-application text-30 text-accent-1"></i>
+                <i className="icon-application text-30 text-accent-1" />
               </div>
 
               <div className="overallRating__info">
@@ -54,7 +54,7 @@ const TourReviews = () => {
             </div>
 
             <div className="overallRating__rating d-flex items-center">
-              <i className="icon-star text-yellow-2 text-16"></i>
+              <i className="icon-star text-yellow-2 text-16" />
               <div className="text-16 fw-500 ml-10">5.0</div>
             </div>
           </div>
@@ -62,7 +62,7 @@ const TourReviews = () => {
           <div className="overallRating__item">
             <div className="overallRating__content">
               <div className="overallRating__icon">
-                <i className="icon-utensils text-30 text-accent-1"></i>
+                <i className="icon-utensils text-30 text-accent-1" />
               </div>
 
               <div className="overallRating__info">
@@ -72,7 +72,7 @@ const TourReviews = () => {
             </div>
 
             <div className="overallRating__rating d-flex items-center">
-              <i className="icon-star text-yellow-2 text-16"></i>
+              <i className="icon-star text-yellow-2 text-16" />
               <div className="text-16 fw-500 ml-10">5.0</div>
             </div>
           </div>
@@ -80,7 +80,7 @@ const TourReviews = () => {
           <div className="overallRating__item">
             <div className="overallRating__content">
               <div className="overallRating__icon">
-                <i className="icon-price-tag text-30 text-accent-1"></i>
+                <i className="icon-price-tag text-30 text-accent-1" />
               </div>
 
               <div className="overallRating__info">
@@ -90,7 +90,7 @@ const TourReviews = () => {
             </div>
 
             <div className="overallRating__rating d-flex items-center">
-              <i className="icon-star text-yellow-2 text-16"></i>
+              <i className="icon-star text-yellow-2 text-16" />
               <div className="text-16 fw-500 ml-10">5.0</div>
             </div>
           </div>
@@ -98,7 +98,7 @@ const TourReviews = () => {
           <div className="overallRating__item">
             <div className="overallRating__content">
               <div className="overallRating__icon">
-                <i className="icon-bed-2 text-30 text-accent-1"></i>
+                <i className="icon-bed-2 text-30 text-accent-1" />
               </div>
 
               <div className="overallRating__info">
@@ -108,7 +108,7 @@ const TourReviews = () => {
             </div>
 
             <div className="overallRating__rating d-flex items-center">
-              <i className="icon-star text-yellow-2 text-16"></i>
+              <i className="icon-star text-yellow-2 text-16" />
               <div className="text-16 fw-500 ml-10">5.0</div>
             </div>
           </div>
@@ -116,7 +116,7 @@ const TourReviews = () => {
           <div className="overallRating__item">
             <div className="overallRating__content">
               <div className="overallRating__icon">
-                <i className="icon-online-support-2 text-30 text-accent-1"></i>
+                <i className="icon-online-support-2 text-30 text-accent-1" />
               </div>
 
               <div className="overallRating__info">
@@ -125,14 +125,13 @@ const TourReviews = () => {
               </div>
             </div>
             <div className="overallRating__rating d-flex items-center">
-              <i className="icon-star text-yellow-2 text-16"></i>
+              <i className="icon-star text-yellow-2 text-16" />
               <div className="text-16 fw-500 ml-10">5.0</div>
             </div>
           </div>
         </div>
       </div>
       {/* <TourRating/> */}
-      
     </TourSectionLayout>
   );
 };

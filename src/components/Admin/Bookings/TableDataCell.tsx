@@ -1,14 +1,15 @@
-import { DataCell, Tour } from "../../../type";
+import {DataCell, Tour} from "../../../type";
 
 type TableDataCellProps = {
-  type: DataCell,
-  value: string | object,
-  color?: "purple" | "yellow" | "red"
+  type: DataCell;
+  value: string | object;
+  color?: "purple" | "yellow" | "red";
 };
 
-const TableDataCell = ({ type, value, color }: TableDataCellProps) => {
+const TableDataCell = ({type, value, color}: TableDataCellProps) => {
   if (typeof value === "object") {
     const tour = value as Tour;
+
     return (
       <td className="min-w-300">
         <div className="d-flex items-center">

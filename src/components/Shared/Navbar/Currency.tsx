@@ -1,4 +1,4 @@
-import { CURRENCIES } from "../../../data";
+import {CURRENCIES} from "../../../data";
 import Dropdown from "../Dropdown/Dropdown";
 
 const Currency = () => {
@@ -6,7 +6,7 @@ const Currency = () => {
     <Dropdown className="js-form-dd">
       <Dropdown.Toggle dataClick="header-currency">
         USD
-        <i className="icon-chevron-down text-18"></i>
+        <i className="icon-chevron-down text-18" />
       </Dropdown.Toggle>
 
       <Dropdown.Content dataClick="header-currency">

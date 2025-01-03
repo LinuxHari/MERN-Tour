@@ -1,13 +1,13 @@
-import { UserInfoResponse } from "../../type";
-import { baseApi } from "./baseApi";
+import {UserInfoResponse} from "../../type";
+import {baseApi} from "./baseApi";
 
 const userApi = baseApi.injectEndpoints({
-    endpoints: (builder) => ({
-        getUserInfo: builder.query<UserInfoResponse, void>({
-            query: () => ({url: "/user/info", credentials: "include"}),
-            providesTags: (user) => user? [{type: "User", id: user.email}]: ["UNAUTHORIZED"] 
-        }),
-    })
-})
+  endpoints: (builder) => ({
+    getUserInfo: builder.query<UserInfoResponse, void>({
+      query: () => ({url: "/user/info", credentials: "include"}),
+      providesTags: (user) => (user ? [{type: "User", id: user.email}] : ["UNAUTHORIZED"]),
+    }),
+  }),
+});
 
-export const { useGetUserInfoQuery } = userApi
+export const {useGetUserInfoQuery} = userApi;

@@ -1,5 +1,5 @@
-import { initializeApp } from "firebase/app";
-import { getStorage } from "firebase/storage";
+import {initializeApp} from "firebase/app";
+import {getStorage} from "firebase/storage";
 import env from "./envConfig";
 
 const firebaseConfig = {
@@ -14,4 +14,4 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const storage = getStorage(app);
 
-export default { storage };
+export default {storage};
