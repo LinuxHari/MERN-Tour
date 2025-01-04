@@ -60,14 +60,7 @@ const TourList = ({tours, onSelectTour, pax}: TourListProps) => {
     <div className="row y-gap-30 pt-10 pt-lg-30">
       {tours.map((tour) => (
         <div className="col-12" key={tour.name}>
-          <TourCard2
-            {...tour}
-            adults={pax.adults}
-            children={pax.children}
-            infants={pax.infants}
-            teens={pax.teens}
-            onSelect={onSelectTour}
-          />
+          <TourCard2 {...tour} pax={pax} onSelect={onSelectTour} />
         </div>
       ))}
     </div>

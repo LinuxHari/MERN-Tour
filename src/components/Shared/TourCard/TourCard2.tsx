@@ -1,8 +1,10 @@
 import {PaxProps, TourListResponse} from "../../../type";
 import Button from "../Button/Button";
 
-type TourCard2Props = TourListResponse["tours"][0] &
-  PaxProps & {className?: string; onSelect: (id: string, duration: number) => void};
+type TourCard2Props = TourListResponse["tours"][0] & {pax: PaxProps} & {
+  className?: string;
+  onSelect: (id: string, duration: number) => void;
+};
 
 const TourCard2 = ({
   tourId,
@@ -14,12 +16,11 @@ const TourCard2 = ({
   duration,
   images,
   onSelect,
-  teens,
-  adults,
-  children,
-  infants,
+  pax,
   className = "",
 }: TourCard2Props) => {
+  const {teens, adults, children, infants} = pax;
+
   const total = (() => {
     let totalPrice = 0;
 
