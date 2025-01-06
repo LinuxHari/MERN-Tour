@@ -40,8 +40,8 @@ const deleteImages = async (urls: string[]) => {
   await Promise.all(urls.map((url) => deleteImage(url)));
 };
 
-const useFirebaseUpload = () => {
+const getFirebaseUpload = () => {
   return {uploadImage, uploadImages, deleteImages, deleteImage};
 };
 
-export default useFirebaseUpload;
+export default getFirebaseUpload;

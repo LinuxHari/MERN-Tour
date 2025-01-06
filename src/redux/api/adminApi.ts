@@ -1,7 +1,7 @@
 import {FetchBaseQueryError} from "@reduxjs/toolkit/query";
 import {ImgPath, Tour} from "../../type";
 import {TourSchemaType} from "../../schema/tourSchema";
-import useFirebaseUpload from "../../hooks/useFirebaseUpload";
+import getFirebaseUpload from "../../utils/getFirebaseUpload";
 import {extractFirebaseImgPath} from "../../utils/extractFirebaseImgPath";
 import {baseApi} from "./baseApi";
 
@@ -30,7 +30,7 @@ export const adminApi = baseApi.injectEndpoints({
     }),
     createTour: builder.mutation<CreateTourResponse, TourSchemaType>({
       queryFn: async (formData, _, __, baseQuery) => {
-        const {uploadImages, deleteImages} = useFirebaseUpload();
+        const {uploadImages, deleteImages} = getFirebaseUpload();
 
         try {
           const imageUrls = await uploadImages(formData.images, formData.name);
