@@ -1,3 +1,5 @@
+import {useEffect} from "react";
+import toast from "react-hot-toast";
 import {Controller, useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
 import TourSectionLayout from "../../layouts/TourSectionLayout";
@@ -5,6 +7,7 @@ import StarRatingSchema, {RatingType} from "../../schema/reviewSchema";
 import Button from "../Shared/Button/Button";
 import Input from "../Shared/Input/Input";
 import Textarea from "../Shared/Teaxtarea/Textarea";
+import {getFormErrorMessages} from "../../utils/getFormErrorMessages";
 import StarRating from "./StarRating";
 
 type PostReviewProps = {
@@ -14,7 +17,20 @@ type PostReviewProps = {
 
 const PostReview = ({onSubmit, isLoading}: PostReviewProps) => {
   const form = useForm<RatingType>({resolver: zodResolver(StarRatingSchema)});
-  const {control, handleSubmit} = form;
+  const {
+    control,
+    handleSubmit,
+    formState: {errors},
+    register,
+  } = form;
+
+  useEffect(() => {
+    if (Object.keys(errors).length) {
+      const {errorMessages} = getFormErrorMessages(errors);
+
+      toast.error(errorMessages[0]);
+    }
+  }, [errors]);
 
   return (
     <TourSectionLayout title="Leave a Review" showBorder={false}>
@@ -73,24 +89,25 @@ const PostReview = ({onSubmit, isLoading}: PostReviewProps) => {
 
         <div className="contactForm y-gap-30 pt-30">
           <div className="col-12">
-            <Input type="text" required label="How was the tour?" name="title" />
+            <Input type="text" required label="How was the tour?" {...register("title")} />
           </div>
 
           <div className="row">
             <div className="col-12">
-              <Textarea label="What do you think?" name="comment" rows={8} />
+              <Textarea label="What do you think?" rows={8} {...register("comment")} />
             </div>
           </div>
 
           <div className="row">
             <div className="col-12">
-              <Button buttonType="primary" isLoading={isLoading} disabled={isLoading}>
+              <Button buttonType="primary" type="submit" isLoading={isLoading} disabled={isLoading}>
                 Post Review
               </Button>
             </div>
           </div>
         </div>
       </form>
+      <div className="line mt-60 mb-60" />
     </TourSectionLayout>
   );
 };

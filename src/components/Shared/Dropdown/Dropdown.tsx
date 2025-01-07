@@ -51,6 +51,7 @@ const Toggle = ({children, className = "", dataClick}: ToggleProps) => {
     <button
       className={`headerDropdown__button ${className}`}
       data-x-click={dataClick}
+      type="button"
       onClick={toggleContent}
     >
       {children}

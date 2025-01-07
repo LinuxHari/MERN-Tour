@@ -90,7 +90,12 @@ export const baseApi = createApi({
       providesTags: (_, __, tourId) => [{type: "Review", id: tourId}],
     }),
     review: builder.mutation<void, RatingType & {tourId: string}>({
-      query: (id) => ({url: `/tour/review/${id}`, method: "POST", credentials: "include"}),
+      query: ({tourId, ...review}) => ({
+        url: `/tour/review/${tourId}`,
+        method: "POST",
+        credentials: "include",
+        body: review,
+      }),
       invalidatesTags: (_, __, {tourId}) => [{type: "Review", id: tourId}],
     }),
   }),

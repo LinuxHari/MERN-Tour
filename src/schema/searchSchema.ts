@@ -4,7 +4,7 @@ import calculatePaxTotal from "../utils/calculatePaxTotal";
 
 export const searchSchema = z.object({
   destinationId: z
-    .string()
+    .string({message: "Please select a destination"})
     .min(8, {message: "Invalid destination id"})
     .max(8, {message: "Invalid destination id"}),
   dateRange: z.object(

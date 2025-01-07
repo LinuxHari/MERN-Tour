@@ -63,6 +63,7 @@ const Button = ({children, className = ""}: CommonProps) => {
       className={`searchFormItem__button ${className}`}
       data-x-click="location"
       onClick={toggleDropdown}
+      type="button"
     >
       {children}
     </button>
