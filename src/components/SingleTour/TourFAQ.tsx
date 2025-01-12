@@ -1,4 +1,3 @@
-import TourSectionLayout from "../../layouts/TourSectionLayout";
 import {TourSchemaType} from "../../schema/tourSchema";
 import Accordion from "../Shared/Accordion/Accordion";
 
@@ -8,7 +7,8 @@ type TourFAQProps = {
 
 const TourFAQ = ({faq}: TourFAQProps) => {
   return (
-    <TourSectionLayout title="FAQ">
+    <>
+      <h2 className="text-30">FAQs</h2>
       <Accordion type="single" className="-simple row y-gap-20 mt-30">
         {faq.map((item, index) => (
           <div className="col-12" key={index}>
@@ -35,7 +35,7 @@ const TourFAQ = ({faq}: TourFAQProps) => {
           </div>
         ))}
       </Accordion>
-    </TourSectionLayout>
+    </>
   );
 };
 

@@ -161,6 +161,7 @@ export type ReviewResponse = {
   rooms: number;
   amenities: number;
   totalCount: number;
+  overallRating: number;
   userReviews: {
     name: string;
     postedAt: Date;

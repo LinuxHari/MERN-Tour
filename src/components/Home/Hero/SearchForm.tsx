@@ -51,10 +51,18 @@ const SearchForm = () => {
     });
   };
 
+  const handleFormScroll = () => {
+    const isMobile = window.innerWidth < 992;
+    const scrollHeight = isMobile ? 350 : 125;
+    const scrolledHeight = isMobile ? 150 : 100;
+
+    if (window.scrollY < scrolledHeight) window.scrollBy({top: scrollHeight, behavior: "smooth"});
+  };
+
   return (
     <FormProvider {...form}>
       <form className="searchForm -type-1" onSubmit={handleSubmit(handleSearch)}>
-        <div className="searchForm__form">
+        <div className="searchForm__form" role="presentation" onClick={handleFormScroll}>
           <SearchSuggestions />
           <SearchDatePicker />
           <TourType />

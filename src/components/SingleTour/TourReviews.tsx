@@ -1,138 +1,55 @@
-import TourSectionLayout from "../../layouts/TourSectionLayout";
+import {ReviewResponse} from "../../type";
+import keyToTitle from "../../utils/keyToTitle";
 
-const TourReviews = () => {
+type TourReviewsProps = Omit<ReviewResponse, "userReviews" | "totalCount">;
+
+const TourReviews = (tourReviewProps: TourReviewsProps) => {
+  const reviewTags = {1: "Very bad", 2: "Bad", 3: "Good", 4: "Very good", 5: "Excellent"};
+
+  const {overallRating, ...otherReviews} = tourReviewProps;
+
   return (
-    <TourSectionLayout title="Customer Reviews">
-      <div className="overallRating mt-30">
-        <div className="overallRating__list">
-          <div className="overallRating__item">
-            <div className="overallRating__content">
-              <div className="overallRating__icon">
-                <i className="icon-star-2 text-30 text-accent-1" />
-              </div>
-
-              <div className="overallRating__info">
-                <h5 className="text-16 fw-500">Overall Rating</h5>
-                <div className="lh-15">Excellent</div>
-              </div>
+    <div className="overallRating mt-30">
+      <div className="overallRating__list">
+        <div className="overallRating__item">
+          <div className="overallRating__content">
+            <div className="overallRating__icon">
+              <i className="icon-star-2 text-30 text-accent-1" />
             </div>
 
-            <div className="overallRating__rating d-flex items-center">
-              <i className="icon-star text-yellow-2 text-16" />
-              <div className="text-16 fw-500 ml-10">5.0</div>
+            <div className="overallRating__info">
+              <h5 className="text-16 fw-500">Overall Rating</h5>
+              <div className="lh-15">{reviewTags[overallRating as keyof typeof reviewTags]}</div>
             </div>
           </div>
 
-          <div className="overallRating__item">
+          <div className="overallRating__rating d-flex items-center">
+            <i className="icon-star text-yellow-2 text-16" />
+            <div className="text-16 fw-500 ml-10">{overallRating.toFixed(1)}</div>
+          </div>
+        </div>
+
+        {Object.entries(otherReviews).map(([key, value]) => (
+          <div className="overallRating__item" key={key}>
             <div className="overallRating__content">
               <div className="overallRating__icon">
                 <i className="icon-pin-2 text-30 text-accent-1" />
               </div>
 
               <div className="overallRating__info">
-                <h5 className="text-16 fw-500">Location</h5>
-                <div className="lh-15">Excellent</div>
+                <h5 className="text-16 fw-500">{keyToTitle(key)}</h5>
+                <div className="lh-15">{reviewTags[value as keyof typeof reviewTags]}</div>
               </div>
             </div>
 
             <div className="overallRating__rating d-flex items-center">
               <i className="icon-star text-yellow-2 text-16" />
-              <div className="text-16 fw-500 ml-10">5.0</div>
+              <div className="text-16 fw-500 ml-10">{value.toFixed(1)}</div>
             </div>
           </div>
-
-          <div className="overallRating__item">
-            <div className="overallRating__content">
-              <div className="overallRating__icon">
-                <i className="icon-application text-30 text-accent-1" />
-              </div>
-
-              <div className="overallRating__info">
-                <h5 className="text-16 fw-500">Amenities</h5>
-                <div className="lh-15">Excellent</div>
-              </div>
-            </div>
-
-            <div className="overallRating__rating d-flex items-center">
-              <i className="icon-star text-yellow-2 text-16" />
-              <div className="text-16 fw-500 ml-10">5.0</div>
-            </div>
-          </div>
-
-          <div className="overallRating__item">
-            <div className="overallRating__content">
-              <div className="overallRating__icon">
-                <i className="icon-utensils text-30 text-accent-1" />
-              </div>
-
-              <div className="overallRating__info">
-                <h5 className="text-16 fw-500">Food</h5>
-                <div className="lh-15">Excellent</div>
-              </div>
-            </div>
-
-            <div className="overallRating__rating d-flex items-center">
-              <i className="icon-star text-yellow-2 text-16" />
-              <div className="text-16 fw-500 ml-10">5.0</div>
-            </div>
-          </div>
-
-          <div className="overallRating__item">
-            <div className="overallRating__content">
-              <div className="overallRating__icon">
-                <i className="icon-price-tag text-30 text-accent-1" />
-              </div>
-
-              <div className="overallRating__info">
-                <h5 className="text-16 fw-500">Price</h5>
-                <div className="lh-15">Excellent</div>
-              </div>
-            </div>
-
-            <div className="overallRating__rating d-flex items-center">
-              <i className="icon-star text-yellow-2 text-16" />
-              <div className="text-16 fw-500 ml-10">5.0</div>
-            </div>
-          </div>
-
-          <div className="overallRating__item">
-            <div className="overallRating__content">
-              <div className="overallRating__icon">
-                <i className="icon-bed-2 text-30 text-accent-1" />
-              </div>
-
-              <div className="overallRating__info">
-                <h5 className="text-16 fw-500">Rooms</h5>
-                <div className="lh-15">Excellent</div>
-              </div>
-            </div>
-
-            <div className="overallRating__rating d-flex items-center">
-              <i className="icon-star text-yellow-2 text-16" />
-              <div className="text-16 fw-500 ml-10">5.0</div>
-            </div>
-          </div>
-
-          <div className="overallRating__item">
-            <div className="overallRating__content">
-              <div className="overallRating__icon">
-                <i className="icon-online-support-2 text-30 text-accent-1" />
-              </div>
-
-              <div className="overallRating__info">
-                <h5 className="text-16 fw-500">Tour Operator</h5>
-                <div className="lh-15">Excellent</div>
-              </div>
-            </div>
-            <div className="overallRating__rating d-flex items-center">
-              <i className="icon-star text-yellow-2 text-16" />
-              <div className="text-16 fw-500 ml-10">5.0</div>
-            </div>
-          </div>
-        </div>
+        ))}
       </div>
-      {/* <TourRating/> */}
-    </TourSectionLayout>
+    </div>
   );
 };
 

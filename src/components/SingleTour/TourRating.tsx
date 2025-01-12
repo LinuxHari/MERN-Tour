@@ -4,16 +4,18 @@ import Avatar from "../Shared/Avatar/Avatar";
 type TourRatingProps = {
   reviews: ReviewResponse["userReviews"];
   isLoading: boolean;
+  totalCount: number;
 };
 
-const TourRating = ({reviews, isLoading}: TourRatingProps) => {
+const TourRating = ({reviews, isLoading, totalCount}: TourRatingProps) => {
   if (isLoading) return <>Loading...</>;
 
   return (
     <>
+      <h4 className="mt-5">{totalCount} User Reviews</h4>
       {reviews.map((review, index: number) => (
         <div className="pt-30" key={index}>
-          <div className="row justify-between">
+          <div className="row align-items-center justify-content-between">
             <div className="col-auto">
               <div className="d-flex items-center">
                 {/* <div className="size-40 rounded-full">
@@ -24,7 +26,7 @@ const TourRating = ({reviews, isLoading}: TourRatingProps) => {
               />
             </div> */}
                 <Avatar type="small" string={review.name} profile={review.profile} />
-                <div className="text-16 fw-500 ml-20">{review.name}</div>
+                <div className="text-16 fw-500 ml-10">{review.name}</div>
               </div>
             </div>
 
@@ -35,8 +37,8 @@ const TourRating = ({reviews, isLoading}: TourRatingProps) => {
             </div>
           </div>
 
-          <div className="d-flex items-center mt-15">
-            <div className="d-flex x-gap-5">
+          <div className="d-flex mt-15">
+            <div className="d-flex align-items-center x-gap-5">
               {review.overallRating} <i className="icon-star text-yellow-2 text-10" />
             </div>
             <div className="text-16 fw-500 ml-10">{review.title}</div>
