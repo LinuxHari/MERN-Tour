@@ -12,6 +12,7 @@ type SelectProps = {
 type ButtonProps = {
   children?: ReactNode;
   className?: string;
+  hideSelectedValue?: true;
 };
 
 type OptionProps = ButtonProps & {
@@ -44,7 +45,7 @@ const Select = ({children, defaultValue, onChange, className = ""}: SelectProps)
   );
 };
 
-const Button = ({children, className = ""}: ButtonProps) => {
+const Button = ({children, className = "", hideSelectedValue}: ButtonProps) => {
   const {selectedValue, toggleDropdown, showContent} = useSelectContext();
 
   return (
@@ -55,9 +56,9 @@ const Button = ({children, className = ""}: ButtonProps) => {
     >
       <span className="js-title">
         {children && <>{children}</>}
-        {selectedValue}
+        {!hideSelectedValue && selectedValue}
       </span>
-      <i className={`icon-chevron-down ${showContent ? "rotate-180" : "rotate-0"}`} />
+      <i className={`icon-chevron-down ml-2 ${showContent ? "rotate-180" : "rotate-0"}`} />
     </button>
   );
 };

@@ -517,14 +517,8 @@ export const RECENT_SEARCHES = [
 ];
 
 export const CURRENCIES = [
-  "U.S. Dollar",
-  "Euro",
-  "British Pound",
-  "Turkish Lira",
-  "Canadian Dollar",
-  "Australian Dollar",
-  "Swiss Franc",
-  "Singapore Dollar",
+  {label: "U.S. Dollar", value: "USD"},
+  {label: "U.A. Dinar", value: "UAE"},
 ];
 
 export const SEARCH_SUGGESTIONS = [

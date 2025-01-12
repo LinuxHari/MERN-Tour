@@ -1,26 +1,32 @@
 import {CURRENCIES} from "../../../data";
-import Dropdown from "../Dropdown/Dropdown";
+import Select from "../Select/Select";
+import useLocalStorage from "../../../hooks/useLocalStorage";
 
 const Currency = () => {
-  return (
-    <Dropdown className="js-form-dd">
-      <Dropdown.Toggle dataClick="header-currency">
-        USD
-        <i className="icon-chevron-down text-18" />
-      </Dropdown.Toggle>
+  const currencies = CURRENCIES.map(({value}) => value);
+  const [storedCurrency, setCurrencyValue] = useLocalStorage("currency", currencies);
 
-      <Dropdown.Content dataClick="header-currency">
+  return (
+    <Select
+      className="js-form-dd"
+      defaultValue={storedCurrency as string}
+      onChange={setCurrencyValue}
+    >
+      <Select.Button className="headerDropdown__button" hideSelectedValue>
+        {storedCurrency as string}
+      </Select.Button>
+      <Select.Menu>
         <div className="headerDropdown">
           <div className="headerDropdown__container">
-            {CURRENCIES.map((currency, index) => (
-              <div key={index} className="headerDropdown__item">
+            {currencies.map((currency, index) => (
+              <Select.Option key={index} value={currency} className="headerDropdown__item">
                 <button className="">{currency}</button>
-              </div>
+              </Select.Option>
             ))}
           </div>
         </div>
-      </Dropdown.Content>
-    </Dropdown>
+      </Select.Menu>
+    </Select>
   );
 };
 
