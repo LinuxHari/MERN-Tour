@@ -40,7 +40,7 @@ type SingleTourParams = {
 export const baseApi = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({baseUrl: `${env.API_BASE_URL}`}),
-  tagTypes: ["Tour", "User", "Book", "Review", "UNAUTHORIZED"],
+  tagTypes: ["Tour", "User", "Book", "Review", "Favorites", "UNAUTHORIZED"],
   endpoints: (builder) => ({
     getSearchSuggestionsByText: builder.query<SearchSuggestions, string>({
       query: (searchText) => ({url: "/tour/search", params: {searchText}}),

@@ -5,7 +5,6 @@ export const DASHBOARD_NAV = [
   {href: "addtour", iconClass: "icon-clipboard", text: "Add Tour"},
   {href: "favorites", iconClass: "icon-heart", text: "My Favorites"},
   {href: "profile", iconClass: "icon-account", text: "My Profile"},
-  {href: "logout", iconClass: "icon-logout", text: "Logout"},
 ];
 
 export const DASHBOARD_DATA = [

@@ -15,15 +15,15 @@ type GetToursResponse = {
 
 export const adminApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    getAdminPublishedTours: builder.query<GetToursResponse, string>({
-      query: () => "/admin",
+    getAdminPublishedTours: builder.query<GetToursResponse, void>({
+      query: () => "/admin/tour",
       providesTags: (data) =>
         data
           ? [
-              ...data.tours.map((tour) => ({
-                type: "Tour" as const,
-                id: tour.tourId,
-              })),
+              // ...data.tours.map((tour) => ({
+              //   type: "Tour" as const,
+              //   id: tour.tourId,
+              // })),
               {type: "Tour", id: data.publisherId},
             ]
           : [],

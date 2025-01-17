@@ -129,10 +129,12 @@ export type BookingBody = BookingSchemaType & {
   id: string;
 };
 
+export type BookingStatus = "success" | "init" | "canceled" | "failed";
+
 export type BookingDetailsResponse = {
   bookDate: Date;
   paymentMethod: "Card";
-  status: "success" | "init" | "canceled" | "failed";
+  status: BookingStatus;
   name: string;
   email: string;
   amount: number;
@@ -170,6 +172,28 @@ export type ReviewResponse = {
     comment: string;
     profile: string;
   }[];
+};
+
+export type FavoriteTours = {
+  location: string;
+  title: string;
+  rating: number;
+  reviewCount: number;
+  price: number;
+  duration: number;
+  imgUrl: string;
+};
+
+export type BookedTours = {
+  price: number;
+  duration: number;
+  startDate: Date;
+  tourName: string;
+  tourId: string;
+  bookingId: string;
+  imgURL: string;
+  bookedDate: Date;
+  status: BookingStatus;
 };
 
 export enum ImgPath {

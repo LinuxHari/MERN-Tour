@@ -4,7 +4,7 @@ import useLocalStorage from "../../../hooks/useLocalStorage";
 
 const Currency = () => {
   const currencies = CURRENCIES.map(({value}) => value);
-  const [storedCurrency, setCurrencyValue] = useLocalStorage("currency", currencies);
+  const [storedCurrency, setCurrencyValue] = useLocalStorage("currency", currencies[0]);
 
   return (
     <Select

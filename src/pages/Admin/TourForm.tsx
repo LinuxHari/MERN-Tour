@@ -11,7 +11,7 @@ import {defaultTourValue, TourSchema, TourSchemaType} from "../../schema/tourSch
 import Button from "../../components/Shared/Button/Button";
 import LanguageForm from "../../components/Admin/AddTour/LanguageSection";
 import StepNavigator from "../../components/Shared/Navigator/StepNavigator";
-import useTourSubmitHandler from "../../hooks/useTourSubmitHandler";
+import useTourSubmitHandler from "../../hooks/useAdminTourHandler";
 import {getFormErrorMessages} from "../../utils/getFormErrorMessages";
 import GallerySection from "../../components/Admin/AddTour/GallerySection";
 
@@ -42,7 +42,7 @@ const TourForm = () => {
     setFocus,
     reset,
   } = form;
-  const {tourSubmitHandler, isLoading} = useTourSubmitHandler(reset);
+  const {tourSubmitHandler, isLoading} = useTourSubmitHandler();
   const showSubmitBtn = currentTab === lastIndex || showSubmit;
 
   useLayoutEffect(() => {
@@ -82,7 +82,7 @@ const TourForm = () => {
       <form
         className="row y-gap-30 rounded-12 bg-white shadow-2 px-40 pt-40 pb-30 mt-60"
         encType="multipart/form-data"
-        onSubmit={handleSubmit(tourSubmitHandler)}
+        onSubmit={handleSubmit((data) => tourSubmitHandler(data, reset))}
       >
         <Tabs
           className="-underline-2"

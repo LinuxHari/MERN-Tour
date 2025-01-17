@@ -5,7 +5,7 @@ import Textarea from "../../Shared/Teaxtarea/Textarea";
 
 const UpdateProfile = () => {
   return (
-    <div className="rounded-12 bg-white shadow-2 px-40 pt-40 pb-30">
+    <form className="rounded-12 bg-white shadow-2 px-40 pt-40 pb-30">
       <h5 className="text-20 fw-500 mb-30">Profile Details</h5>
 
       <div className="contactForm row y-gap-30">
@@ -41,7 +41,7 @@ const UpdateProfile = () => {
       <div className="d-flex pt-30">
         <Button buttonType="primary">Save Changes</Button>
       </div>
-    </div>
+    </form>
   );
 };
 

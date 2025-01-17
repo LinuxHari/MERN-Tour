@@ -1,6 +1,7 @@
 import {Link, useLocation} from "react-router-dom";
 import {DASHBOARD_NAV} from "../../config/adminConfig";
 import Header from "./SidebarHeader";
+import LogoutSection from "./LogoutSection";
 
 const Sidebar = () => {
   const {pathname} = useLocation();
@@ -27,6 +28,7 @@ const Sidebar = () => {
               </Link>
             </div>
           ))}
+          <LogoutSection />
         </div>
       </div>
     </div>
