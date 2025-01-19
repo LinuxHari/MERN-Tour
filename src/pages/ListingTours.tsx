@@ -25,8 +25,6 @@ const ListingTours = () => {
     isFiltersApplied,
   } = useListingToursHandler();
 
-  console.log(isFiltersApplied, "is filters applied", filters);
-
   return (
     <>
       {!isLoading ? (

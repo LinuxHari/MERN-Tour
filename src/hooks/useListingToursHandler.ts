@@ -2,7 +2,7 @@ import {useCallback, useEffect, useMemo, useRef, useState} from "react";
 import {createSearchParams, useNavigate, useParams, useSearchParams} from "react-router-dom";
 import {listingUrlParamsHandler} from "../utils/urlParamsHandler";
 import {useGetToursBySearchQuery} from "../redux/api/baseApi";
-import {AppliedFiltersProps, Filters} from "../type";
+import {AppliedFiltersProps, Filters, SortTypes} from "../type";
 
 type PriceRangeProps = {
   minPrice?: number;
@@ -30,8 +30,9 @@ const useListingToursHandler = () => {
 
   const navigate = useNavigate();
 
+  const defaultSortType = "RCM";
   const [page, setPage] = useState(1);
-  const [sortType, setSortType] = useState("Recommended");
+  const [sortType, setSortType] = useState<SortTypes>(defaultSortType);
   const [filters, setFilters] = useState<Filters>({
     rating: [
       {count: 5, label: "Outstanding(5)"},
@@ -60,7 +61,7 @@ const useListingToursHandler = () => {
       page,
       filters: filterRef.current,
       appliedFilters: {
-        sortType,
+        sortType: sortType !== defaultSortType ? sortType : undefined,
         ...appliedFilters,
         rating: appliedFilters.rating ? appliedFilters.rating : undefined,
         ...priceRange,
@@ -91,7 +92,7 @@ const useListingToursHandler = () => {
     infants,
   };
 
-  const handleSortType = useCallback((type: string) => setSortType(type), []);
+  const handleSortType = useCallback((type: SortTypes) => setSortType(type), []);
 
   const handleAppliedFilters = useCallback(
     (filterKey: string, value: string, isSelected?: boolean) => {

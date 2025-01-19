@@ -25,13 +25,13 @@ const PriceFilter = ({priceRange, setPriceRange}: PriceFilterProps) => {
 
   return (
     <div className="sidebar__item">
-      <Accordion type="single">
+      <Accordion type="single" defaultOpen={true}>
         <Accordion.Item index={0}>
           <Accordion.Button>
             <h5 className="text-18 fw-500">Filter Price</h5>
           </Accordion.Button>
 
-          <Accordion.Content index={0}>
+          <Accordion.Content index={0} className="w-100">
             <div className="pt-15">
               <div className="js-price-rangeSlider">
                 <div className="mx-3">

@@ -24,7 +24,7 @@ type TourSearchParams = {
   teens: number;
   page: number;
   filters: number;
-  appliedFilters: AppliedFiltersProps & {sortType: string; minPrice?: number; maxPrice?: number};
+  appliedFilters: AppliedFiltersProps & {sortType?: string; minPrice?: number; maxPrice?: number};
 };
 
 type SingleTourParams = {

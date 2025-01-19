@@ -22,7 +22,13 @@ const PostReview = ({onSubmit, isLoading}: PostReviewProps) => {
     handleSubmit,
     formState: {errors},
     register,
+    reset,
   } = form;
+
+  const submitReview = (data: RatingType) => {
+    onSubmit(data);
+    reset();
+  };
 
   useEffect(() => {
     if (Object.keys(errors).length) {
@@ -34,7 +40,7 @@ const PostReview = ({onSubmit, isLoading}: PostReviewProps) => {
 
   return (
     <TourSectionLayout title="Leave a Review" showBorder={false}>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(submitReview)}>
         <div className="reviewsGrid pt-30">
           <Controller
             control={control}

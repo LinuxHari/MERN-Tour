@@ -32,6 +32,8 @@ export type StatusColor = "purple" | "yellow" | "red";
 
 export type DataCell = "text" | "tour" | "status";
 
+export type SortTypes = "PLH" | "PHL" | "RLH" | "RHL" | "RCM";
+
 export type ListingCardProps = {
   img: string;
   location: string;

@@ -42,7 +42,11 @@ const FiltersCard = ({
         <div className="mt-10">{/* <DatePicker /> */}</div>
       </div>
 
-      <Accordion type="multiple" className="-simple-2 sidebar__content d-flex flex-column">
+      <Accordion
+        type="multiple"
+        className="-simple-2 sidebar__content d-flex flex-column"
+        defaultOpen={[0, 1, 2, 3]}
+      >
         {Object.entries(filters).map(([key, value], index) => (
           <div className={`order-${index === 0 ? index : index + 1}`} key={key}>
             <CheckboxRadioFilters

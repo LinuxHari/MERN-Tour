@@ -1,4 +1,4 @@
-import {ReactNode, useEffect, useState} from "react";
+import {ReactNode, useState} from "react";
 import {AccordionContext, useAccordionContext} from "../../../context/AccordionContext";
 
 type commonProps = {
@@ -6,9 +6,17 @@ type commonProps = {
   className?: string;
 };
 
-type AccordionProps = commonProps & {
-  type: "single" | "multiple";
-};
+type AccordionProps = commonProps &
+  (
+    | {
+        type: "single";
+        defaultOpen?: boolean;
+      }
+    | {
+        type: "multiple";
+        defaultOpen?: number[];
+      }
+  );
 
 type AccordionItemProps = commonProps & {
   index: number;
@@ -18,8 +26,9 @@ type AccordionButtonProps = commonProps & {
   isShowIcon?: boolean;
 };
 
-const Accordion = ({type, children, className = ""}: AccordionProps) => {
-  const [activeAccordions, setActiveAccordions] = useState<number[]>([]);
+const Accordion = ({type, children, className = "", defaultOpen}: AccordionProps) => {
+  const defaultOpenValues = defaultOpen ? (type === "single" ? [0] : defaultOpen) : [];
+  const [activeAccordions, setActiveAccordions] = useState<number[]>(defaultOpenValues);
 
   const handleToggle = (index: number) => {
     if (type === "single") {
@@ -32,8 +41,6 @@ const Accordion = ({type, children, className = ""}: AccordionProps) => {
       );
     }
   };
-
-  useEffect(() => {}, []);
 
   return (
     <AccordionContext.Provider value={{activeAccordions, onToggle: handleToggle}}>
