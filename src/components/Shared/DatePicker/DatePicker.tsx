@@ -30,7 +30,10 @@ const DatePicker = ({onChange}: DatePickerProps) => {
 
   const handleChange = (dates: RangeKeyDict) => {
     setDateRange([dates.selection]);
-    onChange({startDate: dates.selection.startDate, endDate: dates.selection.endDate});
+    onChange({
+      startDate: dates.selection.startDate ?? null,
+      endDate: dates.selection.endDate ?? null,
+    });
   };
 
   return (

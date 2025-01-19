@@ -62,7 +62,7 @@ const useBookingHandler = () => {
     Object.entries(data.pax).forEach(([key, value]) => {
       if (value)
         // Removing passenger types with 0 as value
-        pax[key] = value;
+        pax[key as keyof typeof pax] = value;
     });
     const {error, data: reserveData} = await reserveTour({...data, pax});
 

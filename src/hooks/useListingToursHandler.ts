@@ -177,7 +177,10 @@ const useListingToursHandler = () => {
     filters,
     pax,
     isFiltersApplied:
-      Object.keys(appliedFilters).length > 2 || priceRange.maxPrice || priceRange.minPrice,
+      Object.keys(appliedFilters).length > 2 ||
+      appliedFilters.rating !== 0 ||
+      priceRange.maxPrice ||
+      priceRange.minPrice,
   };
 };
 
