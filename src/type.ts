@@ -53,6 +53,8 @@ export type ListingCard2Props = {
   duration: number;
   images: [string];
   tourId: string;
+  totalRatings: number;
+  averageRating: number;
 };
 
 export type SearchSuggestions = typeof SEARCH_SUGGESTIONS;

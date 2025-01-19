@@ -1,4 +1,4 @@
-const BreadCrumbs = () => {
+const BreadCrumbs = ({destination}: {destination: string}) => {
   return (
     <div className="breadcrumbs">
       <span className="breadcrumbs__item">
@@ -14,7 +14,7 @@ const BreadCrumbs = () => {
       <span>&gt;</span>
       &nbsp;
       <span className="breadcrumbs__item">
-        <a href="/">Phuket</a>
+        <a href="/">{destination}</a>
       </span>
     </div>
   );

@@ -32,7 +32,7 @@ const ListingTours = () => {
           <p style={{minHeight: "100vh", margin: "200px"}}>No tours found.</p>
         ) : (
           <>
-            <ListingHeader />
+            <ListingHeader destination={tours[0].destination.split(",")[0]} />
             <section className="layout-pb-xl">
               <div className="container">
                 <div className="row">

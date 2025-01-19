@@ -1,5 +1,6 @@
 import {PaxProps, TourListResponse} from "../../../type";
 import Button from "../Button/Button";
+import Rating from "../Rating/Rating";
 
 type TourCard2Props = TourListResponse["tours"][0] & {pax: PaxProps} & {
   className?: string;
@@ -18,6 +19,8 @@ const TourCard2 = ({
   onSelect,
   pax,
   className = "",
+  averageRating,
+  totalRatings,
 }: TourCard2Props) => {
   const {teens, adults, children, infants} = pax;
 
@@ -53,6 +56,7 @@ const TourCard2 = ({
       </div>
 
       <div className="tourCard__content">
+        <Rating rating={averageRating} reviewCount={totalRatings} />
         <div className="tourCard__location">
           <i className="icon-pin" />
           {destination}
@@ -61,7 +65,6 @@ const TourCard2 = ({
         <h3 className="tourCard__title mt-2">
           <span>{name}</span>
         </h3>
-        {/* <Rating rating={rating} reviewCount={reviewCount} /> */}
         <p className="tourCard__text mt-2 mb-2 line-clamp-4">{description}</p>
         {freeCancellation && (
           <div className="d-flex flex-wrap x-gap-20 y-gap-5 pt-30">
