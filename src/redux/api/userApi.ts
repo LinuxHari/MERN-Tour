@@ -10,7 +10,7 @@ const userApi = baseApi.injectEndpoints({
     addTourToFavorite: builder.mutation<void, string>({
       query: (tourId) => ({url: `/user/favorite/${tourId}`, credentials: "include"}),
     }),
-    getFavoriteTours: builder.query<{tours: FavoriteTours; totalCount: number}, void>({
+    getFavoriteTours: builder.query<{tours: FavoriteTours[]; totalCount: number}, void>({
       query: () => ({url: "/user/favorite", credentials: "include"}),
     }),
     removeTourFromFavorite: builder.mutation<void, string>({

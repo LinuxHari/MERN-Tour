@@ -1,3 +1,4 @@
+import {useState} from "react";
 import toast from "react-hot-toast";
 import {
   useAddTourToFavoriteMutation,
@@ -10,6 +11,7 @@ const useUserFavoriteHandler = () => {
   const [removeFromFavorite, {isLoading: isRemovingFromFavorite}] =
     useRemoveTourFromFavoriteMutation();
   const {data: favoriteTours, isLoading: isFetchingFavoriteTours} = useGetFavoriteToursQuery();
+  const [page, setPage] = useState(1);
 
   const addTourToFavorites = async (tourId: string) => {
     const toastId = toast.loading("Adding tour to favorites");
@@ -35,6 +37,8 @@ const useUserFavoriteHandler = () => {
     removeTourFromFavorite,
     isFetchingFavoriteTours,
     favoriteTours,
+    page,
+    setPage,
   };
 };
 
