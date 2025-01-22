@@ -1,7 +1,6 @@
 import ContactInfo from "./ContactInfo";
 import LinkList from "./LinkList";
 import Newsletter from "./NewsLetter";
-import SocialLinks from "./SocialLinks";
 
 const Footer = () => {
   const companyLinks = [
@@ -44,9 +43,6 @@ const Footer = () => {
                     </div>
                   </div>
                 </div>
-              </div>
-              <div className="col-auto">
-                <SocialLinks />
               </div>
             </div>
           </div>
