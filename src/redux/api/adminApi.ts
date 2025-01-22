@@ -9,14 +9,16 @@ type CreateTourResponse = {
   publisherId: string;
 };
 
-type GetToursResponse = {
-  tours: Tour[];
+type PublishedToursResponse = {
+  tours: (Tour & {totalRatings: number; averageRating: number; duration: number})[];
+  totalPages: number;
+  totalCount: number;
 } & CreateTourResponse;
 
 export const adminApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    getAdminPublishedTours: builder.query<GetToursResponse, void>({
-      query: () => "/admin/tour",
+    getAdminPublishedTours: builder.query<PublishedToursResponse, number>({
+      query: (page) => ({url: "/admin/tour", params: {page}, credentials: "include"}),
       providesTags: (data) =>
         data
           ? [
@@ -40,6 +42,7 @@ export const adminApi = baseApi.injectEndpoints({
             url: "/admin/tour",
             method: "POST",
             body: tourData,
+            credentials: "include",
           });
 
           if (response.error) {

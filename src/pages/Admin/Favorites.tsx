@@ -14,7 +14,7 @@ const Favorites = ({render}: RenderProps) => {
         <>Loading...</>
       ) : (
         <div className="rounded-12 bg-white shadow-2 px-40 pt-40 pb-30 mt-60">
-          {favoriteTours && favoriteTours.tours && (
+          {favoriteTours && favoriteTours.tours.length ? (
             <>
               <div className="row y-gap-30">
                 {favoriteTours.tours.map(
@@ -37,6 +37,8 @@ const Favorites = ({render}: RenderProps) => {
                 <Pagination totalCount={favoriteTours.totalCount} page={page} setPage={setPage} />
               </div>
             </>
+          ) : (
+            <>You do not have favorite tours</>
           )}
         </div>
       )}

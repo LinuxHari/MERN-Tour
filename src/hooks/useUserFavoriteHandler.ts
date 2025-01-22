@@ -7,11 +7,11 @@ import {
 } from "../redux/api/userApi";
 
 const useUserFavoriteHandler = () => {
+  const [page, setPage] = useState(1);
   const [addToFavorite, {isLoading: isAddingToFavorite}] = useAddTourToFavoriteMutation();
   const [removeFromFavorite, {isLoading: isRemovingFromFavorite}] =
     useRemoveTourFromFavoriteMutation();
-  const {data: favoriteTours, isLoading: isFetchingFavoriteTours} = useGetFavoriteToursQuery();
-  const [page, setPage] = useState(1);
+  const {data: favoriteTours, isLoading: isFetchingFavoriteTours} = useGetFavoriteToursQuery(page);
 
   const addTourToFavorites = async (tourId: string) => {
     const toastId = toast.loading("Adding tour to favorites");

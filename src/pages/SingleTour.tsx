@@ -18,7 +18,7 @@ const SingleTour = () => {
   return (
     <>
       <div className="container py-30 mt-80">
-        <BreadCrumbs destination={data.destination} />
+        <BreadCrumbs destination={data.destination.split(",")[0]} />
       </div>
       <TourHeader
         name={data.name}

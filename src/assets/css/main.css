@@ -1232,6 +1232,10 @@ button:focus {
   text-decoration: underline;
 }
 
+.contactForm {
+  min-width: 320px;
+}
+
 .contactForm select,
 .contactForm input:not([type="range"]),
 .contactForm textarea,
