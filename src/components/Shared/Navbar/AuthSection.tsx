@@ -39,7 +39,8 @@ const AuthSection = () => {
                     className="text-danger d-flex align-items-center text-decoration-none"
                     onClick={openModal}
                   >
-                    <i className="icon-logout text-18 text-decoration-none" /> &nbsp; Logout
+                    <i className="icon-logout text-18 text-decoration-none" />{" "}
+                    &nbsp; Logout
                   </button>
                 </div>
                 <LogoutModal
@@ -53,11 +54,14 @@ const AuthSection = () => {
         </Dropdown>
       ) : (
         <>
-          <Link to="/signup" className="ml-10">
+          <Link to="/signup" className="ml-10 text-nowrap">
             Sign up
           </Link>
 
-          <Link to="/login" className="button -sm -dark-1 bg-accent-1 rounded-200 text-white ml-30">
+          <Link
+            to="/login"
+            className="button -sm -dark-1 bg-accent-1 rounded-200 text-white ml-30 text-nowrap"
+          >
             Log in
           </Link>
         </>

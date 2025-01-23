@@ -10,7 +10,12 @@ type TourHeaderProps = {
   destination: string;
 };
 
-const TourHeader = ({freeCancellation, name, images, destination}: TourHeaderProps) => {
+const TourHeader = ({
+  freeCancellation,
+  name,
+  images,
+  destination,
+}: TourHeaderProps) => {
   return (
     <section className="">
       <div className="container">
@@ -51,10 +56,10 @@ const TourHeader = ({freeCancellation, name, images, destination}: TourHeaderPro
                 Share
               </a>
 
-              <a href="/" className="d-flex items-center">
+              {/* <a href="/" className="d-flex items-center">
                 <i className="icon-heart flex-center text-16 mr-10" />
                 Wishlist
-              </a>
+              </a> */}
             </div>
           </div>
         </div>

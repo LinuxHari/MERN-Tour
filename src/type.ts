@@ -55,6 +55,7 @@ export type ListingCard2Props = {
   tourId: string;
   totalRatings: number;
   averageRating: number;
+  isFavorite?: boolean;
 };
 
 export type SearchSuggestions = typeof SEARCH_SUGGESTIONS;
@@ -73,7 +74,10 @@ export type TourListResponse = {
   filters?: Omit<Filters, "rating">;
 };
 
-export type SingleTourResponse = Omit<Tour, "freeCancellation" | "city" | "state" | "country"> & {
+export type SingleTourResponse = Omit<
+  Tour,
+  "freeCancellation" | "city" | "state" | "country"
+> & {
   freeCancellation: boolean;
   duration: number;
   destination: string;
@@ -127,7 +131,9 @@ export type ReservedTourResponse = Omit<ReserveBody, "tourId" | "pax"> & {
   };
 };
 
-export type UserInfoResponse = Omit<UserSchemaType, "profile"> & {profile: string};
+export type UserInfoResponse = Omit<UserSchemaType, "profile"> & {
+  profile: string;
+};
 
 export type BookingBody = BookingSchemaType & {
   id: string;
@@ -186,6 +192,8 @@ export type FavoriteTours = {
   price: number;
   duration: number;
   imgUrl: string;
+  tourId: string;
+  destinationId: string;
 };
 
 export type BookedTours = {

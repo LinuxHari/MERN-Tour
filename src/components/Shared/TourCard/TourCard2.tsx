@@ -1,6 +1,8 @@
+import {useState} from "react";
 import {PaxProps, TourListResponse} from "../../../type";
 import Button from "../Button/Button";
 import Rating from "../Rating/Rating";
+import Favorite from "../Others/Favorite";
 
 type TourCard2Props = TourListResponse["tours"][0] & {pax: PaxProps} & {
   className?: string;
@@ -21,8 +23,10 @@ const TourCard2 = ({
   className = "",
   averageRating,
   totalRatings,
+  isFavorite,
 }: TourCard2Props) => {
   const {teens, adults, children, infants} = pax;
+  const [isFavoriteTour, setFavoriteTour] = useState(isFavorite);
 
   const total = (() => {
     let totalPrice = 0;
@@ -48,11 +52,19 @@ const TourCard2 = ({
           </div>
         )} */}
 
-        <div className="tourCard__favorite">
-          <button className="button -accent-1 size-35 bg-white rounded-full flex-center">
+        {/* <div className="tourCard__favorite">
+          <button
+            className={`button size-35 bg-white rounded-full flex-center ${isFavoriteTour ? "bg-accent-1 text-white" : "-accent-1"}`}
+            onClick={handleFavorite}
+          >
             <i className="icon-heart text-15" />
           </button>
-        </div>
+        </div> */}
+        <Favorite
+          tourId={tourId}
+          isFavorite={isFavoriteTour || false}
+          onClick={() => setFavoriteTour(!isFavoriteTour)}
+        />
       </div>
 
       <div className="tourCard__content">
@@ -87,13 +99,18 @@ const TourCard2 = ({
             {duration} Days
           </div>
           <div className="tourCard__price">
-            <div>{/* {offer && `$${getOriginalPrice(price, offer.percentage)}`} */}</div>
+            <div>
+              {/* {offer && `$${getOriginalPrice(price, offer.percentage)}`} */}
+            </div>
             <div className="d-flex items-center">
               Total <span className="text-20 fw-500 ml-5">${total}</span>
             </div>
           </div>
         </div>
-        <Button buttonType="secondary" onClick={() => onSelect(tourId, duration)}>
+        <Button
+          buttonType="secondary"
+          onClick={() => onSelect(tourId, duration)}
+        >
           View Details
         </Button>
       </div>
