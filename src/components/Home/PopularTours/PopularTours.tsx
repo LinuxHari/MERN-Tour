@@ -10,6 +10,8 @@ const PopularTours = () => {
       duration: 4,
       price: 189,
       image: "img/tourCards/1/1.png",
+      tourId: "123456",
+      destinationId: "123456",
     },
     {
       location: "New York, USA",
@@ -19,6 +21,8 @@ const PopularTours = () => {
       duration: 4,
       price: 225,
       image: "img/tourCards/1/2.png",
+      tourId: "123456",
+      destinationId: "123456",
     },
     {
       location: "London, UK",
@@ -28,6 +32,8 @@ const PopularTours = () => {
       duration: 4,
       price: 943,
       image: "img/tourCards/1/3.png",
+      tourId: "123456",
+      destinationId: "123456",
     },
     {
       location: "New York, USA",
@@ -37,6 +43,8 @@ const PopularTours = () => {
       duration: 4,
       price: 771,
       image: "img/tourCards/1/4.png",
+      tourId: "123456",
+      destinationId: "123456",
     },
     {
       location: "Paris, France",
@@ -46,6 +54,8 @@ const PopularTours = () => {
       duration: 4,
       price: 189,
       image: "img/tourCards/1/5.png",
+      tourId: "123456",
+      destinationId: "123456",
     },
     {
       location: "New York, USA",
@@ -55,6 +65,8 @@ const PopularTours = () => {
       duration: 4,
       price: 225,
       image: "img/tourCards/1/6.png",
+      tourId: "123456",
+      destinationId: "123456",
     },
     {
       location: "London, UK",
@@ -64,15 +76,20 @@ const PopularTours = () => {
       duration: 4,
       price: 943,
       image: "img/tourCards/1/7.png",
+      tourId: "123456",
+      destinationId: "123456",
     },
     {
       location: "New York, USA",
-      title: "Mauna Kea Summit Sunset and Stars Free Astro Photos Hilo Kona Waikoloa Pick Up",
+      title:
+        "Mauna Kea Summit Sunset and Stars Free Astro Photos Hilo Kona Waikoloa Pick Up",
       rating: 4.8,
       reviews: 269,
       duration: 4,
       price: 771,
       image: "img/tourCards/1/9.png",
+      tourId: "123456",
+      destinationId: "123456",
     },
   ];
 
@@ -84,19 +101,36 @@ const PopularTours = () => {
         </div>
 
         <div className="row y-gap-30 justify-content-center justify-content-md-between pt-40 sm:pt-20 mobile-css-slider -w-300">
-          {tourCards.map(({location, title, rating, reviews, duration, price, image}, index) => (
-            <TourCard
-              key={index}
-              img={image}
-              rating={rating}
-              reviewCount={reviews}
-              duration={duration}
-              price={price}
-              title={title}
-              location={location}
-              className="col-lg-3 col-md-6"
-            />
-          ))}
+          {tourCards.map(
+            (
+              {
+                location,
+                title,
+                rating,
+                reviews,
+                duration,
+                price,
+                image,
+                tourId,
+                destinationId,
+              },
+              index,
+            ) => (
+              <TourCard
+                key={index}
+                img={image}
+                rating={rating}
+                reviewCount={reviews}
+                duration={duration}
+                price={price}
+                title={title}
+                location={location}
+                tourId={tourId}
+                destinationId={destinationId}
+                className="col-lg-3 col-md-6"
+              />
+            ),
+          )}
         </div>
       </div>
     </section>

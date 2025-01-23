@@ -12,6 +12,8 @@ const Cards = () => {
       duration: 4,
       price: 189,
       image: "img/tourCards/1/1.png",
+      tourId: "123456",
+      destinationId: "123456",
     },
     {
       location: "New York, USA",
@@ -21,6 +23,8 @@ const Cards = () => {
       duration: 4,
       price: 225,
       image: "img/tourCards/1/2.png",
+      tourId: "123456",
+      destinationId: "123456",
     },
     {
       location: "London, UK",
@@ -30,6 +34,8 @@ const Cards = () => {
       duration: 4,
       price: 943,
       image: "img/tourCards/1/3.png",
+      tourId: "123456",
+      destinationId: "123456",
     },
     {
       location: "New York, USA",
@@ -39,6 +45,8 @@ const Cards = () => {
       duration: 4,
       price: 771,
       image: "img/tourCards/1/4.png",
+      tourId: "123456",
+      destinationId: "123456",
     },
     {
       location: "Paris, France",
@@ -48,6 +56,8 @@ const Cards = () => {
       duration: 4,
       price: 189,
       image: "img/tourCards/1/5.png",
+      tourId: "123456",
+      destinationId: "123456",
     },
     {
       location: "New York, USA",
@@ -57,6 +67,8 @@ const Cards = () => {
       duration: 4,
       price: 225,
       image: "img/tourCards/1/6.png",
+      tourId: "123456",
+      destinationId: "123456",
     },
     {
       location: "London, UK",
@@ -66,15 +78,20 @@ const Cards = () => {
       duration: 4,
       price: 943,
       image: "img/tourCards/1/7.png",
+      tourId: "123456",
+      destinationId: "123456",
     },
     {
       location: "New York, USA",
-      title: "Mauna Kea Summit Sunset and Stars Free Astro Photos Hilo Kona Waikoloa Pick Up",
+      title:
+        "Mauna Kea Summit Sunset and Stars Free Astro Photos Hilo Kona Waikoloa Pick Up",
       rating: 4.8,
       reviews: 269,
       duration: 4,
       price: 771,
       image: "img/tourCards/1/9.png",
+      tourId: "123456",
+      destinationId: "123456",
     },
   ];
 
@@ -96,19 +113,36 @@ const Cards = () => {
             1280: {slidesPerView: 4},
           }}
         >
-          {tourCards.map(({location, title, reviews, rating, duration, price, image}, index) => (
-            <SwiperSlide key={index}>
-              <TourCard
-                location={location}
-                title={title}
-                reviewCount={reviews}
-                rating={rating}
-                duration={duration}
-                price={price}
-                img={image}
-              />
-            </SwiperSlide>
-          ))}
+          {tourCards.map(
+            (
+              {
+                location,
+                title,
+                reviews,
+                rating,
+                duration,
+                price,
+                image,
+                destinationId,
+                tourId,
+              },
+              index,
+            ) => (
+              <SwiperSlide key={index}>
+                <TourCard
+                  location={location}
+                  title={title}
+                  reviewCount={reviews}
+                  rating={rating}
+                  duration={duration}
+                  price={price}
+                  img={image}
+                  destinationId={destinationId}
+                  tourId={tourId}
+                />
+              </SwiperSlide>
+            ),
+          )}
         </Swiper>
       </div>
 
