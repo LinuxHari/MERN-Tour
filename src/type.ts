@@ -42,6 +42,8 @@ export type ListingCardProps = {
   reviewCount: number;
   duration: number;
   price: number;
+  tourId: string;
+  destinationId: string;
 };
 
 export type ListingCard2Props = {

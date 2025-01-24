@@ -1,44 +1,83 @@
-import {ListingCardProps} from "../../../type";
 import Rating from "../../Shared/Rating/Rating";
+import {ListingCardProps} from "../../../type";
+import Button from "../../Shared/Button/Button";
+import useAdminTourHandler from "../../../hooks/useAdminTourHandler";
 
 const ListingCard = ({
   img,
+  duration,
+  price,
   location,
   title,
   rating,
   reviewCount,
-  duration,
-  price,
+  destinationId,
+  tourId,
 }: ListingCardProps) => {
+  const {deleteTour, isDeletingTour} = useAdminTourHandler();
+
   return (
-    <div className="col-lg-6">
-      <div className="border-1 rounded-12 px-20 py-20">
-        <div className="row x-gap-20 y-gap-20 items-center">
-          <div className="col-xxl-auto">
-            <img src={img} alt={location} className="size-200 w-1/1 object-cover rounded-12" />
+    <div className="col-lg-3 col-md-6">
+      <div className="tourCard -type-1 py-10 px-10 border-1 rounded-12 -hover-shadow">
+        <div className="tourCard__header">
+          <div className="tourCard__image ratio ratio-28:20">
+            <img src={img} alt={location} className="img-ratio rounded-12" />
           </div>
-          <div className="col">
+
+          <button
+            className="tourCard__favorite top-5"
+            onClick={() => deleteTour(tourId)}
+            disabled={isDeletingTour}
+          >
+            <i className="icon-delete" />
+          </button>
+        </div>
+
+        <div className="tourCard__content px-10 pt-10">
+          <div className="tourCard__location d-flex items-center text-13 text-light-2">
+            <i className="icon-pin d-flex text-16 text-light-2 mr-5" />
+            {location}
+          </div>
+
+          <h3 className="tourCard__title text-16 fw-500 mt-1">
+            <span className="line-clamp-2">
+              {title.length < 55 ? title : title.slice(0, 55) + "..."}
+            </span>
+          </h3>
+
+          <div className="tourCard__rating d-flex items-center text-13">
+            <Rating rating={rating} reviewCount={reviewCount} />
+          </div>
+
+          <div className="d-flex justify-between items-center text-13 text-dark-1 pt-10 mt-10">
             <div className="d-flex items-center">
-              <i className="icon-pin mr-5" />
-              {location}
+              <i className="icon-clock text-16 mr-5" />
+              {duration} Days
             </div>
-            <div className="text-18 lh-15 fw-500 mt-5">{title}</div>
-            <div className="d-flex items-center mt-5">
-              <Rating rating={rating} reviewCount={reviewCount} className="mr-10" />
+
+            <div>
+              From <span className="text-16 fw-500">${price}</span>
             </div>
-            <div className="row y-gap-15 justify-between items-end pt-5">
-              <div className="col-auto">
-                <div className="d-flex items-center">
-                  <i className="icon-clock mr-5" />
-                  <div className="text-14">{duration} Days</div>
-                </div>
-              </div>
-              <div className="col-auto">
-                <div className="text-right md:text-left">
-                  From <span className="text-20 fw-500">${price}</span>
-                </div>
-              </div>
-            </div>
+          </div>
+
+          <div className="d-flex justify-between items-center border-1-top text-13 text-dark-1 pt-10 mt-10">
+            <Button
+              className="py-1 px-4 rounded"
+              type="button"
+              styleType="secondary"
+              buttonType="link"
+              to={`/dashboard/edit/${tourId}`}
+            >
+              Edit
+            </Button>
+            <Button
+              className="py-1 px-4 rounded"
+              type="button"
+              buttonType="link"
+              to={`/tours/${destinationId}/${tourId}`}
+            >
+              View
+            </Button>
           </div>
         </div>
       </div>

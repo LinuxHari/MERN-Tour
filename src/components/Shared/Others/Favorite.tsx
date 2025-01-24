@@ -8,7 +8,8 @@ type FavoriteProps = {
 };
 
 const Favorite = ({isFavorite, tourId, onClick}: FavoriteProps) => {
-  const {removeTourFromFavorite, addTourToFavorites} = useUserFavoriteHandler();
+  const {removeTourFromFavorite, addTourToFavorites, isMutationLoading} =
+    useUserFavoriteHandler();
 
   const handleFavorite = async (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -21,8 +22,9 @@ const Favorite = ({isFavorite, tourId, onClick}: FavoriteProps) => {
   return (
     <div className="tourCard__favorite">
       <button
-        className={`button size-35 bg-white rounded-full flex-center ${isFavorite ? "bg-accent-1 text-white" : "-accent-1"}`}
+        className={`button size-35 rounded-full flex-center ${isFavorite ? "bg-accent-1 text-white" : "bg-white -accent-1"}`}
         onClick={handleFavorite}
+        disabled={isMutationLoading}
       >
         <i className={`icon-heart ${isFavorite ? "text-white" : ""}`} />
       </button>

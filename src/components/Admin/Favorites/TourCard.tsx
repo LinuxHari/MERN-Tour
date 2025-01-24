@@ -3,11 +3,12 @@ import {ListingCardProps} from "../../../type";
 import Rating from "../../Shared/Rating/Rating";
 import Favorite from "../../Shared/Others/Favorite";
 
-type Props = ListingCardProps & {
+type TourCardProps = ListingCardProps & {
   tourId: string;
   destinationId: string;
   className?: string;
   isFavorite?: boolean;
+  showFavorite?: boolean;
 };
 
 const TourCard = ({
@@ -21,7 +22,8 @@ const TourCard = ({
   tourId,
   destinationId,
   className = "",
-}: Props) => {
+  isFavorite = false,
+}: TourCardProps) => {
   return (
     <div className={className}>
       <Link
@@ -39,7 +41,7 @@ const TourCard = ({
           >
             <i className={`icon-heart ${isFavorite ? "text-white" : ""}`} />
           </button> */}
-          <Favorite tourId={tourId} isFavorite />
+          <Favorite tourId={tourId} isFavorite={isFavorite} />
         </div>
 
         <div className="tourCard__content px-10 pt-10">

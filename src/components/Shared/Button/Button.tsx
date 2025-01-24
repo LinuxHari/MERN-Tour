@@ -16,10 +16,16 @@ type ExtendedButtonProps =
   | (ExtendedButtonPropsBase & {
       buttonType: Exclude<ExtendedButtonPropsBase["buttonType"], "link">;
       to?: never;
+      styleType?: never;
     })
-  | (ExtendedButtonPropsBase & {buttonType: "link"; to: string});
+  | (ExtendedButtonPropsBase & {
+      buttonType: "link";
+      to: string;
+      styleType?: "primary" | "secondary";
+    });
 
-type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & ExtendedButtonProps;
+type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> &
+  ExtendedButtonProps;
 
 const Button = ({
   type = "button",
@@ -29,6 +35,7 @@ const Button = ({
   showIcon = true,
   isLoading = false,
   to,
+  styleType = "primary",
   ...buttonProps
 }: ButtonProps) => {
   if (buttonType === "icon") {
@@ -57,8 +64,16 @@ const Button = ({
   }
 
   if (buttonType === "link") {
+    const styleClass =
+      styleType === "primary"
+        ? "bg-accent-1 text-white"
+        : "-outline-accent-1 text-accent-1";
+
     return (
-      <Link className={`button -md -dark-1 bg-accent-1 text-white ${className}`} to={to || "/"}>
+      <Link
+        className={`button -md -dark-1 ${styleClass} ${className}`}
+        to={to || "/"}
+      >
         {children}
         {showIcon && <i className="icon-arrow-top-right text-16 ml-10" />}
       </Link>
