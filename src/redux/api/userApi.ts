@@ -1,9 +1,14 @@
-import {BookedTours, FavoriteTours, UserInfoResponse} from "../../type";
+import {Bookings, FavoriteTours, UserInfoResponse} from "../../type";
 import {baseApi} from "./baseApi";
 
 type FavoriteToursResponse = {
   favoriteTours: FavoriteTours[];
   totalCount: number;
+  totalPages: number;
+};
+
+type BookingsResponse = {
+  bookings: Bookings[];
   totalPages: number;
 };
 
@@ -38,8 +43,15 @@ const userApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["Favorites"],
     }),
-    getBookings: builder.query<BookedTours, void>({
-      query: () => ({url: "/user/bookings", credentials: "include"}),
+    getBookings: builder.query<
+      BookingsResponse,
+      {status: string; page: number}
+    >({
+      query: ({status, page}) => ({
+        url: "/user/bookings",
+        params: {status, page},
+        credentials: "include",
+      }),
     }),
   }),
 });

@@ -1,17 +1,12 @@
-import {Bookings} from "../../../type";
-import {formatTableData} from "../../../utils/formatTableData";
-import Button from "../../Shared/Button/Button";
-import TableDataCell from "./TableDataCell";
+import {OrganizedBookings} from "../../../type";
+import TableRow from "./TableRow";
 
 type TableProps = {
   headers: string[];
-  showEdit: boolean;
-  data: Bookings[];
+  data: OrganizedBookings;
 };
 
-const Table = ({headers, showEdit, data}: TableProps) => {
-  const formattedData = formatTableData(data);
-
+const Table = ({headers, data}: TableProps) => {
   return (
     <div className="overflowAuto">
       <table className="tableTest mb-30">
@@ -24,24 +19,8 @@ const Table = ({headers, showEdit, data}: TableProps) => {
         </thead>
 
         <tbody>
-          {formattedData.map((singleData, rowIndex) => (
-            <tr key={rowIndex}>
-              {Object.values(singleData).map((value, index) => (
-                <TableDataCell key={index} {...value} />
-              ))}
-              <td>
-                <div className="d-flex items-center">
-                  {showEdit && (
-                    <Button buttonType="icon">
-                      <i className="icon-pencil text-14" />
-                    </Button>
-                  )}
-                  <Button buttonType="icon" className="ml-10">
-                    <i className="icon-delete text-14" />
-                  </Button>
-                </div>
-              </td>
-            </tr>
+          {data.map((singleData, rowIndex) => (
+            <TableRow {...singleData} key={rowIndex} />
           ))}
         </tbody>
       </table>

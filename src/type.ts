@@ -16,17 +16,33 @@ export type Tour = Omit<TourSchemaType, "images" | "highlights"> & {
 };
 
 export type Bookings = {
-  id: number;
+  bookingId: string;
   tour: {
     imgUrl: string;
-    title: string;
+    name: string;
   };
   startDate: string;
   endDate: string;
   details: string;
-  price: string;
+  price: number;
   status: Status;
+  passengers: number;
 };
+
+export type OrganizedBookings = {
+  id: string;
+  tour: {
+    name: string;
+    imgUrl: string;
+  };
+  startDate: string;
+  endDate: string;
+  details: string;
+  price: number;
+  status: string;
+  url: string;
+  passengers: number;
+}[];
 
 export type StatusColor = "purple" | "yellow" | "red";
 
@@ -198,17 +214,7 @@ export type FavoriteTours = {
   destinationId: string;
 };
 
-export type BookedTours = {
-  price: number;
-  duration: number;
-  startDate: Date;
-  tourName: string;
-  tourId: string;
-  bookingId: string;
-  imgURL: string;
-  bookedDate: Date;
-  status: BookingStatus;
-};
+export type StatusType = "Confirmed" | "Pending" | "Canceled";
 
 export enum ImgPath {
   tours = "/tours",

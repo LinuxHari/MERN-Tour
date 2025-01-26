@@ -13,6 +13,8 @@ const Pagination = ({page, setPage, totalCount}: PaginationProps) => {
     totalCount,
   );
 
+  if (!totalCount) return null;
+
   return (
     <>
       <div className="pagination justify-center">
@@ -51,8 +53,10 @@ const Pagination = ({page, setPage, totalCount}: PaginationProps) => {
       </div>
       <div className="text-14 text-center mt-20">
         Showing results{" "}
-        {totalCount > perPage ? (page - 1) * perPage + 1 + "-" + page * perPage : totalCount} of{" "}
-        {totalCount}
+        {totalCount > perPage
+          ? (page - 1) * perPage + 1 + "-" + page * perPage
+          : totalCount}{" "}
+        of {totalCount}
       </div>
     </>
   );
