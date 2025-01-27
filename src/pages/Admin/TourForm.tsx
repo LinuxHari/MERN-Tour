@@ -7,16 +7,28 @@ import ContentForm from "../../components/Admin/AddTour/ContentSection";
 import ItineraryForm from "../../components/Admin/AddTour/ItinerarySection";
 import FAQForm from "../../components/Admin/AddTour/FAQSection";
 import IncludedForm from "../../components/Admin/AddTour/IncludedSection";
-import {defaultTourValue, TourSchema, TourSchemaType} from "../../schema/tourSchema";
+import {
+  defaultTourValue,
+  TourSchema,
+  TourSchemaType,
+} from "../../schema/tourSchema";
 import Button from "../../components/Shared/Button/Button";
 import LanguageForm from "../../components/Admin/AddTour/LanguageSection";
 import StepNavigator from "../../components/Shared/Navigator/StepNavigator";
 import useTourSubmitHandler from "../../hooks/useAdminTourHandler";
 import {getFormErrorMessages} from "../../utils/getFormErrorMessages";
 import GallerySection from "../../components/Admin/AddTour/GallerySection";
+import withAuth from "../../hocs/withAuth";
 
 const TourForm = () => {
-  const formTabs = ["Content", "Itinerary", "FAQ", "Gallery", "Included", "Languages"];
+  const formTabs = [
+    "Content",
+    "Itinerary",
+    "FAQ",
+    "Gallery",
+    "Included",
+    "Languages",
+  ];
   const formComponents = [
     <ContentForm key="content" />,
     <ItineraryForm key="itinerary" />,
@@ -67,7 +79,8 @@ const TourForm = () => {
         const firstRef = refs[0];
 
         if (firstRef?.focus) {
-          const elementPosition = firstRef.getBoundingClientRect().top + window.scrollY;
+          const elementPosition =
+            firstRef.getBoundingClientRect().top + window.scrollY;
           const offsetPosition = elementPosition - 50;
 
           window.scrollTo({top: offsetPosition, behavior: "smooth"});
@@ -107,7 +120,11 @@ const TourForm = () => {
             <div className="col-xl-9 col-lg-10">
               <Tabs.TabContents>
                 {formComponents.map((Component, index) => (
-                  <Tabs.TabContent className={`-tab-item-${index + 1}`} index={index} key={index}>
+                  <Tabs.TabContent
+                    className={`-tab-item-${index + 1}`}
+                    index={index}
+                    key={index}
+                  >
                     {Component}
                   </Tabs.TabContent>
                 ))}
@@ -123,7 +140,12 @@ const TourForm = () => {
         />
         {showSubmitBtn && (
           <div className="col-12 mt-40">
-            <Button buttonType="primary" type="submit" isLoading={isLoading} disabled={isLoading}>
+            <Button
+              buttonType="primary"
+              type="submit"
+              isLoading={isLoading}
+              disabled={isLoading}
+            >
               Add tour
             </Button>
           </div>
@@ -133,4 +155,6 @@ const TourForm = () => {
   );
 };
 
-export default TourForm;
+const AuthenticatedTourForm = withAuth(TourForm);
+
+export default AuthenticatedTourForm;

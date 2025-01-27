@@ -2,6 +2,7 @@ import {RenderProps} from "../../type";
 import Pagination from "../../components/Shared/Pagination/Pagination";
 import useAdminTourHandler from "../../hooks/useAdminTourHandler";
 import ListingCard from "../../components/Admin/Listings/ListingCard";
+import withAuth from "../../hocs/withAuth";
 
 const Listings = ({render}: RenderProps) => {
   const {publishedTours, isTourLoading, page, setPage} = useAdminTourHandler();
@@ -69,4 +70,6 @@ const Listings = ({render}: RenderProps) => {
   );
 };
 
-export default Listings;
+const AuthenticatedListing = withAuth(Listings);
+
+export default AuthenticatedListing;

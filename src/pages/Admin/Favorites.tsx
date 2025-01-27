@@ -3,6 +3,7 @@ import {RenderProps} from "../../type";
 import TourCard from "../../components/Admin/Favorites/TourCard";
 import Pagination from "../../components/Shared/Pagination/Pagination";
 import useUserFavoriteHandler from "../../hooks/useUserFavoriteHandler";
+import withAuth from "../../hocs/withAuth";
 
 const Favorites = ({render}: RenderProps) => {
   const {favoriteTours, page, setPage, isFetchingFavoriteTours} =
@@ -67,4 +68,6 @@ const Favorites = ({render}: RenderProps) => {
   );
 };
 
-export default Favorites;
+const AuthenticatedFavorites = withAuth(Favorites);
+
+export default AuthenticatedFavorites;

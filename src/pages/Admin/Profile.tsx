@@ -1,5 +1,6 @@
 import ChangePassword from "../../components/Admin/Profile/ChangePassword";
 import UpdateProfile from "../../components/Admin/Profile/UpdateProfile";
+import withAuth from "../../hocs/withAuth";
 import {RenderProps} from "../../type";
 
 const Profile = ({render}: RenderProps) => {
@@ -12,4 +13,6 @@ const Profile = ({render}: RenderProps) => {
   );
 };
 
-export default Profile;
+const AuthenticatedProfile = withAuth(Profile);
+
+export default AuthenticatedProfile;

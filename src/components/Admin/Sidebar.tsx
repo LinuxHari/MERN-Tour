@@ -1,11 +1,15 @@
 import {Link, useLocation} from "react-router-dom";
-import {DASHBOARD_NAV} from "../../config/adminConfig";
+import useUserHandler from "../../hooks/useUserHandler";
+import {Role} from "../../type";
+import {DASHBOARD_ADMIN, DASHBOARD_USER} from "../../config/adminConfig";
 import Header from "./SidebarHeader";
 import LogoutSection from "./LogoutSection";
 
 const Sidebar = () => {
   const {pathname} = useLocation();
-
+  const {user} = useUserHandler();
+  const DashboardLinks =
+    user && user.role === Role.admin ? DASHBOARD_ADMIN : DASHBOARD_USER;
   const highlightTab = (index: number) => {
     const splittedPath = pathname.split("/");
 
@@ -17,7 +21,7 @@ const Sidebar = () => {
       <div className="dashboard__sidebar js-dashboard-sidebar">
         <Header />
         <div className="sidebar -dashboard">
-          {DASHBOARD_NAV.map(({text, href, iconClass}, index) => (
+          {DashboardLinks.map(({text, href, iconClass}, index) => (
             <div
               className={`sidebar__item ${highlightTab(index) === href ? "-is-active" : ""}`}
               key={index}

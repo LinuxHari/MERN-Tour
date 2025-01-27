@@ -7,6 +7,7 @@ import Pagination from "../../components/Shared/Pagination/Pagination";
 import {useGetBookingsQuery} from "../../redux/api/userApi";
 import {status} from "../../config/userConfig";
 import organizeBookingData from "../../utils/organizeBookingData";
+import withAuth from "../../hocs/withAuth";
 
 const Bookings = ({render}: RenderProps) => {
   const tableHeaders = [
@@ -84,4 +85,6 @@ const Bookings = ({render}: RenderProps) => {
   );
 };
 
-export default Bookings;
+const AuthenticatedBookings = withAuth(Bookings);
+
+export default AuthenticatedBookings;

@@ -151,6 +151,7 @@ export type ReservedTourResponse = Omit<ReserveBody, "tourId" | "pax"> & {
 
 export type UserInfoResponse = Omit<UserSchemaType, "profile"> & {
   profile: string;
+  role: Role;
 };
 
 export type BookingBody = BookingSchemaType & {
@@ -219,4 +220,10 @@ export type StatusType = "Confirmed" | "Pending" | "Canceled";
 export enum ImgPath {
   tours = "/tours",
   profile = "/profile",
+}
+
+export enum Role {
+  admin = "Admin",
+  publisher = "Publisher",
+  traveler = "Traveler",
 }

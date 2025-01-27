@@ -21,7 +21,9 @@ const NotFound = lazy(() => import("./pages/NotFound"));
 
 const AppRoutes = () => {
   const render = useCallback(
-    (title: string, desc: string = "") => <CommonHeader title={title} desc={desc} />,
+    (title: string, desc: string = "") => (
+      <CommonHeader title={title} desc={desc} />
+    ),
     [],
   );
 

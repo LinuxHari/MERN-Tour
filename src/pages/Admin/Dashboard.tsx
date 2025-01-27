@@ -3,6 +3,7 @@ import {RenderProps} from "../../type";
 import DetailCard from "../../components/Admin/Dashboard/DetailCard";
 import EarningStatistics from "../../components/Admin/Dashboard/EarningStatistics";
 import RecentActivities from "../../components/Admin/Dashboard/RecentActivities";
+import withAuth from "../../hocs/withAuth";
 
 const Dashboard = ({render}: RenderProps) => {
   return (
@@ -29,4 +30,6 @@ const Dashboard = ({render}: RenderProps) => {
   );
 };
 
-export default Dashboard;
+const AuthenticDashboard = withAuth(Dashboard);
+
+export default AuthenticDashboard;
