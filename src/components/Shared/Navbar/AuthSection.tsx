@@ -5,11 +5,16 @@ import useUserHandler from "../../../hooks/useUserHandler";
 import LogoutModal from "../../Auth/LogoutModal";
 import useAuthHandler from "../../../hooks/useAuthHandler";
 import useModal from "../../../hooks/useModal";
+import {Role} from "../../../type";
 
 const AuthSection = () => {
   const {user, isLoggedIn} = useUserHandler();
   const {onLogout} = useAuthHandler();
   const {showModal, onClose, onConfirm, openModal} = useModal();
+  const [dashboardLabel, dashboardUrl] =
+    user?.role === Role.admin
+      ? ["Dashboard", "/dashboard"]
+      : ["Profile", "/dashboard/profile"];
 
   const handleLogout = async () => {
     if (user && isLoggedIn) {
@@ -30,8 +35,8 @@ const AuthSection = () => {
             <div className="headerDropdown">
               <div className="headerDropdown__container">
                 <div className="headerDropdown__item">
-                  <Link to="/dashboard" className="text-decoration-none">
-                    <i className="icon-person" /> &nbsp; Profile
+                  <Link to={dashboardUrl} className="text-decoration-none">
+                    <i className="icon-person" /> &nbsp; {dashboardLabel}
                   </Link>
                 </div>
                 <div className="headerDropdown__item text-decoration-none">
