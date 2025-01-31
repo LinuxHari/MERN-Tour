@@ -1,3 +1,4 @@
+import {UserSchemaType} from "../../schema/userSchema";
 import {Bookings, FavoriteTours, UserInfoResponse} from "../../type";
 import {baseApi} from "./baseApi";
 
@@ -15,9 +16,17 @@ type BookingsResponse = {
 const userApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getUserInfo: builder.query<UserInfoResponse, void>({
-      query: () => ({url: "/user/info", credentials: "include"}),
+      query: () => ({url: "/user", credentials: "include"}),
       providesTags: (user) =>
         user ? [{type: "User", id: user.email}] : ["UNAUTHORIZED"],
+    }),
+    updateUserInfo: builder.mutation<void, UserSchemaType>({
+      query: (userInfo) => ({
+        url: `/user`,
+        method: "PUT",
+        credentials: "include",
+        body: userInfo,
+      }),
     }),
     addTourToFavorite: builder.mutation<void, string>({
       query: (tourId) => ({
@@ -58,6 +67,7 @@ const userApi = baseApi.injectEndpoints({
 
 export const {
   useGetUserInfoQuery,
+  useUpdateUserInfoMutation,
   useAddTourToFavoriteMutation,
   useGetFavoriteToursQuery,
   useRemoveTourFromFavoriteMutation,
