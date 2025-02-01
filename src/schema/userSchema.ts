@@ -6,8 +6,14 @@ import {EmailSchema, NameSchema} from "./authSchema";
 export const BaseUserSchema = z
   .object({
     email: EmailSchema.shape.email,
-    phone: z.number().min(1111).max(99999999999),
-    countryCode: z.number().min(0).max(998),
+    phone: z
+      .number({message: "Invalid phone number"})
+      .min(1111, {message: "Invalid phone number"})
+      .max(99999999999, {message: "Invalid phone number"}),
+    countryCode: z
+      .number({message: "Invalid country code"})
+      .min(0, {message: "Invalid country code"})
+      .max(998, {message: "Invalid country code"}),
     // profile: z.object({
     //   file: z
     //     .custom<File>()

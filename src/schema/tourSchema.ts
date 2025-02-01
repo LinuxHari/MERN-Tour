@@ -6,7 +6,7 @@ const allowedAges = Object.values(MIN_AGE);
 
 export const LocationSchema = z.object({
   city: z
-    .string()
+    .string({message: "Invalid city"})
     .transform(removeSpaces)
     .pipe(
       z
@@ -16,7 +16,7 @@ export const LocationSchema = z.object({
     ),
 
   state: z
-    .string()
+    .string({message: "Invalid state"})
     .transform(removeSpaces)
     .pipe(
       z
@@ -26,7 +26,7 @@ export const LocationSchema = z.object({
     ),
 
   country: z
-    .string()
+    .string({message: "Invalid country"})
     .transform(removeSpaces)
     .pipe(
       z
@@ -54,8 +54,12 @@ export const TourSchema = z
       .pipe(
         z
           .string()
-          .min(100, {message: "Tour description should be minimum 100 characters"})
-          .max(400, {message: "Tour description should be maximum 400 characters"}),
+          .min(100, {
+            message: "Tour description should be minimum 100 characters",
+          })
+          .max(400, {
+            message: "Tour description should be maximum 400 characters",
+          }),
       ),
 
     category: z.enum(CATEGORIES, {message: "Invalid tour category"}),
@@ -70,7 +74,9 @@ export const TourSchema = z
               z
                 .string()
                 .min(20, {message: "Highlight should be minimum 20 characters"})
-                .max(100, {message: "Highlight should be maximum 100 characters"}),
+                .max(100, {
+                  message: "Highlight should be maximum 100 characters",
+                }),
             ),
         }),
       )
@@ -130,8 +136,12 @@ export const TourSchema = z
             .pipe(
               z
                 .string()
-                .min(10, {message: "Description must be at least 10 characters"})
-                .max(300, {message: "Description must not exceed 300 characters"}),
+                .min(10, {
+                  message: "Description must be at least 10 characters",
+                })
+                .max(300, {
+                  message: "Description must not exceed 300 characters",
+                }),
             ),
           lat: z.number().min(-90).max(90),
           lon: z.number().min(-180).max(180),
@@ -155,7 +165,9 @@ export const TourSchema = z
               z
                 .string()
                 .min(8, {message: "FAQ question must be at least 8 characters"})
-                .max(100, {message: "FAQ question must not exceed 100 characters"}),
+                .max(100, {
+                  message: "FAQ question must not exceed 100 characters",
+                }),
             ),
 
           answer: z
@@ -165,7 +177,9 @@ export const TourSchema = z
               z
                 .string()
                 .min(2, {message: "FAQ answer must be at least 2 characters"})
-                .max(300, {message: "FAQ answer must not exceed 300 characters"}),
+                .max(300, {
+                  message: "FAQ answer must not exceed 300 characters",
+                }),
             ),
         }),
       )
@@ -188,9 +202,16 @@ export const TourSchema = z
       .string()
       .transform((age) => parseInt(age, 10))
       .pipe(
-        z.union([z.literal(allowedAges[0]), z.literal(allowedAges[1]), z.literal(allowedAges[2])], {
-          message: "Invalid age is selected",
-        }),
+        z.union(
+          [
+            z.literal(allowedAges[0]),
+            z.literal(allowedAges[1]),
+            z.literal(allowedAges[2]),
+          ],
+          {
+            message: "Invalid age is selected",
+          },
+        ),
       ),
 
     images: z

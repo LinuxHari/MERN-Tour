@@ -6,8 +6,8 @@ import {
 import {UserSchemaType} from "../schema/userSchema";
 
 const useUserHandler = () => {
-  const {data, isError, isLoading} = useGetUserInfoQuery();
-  const [updateUserInfo, _] = useUpdateUserInfoMutation();
+  const {data, isError, isLoading: isUpdatingProfile} = useGetUserInfoQuery();
+  const [updateUserInfo, {isLoading}] = useUpdateUserInfoMutation();
 
   const updateProfile = async (userInfo: UserSchemaType) => {
     const toastId = toast.loading("Updating profile");
@@ -15,13 +15,14 @@ const useUserHandler = () => {
 
     if (error) return toast.error("Failed to update profile", {id: toastId});
 
-    return toast.success("Profile updated successfully");
+    return toast.success("Profile updated successfully", {id: toastId});
   };
 
   return {
     user: data,
     isLoggedIn: !isError && data ? true : false,
     isLoading,
+    isUpdatingProfile,
     updateProfile,
   };
 };

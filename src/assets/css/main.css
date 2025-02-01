@@ -2175,7 +2175,10 @@ h6 {
   color: var(--color-accent-1);
 }
 
-.headerDropdown .tabsMenu__tabs .tabs__controls > button.is-tab-el-active::after {
+.headerDropdown
+  .tabsMenu__tabs
+  .tabs__controls
+  > button.is-tab-el-active::after {
   opacity: 1;
 }
 
@@ -4663,20 +4666,27 @@ h6 {
   left: -20px;
 }
 
-.searchForm.-type-1 .searchFormItemDropdown.-location .searchFormItemDropdown__container {
+.searchForm.-type-1
+  .searchFormItemDropdown.-location
+  .searchFormItemDropdown__container {
   width: 400px;
   max-width: calc(100vw - 14px);
   padding: 20px;
 }
 
-.searchForm.-type-1 .searchFormItemDropdown.-location .searchFormItemDropdown__list {
+.searchForm.-type-1
+  .searchFormItemDropdown.-location
+  .searchFormItemDropdown__list {
   overflow-y: scroll;
   display: flex;
   flex-direction: column;
   height: auto;
 }
 
-.searchForm.-type-1 .searchFormItemDropdown.-location .searchFormItemDropdown__item button {
+.searchForm.-type-1
+  .searchFormItemDropdown.-location
+  .searchFormItemDropdown__item
+  button {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -4712,11 +4722,16 @@ h6 {
   line-height: 185.714%;
 }
 
-.searchForm.-type-1 .searchFormItemDropdown.-location .searchFormItemDropdown__item button:hover {
+.searchForm.-type-1
+  .searchFormItemDropdown.-location
+  .searchFormItemDropdown__item
+  button:hover {
   background-color: #f5f5f5;
 }
 
-.searchForm.-type-1 .searchFormItemDropdown.-calendar .searchFormItemDropdown__container {
+.searchForm.-type-1
+  .searchFormItemDropdown.-calendar
+  .searchFormItemDropdown__container {
   width: 440px;
   max-width: calc(100vw - 14px);
   padding: 20px;
@@ -4724,31 +4739,42 @@ h6 {
 }
 
 @media (max-width: 575px) {
-  .searchForm.-type-1 .searchFormItemDropdown.-calendar .searchFormItemDropdown__container {
+  .searchForm.-type-1
+    .searchFormItemDropdown.-calendar
+    .searchFormItemDropdown__container {
     width: calc(100vw - 14px);
   }
 }
 
-.searchForm.-type-1 .searchFormItemDropdown.-tour-type .searchFormItemDropdown__container {
+.searchForm.-type-1
+  .searchFormItemDropdown.-tour-type
+  .searchFormItemDropdown__container {
   width: 347px;
   max-width: calc(100vw - 14px);
   padding: 20px;
 }
 
 @media (max-width: 575px) {
-  .searchForm.-type-1 .searchFormItemDropdown.-tour-type .searchFormItemDropdown__container {
+  .searchForm.-type-1
+    .searchFormItemDropdown.-tour-type
+    .searchFormItemDropdown__container {
     width: calc(100vw - 14px);
   }
 }
 
-.searchForm.-type-1 .searchFormItemDropdown.-tour-type .searchFormItemDropdown__list {
+.searchForm.-type-1
+  .searchFormItemDropdown.-tour-type
+  .searchFormItemDropdown__list {
   overflow-y: scroll;
   display: flex;
   flex-direction: column;
   height: auto;
 }
 
-.searchForm.-type-1 .searchFormItemDropdown.-tour-type .searchFormItemDropdown__item button {
+.searchForm.-type-1
+  .searchFormItemDropdown.-tour-type
+  .searchFormItemDropdown__item
+  button {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -4770,7 +4796,10 @@ h6 {
   line-height: 186.667%;
 }
 
-.searchForm.-type-1 .searchFormItemDropdown.-tour-type .searchFormItemDropdown__item button:hover {
+.searchForm.-type-1
+  .searchFormItemDropdown.-tour-type
+  .searchFormItemDropdown__item
+  button:hover {
   background-color: #f5f5f5;
 }
 
@@ -6009,7 +6038,11 @@ h6 {
   width: 100%;
   height: 100%;
   border-radius: 12px;
-  background: linear-gradient(180deg, rgba(5, 7, 60, 0) 0%, rgba(5, 7, 60, 0.8) 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(5, 7, 60, 0) 0%,
+    rgba(5, 7, 60, 0.8) 100%
+  );
   z-index: 1;
 }
 
@@ -6785,12 +6818,18 @@ h6 {
   color: white !important;
 }
 
-.accordion.-simple .accordion__item.is-active .accordion__icon > *:nth-child(1) {
+.accordion.-simple
+  .accordion__item.is-active
+  .accordion__icon
+  > *:nth-child(1) {
   transform: rotate(90deg);
   opacity: 0;
 }
 
-.accordion.-simple .accordion__item.is-active .accordion__icon > *:nth-child(2) {
+.accordion.-simple
+  .accordion__item.is-active
+  .accordion__icon
+  > *:nth-child(2) {
   transform: none;
   opacity: 1;
 }
@@ -6820,12 +6859,18 @@ h6 {
   transition: all 0.2s ease-out;
 }
 
-.accordion.-simple-2 .accordion__item.is-active .accordion__icon > *:nth-child(1) {
+.accordion.-simple-2
+  .accordion__item.is-active
+  .accordion__icon
+  > *:nth-child(1) {
   transform: rotate(90deg);
   opacity: 0;
 }
 
-.accordion.-simple-2 .accordion__item.is-active .accordion__icon > *:nth-child(2) {
+.accordion.-simple-2
+  .accordion__item.is-active
+  .accordion__icon
+  > *:nth-child(2) {
   transform: none;
   opacity: 1;
 }
@@ -6850,12 +6895,18 @@ h6 {
   transition: all 0.2s ease-out;
 }
 
-.accordion.-tour-single .accordion__item.is-active .accordion__icon > *:nth-child(1) {
+.accordion.-tour-single
+  .accordion__item.is-active
+  .accordion__icon
+  > *:nth-child(1) {
   transform: rotate(90deg);
   opacity: 0;
 }
 
-.accordion.-tour-single .accordion__item.is-active .accordion__icon > *:nth-child(2) {
+.accordion.-tour-single
+  .accordion__item.is-active
+  .accordion__icon
+  > *:nth-child(2) {
   transform: none;
   opacity: 1;
 }
@@ -11564,7 +11615,11 @@ h6 {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(180deg, rgba(25, 29, 35, 0) 23.13%, rgba(25, 29, 35, 0.7) 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(25, 29, 35, 0) 23.13%,
+    rgba(25, 29, 35, 0.7) 100%
+  );
 }
 
 .imageSlider.-type-1 .imageSlider__image img {
@@ -13079,7 +13134,9 @@ table.table-4.-border-bottom tbody > tr {
   flex-shrink: 0;
 }
 
-.testimonialsPagination.-type-2 .testimonialsPagination__item.is-active > *::after {
+.testimonialsPagination.-type-2
+  .testimonialsPagination__item.is-active
+  > *::after {
   content: "";
   position: absolute;
   z-index: 1;
@@ -13091,7 +13148,9 @@ table.table-4.-border-bottom tbody > tr {
   border: 2px solid var(--color-accent-1);
 }
 
-.testimonialsPagination.-type-2.-blue .testimonialsPagination__item.is-active > *::after {
+.testimonialsPagination.-type-2.-blue
+  .testimonialsPagination__item.is-active
+  > *::after {
   border: 2px solid var(--color-accent-2);
 }
 

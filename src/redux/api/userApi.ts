@@ -27,6 +27,7 @@ const userApi = baseApi.injectEndpoints({
         credentials: "include",
         body: userInfo,
       }),
+      invalidatesTags: ["User"],
     }),
     addTourToFavorite: builder.mutation<void, string>({
       query: (tourId) => ({

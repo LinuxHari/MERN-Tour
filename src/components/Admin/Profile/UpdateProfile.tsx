@@ -2,19 +2,24 @@ import {useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {useLayoutEffect} from "react";
 import toast from "react-hot-toast";
+import PhoneInput, {CountryData} from "react-phone-input-2";
+import phone from "phone";
+import "react-phone-input-2/lib/style.css";
 import useUserHandler from "../../../hooks/useUserHandler";
 import Button from "../../Shared/Button/Button";
 import Input from "../../Shared/Input/Input";
 import Textarea from "../../Shared/Teaxtarea/Textarea";
 import {UserSchema, UserSchemaType} from "../../../schema/userSchema";
 import {getFormErrorMessages} from "../../../utils/getFormErrorMessages";
+
 // import ImagePlaceholder from "../AddTour/ImagePlaceholder"
 
 const UpdateProfile = () => {
-  const {user} = useUserHandler();
+  const {user, updateProfile, isUpdatingProfile} = useUserHandler();
   const {
     register,
     handleSubmit,
+    setValue,
     formState: {errors},
   } = useForm<UserSchemaType>({
     defaultValues: {
@@ -29,6 +34,16 @@ const UpdateProfile = () => {
     resolver: zodResolver(UserSchema),
   });
 
+  const handlePhoneChange = (value: string, countryData: CountryData) => {
+    const number = value.toString().slice(countryData.dialCode.length);
+    const {isValid} = phone(value, {country: countryData.countryCode});
+
+    if (isValid) {
+      setValue("phone", parseInt(number));
+      setValue("countryCode", parseInt(countryData.dialCode));
+    }
+  };
+
   useLayoutEffect(() => {
     const keys = Object.keys(errors);
 
@@ -42,7 +57,7 @@ const UpdateProfile = () => {
   return (
     <form
       className="rounded-12 bg-white shadow-2 px-40 pt-40 pb-30"
-      onSubmit={handleSubmit(() => {})}
+      onSubmit={handleSubmit(updateProfile)}
       noValidate
     >
       <h5 className="text-20 fw-500 mb-30">Profile Details</h5>
@@ -54,10 +69,6 @@ const UpdateProfile = () => {
 
         <div className="col-md-6">
           <Input label="Last Name" type="text" {...register("lastName")} />
-        </div>
-
-        <div className="col-md-6">
-          <Input label="Phone" type="text" {...register("phone")} />
         </div>
 
         <div className="col-md-6">
@@ -76,6 +87,23 @@ const UpdateProfile = () => {
           <Input label="Country" type="text" {...register("country")} />
         </div>
 
+        <div className="col-md-6 py-0">
+          <label className="lh-1 text-16 mx-3" htmlFor="phone">
+            Phone number
+          </label>
+          <PhoneInput
+            inputProps={{
+              name: "phone",
+            }}
+            inputClass="shadow-none overflow-hidden"
+            country="us"
+            placeholder="Enter phone number"
+            onChange={handlePhoneChange}
+            buttonStyle={{borderRadius: "12px 0px 0px 12px"}}
+            inputStyle={{paddingLeft: "45px"}}
+          />
+        </div>
+
         <div className="col-md-6">
           <Textarea label="Address" rows={8} {...register("address")} />
         </div>
@@ -90,7 +118,9 @@ const UpdateProfile = () => {
       </div>
 
       <div className="d-flex pt-30">
-        <Button buttonType="primary">Save Changes</Button>
+        <Button buttonType="primary" type="submit" disabled={isUpdatingProfile}>
+          Save Changes
+        </Button>
       </div>
     </form>
   );
