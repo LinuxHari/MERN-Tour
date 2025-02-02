@@ -1,7 +1,7 @@
 import {z} from "zod";
 import removeSpaces from "../utils/removeSpaces";
 import {LocationSchema} from "./tourSchema";
-import {EmailSchema, NameSchema} from "./authSchema";
+import {EmailSchema, LoginSchema, NameSchema} from "./authSchema";
 
 export const BaseUserSchema = z
   .object({
@@ -31,6 +31,20 @@ export const BaseUserSchema = z
   })
   .merge(NameSchema); // Adding 3 merges in a row caused https://github.com/colinhacks/zod/issues/2697, so added email with shape merged and extended
 
+export const PasswordSchema = z
+  .object({
+    oldPassword: LoginSchema.shape.password,
+    newPassword: LoginSchema.shape.password,
+    confirmPassword: LoginSchema.shape.password,
+  })
+  .refine(({newPassword, confirmPassword, oldPassword}) => {
+    if (newPassword === confirmPassword)
+      return {message: "Password did not match"};
+    else if (newPassword === oldPassword)
+      return {message: "Old password and new password both are same"};
+  });
+
 export const UserSchema = z.intersection(BaseUserSchema, LocationSchema);
 
 export type UserSchemaType = z.infer<typeof UserSchema>;
+export type PasswordSchemaType = z.infer<typeof PasswordSchema>;

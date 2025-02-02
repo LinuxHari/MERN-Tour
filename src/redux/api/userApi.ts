@@ -1,4 +1,4 @@
-import {UserSchemaType} from "../../schema/userSchema";
+import {PasswordSchemaType, UserSchemaType} from "../../schema/userSchema";
 import {Bookings, FavoriteTours, UserInfoResponse} from "../../type";
 import {baseApi} from "./baseApi";
 
@@ -28,6 +28,14 @@ const userApi = baseApi.injectEndpoints({
         body: userInfo,
       }),
       invalidatesTags: ["User"],
+    }),
+    updatePassword: builder.mutation<void, PasswordSchemaType>({
+      query: (passwordData) => ({
+        url: "/user/password",
+        method: "PUT",
+        body: passwordData,
+        credentials: "include",
+      }),
     }),
     addTourToFavorite: builder.mutation<void, string>({
       query: (tourId) => ({
@@ -73,4 +81,5 @@ export const {
   useGetFavoriteToursQuery,
   useRemoveTourFromFavoriteMutation,
   useGetBookingsQuery,
+  useUpdatePasswordMutation,
 } = userApi;
