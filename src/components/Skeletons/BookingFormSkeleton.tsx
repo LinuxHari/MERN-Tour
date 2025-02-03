@@ -139,7 +139,7 @@ const BookingFormSkeleton = () => {
               />
 
               <div className="space-y-3">
-                {["Date", "Duration", "Tickets"].map((item, index) => (
+                {Array.from({length: 3}).map((_, index) => (
                   <div
                     key={index}
                     className="d-flex justify-content-between align-items-center mb-3"
