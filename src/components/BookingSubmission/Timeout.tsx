@@ -6,13 +6,14 @@ type TimeoutProps = {
 };
 
 const Timeout = ({expiresAt, onTimeout}: TimeoutProps) => {
-  const [count, setCount] = useState(Math.max(0, Math.floor((expiresAt - Date.now()) / 1000)));
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
     const id = setInterval(() => {
+      const count = Math.max(0, Math.floor((expiresAt - Date.now()) / 1000));
       const remainingTime = Math.max(0, count - 1);
 
-      if (remainingTime <= -1) {
+      if (remainingTime <= 0) {
         onTimeout();
         clearInterval(id);
       } else setCount(remainingTime);
