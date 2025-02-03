@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import {useLayoutEffect, useState} from "react";
 import {useLocation} from "react-router-dom";
 
 const ScrollToTop = () => {
@@ -11,11 +11,13 @@ const ScrollToTop = () => {
     else setIsVisible(false);
   };
 
-  useEffect(() => {
-    scroll();
+  useLayoutEffect(() => {
+    const timeoutId = setTimeout(scroll, 10);
+
+    return () => clearTimeout(timeoutId);
   }, [pathname]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     window.addEventListener("scroll", handleScroll);
 
     return () => window.removeEventListener("scroll", handleScroll);

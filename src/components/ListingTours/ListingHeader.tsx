@@ -9,7 +9,9 @@ const ListingHeader = ({destination}: {destination: string}) => {
         </div>
         <div className="row pt-30">
           <div className="col-auto">
-            <h1 className="pageHeader__title">Explore all things to do in {destination}</h1>
+            <h1 className="pageHeader__title">
+              Explore all things to do in {destination}
+            </h1>
           </div>
         </div>
       </div>

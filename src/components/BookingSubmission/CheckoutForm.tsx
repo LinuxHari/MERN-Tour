@@ -9,6 +9,7 @@ import useBookingHandler from "../../hooks/useBookingHandler";
 import useUserHandler from "../../hooks/useUserHandler";
 import {UserInfoResponse} from "../../type";
 import {getFormErrorMessages} from "../../utils/getFormErrorMessages";
+import BookingFormSkeleton from "../Skeletons/BookingFormSkeleton";
 import CheckoutModal from "./CheckoutModal";
 import BookingDetailsCard from "./BookingDetailsCard";
 import TravellerInfoForm from "./TravellerInfoForm";
@@ -28,7 +29,10 @@ const CheckoutForm = () => {
     handleSubmit,
     formState: {errors},
     setValue,
-  } = useForm<BookingSchemaType>({resolver: zodResolver(BookingSchema), defaultValues});
+  } = useForm<BookingSchemaType>({
+    resolver: zodResolver(BookingSchema),
+    defaultValues,
+  });
   const {
     book,
     reservedTour,
@@ -50,12 +54,16 @@ const CheckoutForm = () => {
     }
   }, [errors]);
 
+  if (isReservedDetailsLoading) return <BookingFormSkeleton />;
+
   if (!reservedTour) return <></>;
 
   return (
     <form
       className="row d-flex"
-      onSubmit={handleSubmit((data) => book({...data, id: reserveId as string}, stripe, elements))}
+      onSubmit={handleSubmit((data) =>
+        book({...data, id: reserveId as string}, stripe, elements),
+      )}
       noValidate
     >
       <div className="col-lg-8 order-lg-1 bg-white px-4 py-4 rounded-12">
@@ -70,7 +78,7 @@ const CheckoutForm = () => {
       <BookingDetailsCard
         isPayformLoaded={true}
         reservedTour={reservedTour}
-        isLoading={isReservedDetailsLoading || isBookingLoading}
+        isLoading={isBookingLoading}
         isError={isReservedDetailsError}
       />
       {modalInfo && (

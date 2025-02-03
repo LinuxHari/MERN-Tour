@@ -1,6 +1,8 @@
+import {Link} from "react-router-dom";
+
 const SidebarHeader = () => {
   return (
-    <div className="dashboard__sidebar_header">
+    <Link to="/" className="dashboard__sidebar_header">
       <svg
         width="167"
         height="32"
@@ -49,7 +51,7 @@ const SidebarHeader = () => {
           fill="white"
         />
       </svg>
-    </div>
+    </Link>
   );
 };
 

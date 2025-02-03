@@ -14341,3 +14341,55 @@ a {
 .flag-dropdown:hover .selected-flag {
   border-radius: 12px 0px 0px 12px !important;
 }
+
+.skeleton-page {
+  min-height: 100vh;
+  background-color: #fff;
+}
+
+.skeleton-element {
+  background-color: #e9ecef;
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+}
+
+.skeleton-element::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  animation: shimmer 1.5s infinite;
+  transform: translateX(-100%);
+}
+
+.skeleton-main {
+  padding-top: 76px;
+}
+
+.skeleton-hero {
+  background-color: #f8f9fa;
+  padding: 3rem 0;
+  margin-bottom: 2rem;
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@media (max-width: 768px) {
+  .skeleton-hero {
+    padding: 2rem 0;
+  }
+}

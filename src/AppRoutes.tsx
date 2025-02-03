@@ -1,6 +1,7 @@
 import {lazy, useCallback, Suspense} from "react";
 import {Route, Routes} from "react-router-dom";
 import AppLayout from "./layouts/AppLayout";
+import CommonSkeleton from "./components/Skeletons/CommonSkeleton";
 
 const Home = lazy(() => import("./pages/Home"));
 const AdminLayout = lazy(() => import("./layouts/AdminLayout"));
@@ -28,7 +29,7 @@ const AppRoutes = () => {
   );
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<CommonSkeleton />}>
       <Routes>
         <Route path="/" element={<AppLayout />}>
           <Route index element={<Home />} />

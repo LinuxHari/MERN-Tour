@@ -2,18 +2,25 @@ import BookingInfo from "../components/BookingSuccess/BookingInfo";
 import CancelModal from "../components/BookingSuccess/CancelModal";
 import TourDetails from "../components/BookingSuccess/TourDetails";
 import Button from "../components/Shared/Button/Button";
+import BookingFormSkeleton from "../components/Skeletons/BookingFormSkeleton";
 import withAuth from "../hocs/withAuth";
 import useAfterBookingHandler from "../hooks/useAfterBookingHandler";
 import useModal from "../hooks/useModal";
 
 const Booking = () => {
-  const {booking, isBookingLoading, isBookingError, isCancelLoading, cancelBooking, bookingId} =
-    useAfterBookingHandler();
+  const {
+    booking,
+    isBookingLoading,
+    isBookingError,
+    isCancelLoading,
+    cancelBooking,
+    bookingId,
+  } = useAfterBookingHandler();
   const {onClose, showModal, onConfirm, openModal} = useModal();
 
   if (isBookingError || !booking) return <></>;
 
-  if (isBookingLoading) return <></>;
+  if (isBookingLoading) return <BookingFormSkeleton />;
 
   const {tourInfo, amount, ...bookingInfo} = booking;
 
@@ -23,12 +30,20 @@ const Booking = () => {
         <div className="container">
           <div className="row">
             <div className="col-lg-8 bg-white rounded-12 shadow-2 py-30 px-30 md:py-20 md:px-20 relative">
-              <BookingInfo {...bookingInfo} amount={amount} bookingId={bookingId} />
+              <BookingInfo
+                {...bookingInfo}
+                amount={amount}
+                bookingId={bookingId}
+              />
               <div className="d-flex items-center justify-end mt-3">
                 {bookingInfo.isCancellable &&
                   bookingInfo.status !== "canceled" &&
                   bookingInfo.status !== "failed" && (
-                    <Button buttonType="secondary" onClick={openModal} disabled={isCancelLoading}>
+                    <Button
+                      buttonType="secondary"
+                      onClick={openModal}
+                      disabled={isCancelLoading}
+                    >
                       Cancel
                     </Button>
                   )}

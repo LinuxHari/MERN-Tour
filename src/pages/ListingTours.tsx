@@ -3,6 +3,7 @@ import ListingHeader from "../components/ListingTours/ListingHeader";
 import TourList from "../components/ListingTours/TourList";
 import TourListHeader from "../components/ListingTours/TourListHeader";
 import Pagination from "../components/Shared/Pagination/Pagination";
+import TourListingSkeleton from "../components/Skeletons/TourListingSkeleton";
 import useListingToursHandler from "../hooks/useListingToursHandler";
 
 const ListingTours = () => {
@@ -58,14 +59,22 @@ const ListingTours = () => {
                             sortType={sortType}
                             setSortType={setSortType}
                           />
-                          <TourList tours={tours} onSelectTour={onSelectTour} pax={pax} />
+                          <TourList
+                            tours={tours}
+                            onSelectTour={onSelectTour}
+                            pax={pax}
+                          />
                           <div className="d-flex justify-center flex-column mt-60">
-                            <Pagination page={page} setPage={setPage} totalCount={totalCount} />
+                            <Pagination
+                              page={page}
+                              setPage={setPage}
+                              totalCount={totalCount}
+                            />
                           </div>
                         </>
                       )
                     ) : (
-                      <div>Loading...</div>
+                      <TourListingSkeleton />
                     )}
                   </div>
                 </div>
@@ -74,7 +83,7 @@ const ListingTours = () => {
           </>
         )
       ) : (
-        <div style={{minHeight: "100vh"}}>Loading...</div>
+        <TourListingSkeleton />
       )}
     </>
   );
