@@ -19,8 +19,15 @@ type OptionProps = ButtonProps & {
   value: string;
 };
 
-const Select = ({children, defaultValue, onChange, className = ""}: SelectProps) => {
-  const [selectedValue, setSelectedValue] = useState<string>(defaultValue || "");
+const Select = ({
+  children,
+  defaultValue,
+  onChange,
+  className = "",
+}: SelectProps) => {
+  const [selectedValue, setSelectedValue] = useState<string>(
+    defaultValue || "",
+  );
   const {focusRef, showContent, setShowContent} = useFocusHandler();
 
   const toggleDropdown = () => setShowContent((prev) => !prev);
@@ -34,7 +41,9 @@ const Select = ({children, defaultValue, onChange, className = ""}: SelectProps)
   };
 
   return (
-    <SelectContext.Provider value={{selectedValue, showContent, toggleDropdown, selectOption}}>
+    <SelectContext.Provider
+      value={{selectedValue, showContent, toggleDropdown, selectOption}}
+    >
       <div
         className={`dropdown -type-2 js-dropdown js-form-dd is-active ${className}`}
         ref={focusRef}
@@ -58,25 +67,29 @@ const Button = ({children, className = "", hideSelectedValue}: ButtonProps) => {
         {children && <>{children}</>}
         {!hideSelectedValue && selectedValue}
       </span>
-      <i className={`icon-chevron-down ml-2 ${showContent ? "rotate-180" : "rotate-0"}`} />
+      <i
+        className={`icon-chevron-down ml-2 ${showContent ? "rotate-180" : "rotate-0"}`}
+      />
     </button>
   );
 };
 
-const Menu = ({children, className}: ButtonProps) => {
+const Menu = ({children, className = ""}: ButtonProps) => {
   const {showContent} = useSelectContext();
 
   return showContent ? (
-    <div className={`dropdown__menu js-menu-items ${className}`}>{children}</div>
+    <div className={`dropdown__menu js-menu-items ${className}`}>
+      {children}
+    </div>
   ) : null;
 };
 
-const Option = ({value, children}: OptionProps) => {
+const Option = ({value, children, className = ""}: OptionProps) => {
   const {selectOption} = useSelectContext();
 
   return (
     <option
-      className="dropdown__item"
+      className={`dropdown__item ${className}`}
       onClick={(e) => {
         e.stopPropagation();
         selectOption(value);
