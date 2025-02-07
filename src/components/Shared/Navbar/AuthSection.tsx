@@ -33,7 +33,7 @@ const AuthSection = ({isMobile = false}: AuthSectionProps) => {
     <>
       {isLoggedIn && user ? (
         <Dropdown className="js-form-dd">
-          <Dropdown.Toggle className="px-0" dataClick="header-currency">
+          <Dropdown.Toggle className="px-0 mx-2" dataClick="header-currency">
             {!isMobile ? (
               <>
                 <Avatar
@@ -45,9 +45,9 @@ const AuthSection = ({isMobile = false}: AuthSectionProps) => {
                 <i className="icon-chevron-down text-18" />
               </>
             ) : (
-              <button className="d-flex align-items-center px-3 py-2">
+              <span className="d-flex align-items-center px-3 py-2">
                 <i className="icon-person text-18 mx-0" />
-              </button>
+              </span>
             )}
           </Dropdown.Toggle>
           <Dropdown.Content dataClick="header-currency">

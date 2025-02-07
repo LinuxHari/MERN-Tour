@@ -1,5 +1,5 @@
 import {FetchBaseQueryError} from "@reduxjs/toolkit/query";
-import {ImgPath, Tour} from "../../type";
+import {EarningsResponse, ImgPath, Tour} from "../../type";
 import {TourSchemaType} from "../../schema/tourSchema";
 import getFirebaseUpload from "../../utils/getFirebaseUpload";
 import {extractFirebaseImgPath} from "../../utils/extractFirebaseImgPath";
@@ -77,6 +77,9 @@ export const adminApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["Tour"],
     }),
+    getEarnings: builder.query<EarningsResponse, void>({
+      query: () => ({url: "/admin/stats", credentials: "include"}),
+    }),
   }),
 });
 
@@ -84,4 +87,5 @@ export const {
   useGetAdminPublishedToursQuery,
   useCreateTourMutation,
   useDeleteTourMutation,
+  useGetEarningsQuery,
 } = adminApi;

@@ -6,9 +6,13 @@ type DetailCardProps = {
   icon: string;
 };
 
-const DetailCard = ({title, total, currency, amount, icon}: DetailCardProps) => {
-  const isWishlist = title === "Wishlist";
-
+const DetailCard = ({
+  title,
+  total,
+  currency,
+  amount,
+  icon,
+}: DetailCardProps) => {
   return (
     <div className="col-xl-3 col-sm-6">
       <div className="rounded-12 bg-white shadow-2 px-30 py-30 h-full">
@@ -16,13 +20,13 @@ const DetailCard = ({title, total, currency, amount, icon}: DetailCardProps) => 
           <div className="col-auto">
             <div>{title}</div>
             <div className="text-30 fw-700">
-              {!isWishlist && currency}
+              {currency}
               {total}
             </div>
 
             <div>
               <span className="text-accent-1">
-                {!isWishlist && currency}
+                {currency}
                 {amount}
               </span>{" "}
               Today

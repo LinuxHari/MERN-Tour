@@ -1,9 +1,9 @@
 import {RenderProps} from "../../type";
-// import Pagination from "../../components/Shared/Pagination/Pagination";
 import TourCard from "../../components/Admin/Favorites/TourCard";
 import Pagination from "../../components/Shared/Pagination/Pagination";
 import useUserFavoriteHandler from "../../hooks/useUserFavoriteHandler";
 import withAuth from "../../hocs/withAuth";
+import CommonSkeleton from "../../components/Skeletons/CommonSkeleton";
 
 const Favorites = ({render}: RenderProps) => {
   const {favoriteTours, page, setPage, isFetchingFavoriteTours} =
@@ -13,7 +13,7 @@ const Favorites = ({render}: RenderProps) => {
     <>
       {render("Favorites", "My Favorites")}
       {isFetchingFavoriteTours ? (
-        <>Loading...</>
+        <CommonSkeleton />
       ) : (
         <div className="rounded-12 bg-white shadow-2 px-40 pt-40 pb-30 mt-60">
           {favoriteTours && favoriteTours.favoriteTours.length ? (

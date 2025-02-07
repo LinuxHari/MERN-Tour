@@ -1,31 +1,50 @@
-import {DASHBOARD_DATA} from "../../config/adminConfig";
 import {RenderProps} from "../../type";
 import DetailCard from "../../components/Admin/Dashboard/DetailCard";
 import EarningStatistics from "../../components/Admin/Dashboard/EarningStatistics";
-import RecentActivities from "../../components/Admin/Dashboard/RecentActivities";
+// import RecentActivities from "../../components/Admin/Dashboard/RecentActivities";
 import withAuth from "../../hocs/withAuth";
+import useStatsInfo from "../../hooks/useStatsInfo";
+import CommonSkeleton from "../../components/Skeletons/CommonSkeleton";
 
 const Dashboard = ({render}: RenderProps) => {
+  const {dashboardData, chartData, chartConfig, isLoading, isError} =
+    useStatsInfo();
+
+  if (isError) {
+    return null;
+  }
+
   return (
     <>
       {render("Dashboard", "Track Your Earnings and Activities")}
-      <div className="row y-gap-30 pt-60 md:pt-30">
-        {DASHBOARD_DATA.map(({title, icon, today, total, currency}, index) => (
-          <DetailCard
-            key={index}
-            title={title}
-            icon={icon}
-            amount={today}
-            total={total}
-            currency={currency}
-          />
-        ))}
-      </div>
+      {isLoading ? (
+        <CommonSkeleton />
+      ) : (
+        <>
+          <div className="row y-gap-30 pt-60 md:pt-30">
+            {dashboardData.map(
+              ({title, icon, today, total, currency}, index) => (
+                <DetailCard
+                  key={index}
+                  title={title}
+                  icon={icon}
+                  amount={today}
+                  total={total}
+                  currency={currency}
+                />
+              ),
+            )}
+          </div>
 
-      <div className="row pt-30 y-gap-30">
-        <EarningStatistics />
-        <RecentActivities />
-      </div>
+          <div className="row pt-30 y-gap-30">
+            <EarningStatistics
+              chartData={chartData}
+              chartConfig={chartConfig}
+            />
+            {/* <RecentActivities /> */}
+          </div>
+        </>
+      )}
     </>
   );
 };

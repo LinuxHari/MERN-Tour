@@ -1,17 +1,30 @@
 import {Line} from "react-chartjs-2";
 import Tabs from "../../Shared/Tabs/Tabs";
-import useChart from "../../../hooks/useChart";
 
-const EarningStatistics = () => {
-  const tabs = ["Hours", "Weekly", "Monthly"];
-
-  const data = {
-    hours: [148, 100, 205, 110, 165, 145, 180, 156, 148, 220, 180, 245],
-    weekly: [148, 100, 205, 110, 165],
-    monthly: [148, 100, 205, 110, 165, 145, 180, 156, 148, 220, 180, 245],
+type EarningStatisticsProps = {
+  chartConfig: {
+    responsive: boolean;
+    plugins: {legend: {display: boolean}};
+    scales: {y: {min: number; max: number; ticks: {stepSize: number}}};
   };
+  chartData: {
+    labels: string[];
+    datasets: {
+      label: string;
+      data: number[];
+      tension: number;
+      backgroundColor: string;
+      borderColor: string;
+      borderWidth: number;
+    }[];
+  }[];
+};
 
-  const {chartConfig, chartData} = useChart(data);
+const EarningStatistics = ({
+  chartConfig,
+  chartData,
+}: EarningStatisticsProps) => {
+  const tabs = ["Hours", "Weekly", "Monthly"];
 
   return (
     <div className="col-xl-8 col-lg-12 col-md-6">

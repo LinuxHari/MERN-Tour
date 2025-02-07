@@ -1,7 +1,10 @@
 import {useParams} from "react-router-dom";
 import {useCallback} from "react";
 import toast from "react-hot-toast";
-import {useCancelBookingMutation, useGetBookingQuery} from "../redux/api/baseApi";
+import {
+  useCancelBookingMutation,
+  useGetBookingQuery,
+} from "../redux/api/baseApi";
 
 type Params = {
   bookingId: string;
@@ -14,7 +17,8 @@ const useAfterBookingHandler = () => {
     isLoading: isBookingLoading,
     isError: isBookingError,
   } = useGetBookingQuery(bookingId);
-  const [cancelBooking, {isLoading: isCancelLoading}] = useCancelBookingMutation();
+  const [cancelBooking, {isLoading: isCancelLoading}] =
+    useCancelBookingMutation();
 
   const cancel = useCallback(async () => {
     const toastId = toast.loading("Cancelling booking");

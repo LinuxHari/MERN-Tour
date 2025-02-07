@@ -217,6 +217,18 @@ export type FavoriteTours = {
 
 export type StatusType = "Confirmed" | "Pending" | "Canceled";
 
+export type EarningsResponse = {
+  totalEarnings: number;
+  todayEarnings: number;
+  totalPendingEarnings: number;
+  todayPendingEarnings: number;
+  successfulEarnings: number;
+  successfulEarningsToday: number;
+  earningsByTwoHours: number[];
+  earningsByWeek: number[];
+  earningsByMonth: number[];
+};
+
 export enum ImgPath {
   tours = "/tours",
   profile = "/profile",

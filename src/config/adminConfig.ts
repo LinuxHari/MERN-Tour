@@ -16,36 +16,6 @@ export const DASHBOARD_USER = [
   {href: "profile", iconClass: "icon-account", text: "My Profile"},
 ];
 
-export const DASHBOARD_DATA = [
-  {
-    title: "Total Earnings",
-    total: 10800,
-    currency: "$",
-    today: 50,
-    icon: "icon-wallet",
-  },
-  {
-    title: "Total Pending",
-    total: 12800,
-    currency: "$",
-    today: 40,
-    icon: "icon-payment",
-  },
-  {
-    title: "Total Booking",
-    total: 54800,
-    currency: "$",
-    today: 90,
-    icon: "icon-booking",
-  },
-  {
-    title: "Wishlist",
-    total: 1834,
-    today: 290,
-    icon: "icon-heart",
-  },
-];
-
 export const NOTIFICATIONS = [
   {
     type: "Approved",

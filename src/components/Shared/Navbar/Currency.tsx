@@ -30,7 +30,7 @@ const Currency = ({isMobile = false}: CurrencyProps) => {
           <div className="d-flex flex-column items-center justify-center">
             {currencies.map((currency, index) => (
               <Select.Option key={index} value={currency} className="px-0 py-2">
-                <button className="">{currency}</button>
+                <span>{currency}</span>
               </Select.Option>
             ))}
           </div>

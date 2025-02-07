@@ -3,6 +3,7 @@ import Pagination from "../../components/Shared/Pagination/Pagination";
 import useAdminTourHandler from "../../hooks/useAdminTourHandler";
 import ListingCard from "../../components/Admin/Listings/ListingCard";
 import withAuth from "../../hocs/withAuth";
+import CommonSkeleton from "../../components/Skeletons/CommonSkeleton";
 
 const Listings = ({render}: RenderProps) => {
   const {publishedTours, isTourLoading, page, setPage} = useAdminTourHandler();
@@ -11,7 +12,7 @@ const Listings = ({render}: RenderProps) => {
     <>
       {render("Listings", "My Listings")}
       {isTourLoading ? (
-        <>Loading...</>
+        <CommonSkeleton />
       ) : publishedTours && publishedTours.tours.length ? (
         <div className="rounded-12 bg-white shadow-2 px-40 pt-40 pb-30 mt-60">
           {publishedTours && publishedTours.tours.length ? (

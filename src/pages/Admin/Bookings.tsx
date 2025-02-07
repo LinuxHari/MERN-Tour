@@ -1,6 +1,5 @@
 import {useState} from "react";
 import {OrganizedBookings, RenderProps, StatusType} from "../../type";
-// import Pagination from "../../components/Shared/Pagination/Pagination";
 import Tabs from "../../components/Shared/Tabs/Tabs";
 import Table from "../../components/Admin/Bookings/Table";
 import Pagination from "../../components/Shared/Pagination/Pagination";
@@ -8,6 +7,7 @@ import {useGetBookingsQuery} from "../../redux/api/userApi";
 import {status} from "../../config/userConfig";
 import organizeBookingData from "../../utils/organizeBookingData";
 import withAuth from "../../hocs/withAuth";
+import CommonSkeleton from "../../components/Skeletons/CommonSkeleton";
 
 const Bookings = ({render}: RenderProps) => {
   const tableHeaders = [
@@ -29,7 +29,7 @@ const Bookings = ({render}: RenderProps) => {
     isError,
   } = useGetBookingsQuery({status: currentTab.toLowerCase(), page});
 
-  if (isLoading) return <>Loading...</>;
+  if (isLoading) return <CommonSkeleton />;
 
   if (isError || !bookings) return <></>;
 
