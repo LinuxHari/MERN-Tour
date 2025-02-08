@@ -1,7 +1,7 @@
 import {useEffect} from "react";
 import {FormProvider, useForm} from "react-hook-form";
 import toast from "react-hot-toast";
-import {createSearchParams, useNavigate} from "react-router-dom";
+import {createSearchParams, useLocation, useNavigate} from "react-router-dom";
 import {zodResolver} from "@hookform/resolvers/zod";
 import Button from "../../Shared/Button/Button";
 import {searchSchema, SearchSchemaType} from "../../../schema/searchSchema";
@@ -14,6 +14,7 @@ import SearchPax from "./SearchPax";
 const SearchForm = () => {
   const form = useForm<SearchSchemaType>({resolver: zodResolver(searchSchema)});
   const navigate = useNavigate();
+  const {pathname} = useLocation();
   const {
     formState: {errors},
     handleSubmit,
@@ -56,13 +57,21 @@ const SearchForm = () => {
     const scrollHeight = isMobile ? 350 : 125;
     const scrolledHeight = isMobile ? 150 : 100;
 
-    if (window.scrollY < scrolledHeight) window.scrollBy({top: scrollHeight, behavior: "smooth"});
+    if (window.scrollY < scrolledHeight && pathname === "/")
+      window.scrollBy({top: scrollHeight, behavior: "smooth"});
   };
 
   return (
     <FormProvider {...form}>
-      <form className="searchForm -type-1" onSubmit={handleSubmit(handleSearch)}>
-        <div className="searchForm__form" role="presentation" onClick={handleFormScroll}>
+      <form
+        className="searchForm -type-1 is-in-view"
+        onSubmit={handleSubmit(handleSearch)}
+      >
+        <div
+          className="searchForm__form"
+          role="presentation"
+          onClick={handleFormScroll}
+        >
           <SearchSuggestions />
           <SearchDatePicker />
           <TourType />

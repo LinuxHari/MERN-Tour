@@ -35,7 +35,7 @@ const useWindowSize = () => {
     };
   }, []);
 
-  return windowSize;
+  return {...windowSize, isMobile: windowSize.width < 992};
 };
 
 export default useWindowSize;

@@ -16,24 +16,27 @@ export const searchSchema = z.object({
   ),
   tourType: z.enum(TOUR_TYPES, {message: "Invalid tour type"}),
   pax: z
-    .object({
-      adults: z
-        .number()
-        .min(1, {message: "Number of adults atleast should be one"})
-        .max(10, {message: "Invalid number of adults"}),
-      teens: z
-        .number()
-        .min(0, {message: "Number of teens atleast should be one"})
-        .max(10, {message: "Invalid number of teens"}),
-      children: z
-        .number()
-        .min(0, {message: "Number of children atleast should be one"})
-        .max(10, {message: "Invalid number of children"}),
-      infants: z
-        .number()
-        .min(0, {message: "Number of infants atleast should be one"})
-        .max(10, {message: "Invalid number of infants"}),
-    })
+    .object(
+      {
+        adults: z
+          .number()
+          .min(1, {message: "Number of adults atleast should be one"})
+          .max(10, {message: "Invalid number of adults"}),
+        teens: z
+          .number()
+          .min(0, {message: "Number of teens atleast should be one"})
+          .max(10, {message: "Invalid number of teens"}),
+        children: z
+          .number()
+          .min(0, {message: "Number of children atleast should be one"})
+          .max(10, {message: "Invalid number of children"}),
+        infants: z
+          .number()
+          .min(0, {message: "Number of infants atleast should be one"})
+          .max(10, {message: "Invalid number of infants"}),
+      },
+      {message: "Invalid passengers count"},
+    )
     .refine(
       (pax) => {
         const total = calculatePaxTotal(pax);

@@ -1,6 +1,6 @@
 import withAuth from "../../hocs/withAuth";
 import {RenderProps} from "../../type";
-import TourForm from "./TourForm";
+import TourForm from "../../components/Admin/AddTour/TourForm";
 
 const AddTour = ({render}: RenderProps) => {
   return (

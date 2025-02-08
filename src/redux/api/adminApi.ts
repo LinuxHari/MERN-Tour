@@ -1,6 +1,6 @@
 import {FetchBaseQueryError} from "@reduxjs/toolkit/query";
 import {EarningsResponse, ImgPath, Tour} from "../../type";
-import {TourSchemaType} from "../../schema/tourSchema";
+import {EditTourSchemaType, TourSchemaType} from "../../schema/tourSchema";
 import getFirebaseUpload from "../../utils/getFirebaseUpload";
 import {extractFirebaseImgPath} from "../../utils/extractFirebaseImgPath";
 import {baseApi} from "./baseApi";
@@ -69,6 +69,57 @@ export const adminApi = baseApi.injectEndpoints({
       },
       invalidatesTags: ["Tour"],
     }),
+    updateTour: builder.mutation<void, EditTourSchemaType & {tourId: string}>({
+      queryFn: async (formData, _, __, baseQuery) => {
+        const {uploadImages, deleteImages} = getFirebaseUpload();
+
+        try {
+          const {tourId, existingImages, ...tourData} = formData;
+          const deletedTourImages = existingImages
+            .filter(({isDeleted}) => isDeleted)
+            .map(({url}) => url);
+
+          const imageUrls = await uploadImages(formData.images, formData.name);
+
+          if (deletedTourImages.length) await deleteImages(deletedTourImages);
+
+          const highlights = formData.highlights.map(
+            (highlight) => highlight.value,
+          );
+          const existingTourImages = existingImages
+            .filter(({isDeleted}) => !isDeleted)
+            .map(({url}) => url);
+          const response = await baseQuery({
+            url: `/admin/tour/${tourId}`,
+            method: "PUT",
+            body: {
+              ...tourData,
+              highlights,
+              images: [...existingTourImages, ...imageUrls],
+            },
+            credentials: "include",
+          });
+
+          if (response.error) {
+            const imagesToDelete = extractFirebaseImgPath(
+              imageUrls,
+              ImgPath.tours,
+            );
+
+            await deleteImages(imagesToDelete);
+            throw new Error("Failed to update tour");
+          }
+
+          return {data: undefined};
+        } catch (error) {
+          if (error instanceof Error) {
+            return {error: {error: error.message} as FetchBaseQueryError};
+          }
+
+          return {error: {error: "Network Error"} as FetchBaseQueryError};
+        }
+      },
+    }),
     deleteTour: builder.mutation<TourResponse, string>({
       query: (tourId) => ({
         url: `/admin/tour/${tourId}`,
@@ -88,4 +139,5 @@ export const {
   useCreateTourMutation,
   useDeleteTourMutation,
   useGetEarningsQuery,
+  useUpdateTourMutation,
 } = adminApi;

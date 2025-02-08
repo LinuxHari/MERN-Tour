@@ -1287,7 +1287,7 @@ button:focus {
   top: 20px;
   left: 15px;
   color: black;
-  z-index: 10;
+  z-index: 1;
   pointer-events: none;
   transition: all 0.15s ease-out;
 }
@@ -5713,7 +5713,7 @@ h6 {
 .sidebar.-type-1 {
   position: relative;
   border: 1px solid var(--border, #e7e6e6);
-  z-index: 5;
+  z-index: 1;
 }
 
 .sidebar.-type-1 .sidebar__header {
@@ -6685,7 +6685,7 @@ h6 {
   padding: 0 75px;
   padding-top: 60px;
   padding-bottom: 30px;
-  min-height: 90vh;
+  min-height: 100vh;
 }
 
 @media (max-width: 767px) {
@@ -12949,7 +12949,7 @@ table.table-4.-border-bottom tbody > tr {
 }
 
 .dropdown.is-active {
-  z-index: 20;
+  z-index: 2;
 }
 
 .dropdown.is-active .dropdown__menu {

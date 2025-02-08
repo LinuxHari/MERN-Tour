@@ -9,6 +9,7 @@ const Dashboard = lazy(() => import("./pages/Admin/Dashboard"));
 const Bookings = lazy(() => import("./pages/Admin/Bookings"));
 const Listings = lazy(() => import("./pages/Admin/Listings"));
 const AddTour = lazy(() => import("./pages/Admin/AddTour"));
+const EditTour = lazy(() => import("./pages/Admin/EditTour"));
 const Favorites = lazy(() => import("./pages/Admin/Favorites"));
 const Profile = lazy(() => import("./pages/Admin/Profile"));
 const CommonHeader = lazy(() => import("./components/Admin/CommonHeader"));
@@ -44,7 +45,11 @@ const AppRoutes = () => {
           <Route index element={<Dashboard render={render} />} />
           <Route path="booking" element={<Bookings render={render} />} />
           <Route path="listings" element={<Listings render={render} />} />
-          <Route path="addtour" element={<AddTour render={render} />} />
+          <Route path="add-tour" element={<AddTour render={render} />} />
+          <Route
+            path="edit-tour/:tourId"
+            element={<EditTour render={render} />}
+          />
           <Route path="favorites" element={<Favorites render={render} />} />
           <Route path="profile" element={<Profile render={render} />} />
         </Route>

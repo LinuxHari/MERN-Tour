@@ -10,6 +10,7 @@ type FilterProps = {
   setAppliedFilters: (key: string, value: string) => void;
   setPriceRange: (minPrice: number, maxPrice?: number) => void;
   priceRange: {minPrice?: number; maxPrice?: number};
+  resetFilters: () => void;
 };
 
 const FiltersCard = ({
@@ -18,6 +19,7 @@ const FiltersCard = ({
   setAppliedFilters,
   priceRange,
   setPriceRange,
+  resetFilters,
 }: FilterProps) => {
   // const filterGroup = {
   //   "Tour Type": [
@@ -39,7 +41,15 @@ const FiltersCard = ({
     <div className="sidebar -type-1 rounded-12">
       <div className="sidebar__header bg-accent-1">
         <div className="text-20 text-white fw-500">Refine your search</div>
-        <div className="mt-10">{/* <DatePicker /> */}</div>
+        <div className="mt-10">
+          <button
+            className="-md py-2 w-100 rounded -outline-accent-1 text-accent-1 bg-white"
+            type="button"
+            onClick={resetFilters}
+          >
+            Reset
+          </button>
+        </div>
       </div>
 
       <Accordion
@@ -53,7 +63,9 @@ const FiltersCard = ({
               title={key}
               filter={value}
               setAppliedFilters={setAppliedFilters}
-              appliedFilterValue={appliedFilters[key as keyof typeof appliedFilters]}
+              appliedFilterValue={
+                appliedFilters[key as keyof typeof appliedFilters]
+              }
               index={index}
             />
           </div>

@@ -1,3 +1,4 @@
+import SearchForm from "../components/Home/Hero/SearchForm";
 import Filters from "../components/ListingTours/Filters";
 import ListingHeader from "../components/ListingTours/ListingHeader";
 import TourList from "../components/ListingTours/TourList";
@@ -22,6 +23,7 @@ const ListingTours = () => {
     appliedFilters,
     filters,
     onSelectTour,
+    resetFilters,
     pax,
     isFiltersApplied,
   } = useListingToursHandler();
@@ -33,6 +35,14 @@ const ListingTours = () => {
           <p style={{minHeight: "100vh", margin: "200px"}}>No tours found.</p>
         ) : (
           <>
+            <div
+              className="container px-4 mb-4 d-none d-lg-block"
+              style={{marginTop: "100px"}}
+            >
+              <div className="border" style={{borderRadius: "10px"}}>
+                <SearchForm />
+              </div>
+            </div>
             <ListingHeader destination={tours[0].destination.split(",")[0]} />
             <section className="layout-pb-xl">
               <div className="container">
@@ -44,6 +54,7 @@ const ListingTours = () => {
                       setAppliedFilters={setAppliedFilters}
                       priceRange={priceRange}
                       setPriceRange={setPriceRange}
+                      resetFilters={resetFilters}
                     />
                   </div>
                   <div className="col-xl-9 col-lg-8">

@@ -9,14 +9,15 @@ type FilterProps = {
   setAppliedFilters: (key: string, value: string) => void;
   setPriceRange: (minPrice: number, maxPrice?: number) => void;
   priceRange: {minPrice?: number; maxPrice?: number};
+  resetFilters: () => void;
 };
 
 const Filters = (props: FilterProps) => {
-  const {width} = useWindowSize();
+  const {isMobile} = useWindowSize();
 
-  const isMobile = width < 992;
-
-  return <>{isMobile ? <MobileFilters {...props} /> : <FiltersCard {...props} />}</>;
+  return (
+    <>{isMobile ? <MobileFilters {...props} /> : <FiltersCard {...props} />}</>
+  );
 };
 
 export default Filters;

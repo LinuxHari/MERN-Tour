@@ -66,7 +66,7 @@ const ListingCard = ({
               type="button"
               styleType="secondary"
               buttonType="link"
-              to={`/dashboard/edit/${tourId}`}
+              to={`/dashboard/edit-tour/${tourId}`}
             >
               Edit
             </Button>

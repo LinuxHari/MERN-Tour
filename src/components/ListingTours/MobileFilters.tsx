@@ -8,6 +8,7 @@ type FilterProps = {
   setAppliedFilters: (key: string, value: string) => void;
   setPriceRange: (minPrice: number, maxPrice?: number) => void;
   priceRange: {minPrice?: number; maxPrice?: number};
+  resetFilters: () => void;
 };
 
 const MobileFilters = (props: FilterProps) => {

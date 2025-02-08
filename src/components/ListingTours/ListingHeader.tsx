@@ -1,8 +1,11 @@
+import useWindowSize from "../../hooks/useWindowSize";
 import BreadCrumbs from "../Shared/BreadCrumbs/BreadCrumbs";
 
 const ListingHeader = ({destination}: {destination: string}) => {
+  const {isMobile} = useWindowSize();
+
   return (
-    <section data-anim="fade" className="pageHeader -type-3 is-in-view">
+    <section className={`${isMobile ? "pageHeader -type-3" : ""}`}>
       <div className="container">
         <div className="col-auto">
           <BreadCrumbs destination={destination} />

@@ -8,7 +8,11 @@ import AgeSection from "./AgeSection";
 import FreeCancellation from "./FreeCancellation";
 import PriceSection from "./PriceSection";
 
-const ContentSection = () => {
+type ContentSectionProps = {
+  isEditForm?: boolean;
+};
+
+const ContentSection = ({isEditForm = false}: ContentSectionProps) => {
   const {register} = useFormContext();
 
   const render = useCallback(
@@ -25,17 +29,25 @@ const ContentSection = () => {
         <Categories />
       </div>
       <div className="col-12">
-        <Textarea label="Tour Description" rows={8} {...register("description")} />
+        <Textarea
+          label="Tour Description"
+          rows={8}
+          {...register("description")}
+        />
       </div>
-      <div className="col-12">
-        <Input type="text" label="City" {...register("city")} />
-      </div>
-      <div className="col-12">
-        <Input type="text" label="State" {...register("state")} />
-      </div>
-      <div className="col-12">
-        <Input type="text" label="Country" {...register("country")} />
-      </div>
+      {!isEditForm && (
+        <>
+          <div className="col-12">
+            <Input type="text" label="City" {...register("city")} />
+          </div>
+          <div className="col-12">
+            <Input type="text" label="State" {...register("state")} />
+          </div>
+          <div className="col-12">
+            <Input type="text" label="Country" {...register("country")} />
+          </div>
+        </>
+      )}
       {/* <div className="col-12">
         <Input type="text" label="Address" {...register("address")} />
       </div> */}
