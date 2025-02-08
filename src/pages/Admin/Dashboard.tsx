@@ -1,7 +1,6 @@
 import {RenderProps} from "../../type";
 import DetailCard from "../../components/Admin/Dashboard/DetailCard";
 import EarningStatistics from "../../components/Admin/Dashboard/EarningStatistics";
-// import RecentActivities from "../../components/Admin/Dashboard/RecentActivities";
 import withAuth from "../../hocs/withAuth";
 import useStatsInfo from "../../hooks/useStatsInfo";
 import CommonSkeleton from "../../components/Skeletons/CommonSkeleton";
@@ -41,7 +40,6 @@ const Dashboard = ({render}: RenderProps) => {
               chartData={chartData}
               chartConfig={chartConfig}
             />
-            {/* <RecentActivities /> */}
           </div>
         </>
       )}
