@@ -119,6 +119,7 @@ export const adminApi = baseApi.injectEndpoints({
           return {error: {error: "Network Error"} as FetchBaseQueryError};
         }
       },
+      invalidatesTags: ["Tour"],
     }),
     deleteTour: builder.mutation<TourResponse, string>({
       query: (tourId) => ({

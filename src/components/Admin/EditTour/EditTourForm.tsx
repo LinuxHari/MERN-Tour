@@ -1,4 +1,4 @@
-import {useLayoutEffect, useState} from "react";
+import {useEffect, useLayoutEffect, useState} from "react";
 import {FormProvider, useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
 import toast from "react-hot-toast";
@@ -85,6 +85,10 @@ const EditTourForm = ({tour, tourId}: EditTourSchemaProps) => {
       }, 100);
     }
   }, [errors]);
+
+  useEffect(() => {
+    reset(tour);
+  }, [tour]);
 
   return (
     <FormProvider {...form}>

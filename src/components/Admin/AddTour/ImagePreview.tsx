@@ -10,7 +10,7 @@ const ImagePreview = ({url, onDelete}: ImagePreviewProps) => {
     <div className="relative p-0">
       <img
         src={url}
-        alt={url}
+        alt=""
         className="rounded-8 px-0 border border-dashed border-secondary"
         style={{width: "230px", height: "200px", objectFit: "cover"}}
       />

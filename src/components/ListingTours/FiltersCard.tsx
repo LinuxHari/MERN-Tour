@@ -1,4 +1,3 @@
-// import DatePicker from "../Shared/DatePicker/DatePicker";
 import {AppliedFiltersProps, Filters} from "../../type";
 import Accordion from "../Shared/Accordion/Accordion";
 import CheckboxRadioFilters from "./CheckboxRadioFilters";
@@ -21,22 +20,6 @@ const FiltersCard = ({
   setPriceRange,
   resetFilters,
 }: FilterProps) => {
-  // const filterGroup = {
-  //   "Tour Type": [
-  //    ...categories
-  //   ],
-  //   Duration: ["2 days", "3 days", "5 days", "7 days", "More than 7 days"],
-  //   Language: ["English", "Dutch", "German", "French", "Italian"],
-  //   Rating: ["Outstanding (5)", "Great (4)", "Satisfactory  (3)"],
-  //   Specials: [
-  //     "Deals & Discounts",
-  //     "Free Cancellation",
-  //     "Likely to Sell Out",
-  //     "Skip-The-Line",
-  //     "Private Tour",
-  //   ],
-  // };
-
   return (
     <div className="sidebar -type-1 rounded-12">
       <div className="sidebar__header bg-accent-1">
