@@ -24,7 +24,11 @@ const BookingDetailsCard = ({
           <h2 className="text-20 fw-500">Your booking details</h2>
 
           <div className="d-flex flex-column mt-30">
-            <img src={reservedTour.tourDetails.images[0]} className="rounded" alt="" />
+            <img
+              src={reservedTour.tourDetails.images[0]}
+              className="rounded"
+              alt=""
+            />
             <div className="pt-2 fw-500">{reservedTour.tourDetails.name}</div>
           </div>
 
@@ -33,7 +37,9 @@ const BookingDetailsCard = ({
           <div className="">
             <div className="d-flex items-center justify-between">
               <div className="fw-500">Date:</div>
-              <div className="">{reservedTour.startDate.toString().split("T")[0]}</div>
+              <div className="">
+                {reservedTour.startDate.toString().split("T")[0]}
+              </div>
             </div>
 
             <div className="d-flex items-center justify-between">
@@ -45,7 +51,8 @@ const BookingDetailsCard = ({
               <div className="fw-500">Tickets:</div>
               <div className="">
                 Adult x{reservedTour.passengers.adults} = $
-                {reservedTour.passengers.adults * reservedTour.tourDetails.price.adult}
+                {reservedTour.passengers.adults *
+                  reservedTour.tourDetails.price.adult}
               </div>
             </div>
 
@@ -54,7 +61,8 @@ const BookingDetailsCard = ({
                 <div className="fw-500" />
                 <div className="">
                   Teens x{reservedTour.passengers.teens} = $
-                  {reservedTour.passengers.teens * (reservedTour.tourDetails.price?.teen || 0)}
+                  {reservedTour.passengers.teens *
+                    (reservedTour.tourDetails.price?.teen || 0)}
                 </div>
               </div>
             ) : null}
@@ -64,7 +72,8 @@ const BookingDetailsCard = ({
                 <div className="fw-500" />
                 <div className="">
                   Children x{reservedTour.passengers.children} = $
-                  {reservedTour.passengers.children * (reservedTour.tourDetails.price?.child || 0)}
+                  {reservedTour.passengers.children *
+                    (reservedTour.tourDetails.price?.child || 0)}
                 </div>
               </div>
             ) : null}
@@ -74,7 +83,8 @@ const BookingDetailsCard = ({
                 <div className="fw-500" />
                 <div className="">
                   Infants x{reservedTour.passengers.infants} = $
-                  {reservedTour.passengers.infants * (reservedTour.tourDetails.price?.infant || 0)}
+                  {reservedTour.passengers.infants *
+                    (reservedTour.tourDetails.price?.infant || 0)}
                 </div>
               </div>
             ) : null}
@@ -113,7 +123,7 @@ const BookingDetailsCard = ({
             isLoading={isLoading}
             disabled={!isPayformLoaded || isLoading}
           >
-            Complete My Order
+            Book now
           </Button>
         </div>
       </div>
