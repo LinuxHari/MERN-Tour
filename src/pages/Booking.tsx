@@ -18,9 +18,14 @@ const Booking = () => {
   } = useAfterBookingHandler();
   const {onClose, showModal, onConfirm, openModal} = useModal();
 
-  if (isBookingError || !booking) return <></>;
+  if (isBookingLoading)
+    return (
+      <div className="mt-80">
+        <BookingFormSkeleton />
+      </div>
+    );
 
-  if (isBookingLoading) return <BookingFormSkeleton />;
+  if (isBookingError || !booking) return <></>;
 
   const {tourInfo, amount, ...bookingInfo} = booking;
 

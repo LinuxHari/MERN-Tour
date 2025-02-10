@@ -95,25 +95,38 @@ const PostReview = ({onSubmit, isLoading}: PostReviewProps) => {
 
         <div className="contactForm y-gap-30 pt-30">
           <div className="col-12">
-            <Input type="text" required label="How was the tour?" {...register("title")} />
+            <Input
+              type="text"
+              required
+              label="How was the tour?"
+              {...register("title")}
+            />
           </div>
 
           <div className="row">
             <div className="col-12">
-              <Textarea label="What do you think?" rows={8} {...register("comment")} />
+              <Textarea
+                label="What do you think?"
+                rows={8}
+                {...register("comment")}
+              />
             </div>
           </div>
 
           <div className="row">
             <div className="col-12">
-              <Button buttonType="primary" type="submit" isLoading={isLoading} disabled={isLoading}>
+              <Button
+                buttonType="primary"
+                type="submit"
+                isLoading={isLoading}
+                disabled={isLoading}
+              >
                 Post Review
               </Button>
             </div>
           </div>
         </div>
       </form>
-      <div className="line mt-60 mb-60" />
     </TourSectionLayout>
   );
 };

@@ -1,7 +1,9 @@
 import {useMemo} from "react";
 import {BookingDetailsResponse} from "../../type";
 
-type BookingInfoProps = Omit<BookingDetailsResponse, "tourInfo"> & {bookingId: string};
+type BookingInfoProps = Omit<BookingDetailsResponse, "tourInfo"> & {
+  bookingId: string;
+};
 
 const BookingInfo = ({
   name,
@@ -55,7 +57,9 @@ const BookingInfo = ({
 
           <div className="col-md-3 col-6">
             <div>Date</div>
-            <div className="text-accent-2">{bookDate.toString().split("T")[0]}</div>
+            <div className="text-accent-2">
+              {bookDate.toString().split("T")[0]}
+            </div>
           </div>
 
           <div className="col-md-3 col-6">
@@ -72,7 +76,9 @@ const BookingInfo = ({
 
       {paymentInfo && (
         <>
-          <h2 className="text-30 md:text-24 fw-700 mt-60 md:mt-30">Payment Details</h2>
+          <h2 className="text-30 md:text-24 fw-700 mt-60 md:mt-30">
+            Payment Details
+          </h2>
           <div className="">
             <div className="d-flex items-center justify-between">
               <div className="fw-500">Card:</div>
@@ -84,7 +90,9 @@ const BookingInfo = ({
             </div>
             <div className="d-flex items-center justify-between">
               <div className="fw-500 text-nowrap">Payment date:</div>
-              <div className="">{paymentInfo.paymentDate.toString()}</div>
+              <div className="">
+                {paymentInfo.paymentDate.toString().split("T")[0]}
+              </div>
             </div>
             <div className="d-flex items-center justify-between">
               <div className="fw-500">Receipt:</div>

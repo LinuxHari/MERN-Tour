@@ -3,7 +3,7 @@ import {PaxProps} from "../../type";
 import IncludedServices from "./IncludedServices";
 import Itinerary from "./Itinerary";
 import TourFAQ from "./TourFAQ";
-// import TourMap from "./TourMap";
+import TourMap from "./TourMap";
 import TourOverview from "./TourOverview";
 import SideCard from "./SideCard";
 import TourServices from "./TourServices";
@@ -56,7 +56,7 @@ const TourInfo = ({
             <TourOverview description={description} highlights={highlights} />
             <IncludedServices included={included} />
             <Itinerary itinerary={itinerary} />
-            {/* <TourMap /> */}
+            <TourMap location={itinerary} />
             <Reviews tourId={tourId} />
             <TourFAQ faq={faq} />
           </div>

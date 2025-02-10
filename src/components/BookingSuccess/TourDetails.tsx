@@ -15,7 +15,7 @@ const TourDetails = ({
       <div className="bg-white rounded-12 shadow-2 py-30 px-30 md:py-20 md:px-20">
         <h2 className="text-20 fw-500">Tour Details</h2>
         <div className="line mt-20 mb-20" />
-        <div className="d-flex item-center justify-between y-gap-5 pt-30">
+        <div className="d-flex item-center justify-between y-gap-5">
           <div className="text-18 fw-500">{tourName}</div>
         </div>
 
@@ -33,7 +33,8 @@ const TourDetails = ({
           <div className="d-flex items-center justify-between">
             <div className="fw-500">Tickets:</div>
             <div className="">
-              Adult x {pax.adults} {Boolean(pax?.teens) && `, Teen x ${Boolean(pax.teens)} `}{" "}
+              Adult x {pax.adults}{" "}
+              {Boolean(pax?.teens) && `, Teen x ${Boolean(pax.teens)} `}{" "}
               {Boolean(pax?.children) && `, Child x ${pax.children} `}{" "}
               {Boolean(pax?.infants) && `, Infant x ${pax.infants}`}
             </div>
@@ -43,7 +44,11 @@ const TourDetails = ({
             <div className="text-18 fw-500">${amount}</div>
           </div>
         </div>
-        <Button buttonType="primary" className="mt-4 w-100" onClick={() => window.print()}>
+        <Button
+          buttonType="primary"
+          className="mt-4 w-100"
+          onClick={() => window.print()}
+        >
           Print
         </Button>
       </div>

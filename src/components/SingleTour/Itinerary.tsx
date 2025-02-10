@@ -7,29 +7,30 @@ type ItineraryProps = {
 };
 
 const Itinerary = ({itinerary}: ItineraryProps) => {
-  const renderIcon = (index: number) => {
-    if (index === 0)
-      return (
-        <div className="roadmap__iconBig">
-          <i className="icon-pin" />
-        </div>
-      );
-    else if (index === itinerary.length - 1)
-      return (
-        <div className="roadmap__iconBig">
-          <i className="icon-flag" />
-        </div>
-      );
-    else return <div className="roadmap__icon" />;
-  };
-
   return (
     <TourSectionLayout title="Itinerary">
       <div className="mt-30">
-        <Accordion type="single" className="roadmap accordion -roadmap js-accordion">
+        <Accordion
+          type="single"
+          className="roadmap accordion -roadmap js-accordion"
+        >
           {itinerary.map(({activity, details}, index) => (
-            <Accordion.Item key={index} index={index} className="roadmap__item accordion__item">
-              {renderIcon(index)}
+            <Accordion.Item
+              key={index}
+              index={index}
+              className="roadmap__item accordion__item"
+            >
+              {index === 0 ? (
+                <div className="roadmap__iconBig">
+                  <i className="icon-pin" />
+                </div>
+              ) : index === itinerary.length - 1 ? (
+                <div className="roadmap__iconBig">
+                  <i className="icon-flag" />
+                </div>
+              ) : (
+                <div className="roadmap__icon" />
+              )}
               <div className="roadmap__wrap">
                 <Accordion.Button
                   className="accordion__button d-flex items-center justify-between"
