@@ -1,5 +1,6 @@
 import {RECENT_SEARCHES} from "../../../data";
 import Dropdown from "../Dropdown/Dropdown";
+import Image from "../Image/Image";
 
 const Search = () => {
   return (
@@ -31,12 +32,16 @@ const Search = () => {
                   {item.icon.startsWith("icon-") ? (
                     <i className={`${item.icon} text-20`} />
                   ) : (
-                    <img src={item.icon} alt="" className="rounded-12" />
+                    <Image src={item.icon} alt="" className="rounded-12" />
                   )}
                 </div>
                 <div className="ml-10">
-                  <div className="fw-500 js-search-option-target">{item.title}</div>
-                  <div className="lh-14 text-14 text-light-2">{item.location}</div>
+                  <div className="fw-500 js-search-option-target">
+                    {item.title}
+                  </div>
+                  <div className="lh-14 text-14 text-light-2">
+                    {item.location}
+                  </div>
                 </div>
               </button>
             ))}

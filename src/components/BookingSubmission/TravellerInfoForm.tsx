@@ -1,6 +1,10 @@
+import {
+  UseFormGetValues,
+  UseFormRegister,
+  UseFormSetValue,
+} from "react-hook-form";
 import PhoneInput, {CountryData} from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
-import {UseFormRegister, UseFormSetValue} from "react-hook-form";
 import phone from "phone";
 import Input from "../Shared/Input/Input";
 import keyToTitle from "../../utils/keyToTitle";
@@ -10,17 +14,37 @@ import Timeout from "./Timeout";
 type TravellerInfoFormProps = {
   register: UseFormRegister<BookingSchemaType>;
   setValue: UseFormSetValue<BookingSchemaType>;
+  getValues: UseFormGetValues<BookingSchemaType>;
   expiresAt: number;
   onTimeout: () => void;
+  country: string;
 };
 
-const TravellerInfoForm = ({register, setValue, expiresAt, onTimeout}: TravellerInfoFormProps) => {
+const TravellerInfoForm = ({
+  register,
+  setValue,
+  expiresAt,
+  onTimeout,
+  getValues,
+  country,
+}: TravellerInfoFormProps) => {
   const formFields = [
     {type: "text", name: "fullName"},
     {type: "text", name: "email"},
     {type: "text", name: "country"},
     {type: "text", name: "state"},
   ] as const;
+
+  const phoneNumber = getValues("phone");
+  const defaultPhoneNumber = (() => {
+    if (country) {
+      const phoneInfo = phone(phoneNumber.toString(), {country});
+
+      if (phoneInfo.isValid) return phoneInfo.phoneNumber;
+      else return "";
+    }
+  })();
+
   const handlePhoneChange = (value: string, countryData: CountryData) => {
     const number = value.toString().slice(countryData.dialCode.length);
     const {isValid} = phone(value, {country: countryData.countryCode});
@@ -51,12 +75,13 @@ const TravellerInfoForm = ({register, setValue, expiresAt, onTimeout}: Traveller
             inputProps={{
               name: "phone",
             }}
+            value={defaultPhoneNumber}
             inputClass="shadow-none overflow-hidden"
-            country="us"
             placeholder="Enter phone number"
             onChange={handlePhoneChange}
             buttonStyle={{borderRadius: "12px 0px 0px 12px"}}
             inputStyle={{paddingLeft: "45px"}}
+            disableCountryGuess={true}
           />
         </div>
       </div>

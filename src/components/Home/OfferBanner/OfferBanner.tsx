@@ -1,13 +1,15 @@
+import Image from "../../Shared/Image/Image";
+
 const OfferBanner = () => {
   return (
     <section data-anim="slide-up" className="cta -type-2 is-in-view">
       <div className="cta__bg">
-        <img src="img/cta/2/bg.png" alt="" />
+        <Image src="img/cta/2/bg.png" alt="" />
 
         <div className="cta__image">
-          <img src="img/cta/2/1.png" alt="" />
-          <img src="img/cta/2/shape.svg" alt="" />
-          <img src="img/cta/2/shape2.svg" alt="" />
+          <Image src="img/cta/2/1.png" alt="" />
+          <Image src="img/cta/2/shape.svg" alt="" />
+          <Image src="img/cta/2/shape2.svg" alt="" />
         </div>
       </div>
 
@@ -22,7 +24,9 @@ const OfferBanner = () => {
                 Destination
               </h2>
 
-              <p className="mt-10">Limited time offer, don&apos;t miss the opportunity</p>
+              <p className="mt-10">
+                Limited time offer, don&apos;t miss the opportunity
+              </p>
 
               <div className="mt-30 md:mt-20">
                 <button className="button -md -dark-1 bg-accent-1 text-white">

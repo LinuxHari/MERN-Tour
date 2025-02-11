@@ -37,7 +37,7 @@ const Listings = ({render}: RenderProps) => {
                   ) => (
                     <ListingCard
                       key={index}
-                      img={images[0]}
+                      images={images}
                       location={
                         city || "" + ", " + state || "" + ", " + country || ""
                       }

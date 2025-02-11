@@ -118,7 +118,7 @@ const PopularTours = () => {
             ) => (
               <TourCard
                 key={index}
-                img={image}
+                images={[image]}
                 rating={rating}
                 reviewCount={reviews}
                 duration={duration}

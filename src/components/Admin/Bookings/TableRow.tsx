@@ -1,5 +1,6 @@
 import {OrganizedBookings, StatusColor} from "../../../type";
 import Button from "../../Shared/Button/Button";
+import Image from "../../Shared/Image/Image";
 
 const TableRow = ({
   id,
@@ -13,10 +14,8 @@ const TableRow = ({
 }: OrganizedBookings[number]) => {
   const statusColors: Record<string, StatusColor> = {
     Pending: "yellow",
-    // Approved: "purple",
     Confirmed: "purple",
     Canceled: "red",
-    // Rejected: "red",
   };
 
   return (
@@ -24,7 +23,7 @@ const TableRow = ({
       <td>#{id}</td>
       <td className="min-w-300">
         <div className="d-flex items-center">
-          <img src={tour.imgUrl} alt="" className="w-25 rounded" />
+          <Image src={tour.imgUrl} alt="" className="w-25 rounded" />
           <div className="ml-20">{tour.name}</div>
         </div>
       </td>

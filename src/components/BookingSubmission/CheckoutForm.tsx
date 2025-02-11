@@ -18,17 +18,18 @@ const CheckoutForm = () => {
   const {user: userData} = useUserHandler();
   const user = userData as UserInfoResponse;
   const defaultValues: Partial<BookingSchemaType> = {
-    fullName: user.firstName + user.lastName,
+    fullName: user.firstName + " " + user.lastName,
     country: user.country,
+    state: user.state,
     phone: user.phone,
     email: user.email,
-    countryCode: user.countryCode,
   };
   const {
     register,
     handleSubmit,
     formState: {errors},
     setValue,
+    getValues,
   } = useForm<BookingSchemaType>({
     resolver: zodResolver(BookingSchema),
     defaultValues,
@@ -70,8 +71,10 @@ const CheckoutForm = () => {
         <TravellerInfoForm
           register={register}
           setValue={setValue}
+          getValues={getValues}
           expiresAt={reservedTour.expiresAt}
           onTimeout={onTimeout}
+          country={user.country}
         />
         <PaymentElement className="my-5" />
       </div>

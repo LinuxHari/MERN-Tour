@@ -5787,6 +5787,10 @@ h6 {
   border: 1px solid var(--border, #e7e6e6);
 }
 
+.tourCard__image {
+  overflow: hidden;
+}
+
 .tourCard.-type-1 {
   display: block;
 }
@@ -6530,16 +6534,16 @@ h6 {
   box-shadow: 0px 10px 40px 0px rgba(0, 0, 0, 0.05);
 }
 
-.navAbsolute.-type-2 {
-  left: 60px;
-  right: 60px;
-}
-
-@media (max-width: 767px) {
-  .navAbsolute.-type-2 {
-    left: 30px;
-    right: 30px;
-  }
+.tourCard__image:hover .navAbsolute.-type-2 {
+  position: absolute;
+  top: 50%;
+  left: 6px;
+  right: 6px;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 10;
 }
 
 .navRegular {

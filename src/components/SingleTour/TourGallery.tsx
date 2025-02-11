@@ -1,4 +1,5 @@
 import useWindowSize from "../../hooks/useWindowSize";
+import Image from "../Shared/Image/Image";
 import Modal from "../Shared/Modal/Modal";
 import TourImages from "./TourImages";
 
@@ -9,16 +10,19 @@ type Props = {
 const TourGallery = ({images}: Props) => {
   const {width} = useWindowSize();
 
-  const showModalButton = width < 992 || (width > 992 && images.length > 4) ? true : false; // Minimum length of images is two
+  const showModalButton =
+    width < 992 || (width > 992 && images.length > 4) ? true : false; // Minimum length of images is two
   const gridCls =
-    width > 992 && images.length >= 4 ? "tourSingleGrid__grid" : "tourSingleGrid__grid2";
+    width > 992 && images.length >= 4
+      ? "tourSingleGrid__grid"
+      : "tourSingleGrid__grid2";
   // const dummyImg = "https://media.istockphoto.com/id/1414814850/photo/summer-blue-sky-cloud-gradient-light-white-background-beauty-clear-cloudy-in-sunshine-calm.jpg?s=612x612&w=0&k=20&c=AB8i_X54iwA5B8u3EmkmduL37-W35mYuUmHmOeCSiGw="
 
   return (
     <div className="tourSingleGrid -type-1 mt-30">
       <div className={`${gridCls} mobile-css-slider-2`}>
         {images.slice(0, 4).map((image, index) => (
-          <img key={image + index} src={image} alt="" />
+          <Image key={image + index} src={image} alt="" />
         ))}
       </div>
       {showModalButton && (

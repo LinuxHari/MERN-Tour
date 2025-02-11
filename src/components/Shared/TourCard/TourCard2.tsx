@@ -3,6 +3,7 @@ import {PaxProps, TourListResponse} from "../../../type";
 import Button from "../Button/Button";
 import Rating from "../Rating/Rating";
 import Favorite from "../Others/Favorite";
+import Carousel from "../Image/Carousel";
 
 type TourCard2Props = TourListResponse["tours"][0] & {pax: PaxProps} & {
   className?: string;
@@ -42,7 +43,7 @@ const TourCard2 = ({
   return (
     <div className={`tourCard -type-2 ${className}`}>
       <div className="tourCard__image">
-        <img src={images[0]} alt="" />
+        <Carousel images={images} />
 
         {/* {offer && (
           <div className="tourCard__badge">

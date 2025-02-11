@@ -51,7 +51,7 @@ export type DataCell = "text" | "tour" | "status";
 export type SortTypes = "PLH" | "PHL" | "RLH" | "RHL" | "RCM";
 
 export type ListingCardProps = {
-  img: string;
+  images: string[];
   location: string;
   title: string;
   rating: number;
@@ -210,7 +210,7 @@ export type FavoriteTours = {
   reviewCount: number;
   price: number;
   duration: number;
-  imgUrl: string;
+  images: string[];
   tourId: string;
   destinationId: string;
 };

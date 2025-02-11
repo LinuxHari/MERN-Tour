@@ -1,3 +1,5 @@
+import Image from "../Shared/Image/Image";
+
 const Header = () => {
   return (
     <div className="dashboard__content_header">
@@ -85,7 +87,7 @@ const Header = () => {
         </div>
 
         <div>
-          <img src="img/dashboard/header/1.png" alt="" loading="lazy" />
+          <Image src="img/dashboard/header/1.png" alt="" loading="lazy" />
         </div>
       </div>
     </div>

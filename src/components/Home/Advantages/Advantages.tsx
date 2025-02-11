@@ -1,3 +1,5 @@
+import Image from "../../Shared/Image/Image";
+
 const Advantages = () => {
   const advantagesData = [
     {
@@ -39,10 +41,12 @@ const Advantages = () => {
             <div key={index} className="col-lg-3 col-sm-6">
               <div className="featureIcon -type-1 pr-40 md:pr-0">
                 <div className="featureIcon__icon">
-                  <img src={icon} alt="icon" />
+                  <Image src={icon} alt="icon" />
                 </div>
 
-                <h3 className="featureIcon__title text-18 fw-500 mt-30">{title}</h3>
+                <h3 className="featureIcon__title text-18 fw-500 mt-30">
+                  {title}
+                </h3>
                 <p className="featureIcon__text mt-10">{text}</p>
               </div>
             </div>

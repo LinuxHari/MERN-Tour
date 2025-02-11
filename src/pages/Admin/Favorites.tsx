@@ -22,7 +22,7 @@ const Favorites = ({render}: RenderProps) => {
                 {favoriteTours.favoriteTours.map(
                   (
                     {
-                      imgUrl,
+                      images,
                       location,
                       title,
                       rating,
@@ -36,7 +36,7 @@ const Favorites = ({render}: RenderProps) => {
                   ) => (
                     <TourCard
                       key={i}
-                      img={imgUrl}
+                      images={images}
                       location={location}
                       title={title}
                       rating={rating}

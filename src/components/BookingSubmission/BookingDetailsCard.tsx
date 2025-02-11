@@ -1,5 +1,6 @@
 import {ReservedTourResponse} from "../../type";
 import Button from "../Shared/Button/Button";
+import Image from "../Shared/Image/Image";
 
 type BookingDetailsCardProps = {
   isPayformLoaded: boolean;
@@ -24,7 +25,7 @@ const BookingDetailsCard = ({
           <h2 className="text-20 fw-500">Your booking details</h2>
 
           <div className="d-flex flex-column mt-30">
-            <img
+            <Image
               src={reservedTour.tourDetails.images[0]}
               className="rounded"
               alt=""

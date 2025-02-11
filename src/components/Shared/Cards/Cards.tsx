@@ -136,7 +136,7 @@ const Cards = () => {
                   rating={rating}
                   duration={duration}
                   price={price}
-                  img={image}
+                  images={[image]}
                   destinationId={destinationId}
                   tourId={tourId}
                 />

@@ -1,3 +1,5 @@
+import Image from "../../Shared/Image/Image";
+
 const PopularThings = () => {
   const features = [
     {title: "Cruises", image: "img/features/1/1.png"},
@@ -22,7 +24,7 @@ const PopularThings = () => {
               className="featureCard -type-1 -hover-1 overflow-hidden rounded-12 px-30 py-30"
             >
               <div className="featureCard__image">
-                <img src={feature.image} alt={feature.title} />
+                <Image src={feature.image} alt={feature.title} />
               </div>
               <div className="featureCard__content">
                 <h4 className="text-white">{feature.title}</h4>

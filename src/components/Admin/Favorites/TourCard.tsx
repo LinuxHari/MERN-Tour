@@ -2,6 +2,7 @@ import {Link} from "react-router-dom";
 import {ListingCardProps} from "../../../type";
 import Rating from "../../Shared/Rating/Rating";
 import Favorite from "../../Shared/Others/Favorite";
+import Carousel from "../../Shared/Image/Carousel";
 
 type TourCardProps = ListingCardProps & {
   tourId: string;
@@ -12,7 +13,7 @@ type TourCardProps = ListingCardProps & {
 };
 
 const TourCard = ({
-  img,
+  images,
   location,
   title,
   rating,
@@ -32,15 +33,9 @@ const TourCard = ({
       >
         <div className="tourCard__header">
           <div className="tourCard__image ratio ratio-28:20">
-            <img src={img} alt={location} className="img-ratio rounded-12" />
+            {/* <Image src={img} alt={location} className="img-ratio rounded-12" /> */}
+            <Carousel images={images} />
           </div>
-
-          {/* <button
-            className={`tourCard__favorite ${isFavorite ? "bg-accent-1" : ""}`}
-            onClick={removeTour}
-          >
-            <i className={`icon-heart ${isFavorite ? "text-white" : ""}`} />
-          </button> */}
           <Favorite tourId={tourId} isFavorite={isFavorite} />
         </div>
 

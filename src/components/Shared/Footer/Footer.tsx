@@ -1,3 +1,4 @@
+import Image from "../Image/Image";
 import ContactInfo from "./ContactInfo";
 import LinkList from "./LinkList";
 import Newsletter from "./NewsLetter";
@@ -25,7 +26,7 @@ const Footer = () => {
     <footer className="footer -type-1">
       <div className="footer__main">
         <div className="footer__bg">
-          <img src="/img/footer/1/bg.svg" alt="Footer background" />
+          <Image src="/img/footer/1/bg.svg" alt="Footer background" />
         </div>
 
         <div className="container">
