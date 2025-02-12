@@ -9,31 +9,87 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import generateLabels from "../utils/generateLabels";
 
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+);
 
 type PassedDataType = {hours: number[]; weekly: number[]; monthly: number[]};
 
 const useChart = (data: PassedDataType) => {
+  const {maxValue: hoursMaxValue, stepSize: hoursStepSize} = generateLabels(
+    data.hours,
+  );
+  const {maxValue: weeklyMaxValue, stepSize: weeklyStepSize} = generateLabels(
+    data.weekly,
+    "Weekly",
+  );
+  const {maxValue: monthlyMaxValue, stepSize: monthlyStepSize} = generateLabels(
+    data.monthly,
+  );
+
   const chartConfig = useMemo(
     () => ({
-      responsive: true,
-      plugins: {
-        legend: {
-          display: false,
+      hours: {
+        responsive: true,
+        plugins: {
+          legend: {
+            display: false,
+          },
+        },
+        scales: {
+          y: {
+            min: 0,
+            max: hoursMaxValue,
+            ticks: {
+              stepSize: hoursStepSize,
+            },
+          },
         },
       },
-      scales: {
-        y: {
-          min: 0,
-          max: 300,
-          ticks: {
-            stepSize: 50,
+      weekly: {
+        responsive: true,
+        plugins: {
+          legend: {
+            display: false,
+          },
+        },
+        scales: {
+          y: {
+            min: 0,
+            max: weeklyMaxValue,
+            ticks: {
+              stepSize: weeklyStepSize,
+            },
+          },
+        },
+      },
+      monthly: {
+        responsive: true,
+        plugins: {
+          legend: {
+            display: false,
+          },
+        },
+        scales: {
+          y: {
+            min: 0,
+            max: monthlyMaxValue,
+            ticks: {
+              stepSize: monthlyStepSize,
+            },
           },
         },
       },
     }),
-    [],
+    [monthlyMaxValue, weeklyMaxValue, hoursMaxValue],
   );
 
   const chartData = useMemo(

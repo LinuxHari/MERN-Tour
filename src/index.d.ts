@@ -3,10 +3,10 @@
 declare global {
   interface String {
     replaceAll(search: string | RegExp, replace: string): string;
-    negativeIndexOf(search: string | number): number;
   }
   interface Array<T> {
-    lastItem(): T;
+    min(this: number[]): number;
+    max(this: number[]): number;
   }
 }
 

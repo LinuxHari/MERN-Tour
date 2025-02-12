@@ -1,11 +1,18 @@
 import {Line} from "react-chartjs-2";
 import Tabs from "../../Shared/Tabs/Tabs";
+import keyToTitle from "../../../utils/keyToTitle";
+
+type ChartConfig = {
+  responsive: boolean;
+  plugins: {legend: {display: boolean}};
+  scales: {y: {min: number; max: number; ticks: {stepSize: number}}};
+};
 
 type EarningStatisticsProps = {
   chartConfig: {
-    responsive: boolean;
-    plugins: {legend: {display: boolean}};
-    scales: {y: {min: number; max: number; ticks: {stepSize: number}}};
+    hours: ChartConfig;
+    weekly: ChartConfig;
+    monthly: ChartConfig;
   };
   chartData: {
     labels: string[];
@@ -24,7 +31,7 @@ const EarningStatistics = ({
   chartConfig,
   chartData,
 }: EarningStatisticsProps) => {
-  const tabs = ["Hours", "Weekly", "Monthly"];
+  const tabs = ["hours", "weekly", "monthly"] as const;
 
   return (
     <div className="col-xl-8 col-lg-12 col-md-6">
@@ -37,7 +44,7 @@ const EarningStatistics = ({
                 {tabs.map((tab, index) => (
                   <div className="col-auto" key={index}>
                     <Tabs.Tab index={index} className="fw-500">
-                      {tab}
+                      {keyToTitle(tab)}
                     </Tabs.Tab>
                   </div>
                 ))}
@@ -45,10 +52,13 @@ const EarningStatistics = ({
             </div>
 
             <Tabs.TabContents className="pt-30">
-              {tabs.map((_, index) => (
+              {tabs.map((value, index) => (
                 <Tabs.TabContent key={index} index={index}>
                   <div className="chart-container">
-                    <Line data={chartData[index]} options={chartConfig} />
+                    <Line
+                      data={chartData[index]}
+                      options={chartConfig[value]}
+                    />
                   </div>
                 </Tabs.TabContent>
               ))}

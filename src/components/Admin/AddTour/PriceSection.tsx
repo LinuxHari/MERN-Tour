@@ -21,7 +21,7 @@ const PriceSection = ({render}: RenderProps) => {
           <div key={field.name} className={index % 2 === 1 ? "my-4" : ""}>
             <Input
               label={field.label}
-              type="number"
+              type="text"
               {...register(field.name, {valueAsNumber: true})}
             />
           </div>
