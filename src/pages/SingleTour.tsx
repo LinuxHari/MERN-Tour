@@ -1,7 +1,6 @@
 import BreadCrumbs from "../components/Shared/BreadCrumbs/BreadCrumbs";
 import TourHeader from "../components/SingleTour/TourHeader";
 import TourInfo from "../components/SingleTour/TourInfo";
-import TourSuggestions from "../components/SingleTour/TourSuggestions";
 import TourDetailSkeleton from "../components/Skeletons/TourDetailSkeleton";
 import useSingleTourHandler from "../hooks/useSingleTourHandler";
 
@@ -44,7 +43,7 @@ const SingleTour = () => {
         endDate={endDate}
         tourId={tourId}
       />
-      <TourSuggestions />
+      {/* <TourSuggestions /> */}
     </>
   );
 };
