@@ -8,18 +8,25 @@ type ShareProps = {
 
 const useShare = ({title, description, url}: ShareProps) => {
   const [isError, setError] = useState(false);
-  const [isSharingSupported, setSharingSupported] = useState(true);
+  const [isSharingSupported, setSharingSupported] = useState(
+    typeof navigator !== "undefined" && !!navigator.share,
+  );
 
   const reset = () => {
     setError(false);
-    setSharingSupported(true);
   };
 
   const handleShare = async () => {
-    if (!navigator.share) return setSharingSupported(false);
+    if (!navigator.share) {
+      setSharingSupported(false);
+
+      return;
+    }
+
     try {
       await navigator.share({title, text: description, url});
-    } catch (_) {
+    } catch (err) {
+      console.error("Share failed:", err);
       setError(true);
     }
   };
