@@ -1,5 +1,6 @@
 // import { SingleTourResponse } from "../../type"
 import Label from "../Shared/Label/Label";
+import Share from "./Share";
 // import Rating from "../Shared/Rating/Rating"
 import TourGallery from "./TourGallery";
 
@@ -8,6 +9,7 @@ type TourHeaderProps = {
   name: string;
   images: string[];
   destination: string;
+  description: string;
 };
 
 const TourHeader = ({
@@ -15,6 +17,7 @@ const TourHeader = ({
   name,
   images,
   destination,
+  description,
 }: TourHeaderProps) => {
   return (
     <section className="">
@@ -51,11 +54,11 @@ const TourHeader = ({
 
           <div className="col-auto">
             <div className="d-flex x-gap-30 y-gap-10">
-              <a href="/" className="d-flex items-center">
-                <i className="icon-share flex-center text-16 mr-10" />
-                Share
-              </a>
-
+              <Share
+                title={name}
+                description={description}
+                url={window.location.href}
+              />
               {/* <a href="/" className="d-flex items-center">
                 <i className="icon-heart flex-center text-16 mr-10" />
                 Wishlist
