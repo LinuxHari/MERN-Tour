@@ -15,10 +15,10 @@ const useShare = ({title, description, url}: ShareProps) => {
     setSharingSupported(true);
   };
 
-  const handleShare = () => {
+  const handleShare = async () => {
     if (!navigator.share) return setSharingSupported(false);
     try {
-      navigator.share({title, text: description, url});
+      await navigator.share({title, text: description, url});
     } catch (_) {
       setError(true);
     }
