@@ -13,11 +13,11 @@ import TourType from "./TourType";
 import SearchPax from "./SearchPax";
 
 type SearchForm = {
-  isModify: boolean;
+  isModify?: boolean;
   formData: SearchSchemaType;
 };
 
-const SearchForm = ({isModify, formData}: SearchForm) => {
+const SearchForm = ({isModify = false, formData}: SearchForm) => {
   const form = useForm<SearchSchemaType>({
     resolver: zodResolver(searchSchema),
     defaultValues: isModify ? formData : {},
@@ -29,6 +29,12 @@ const SearchForm = ({isModify, formData}: SearchForm) => {
     handleSubmit,
     reset,
   } = form;
+
+  useEffect(() => {
+    if (isModify && formData) {
+      reset(formData);
+    }
+  }, [formData]);
 
   useEffect(() => {
     if (Object.keys(errors).length) {
