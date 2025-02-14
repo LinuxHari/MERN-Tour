@@ -2,6 +2,7 @@ import BookingInfo from "../components/BookingSuccess/BookingInfo";
 import CancelModal from "../components/BookingSuccess/CancelModal";
 import TourDetails from "../components/BookingSuccess/TourDetails";
 import Button from "../components/Shared/Button/Button";
+import NoResult from "../components/Shared/NoResult/NoResult";
 import BookingFormSkeleton from "../components/Skeletons/BookingFormSkeleton";
 import withAuth from "../hocs/withAuth";
 import useAfterBookingHandler from "../hooks/useAfterBookingHandler";
@@ -25,7 +26,8 @@ const Booking = () => {
       </div>
     );
 
-  if (isBookingError || !booking) return <></>;
+  if (isBookingError || !booking)
+    return <NoResult description="Something went wrong" />;
 
   const {tourInfo, amount, ...bookingInfo} = booking;
 

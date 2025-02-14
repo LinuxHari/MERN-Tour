@@ -7,7 +7,12 @@ import Carousel from "../Image/Carousel";
 
 type TourCard2Props = TourListResponse["tours"][0] & {pax: PaxProps} & {
   className?: string;
-  onSelect: (id: string, duration: number) => void;
+  onSelect: (
+    id: string,
+    tourName: string,
+    destination: string,
+    duration: number,
+  ) => void;
 };
 
 const TourCard2 = ({
@@ -110,7 +115,9 @@ const TourCard2 = ({
         </div>
         <Button
           buttonType="secondary"
-          onClick={() => onSelect(tourId, duration)}
+          onClick={() =>
+            onSelect(tourId, name, destination.split(",")[0], duration)
+          }
         >
           View Details
         </Button>

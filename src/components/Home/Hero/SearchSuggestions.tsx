@@ -1,4 +1,3 @@
-import {useState} from "react";
 import {useFormContext} from "react-hook-form";
 import useSearchSuggestionHandler from "../../../hooks/useSearchSuggestionHandler";
 import Input from "../../Shared/Input/Input";
@@ -7,25 +6,30 @@ import Select2 from "../../Shared/Select/Select2";
 const SearchSuggestions = () => {
   const {suggestions, searchText, setSearchText, isFetching, inputRef} =
     useSearchSuggestionHandler();
-  const {setValue} = useFormContext();
-  const [selectedPlace, setSelectedPlace] = useState("");
+  const {setValue, watch} = useFormContext();
+  const selectedPlace = watch("destination");
 
   const handleSelection = (location: string) => {
     const [destinationName, _, destinationId] = location.split("-");
 
     setValue("destinationId", destinationId);
-    setSelectedPlace(destinationName);
+    setValue("destination", destinationName);
   };
 
   return (
-    <Select2 onSelect={handleSelection} onContentShowing={() => inputRef.current?.focus()}>
+    <Select2
+      onSelect={handleSelection}
+      onContentShowing={() => inputRef.current?.focus()}
+    >
       <Select2.Button>
         <div className="searchFormItem__icon size-50 rounded-12 border-1 flex-center">
           <i className="text-20 icon-pin" />
         </div>
         <div className="searchFormItem__content">
           <h5>Where</h5>
-          <p className="js-select-control-chosen">{selectedPlace || "Search destinations"}</p>
+          <p className="js-select-control-chosen">
+            {selectedPlace || "Search destinations"}
+          </p>
         </div>
       </Select2.Button>
       <Select2.Menu>

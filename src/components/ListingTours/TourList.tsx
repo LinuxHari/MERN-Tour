@@ -3,7 +3,12 @@ import TourCard2 from "../Shared/TourCard/TourCard2";
 
 type TourListProps = {
   tours: ListingCard2Props[];
-  onSelectTour: (id: string, duration: number) => void;
+  onSelectTour: (
+    id: string,
+    tourName: string,
+    destination: string,
+    duration: number,
+  ) => void;
   pax: PaxProps;
 };
 

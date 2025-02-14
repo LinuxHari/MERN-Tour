@@ -1,4 +1,5 @@
 import BreadCrumbs from "../components/Shared/BreadCrumbs/BreadCrumbs";
+import NoResult from "../components/Shared/NoResult/NoResult";
 import TourHeader from "../components/SingleTour/TourHeader";
 import TourInfo from "../components/SingleTour/TourInfo";
 import TourDetailSkeleton from "../components/Skeletons/TourDetailSkeleton";
@@ -13,7 +14,7 @@ const SingleTour = () => {
   }
 
   if (!data) {
-    return <div>Tour not available</div>;
+    return <NoResult description="Tour not available" />;
   }
 
   return (

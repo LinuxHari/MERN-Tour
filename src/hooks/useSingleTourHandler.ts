@@ -4,24 +4,27 @@ import {useGetTourByIdQuery} from "../redux/api/baseApi";
 import {singleTourUrlParamsHandler} from "../utils/urlParamsHandler";
 import {MIN_AGE} from "../config/tourConfig";
 
-type ParamType = {tourId: string; destinationId: string};
+type ParamType = {destination: string; tourName: string; tourId: string};
 
 const useSingleTourHandler = () => {
   const [searchParams, _] = useSearchParams();
   const urlParams = Object.fromEntries(searchParams);
-  const {tourId} = useParams() as ParamType;
+  const {destination, tourId} = useParams() as ParamType;
   const navigate = useNavigate();
   const redirect = () => navigate(-1);
-  const {startDate, endDate, adults, children, infants, teens} = singleTourUrlParamsHandler({
-    id: tourId,
-    redirect,
-    startDate: urlParams.startDate,
-    endDate: urlParams.endDate,
-    adults: urlParams.adults,
-    children: urlParams.children,
-    infants: urlParams.infants,
-    teens: urlParams.teens,
-  });
+  const {startDate, endDate, adults, children, infants, teens} =
+    singleTourUrlParamsHandler({
+      id: tourId,
+      redirect,
+      startDate: urlParams.startDate,
+      endDate: urlParams.endDate,
+      adults: urlParams.adults,
+      children: urlParams.children,
+      infants: urlParams.infants,
+      teens: urlParams.teens,
+      tourId,
+      destination,
+    });
   const {data, isLoading} = useGetTourByIdQuery({
     id: tourId,
     startDate,

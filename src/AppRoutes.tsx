@@ -34,8 +34,14 @@ const AppRoutes = () => {
       <Routes>
         <Route path="/" element={<AppLayout />}>
           <Route index element={<Home />} />
-          <Route path="tours/:destinationId" element={<ListingTours />} />
-          <Route path="tours/:destinationId/:tourId" element={<Tour />} />
+          <Route
+            path="tours/:destination/:destinationId"
+            element={<ListingTours />}
+          />
+          <Route
+            path="tours/:destination/:tourName/:tourId"
+            element={<Tour />}
+          />
           <Route path="checkout/:reserveId" element={<Checkout />} />
           <Route path="booking/:bookingId" element={<Booking />} />
           <Route path="login" element={<Login />} />

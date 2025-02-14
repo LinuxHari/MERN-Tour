@@ -6,7 +6,10 @@ const NotFound = () => {
       <div className="container">
         <div className="row y-gap-30 justify-between items-center">
           <div className="col-xl-6 col-lg-6">
-            <img src="img/404/1.svg" alt="" />
+            <img
+              src="https://firebasestorage.googleapis.com/v0/b/mern-tours-e23a8.appspot.com/o/assets%2F404.png?alt=media&token=abb7d2f7-0c53-4427-9a76-d9c5e490e32b"
+              alt="Not found"
+            />
           </div>
 
           <div className="col-xl-5 col-lg-6">
@@ -14,10 +17,12 @@ const NotFound = () => {
               <h1>
                 40<span className="text-accent-1">4</span>
               </h1>
-              <h2 className="text-30 md:text-24 fw-700">Oops! It looks like you&apos;re lost.</h2>
+              <h2 className="text-30 md:text-24 fw-700">
+                Oops! It looks like you&apos;re lost.
+              </h2>
               <p>
-                The page you&apos;re looking for isn&apos;t available. Try to search again or use
-                the go to.
+                The page you&apos;re looking for isn&apos;t available. Try to
+                search again or use the go to.
               </p>
 
               <Button buttonType="link" to="/">

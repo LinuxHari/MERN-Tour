@@ -6,13 +6,22 @@ import {zodResolver} from "@hookform/resolvers/zod";
 import Button from "../../Shared/Button/Button";
 import {searchSchema, SearchSchemaType} from "../../../schema/searchSchema";
 import {getFormErrorMessages} from "../../../utils/getFormErrorMessages";
+import {transformToUrlName} from "../../../utils/urlNameTransformer";
 import SearchDatePicker from "./SearchDatePicker";
 import SearchSuggestions from "./SearchSuggestions";
 import TourType from "./TourType";
 import SearchPax from "./SearchPax";
 
-const SearchForm = () => {
-  const form = useForm<SearchSchemaType>({resolver: zodResolver(searchSchema)});
+type SearchForm = {
+  isModify: boolean;
+  formData: SearchSchemaType;
+};
+
+const SearchForm = ({isModify, formData}: SearchForm) => {
+  const form = useForm<SearchSchemaType>({
+    resolver: zodResolver(searchSchema),
+    defaultValues: isModify ? formData : {},
+  });
   const navigate = useNavigate();
   const {pathname} = useLocation();
   const {
@@ -32,14 +41,16 @@ const SearchForm = () => {
   const handleSearch = (formData: SearchSchemaType) => {
     const {
       dateRange: {startDate, endDate},
+      destination,
       destinationId,
       tourType,
       pax: {adults, teens, children, infants},
     } = formData;
+    const transformedDestination = transformToUrlName(destination);
 
     reset();
     navigate({
-      pathname: `/tours/${destinationId}`,
+      pathname: `/tours/${transformedDestination}/${destinationId}`,
       search: createSearchParams({
         tourType,
         startDate: startDate.toISOString().split("T")[0],
