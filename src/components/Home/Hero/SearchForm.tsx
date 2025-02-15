@@ -12,12 +12,11 @@ import SearchSuggestions from "./SearchSuggestions";
 import TourType from "./TourType";
 import SearchPax from "./SearchPax";
 
-type SearchForm = {
-  isModify?: boolean;
-  formData: SearchSchemaType;
-};
+type SearchFormProps =
+  | {isModify?: false; formData?: never}
+  | {isModify: true; formData: SearchSchemaType};
 
-const SearchForm = ({isModify = false, formData}: SearchForm) => {
+const SearchForm = ({isModify = false, formData}: SearchFormProps) => {
   const form = useForm<SearchSchemaType>({
     resolver: zodResolver(searchSchema),
     defaultValues: isModify ? formData : {},
