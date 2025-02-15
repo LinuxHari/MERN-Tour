@@ -4,13 +4,14 @@ import EarningStatistics from "../../components/Admin/Dashboard/EarningStatistic
 import withAuth from "../../hocs/withAuth";
 import useStatsInfo from "../../hooks/useStatsInfo";
 import CommonSkeleton from "../../components/Skeletons/CommonSkeleton";
+import NoResult from "../../components/Shared/NoResult/NoResult";
 
 const Dashboard = ({render}: RenderProps) => {
   const {dashboardData, chartData, chartConfig, isLoading, isError} =
     useStatsInfo();
 
   if (isError) {
-    return null;
+    return <NoResult description="Something went wrong!" />;
   }
 
   return (

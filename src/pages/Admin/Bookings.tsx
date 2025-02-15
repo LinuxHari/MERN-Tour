@@ -8,6 +8,7 @@ import {status} from "../../config/userConfig";
 import organizeBookingData from "../../utils/organizeBookingData";
 import withAuth from "../../hocs/withAuth";
 import CommonSkeleton from "../../components/Skeletons/CommonSkeleton";
+import NoResult from "../../components/Shared/NoResult/NoResult";
 
 const Bookings = ({render}: RenderProps) => {
   const tableHeaders = [
@@ -31,7 +32,8 @@ const Bookings = ({render}: RenderProps) => {
 
   if (isLoading) return <CommonSkeleton />;
 
-  if (isError || !bookings) return <></>;
+  if (isError || !bookings)
+    return <NoResult description="Something went wrong!" />;
 
   const bookingData = organizeBookingData(bookings.bookings, currentTab);
 

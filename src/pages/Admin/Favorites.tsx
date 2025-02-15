@@ -4,6 +4,7 @@ import Pagination from "../../components/Shared/Pagination/Pagination";
 import useUserFavoriteHandler from "../../hooks/useUserFavoriteHandler";
 import withAuth from "../../hocs/withAuth";
 import CommonSkeleton from "../../components/Skeletons/CommonSkeleton";
+import NoResult from "../../components/Shared/NoResult/NoResult";
 
 const Favorites = ({render}: RenderProps) => {
   const {favoriteTours, page, setPage, isFetchingFavoriteTours} =
@@ -60,7 +61,7 @@ const Favorites = ({render}: RenderProps) => {
               </div>
             </>
           ) : (
-            <>You do not have favorite tours</>
+            <NoResult description="You do not have favorite tours!" />
           )}
         </div>
       )}

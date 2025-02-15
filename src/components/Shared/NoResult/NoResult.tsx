@@ -10,7 +10,9 @@ const NoResult = ({description}: NoResultProps) => {
         alt="No Result"
         style={{scale: "80%"}}
       />
-      <p className="fw-600 text-30">{description}</p>
+      <p className="fw-600 text-30" style={{transform: "translateY(-40px)"}}>
+        {description}
+      </p>
     </div>
   );
 };
