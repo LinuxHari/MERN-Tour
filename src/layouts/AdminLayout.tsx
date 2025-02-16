@@ -1,3 +1,4 @@
+import {useEffect, useState} from "react";
 import {Outlet, useLocation} from "react-router-dom";
 import Sidebar from "../components/Admin/Sidebar";
 import useUserHandler from "../hooks/useUserHandler";
@@ -8,6 +9,7 @@ import CommonSkeleton from "../components/Skeletons/CommonSkeleton";
 const AdminLayout = () => {
   const {isLoggedIn, isLoading, user} = useUserHandler();
   const {pathname} = useLocation();
+  const [isReady, setIsReady] = useState(false);
 
   const adminPages = [
     "/dashboard",
@@ -15,10 +17,16 @@ const AdminLayout = () => {
     "/dashboard/addTour",
   ];
 
+  useEffect(() => {
+    if (!isLoading && user) {
+      setIsReady(true);
+    }
+  }, [isLoading, user]);
+
   const isRestricted =
     adminPages.includes(pathname) && user && user.role !== Role.admin;
 
-  if (isLoading || !user) return <CommonSkeleton />;
+  if (isLoading || !isReady) return <CommonSkeleton />;
 
   if (!isLoggedIn || isRestricted) return <NotFound />;
 
