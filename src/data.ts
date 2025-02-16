@@ -518,7 +518,7 @@ export const RECENT_SEARCHES = [
 
 export const CURRENCIES = [
   {label: "U.S. Dollar", value: "USD"},
-  {label: "U.A. Dinar", value: "UAE"},
+  // {label: "U.A. Dinar", value: "UAE"},
 ];
 
 export const SEARCH_SUGGESTIONS = [
