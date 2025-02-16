@@ -3,7 +3,7 @@ import {useState, useEffect, useRef} from "react";
 const Image = ({
   src,
   alt,
-  className,
+  className = "object-fit-cover",
   ...otherImgProps
 }: React.ImgHTMLAttributes<HTMLImageElement>) => {
   const [isVisible, setIsVisible] = useState(false);

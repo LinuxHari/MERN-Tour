@@ -40,7 +40,7 @@ class ErrorBoundary extends Component<Props, State> {
             className="d-flex flex-column justify-content-center align-items-center"
             style={{transform: "translateY(-50px)"}}
           >
-            <p className="text-18 fw-600 text-center">
+            <p className="text-20 fw-500 text-center">
               Something went wrong, our team has been notified!{" "}
               <span className="d-block">
                 Try refreshing the page or coming back later.

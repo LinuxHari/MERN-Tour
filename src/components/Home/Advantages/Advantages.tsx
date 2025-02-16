@@ -41,7 +41,7 @@ const Advantages = () => {
             <div key={index} className="col-lg-3 col-sm-6">
               <div className="featureIcon -type-1 pr-40 md:pr-0">
                 <div className="featureIcon__icon">
-                  <Image src={icon} alt="icon" />
+                  <Image src={icon} alt="icon" className="h-50 w-25" />
                 </div>
 
                 <h3 className="featureIcon__title text-18 fw-500 mt-30">

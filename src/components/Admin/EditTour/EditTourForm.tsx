@@ -96,7 +96,7 @@ const EditTourForm = ({tour, tourId}: EditTourSchemaProps) => {
         encType="multipart/form-data"
         onSubmit={handleSubmit((data) => updateTour(data, tour, tourId, reset))}
       >
-        <div className="row y-gap-30 rounded-12 bg-white shadow-2 px-40 pt-40 pb-30 mt-60">
+        <div className="row y-gap-30 rounded-12 bg-white shadow-2 px-20 pt-40 pb-30 mt-60">
           <Tabs
             className="-underline-2"
             defaultIndex={currentTab}

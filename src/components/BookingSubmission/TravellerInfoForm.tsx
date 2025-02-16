@@ -40,8 +40,11 @@ const TravellerInfoForm = ({
     if (country) {
       const phoneInfo = phone(phoneNumber.toString(), {country});
 
-      if (phoneInfo.isValid) return phoneInfo.phoneNumber;
-      else return "";
+      if (phoneInfo.isValid) {
+        setValue("countryCode", parseInt(phoneInfo.countryCode));
+
+        return phoneInfo.phoneNumber;
+      }
     }
   })();
 
@@ -75,13 +78,14 @@ const TravellerInfoForm = ({
             inputProps={{
               name: "phone",
             }}
-            value={defaultPhoneNumber}
-            inputClass="shadow-none overflow-hidden"
+            value={defaultPhoneNumber || ""}
+            inputClass="shadow-none overflow-hidden w-100"
             placeholder="Enter phone number"
             onChange={handlePhoneChange}
             buttonStyle={{borderRadius: "12px 0px 0px 12px"}}
             inputStyle={{paddingLeft: "45px"}}
             disableCountryGuess={true}
+            country={"us"}
           />
         </div>
       </div>

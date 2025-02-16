@@ -34,7 +34,7 @@ const Carousel = ({images, onSlide}: TourImagesProps) => {
       >
         {images.map((imageUrl, index) => (
           <SwiperSlide key={index}>
-            <Image src={imageUrl} alt="" />
+            <Image src={imageUrl} className="h-100 w-100" alt="" />
           </SwiperSlide>
         ))}
       </Swiper>

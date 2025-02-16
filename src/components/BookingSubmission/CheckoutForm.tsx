@@ -9,6 +9,7 @@ import useBookingHandler from "../../hooks/useBookingHandler";
 import useUserHandler from "../../hooks/useUserHandler";
 import {UserInfoResponse} from "../../type";
 import {getFormErrorMessages} from "../../utils/getFormErrorMessages";
+import NoResult from "../Shared/NoResult/NoResult";
 import BookingFormSkeleton from "../Skeletons/BookingFormSkeleton";
 import CheckoutModal from "./CheckoutModal";
 import BookingDetailsCard from "./BookingDetailsCard";
@@ -57,7 +58,7 @@ const CheckoutForm = () => {
 
   if (isReservedDetailsLoading) return <BookingFormSkeleton />;
 
-  if (!reservedTour) return <></>;
+  if (!reservedTour) return <NoResult description="No reserved tours found" />;
 
   return (
     <form
@@ -78,12 +79,14 @@ const CheckoutForm = () => {
         />
         <PaymentElement className="my-5" />
       </div>
-      <BookingDetailsCard
-        isPayformLoaded={true}
-        reservedTour={reservedTour}
-        isLoading={isBookingLoading}
-        isError={isReservedDetailsError}
-      />
+      <div className="col-lg-4 order-2 pt-20 pl-0 pr-0 px-lg-4 pt-lg-0">
+        <BookingDetailsCard
+          isPayformLoaded={true}
+          reservedTour={reservedTour}
+          isLoading={isBookingLoading}
+          isError={isReservedDetailsError}
+        />
+      </div>
       {modalInfo && (
         <CheckoutModal
           showModal={Boolean(modalInfo)}

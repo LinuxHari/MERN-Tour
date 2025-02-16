@@ -1,25 +1,14 @@
 import {FetchBaseQueryError} from "@reduxjs/toolkit/query";
-import {EarningsResponse, ImgPath, Tour} from "../../type";
+import {
+  EarningsResponse,
+  ImgPath,
+  PublishedToursResponse,
+  TourMutationResponse,
+} from "../../type";
 import {EditTourSchemaType, TourSchemaType} from "../../schema/tourSchema";
 import getFirebaseUpload from "../../utils/getFirebaseUpload";
 import {extractFirebaseImgPath} from "../../utils/extractFirebaseImgPath";
 import {baseApi} from "./baseApi";
-
-type TourResponse = {
-  publisherId: string;
-};
-
-type PublishedToursResponse = {
-  tours: (Tour & {
-    totalRatings: number;
-    averageRating: number;
-    duration: number;
-    tourId: string;
-    destinationId: string;
-  })[];
-  totalPages: number;
-  totalCount: number;
-} & TourResponse;
 
 export const adminApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
@@ -31,7 +20,7 @@ export const adminApi = baseApi.injectEndpoints({
       }),
       providesTags: ["Tour"],
     }),
-    createTour: builder.mutation<TourResponse, TourSchemaType>({
+    createTour: builder.mutation<TourMutationResponse, TourSchemaType>({
       queryFn: async (formData, _, __, baseQuery) => {
         const {uploadImages, deleteImages} = getFirebaseUpload();
 
@@ -58,7 +47,7 @@ export const adminApi = baseApi.injectEndpoints({
             throw new Error("Failed to add tour");
           }
 
-          return {data: response.data as TourResponse};
+          return {data: {error: false}};
         } catch (error) {
           if (error instanceof Error) {
             return {error: {error: error.message} as FetchBaseQueryError};
@@ -69,7 +58,10 @@ export const adminApi = baseApi.injectEndpoints({
       },
       invalidatesTags: ["Tour"],
     }),
-    updateTour: builder.mutation<void, EditTourSchemaType & {tourId: string}>({
+    updateTour: builder.mutation<
+      TourMutationResponse,
+      EditTourSchemaType & {tourId: string}
+    >({
       queryFn: async (formData, _, __, baseQuery) => {
         const {uploadImages, deleteImages} = getFirebaseUpload();
 
@@ -110,7 +102,7 @@ export const adminApi = baseApi.injectEndpoints({
             throw new Error("Failed to update tour");
           }
 
-          return {data: undefined};
+          return {data: {error: false}};
         } catch (error) {
           if (error instanceof Error) {
             return {error: {error: error.message} as FetchBaseQueryError};
@@ -121,7 +113,7 @@ export const adminApi = baseApi.injectEndpoints({
       },
       invalidatesTags: ["Tour"],
     }),
-    deleteTour: builder.mutation<TourResponse, string>({
+    deleteTour: builder.mutation<void, string>({
       query: (tourId) => ({
         url: `/admin/tour/${tourId}`,
         method: "DELETE",

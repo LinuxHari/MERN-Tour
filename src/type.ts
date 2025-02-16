@@ -59,7 +59,7 @@ export type ListingCardProps = {
   duration: number;
   price: number;
   tourId: string;
-  destinationId: string;
+  destination: string;
 };
 
 export type ListingCard2Props = {
@@ -204,7 +204,6 @@ export type ReviewResponse = {
 };
 
 export type FavoriteTours = {
-  location: string;
   title: string;
   rating: number;
   reviewCount: number;
@@ -212,8 +211,7 @@ export type FavoriteTours = {
   duration: number;
   images: string[];
   tourId: string;
-  destinationId: string;
-};
+} & CardDestination;
 
 export type StatusType = "Confirmed" | "Pending" | "Canceled";
 
@@ -227,6 +225,40 @@ export type EarningsResponse = {
   earningsByTwoHours: number[];
   earningsByWeek: number[];
   earningsByMonth: number[];
+};
+
+export type Destination = {id: string; name: string};
+
+export type CardDestination = {
+  city: Destination;
+  state: Destination;
+  country: Destination;
+};
+
+export type TourMutationResponse = {
+  error: boolean;
+};
+
+export type PublishedToursResponse = {
+  tours: (Tour & {
+    totalRatings: number;
+    averageRating: number;
+    duration: number;
+    tourId: string;
+  } & CardDestination)[];
+  totalPages: number;
+  totalCount: number;
+};
+
+export type FavoriteToursResponse = {
+  favoriteTours: FavoriteTours[];
+  totalCount: number;
+  totalPages: number;
+};
+
+export type BookingsResponse = {
+  bookings: Bookings[];
+  totalPages: number;
 };
 
 export enum ImgPath {

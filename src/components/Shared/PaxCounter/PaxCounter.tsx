@@ -24,16 +24,19 @@ const PaxCounter = ({pax, setPax, price, className}: PaxCounterProps) => {
         ([key, value], index) =>
           (Boolean(value) || !price || price[paxAgeMap[key]]) && (
             <div className="mb-2" key={index}>
-              <div className="d-flex items-center justify-between">
+              <div className="d-flex items-center justify-between gap-1">
                 <div className="text-14">
                   {stringToTitle(key)} (
-                  {MIN_AGE[paxAgeMap[key]] ? MIN_AGE[paxAgeMap[key]] - 1 : MIN_AGE[paxAgeMap[key]]}
+                  {MIN_AGE[paxAgeMap[key]]
+                    ? MIN_AGE[paxAgeMap[key]] - 1
+                    : MIN_AGE[paxAgeMap[key]]}
                   +)&nbsp;
                   {price?.[paxAgeMap[key]] && (
                     <span className="fw-500">
                       $
                       {(
-                        (price?.[paxAgeMap[key]] || 0) * (pax[key as keyof typeof pax] as number)
+                        (price?.[paxAgeMap[key]] || 0) *
+                        (pax[key as keyof typeof pax] as number)
                       ).toFixed(2)}
                     </span>
                   )}

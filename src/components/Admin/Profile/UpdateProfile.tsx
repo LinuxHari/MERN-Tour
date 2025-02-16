@@ -56,38 +56,38 @@ const UpdateProfile = () => {
 
   return (
     <form
-      className="rounded-12 bg-white shadow-2 px-40 pt-40 pb-30"
+      className="rounded-12 bg-white shadow-2 px-20 pt-40 pb-30"
       onSubmit={handleSubmit(updateProfile)}
       noValidate
     >
       <h5 className="text-20 fw-500 mb-30">Profile Details</h5>
 
       <div className="contactForm row y-gap-30">
-        <div className="col-md-6">
+        <div className="col-xl-6">
           <Input label="Name" type="text" {...register("firstName")} />
         </div>
 
-        <div className="col-md-6">
+        <div className="col-xl-6">
           <Input label="Last Name" type="text" {...register("lastName")} />
         </div>
 
-        <div className="col-md-6">
+        <div className="col-xl-6">
           <Input label="Email" type="text" {...register("email")} />
         </div>
 
-        <div className="col-md-6">
+        <div className="col-xl-6">
           <Input label="City" type="text" {...register("city")} />
         </div>
 
-        <div className="col-md-6">
+        <div className="col-xl-6">
           <Input label="State" type="text" {...register("state")} />
         </div>
 
-        <div className="col-md-6">
+        <div className="col-xl-6">
           <Input label="Country" type="text" {...register("country")} />
         </div>
 
-        <div className="col-md-6 py-0">
+        <div className="col-xl-6 py-0">
           <label className="lh-1 text-16 mx-3" htmlFor="phone">
             Phone number
           </label>
@@ -95,7 +95,7 @@ const UpdateProfile = () => {
             inputProps={{
               name: "phone",
             }}
-            inputClass="shadow-none overflow-hidden"
+            inputClass="shadow-none overflow-hidden w-100"
             country="us"
             placeholder="Enter phone number"
             onChange={handlePhoneChange}
@@ -104,7 +104,7 @@ const UpdateProfile = () => {
           />
         </div>
 
-        <div className="col-md-6">
+        <div className="col-xl-6">
           <Textarea label="Address" rows={8} {...register("address")} />
         </div>
 

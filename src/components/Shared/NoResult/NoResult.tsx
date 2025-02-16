@@ -8,9 +8,9 @@ const NoResult = ({description}: NoResultProps) => {
       <img
         src="https://firebasestorage.googleapis.com/v0/b/mern-tours-e23a8.appspot.com/o/assets%2FNoResult.png?alt=media&token=7ec6b54e-9eea-42a4-8a79-53e58a514f27"
         alt="No Result"
-        style={{scale: "80%"}}
+        style={{scale: "80%", minHeight: "50vh"}}
       />
-      <p className="fw-600 text-30" style={{transform: "translateY(-40px)"}}>
+      <p className="text-20 fw-500" style={{transform: "translateY(-40px)"}}>
         {description}
       </p>
     </div>

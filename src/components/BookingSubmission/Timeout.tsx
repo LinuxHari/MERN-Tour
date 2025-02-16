@@ -13,10 +13,11 @@ const Timeout = ({expiresAt, onTimeout}: TimeoutProps) => {
       const count = Math.max(0, Math.floor((expiresAt - Date.now()) / 1000));
       const remainingTime = Math.max(0, count - 1);
 
+      setCount(remainingTime);
       if (remainingTime <= 0) {
         onTimeout();
         clearInterval(id);
-      } else setCount(remainingTime);
+      }
     }, 1000);
 
     return () => clearInterval(id);

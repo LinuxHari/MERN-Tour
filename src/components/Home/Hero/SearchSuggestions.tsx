@@ -38,7 +38,7 @@ const SearchSuggestions = () => {
           label="Search"
           wrapperClassName="m-3"
           value={searchText}
-          onChange={(e) => setSearchText(e.currentTarget.value.trim())}
+          onChange={(e) => setSearchText(e.currentTarget.value)}
           ref={inputRef}
         />
         {isFetching ? (

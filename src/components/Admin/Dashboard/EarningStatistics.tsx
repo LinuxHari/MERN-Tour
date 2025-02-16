@@ -34,11 +34,11 @@ const EarningStatistics = ({
   const tabs = ["hours", "weekly", "monthly"] as const;
 
   return (
-    <div className="col-xl-8 col-lg-12 col-md-6">
+    <div className="col-xl-8 col-12">
       <div className="rounded-12 bg-white shadow-2 h-full">
         <div className="pt-20 px-30">
           <Tabs className="-underline-2">
-            <div className="d-flex items-center justify-between">
+            <div className="d-flex flex-column flex-lg-row align-items-center justify-content-between">
               <div className="text-18 fw-500">Earning Statistics</div>
               <Tabs.TabList className="row x-gap-20 y-gap-10 lg:x-gap-20">
                 {tabs.map((tab, index) => (

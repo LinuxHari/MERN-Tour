@@ -32,7 +32,7 @@ const Booking = () => {
   const {tourInfo, amount, ...bookingInfo} = booking;
 
   return (
-    <main className="bg-light-1">
+    <main className="bg-light-1" style={{minHeight: "80vh"}}>
       <section className="layout-pt-md layout-pb-lg mt-header">
         <div className="container">
           <div className="row">

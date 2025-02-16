@@ -1,6 +1,6 @@
 import {ReservedTourResponse} from "../../type";
 import Button from "../Shared/Button/Button";
-import Image from "../Shared/Image/Image";
+import Carousel from "../Shared/Image/Carousel";
 
 type BookingDetailsCardProps = {
   isPayformLoaded: boolean;
@@ -20,91 +20,88 @@ const BookingDetailsCard = ({
 
   return (
     <>
-      <div className="pl-50 md:pl-0 col-4 order-2">
-        <div className="bg-white rounded-12 shadow-2 py-30 px-30 md:py-20 md:px-20">
-          <h2 className="text-20 fw-500">Your booking details</h2>
+      <div className="bg-white rounded-12 shadow-2 py-30 px-30">
+        <h2 className="text-20 fw-500">Your booking details</h2>
 
-          <div className="d-flex flex-column mt-30">
-            <Image
-              src={reservedTour.tourDetails.images[0]}
-              className="rounded"
-              alt=""
-            />
-            <div className="pt-2 fw-500">{reservedTour.tourDetails.name}</div>
+        <div className="d-flex flex-column mt-30">
+          <div className="w-100 overflow-hidden tourCard__image relative rounded">
+            <Carousel images={reservedTour.tourDetails.images} />
+          </div>
+          <div className="pt-4 fw-500">{reservedTour.tourDetails.name}</div>
+        </div>
+
+        <div className="line mt-20 mb-20" />
+
+        <div className="">
+          <div className="d-flex items-center justify-between">
+            <div className="fw-500">Date:</div>
+            <div className="">
+              {reservedTour.startDate.toString().split("T")[0]}
+            </div>
           </div>
 
-          <div className="line mt-20 mb-20" />
-
-          <div className="">
-            <div className="d-flex items-center justify-between">
-              <div className="fw-500">Date:</div>
-              <div className="">
-                {reservedTour.startDate.toString().split("T")[0]}
-              </div>
-            </div>
-
-            <div className="d-flex items-center justify-between">
-              <div className="fw-500">Duration:</div>
-              <div className="">{reservedTour.tourDetails.duration} Days</div>
-            </div>
-
-            <div className="d-flex items-center justify-between">
-              <div className="fw-500">Tickets:</div>
-              <div className="">
-                Adult x{reservedTour.passengers.adults} = $
-                {reservedTour.passengers.adults *
-                  reservedTour.tourDetails.price.adult}
-              </div>
-            </div>
-
-            {reservedTour.passengers.teens ? (
-              <div className="d-flex items-center justify-between">
-                <div className="fw-500" />
-                <div className="">
-                  Teens x{reservedTour.passengers.teens} = $
-                  {reservedTour.passengers.teens *
-                    (reservedTour.tourDetails.price?.teen || 0)}
-                </div>
-              </div>
-            ) : null}
-
-            {reservedTour.passengers.children ? (
-              <div className="d-flex items-center justify-between">
-                <div className="fw-500" />
-                <div className="">
-                  Children x{reservedTour.passengers.children} = $
-                  {reservedTour.passengers.children *
-                    (reservedTour.tourDetails.price?.child || 0)}
-                </div>
-              </div>
-            ) : null}
-
-            {reservedTour.passengers.infants ? (
-              <div className="d-flex items-center justify-between">
-                <div className="fw-500" />
-                <div className="">
-                  Infants x{reservedTour.passengers.infants} = $
-                  {reservedTour.passengers.infants *
-                    (reservedTour.tourDetails.price?.infant || 0)}
-                </div>
-              </div>
-            ) : null}
+          <div className="d-flex items-center justify-between">
+            <div className="fw-500">Duration:</div>
+            <div className="">{reservedTour.tourDetails.duration} Days</div>
           </div>
 
-          <div className="line mt-20 mb-20" />
+          <div className="d-flex items-center justify-between">
+            <div className="fw-500">Tickets:</div>
+            <div className="">
+              Adult x{reservedTour.passengers.adults} = $
+              {reservedTour.passengers.adults *
+                reservedTour.tourDetails.price.adult}
+            </div>
+          </div>
 
-          <div className="">
-            {/* <div className="d-flex items-center justify-between">
+          {reservedTour.passengers.teens ? (
+            <div className="d-flex items-center justify-between">
+              <div className="fw-500" />
+              <div className="">
+                Teens x{reservedTour.passengers.teens} = $
+                {reservedTour.passengers.teens *
+                  (reservedTour.tourDetails.price?.teen || 0)}
+              </div>
+            </div>
+          ) : null}
+
+          {reservedTour.passengers.children ? (
+            <div className="d-flex items-center justify-between">
+              <div className="fw-500" />
+              <div className="">
+                Children x{reservedTour.passengers.children} = $
+                {reservedTour.passengers.children *
+                  (reservedTour.tourDetails.price?.child || 0)}
+              </div>
+            </div>
+          ) : null}
+
+          {reservedTour.passengers.infants ? (
+            <div className="d-flex items-center justify-between">
+              <div className="fw-500" />
+              <div className="">
+                Infants x{reservedTour.passengers.infants} = $
+                {reservedTour.passengers.infants *
+                  (reservedTour.tourDetails.price?.infant || 0)}
+              </div>
+            </div>
+          ) : null}
+        </div>
+
+        <div className="line mt-20 mb-20" />
+
+        <div className="">
+          {/* <div className="d-flex items-center justify-between">
             <div className="fw-500">Subtotal</div>
             <div className="">$382</div>
           </div> */}
 
-            <div className="d-flex items-center justify-between">
-              <div className="fw-500">Total</div>
-              <div className="">${reservedTour.totalAmount}</div>
-            </div>
+          <div className="d-flex items-center justify-between">
+            <div className="fw-500">Total</div>
+            <div className="">${reservedTour.totalAmount}</div>
+          </div>
 
-            {/* <div className="d-flex items-center justify-between">
+          {/* <div className="d-flex items-center justify-between">
             <div className="fw-500">Amount Paid</div>
             <div className="">$3.482</div>
           </div>
@@ -113,20 +110,19 @@ const BookingDetailsCard = ({
             <div className="fw-500">Amount Due</div>
             <div className="">$43.242</div>
           </div> */}
-          </div>
         </div>
+      </div>
 
-        <div className="mt-30">
-          <Button
-            buttonType="primary"
-            type="submit"
-            className="w-100"
-            isLoading={isLoading}
-            disabled={!isPayformLoaded || isLoading}
-          >
-            Book now
-          </Button>
-        </div>
+      <div className="mt-20">
+        <Button
+          buttonType="primary"
+          type="submit"
+          className="w-100"
+          isLoading={isLoading}
+          disabled={!isPayformLoaded || isLoading}
+        >
+          Book now
+        </Button>
       </div>
     </>
   );

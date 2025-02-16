@@ -45,8 +45,8 @@ const TourInfo = ({
   return (
     <section className="layout-pt-md js-pin-container">
       <div className="container">
-        <div className="row y-gap-30 justify-between">
-          <div className="col-lg-8">
+        <div className="row y-gap-30 d-flex justify-between">
+          <div className="col-lg-8 order-lg-0 order-1">
             <TourServices
               duration={duration}
               minAge={minAge}
@@ -60,7 +60,7 @@ const TourInfo = ({
             <Reviews tourId={tourId} />
             <TourFAQ faq={faq} />
           </div>
-          <div className="col-lg-4">
+          <div className="col-12 col-lg-4 order-lg-1 order-0">
             <SideCard
               pax={pax}
               price={price}

@@ -104,6 +104,7 @@ const useListingToursHandler = () => {
       adults,
       children,
       infants,
+      teens,
       page,
       sortType,
       appliedFilters,
@@ -228,6 +229,13 @@ const useListingToursHandler = () => {
       filterRef.current = 0;
     }
   }, [data]);
+
+  useEffect(() => {
+    setAppliedFilters((prev) => ({
+      ...prev,
+      tourTypes: tourType === "All tours" ? undefined : [tourType],
+    }));
+  }, [tourType]);
 
   return {
     tours,

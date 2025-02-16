@@ -45,14 +45,15 @@ const SideCard = ({price, pax, startDate, endDate, tourId}: SideCardProps) => {
       const paxToSend = {...currentPax};
 
       Object.keys(paxToSend).forEach((key) => {
-        if (!paxToSend[key as keyof PaxProps]) delete paxToSend[key as keyof PaxProps];
+        if (!paxToSend[key as keyof PaxProps])
+          delete paxToSend[key as keyof PaxProps];
       });
       reserve({startDate, endDate, pax: paxToSend, tourId});
     }
   };
 
   return (
-    <div className="d-flex justify-end js-pin-content">
+    <div className="d-flex justify-end js-pin-content w-100">
       <div className="tourSingleSidebar">
         {/* <div className="d-flex items-center">
             <div>From</div>
@@ -103,7 +104,9 @@ const SideCard = ({price, pax, startDate, endDate, tourId}: SideCardProps) => {
 
         <div className="mb-20">
           <h5 className="text-18 fw-500">Tickets</h5>
-          <p className="text-light-2 text-14">You can book for upto 10 people at a time</p>
+          <p className="text-light-2 text-14">
+            You can book for upto 10 people at a time
+          </p>
         </div>
         <PaxCounter setPax={setPax} pax={currentPax} price={price} />
         <div className="line mt-20 mb-20" />

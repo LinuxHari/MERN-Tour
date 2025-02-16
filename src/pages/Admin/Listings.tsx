@@ -15,7 +15,7 @@ const Listings = ({render}: RenderProps) => {
       {isTourLoading ? (
         <CommonSkeleton />
       ) : publishedTours && publishedTours.tours.length ? (
-        <div className="rounded-12 bg-white shadow-2 px-40 pt-40 pb-30 mt-60">
+        <div className="rounded-12 bg-white shadow-2 px-20 pt-40 pb-30 mt-60">
           <div className="row y-gap-30">
             {publishedTours.tours.map(
               (
@@ -30,7 +30,6 @@ const Listings = ({render}: RenderProps) => {
                   duration,
                   averageRating,
                   tourId,
-                  destinationId,
                 },
                 index,
               ) => (
@@ -38,7 +37,10 @@ const Listings = ({render}: RenderProps) => {
                   key={index}
                   images={images}
                   location={
-                    city || "" + ", " + state || "" + ", " + country || ""
+                    city.name ||
+                    "" + ", " + state.name ||
+                    "" + ", " + country.name ||
+                    ""
                   }
                   title={name}
                   rating={averageRating}
@@ -46,7 +48,7 @@ const Listings = ({render}: RenderProps) => {
                   duration={duration}
                   price={price.adult}
                   tourId={tourId}
-                  destinationId={destinationId}
+                  destination={city.name}
                 />
               ),
             )}

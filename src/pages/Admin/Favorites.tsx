@@ -16,7 +16,7 @@ const Favorites = ({render}: RenderProps) => {
       {isFetchingFavoriteTours ? (
         <CommonSkeleton />
       ) : (
-        <div className="rounded-12 bg-white shadow-2 px-40 pt-40 pb-30 mt-60">
+        <div className="rounded-12 bg-white shadow-2 px-20 pt-40 pb-30 mt-60">
           {favoriteTours && favoriteTours.favoriteTours.length ? (
             <>
               <div className="row y-gap-30">
@@ -24,30 +24,33 @@ const Favorites = ({render}: RenderProps) => {
                   (
                     {
                       images,
-                      location,
                       title,
                       rating,
                       reviewCount,
                       duration,
                       price,
                       tourId,
-                      destinationId,
+                      city,
+                      state,
+                      country,
                     },
                     i,
                   ) => (
                     <TourCard
                       key={i}
                       images={images}
-                      location={location}
+                      location={
+                        city.name || "" + state.name || "" + country.name
+                      }
                       title={title}
                       rating={rating}
                       reviewCount={reviewCount}
                       duration={duration}
                       price={price}
-                      className="col-lg-3 col-md-6"
+                      className="col-sm-12 col-lg-6 col-xl-4"
                       isFavorite={true}
                       tourId={tourId}
-                      destinationId={destinationId}
+                      destination={city.name}
                     />
                   ),
                 )}

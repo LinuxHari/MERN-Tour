@@ -46,6 +46,7 @@ const AppRoutes = () => {
           <Route path="booking/:bookingId" element={<Booking />} />
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<Signup />} />
+          <Route path="*" element={<NotFound />} />
         </Route>
         <Route path="/dashboard" element={<AdminLayout />}>
           <Route index element={<Dashboard render={render} />} />
@@ -59,7 +60,6 @@ const AppRoutes = () => {
           <Route path="favorites" element={<Favorites render={render} />} />
           <Route path="profile" element={<Profile render={render} />} />
         </Route>
-        <Route path="*" element={<NotFound />} />
       </Routes>
     </Suspense>
   );

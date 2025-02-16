@@ -112,7 +112,6 @@ const PopularTours = () => {
                 price,
                 image,
                 tourId,
-                destinationId,
               },
               index,
             ) => (
@@ -126,7 +125,7 @@ const PopularTours = () => {
                 title={title}
                 location={location}
                 tourId={tourId}
-                destinationId={destinationId}
+                destination={location.split(",")[0]}
                 className="col-lg-3 col-md-6"
               />
             ),

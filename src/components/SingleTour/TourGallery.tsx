@@ -11,7 +11,7 @@ const TourGallery = ({images}: Props) => {
   const {width} = useWindowSize();
 
   const showModalButton =
-    width < 992 || (width > 992 && images.length > 4) ? true : false; // Minimum length of images is two
+    width < 992 || (width > 992 && images.length > 2) ? true : false; // Minimum length of images is two
   const gridCls =
     width > 992 && images.length >= 4
       ? "tourSingleGrid__grid"
@@ -21,7 +21,7 @@ const TourGallery = ({images}: Props) => {
   return (
     <div className="tourSingleGrid -type-1 mt-30">
       <div className={`${gridCls} mobile-css-slider-2`}>
-        {images.slice(0, 4).map((image, index) => (
+        {images.slice(0, 2).map((image, index) => (
           <Image key={image + index} src={image} alt="" />
         ))}
       </div>

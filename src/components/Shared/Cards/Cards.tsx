@@ -123,7 +123,6 @@ const Cards = () => {
                 duration,
                 price,
                 image,
-                destinationId,
                 tourId,
               },
               index,
@@ -137,7 +136,7 @@ const Cards = () => {
                   duration={duration}
                   price={price}
                   images={[image]}
-                  destinationId={destinationId}
+                  destination={location.split(",")[0]}
                   tourId={tourId}
                 />
               </SwiperSlide>

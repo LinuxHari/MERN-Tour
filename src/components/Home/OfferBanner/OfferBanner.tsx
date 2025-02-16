@@ -2,7 +2,7 @@ import Image from "../../Shared/Image/Image";
 
 const OfferBanner = () => {
   return (
-    <section data-anim="slide-up" className="cta -type-2 is-in-view">
+    <section className="cta -type-2">
       <div className="cta__bg">
         <Image src="img/cta/2/bg.png" alt="" />
 
