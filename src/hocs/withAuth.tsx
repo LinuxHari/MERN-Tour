@@ -1,4 +1,4 @@
-import React, {useState, useLayoutEffect} from "react";
+import React from "react";
 import {useLocation} from "react-router-dom";
 import useUserHandler from "../hooks/useUserHandler";
 import NotFound from "../pages/NotFound";
@@ -9,7 +9,6 @@ const withAuth = <T extends object>(Component: React.ComponentType<T>) => {
   return function WithAuthWrapper(props: T) {
     const {isLoggedIn, isLoading, user} = useUserHandler();
     const {pathname} = useLocation();
-    const [showContent, setShowContent] = useState(false);
 
     const adminPages = [
       "/dashboard",
@@ -20,21 +19,7 @@ const withAuth = <T extends object>(Component: React.ComponentType<T>) => {
     const isRestricted =
       adminPages.includes(pathname) && user && user.role !== Role.admin;
 
-    useLayoutEffect(() => {
-      let timeoutId: NodeJS.Timeout;
-
-      if (!isLoading) {
-        timeoutId = setTimeout(() => {
-          setShowContent(true);
-        }, 500);
-      }
-
-      return () => {
-        if (timeoutId) clearTimeout(timeoutId);
-      };
-    }, [isLoading]);
-
-    if (isLoading || !showContent) return <CommonSkeleton />;
+    if (isLoading || !user) return <CommonSkeleton />;
 
     if (isLoggedIn && !isRestricted) return <Component {...props} />;
 

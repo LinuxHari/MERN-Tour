@@ -1,4 +1,3 @@
-import {useState, useLayoutEffect} from "react";
 import {Outlet, useLocation} from "react-router-dom";
 import Sidebar from "../components/Admin/Sidebar";
 import useUserHandler from "../hooks/useUserHandler";
@@ -9,7 +8,6 @@ import CommonSkeleton from "../components/Skeletons/CommonSkeleton";
 const AdminLayout = () => {
   const {isLoggedIn, isLoading, user} = useUserHandler();
   const {pathname} = useLocation();
-  const [showContent, setShowContent] = useState(false);
 
   const adminPages = [
     "/dashboard",
@@ -20,21 +18,7 @@ const AdminLayout = () => {
   const isRestricted =
     adminPages.includes(pathname) && user && user.role !== Role.admin;
 
-  useLayoutEffect(() => {
-    let timeoutId: NodeJS.Timeout;
-
-    if (!isLoading) {
-      timeoutId = setTimeout(() => {
-        setShowContent(true);
-      }, 500);
-    }
-
-    return () => {
-      if (timeoutId) clearTimeout(timeoutId);
-    };
-  }, [isLoading]);
-
-  if (isLoading || !showContent) return <CommonSkeleton />;
+  if (isLoading || !user) return <CommonSkeleton />;
 
   if (!isLoggedIn || isRestricted) return <NotFound />;
 
@@ -44,7 +28,6 @@ const AdminLayout = () => {
         <Sidebar />
       </div>
       <div className="dashboard__content">
-        {/* <Header /> */}
         <div className="dashboard__content_content">
           <Outlet />
         </div>
