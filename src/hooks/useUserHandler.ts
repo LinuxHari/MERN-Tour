@@ -7,8 +7,9 @@ import {
 import {PasswordSchemaType, UserSchemaType} from "../schema/userSchema";
 
 const useUserHandler = () => {
-  const {data, isError, isLoading: isUpdatingProfile} = useGetUserInfoQuery();
-  const [updateUserInfo, {isLoading}] = useUpdateUserInfoMutation();
+  const {data, isError, isLoading} = useGetUserInfoQuery();
+  const [updateUserInfo, {isLoading: isUpdatingProfile}] =
+    useUpdateUserInfoMutation();
   const [updatePassword, {isLoading: isUpdatingPassword}] =
     useUpdatePasswordMutation();
 
