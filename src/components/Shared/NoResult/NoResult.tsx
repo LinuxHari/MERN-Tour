@@ -1,8 +1,26 @@
-type NoResultProps = {
+import {useNavigate} from "react-router-dom";
+import Button from "../Button/Button";
+
+type BaseProps = {
+  title: string;
   description: string;
 };
 
-const NoResult = ({description}: NoResultProps) => {
+type GoBackProps = {
+  showGoBack: true;
+  url?: never;
+};
+
+type LinkProps = {
+  showGoBack?: false;
+  url?: string;
+};
+
+type NoResultProps = BaseProps & (GoBackProps | LinkProps);
+
+const NoResult = ({title, description, url, showGoBack}: NoResultProps) => {
+  const navigate = useNavigate();
+
   return (
     <div className="d-flex flex-column justify-content-center align-items-center y-gap-5">
       <img
@@ -10,9 +28,20 @@ const NoResult = ({description}: NoResultProps) => {
         alt="No Result"
         style={{scale: "80%", minHeight: "50vh"}}
       />
-      <p className="text-20 fw-500" style={{transform: "translateY(-40px)"}}>
-        {description}
-      </p>
+      <h2 className="text-20 fw-500">{title}</h2>
+      <p style={{transform: "translateY(-40px)"}}>{description}</p>
+
+      {showGoBack && (
+        <Button buttonType="primary" onClick={() => navigate(-1)}>
+          Go Back
+        </Button>
+      )}
+
+      {url && (
+        <Button buttonType="primary" onClick={() => navigate(url)}>
+          Try again
+        </Button>
+      )}
     </div>
   );
 };

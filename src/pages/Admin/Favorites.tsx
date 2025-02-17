@@ -64,7 +64,10 @@ const Favorites = ({render}: RenderProps) => {
               </div>
             </>
           ) : (
-            <NoResult description="You do not have favorite tours!" />
+            <NoResult
+              title="You do not have favorite tours!"
+              description="Add your favorite tours"
+            />
           )}
         </div>
       )}

@@ -58,7 +58,14 @@ const CheckoutForm = () => {
 
   if (isReservedDetailsLoading) return <BookingFormSkeleton />;
 
-  if (!reservedTour) return <NoResult description="No reserved tours found" />;
+  if (!reservedTour)
+    return (
+      <NoResult
+        title="No reserved tours found"
+        description="Please reserve tour before trying to book."
+        url="/"
+      />
+    );
 
   return (
     <form

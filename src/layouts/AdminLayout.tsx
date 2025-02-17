@@ -5,7 +5,7 @@ import {Role} from "../type";
 import NotFound from "../pages/NotFound";
 
 const AdminLayout = () => {
-  const {user, isLoggedIn} = useUserHandler();
+  const {user, isLoggedIn} = useUserHandler(); // Loading will be managed in withAuth
   const {pathname} = useLocation();
 
   const adminPages = [

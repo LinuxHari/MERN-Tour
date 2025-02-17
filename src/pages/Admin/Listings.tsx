@@ -62,7 +62,10 @@ const Listings = ({render}: RenderProps) => {
           </div>
         </div>
       ) : (
-        <NoResult description="No tours have been published!" />
+        <NoResult
+          title="Add a tour"
+          description="No tour has been published!"
+        />
       )}
     </>
   );

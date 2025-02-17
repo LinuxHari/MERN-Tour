@@ -44,7 +44,10 @@ const ListingTours = () => {
             </div>
           </div>
           {!tours.length && !isFiltersApplied ? (
-            <NoResult description="No tours found for this location" />
+            <NoResult
+              title="No tours found"
+              description="Try searching different location"
+            />
           ) : (
             <>
               <ListingHeader destination={destination} />
@@ -64,7 +67,10 @@ const ListingTours = () => {
                     <div className="col-xl-9 col-lg-8">
                       {!isFetching ? (
                         !tours.length && isFiltersApplied ? (
-                          <NoResult description="No tours found, try changing filters" />
+                          <NoResult
+                            title="No tours found"
+                            description="Try changing filters"
+                          />
                         ) : (
                           <>
                             <TourListHeader

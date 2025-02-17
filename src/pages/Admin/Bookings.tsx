@@ -31,7 +31,12 @@ const Bookings = ({render}: RenderProps) => {
   } = useGetBookingsQuery({status: currentTab.toLowerCase(), page});
 
   if (isError || (!isLoading && !bookings))
-    return <NoResult description="Something went wrong!" />;
+    return (
+      <NoResult
+        title="Something went wrong"
+        description="Maybe try again later."
+      />
+    );
 
   const bookingData = bookings
     ? organizeBookingData(bookings.bookings, currentTab)

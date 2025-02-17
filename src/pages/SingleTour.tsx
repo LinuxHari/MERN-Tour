@@ -13,9 +13,14 @@ const SingleTour = () => {
     return <TourDetailSkeleton />;
   }
 
-  if (!data) {
-    return <NoResult description="Tour not available" />;
-  }
+  if (!data)
+    return (
+      <NoResult
+        title="Tour is not available"
+        description="Choose different tour"
+        showGoBack
+      />
+    );
 
   return (
     <>

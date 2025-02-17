@@ -27,7 +27,12 @@ const Booking = () => {
     );
 
   if (isBookingError || !booking)
-    return <NoResult description="Something went wrong" />;
+    return (
+      <NoResult
+        title="Unable to Load Booking Details"
+        description="Check internet connection and try again later"
+      />
+    );
 
   const {tourInfo, amount, ...bookingInfo} = booking;
 

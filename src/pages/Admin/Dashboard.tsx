@@ -11,7 +11,9 @@ const Dashboard = ({render}: RenderProps) => {
     useStatsInfo();
 
   if (isError) {
-    return <NoResult description="Something went wrong!" />;
+    return (
+      <NoResult title="Something went wrong" description="Maybe try later." />
+    );
   }
 
   return (
