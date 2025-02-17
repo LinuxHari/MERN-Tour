@@ -34,6 +34,18 @@ const UpdateProfile = () => {
     resolver: zodResolver(UserSchema),
   });
 
+  const defaultPhoneNumber = (() => {
+    if (user?.country) {
+      const phoneInfo = phone(user?.phone.toString(), {country: user.country});
+
+      if (phoneInfo.isValid) {
+        setValue("countryCode", parseInt(phoneInfo.countryCode));
+
+        return phoneInfo.phoneNumber;
+      }
+    }
+  })();
+
   const handlePhoneChange = (value: string, countryData: CountryData) => {
     const number = value.toString().slice(countryData.dialCode.length);
     const {isValid} = phone(value, {country: countryData.countryCode});
@@ -95,6 +107,7 @@ const UpdateProfile = () => {
             inputProps={{
               name: "phone",
             }}
+            value={defaultPhoneNumber || ""}
             inputClass="shadow-none overflow-hidden w-100"
             country="us"
             placeholder="Enter phone number"

@@ -29,7 +29,7 @@ const NoResult = ({title, description, url, showGoBack}: NoResultProps) => {
         style={{scale: "80%", minHeight: "50vh"}}
       />
       <h2 className="text-20 fw-500">{title}</h2>
-      <p style={{transform: "translateY(-40px)"}}>{description}</p>
+      <p>{description}</p>
 
       {showGoBack && (
         <Button buttonType="primary" onClick={() => navigate(-1)}>
