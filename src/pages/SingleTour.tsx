@@ -49,6 +49,7 @@ const SingleTour = () => {
         startDate={startDate}
         endDate={endDate}
         tourId={tourId}
+        canReview={data.canReview}
       />
       {/* <TourSuggestions /> */}
     </>

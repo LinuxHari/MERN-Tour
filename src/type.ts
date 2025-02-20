@@ -99,6 +99,7 @@ export type SingleTourResponse = Omit<
   freeCancellation: boolean;
   duration: number;
   destination: string;
+  canReview?: boolean;
 };
 
 // export type TourCategories = "Nature" | "Adventure" | "Cultural" | "Food" | "City" | "Cruises"

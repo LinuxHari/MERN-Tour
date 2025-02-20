@@ -24,7 +24,11 @@ type TourSearchParams = {
   teens: number;
   page: number;
   filters: number;
-  appliedFilters: AppliedFiltersProps & {sortType?: string; minPrice?: number; maxPrice?: number};
+  appliedFilters: AppliedFiltersProps & {
+    sortType?: string;
+    minPrice?: number;
+    maxPrice?: number;
+  };
 };
 
 type SingleTourParams = {
@@ -52,11 +56,16 @@ export const baseApi = createApi({
         return {
           url: "/tour",
           params: {...restParams, ...appliedFilters},
+          credentials: "include",
         };
       },
     }),
     getTourById: builder.query<SingleTourResponse, SingleTourParams>({
-      query: ({id, ...params}) => ({url: `/tour/${id}`, params}),
+      query: ({id, ...params}) => ({
+        url: `/tour/${id}`,
+        params,
+        credentials: "include",
+      }),
     }),
     reserveTour: builder.mutation<ReserveResponse, ReserveBody>({
       query: (reserveData) => ({
@@ -69,7 +78,10 @@ export const baseApi = createApi({
     getReservedTour: builder.query<ReservedTourResponse, string>({
       query: (id) => ({url: `/tour/reserve/${id}`, credentials: "include"}),
     }),
-    bookTour: builder.mutation<{clientSecret: string; bookingId: string}, BookingBody>({
+    bookTour: builder.mutation<
+      {clientSecret: string; bookingId: string},
+      BookingBody
+    >({
       query: ({id, ...bookingData}) => ({
         url: `/tour/book/${id}`,
         method: "POST",
@@ -82,11 +94,19 @@ export const baseApi = createApi({
       providesTags: (_, __, bookingId) => [{type: "Book", id: bookingId}],
     }),
     cancelBooking: builder.mutation<void, string>({
-      query: (id) => ({url: `/tour/book/cancel/${id}`, method: "POST", credentials: "include"}),
+      query: (id) => ({
+        url: `/tour/book/cancel/${id}`,
+        method: "POST",
+        credentials: "include",
+      }),
       invalidatesTags: (_, __, bookingId) => [{type: "Book", id: bookingId}],
     }),
     getReview: builder.query<ReviewResponse, string>({
-      query: (id) => ({url: `/tour/review/${id}`, method: "GET", credentials: "include"}),
+      query: (id) => ({
+        url: `/tour/review/${id}`,
+        method: "GET",
+        credentials: "include",
+      }),
       providesTags: (_, __, tourId) => [{type: "Review", id: tourId}],
     }),
     review: builder.mutation<void, RatingType & {tourId: string}>({

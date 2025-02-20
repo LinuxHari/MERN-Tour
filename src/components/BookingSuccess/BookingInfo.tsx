@@ -34,11 +34,11 @@ const BookingInfo = ({
     <>
       <div className="d-flex flex-column items-center text-center relative">
         {freeCancellation && isCancellable && (
-          <div className="bg-success text-white px-5 py-2 fw-400 rounded-pill position-absolute top-0 end-0">
+          <div className="bg-success text-white px-5 py-2 fw-400 rounded-pill position-absolute top-0 start-0">
             Free cancellation
           </div>
         )}
-        <div className="size-80 rounded-full flex-center bg-accent-1 text-white relative">
+        <div className="size-80 mt-60 mt-md-0 rounded-full flex-center bg-accent-1 text-white relative">
           <i className="icon-check text-26" />
         </div>
 

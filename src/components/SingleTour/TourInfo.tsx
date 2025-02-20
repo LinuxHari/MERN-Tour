@@ -24,6 +24,7 @@ type TourInfoProps = {
   startDate: string;
   endDate: string;
   tourId: string;
+  canReview?: boolean;
 };
 
 const TourInfo = ({
@@ -41,6 +42,7 @@ const TourInfo = ({
   startDate,
   endDate,
   tourId,
+  canReview,
 }: TourInfoProps) => {
   return (
     <section className="layout-pt-md js-pin-container">
@@ -57,7 +59,7 @@ const TourInfo = ({
             <IncludedServices included={included} />
             <Itinerary itinerary={itinerary} />
             <TourMap location={itinerary} />
-            <Reviews tourId={tourId} />
+            <Reviews tourId={tourId} canReview={canReview} />
             <TourFAQ faq={faq} />
           </div>
           <div className="col-12 col-lg-4 order-lg-1 order-0">

@@ -46,30 +46,37 @@ const Booking = () => {
       <section className="layout-pt-md layout-pb-lg mt-header">
         <div className="container">
           <div className="row">
-            <div className="col-lg-8 bg-white rounded-12 shadow-2 py-30 px-30 md:py-20 md:px-20 relative">
+            <div className="col-lg-8 bg-white rounded-12 shadow-2 py-30 px-20">
               <BookingInfo
                 {...bookingInfo}
                 amount={amount}
                 bookingId={bookingId}
               />
-              <div className="d-flex items-center justify-end mt-3">
-                {bookingInfo.isCancellable &&
-                  bookingInfo.status !== "canceled" &&
-                  bookingInfo.status !== "failed" && (
-                    <Button
-                      buttonType="secondary"
-                      onClick={openModal}
-                      disabled={isCancelLoading}
-                    >
-                      Cancel
+              <div className="container mt-3">
+                <div className="row g-2 justify-content-end">
+                  {bookingInfo.isCancellable &&
+                    bookingInfo.status !== "canceled" &&
+                    bookingInfo.status !== "failed" && (
+                      <div className="col-12 col-md-auto">
+                        <Button
+                          buttonType="secondary"
+                          className="w-100"
+                          onClick={openModal}
+                          disabled={isCancelLoading}
+                        >
+                          Cancel
+                        </Button>
+                      </div>
+                    )}
+                  <div className="col-12 col-md-auto">
+                    <Button className="w-100" buttonType="link" to="/">
+                      Book again
                     </Button>
-                  )}
-                <Button className="ml-20" buttonType="link" to="/">
-                  Book again
-                </Button>
+                  </div>
+                </div>
               </div>
             </div>
-            <div className="col-lg-4">
+            <div className="col-lg-4 px-0">
               <TourDetails {...tourInfo} amount={amount} />
             </div>
           </div>

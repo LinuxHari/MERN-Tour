@@ -80,7 +80,7 @@ const TourCard2 = ({
           {destination}
         </div>
 
-        <h3 className="tourCard__title mt-2">
+        <h3 className="tourCard__title mt-2 line-clamp-2">
           <span>{name}</span>
         </h3>
         <p className="tourCard__text mt-2 mb-2 line-clamp-4">{description}</p>

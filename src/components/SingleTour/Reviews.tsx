@@ -7,11 +7,13 @@ import TourReviews from "./TourReviews";
 
 type ReviewsProps = {
   tourId: string;
+  canReview?: boolean;
 };
 
-const Reviews = ({tourId}: ReviewsProps) => {
+const Reviews = ({tourId, canReview}: ReviewsProps) => {
   const {isLoggedIn} = useUserHandler();
-  const {reviews, isError, isLoading, reviewTour, isReviewLoading} = useReviewHandler(tourId);
+  const {reviews, isError, isLoading, reviewTour, isReviewLoading} =
+    useReviewHandler(tourId);
 
   return (
     <>
@@ -36,7 +38,11 @@ const Reviews = ({tourId}: ReviewsProps) => {
           </>
         )}
 
-        {isLoggedIn && <PostReview onSubmit={reviewTour} isLoading={isReviewLoading} />}
+        {isLoggedIn && canReview && (
+          <div className="mt-40">
+            <PostReview onSubmit={reviewTour} isLoading={isReviewLoading} />
+          </div>
+        )}
       </TourSectionLayout>
     </>
   );
