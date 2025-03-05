@@ -17,8 +17,8 @@ const Reviews = ({tourId, canReview}: ReviewsProps) => {
 
   return (
     <>
-      <TourSectionLayout title="Customer Reviews">
-        {reviews && !isError && !isLoading && (
+      {reviews && !isError && !isLoading && (
+        <TourSectionLayout title="Customer Reviews">
           <>
             <TourReviews
               location={reviews.location}
@@ -36,14 +36,13 @@ const Reviews = ({tourId, canReview}: ReviewsProps) => {
               />
             )}
           </>
-        )}
-
-        {isLoggedIn && canReview && (
-          <div className="mt-40">
-            <PostReview onSubmit={reviewTour} isLoading={isReviewLoading} />
-          </div>
-        )}
-      </TourSectionLayout>
+          {isLoggedIn && canReview && (
+            <div className="mt-40">
+              <PostReview onSubmit={reviewTour} isLoading={isReviewLoading} />
+            </div>
+          )}
+        </TourSectionLayout>
+      )}
     </>
   );
 };

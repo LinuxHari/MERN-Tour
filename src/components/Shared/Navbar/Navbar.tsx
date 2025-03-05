@@ -1,7 +1,6 @@
 import {ACTIVITIES, DESTINATIONS} from "../../../data";
 import Currency from "./Currency";
 import Logo from "./Logo";
-import Search from "./Search";
 import Places from "./Places";
 import AuthSection from "./AuthSection";
 
@@ -14,9 +13,6 @@ const Navbar = () => {
       >
         <div className="header__logo">
           <Logo />
-          <div className="xl:d-none ml-30">
-            <Search />
-          </div>
         </div>
         <div className="headerMobile__right ml-40 items-center mt-2">
           <Currency isMobile />

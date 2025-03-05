@@ -478,44 +478,6 @@ export const ACTIVITIES = {
   },
 };
 
-export const RECENT_SEARCHES = [
-  {
-    title: "Phuket",
-    location: "Thailand, Asia",
-    icon: "icon-pin",
-  },
-  {
-    title: "London Day Trips",
-    location: "England",
-    icon: "icon-price-tag",
-  },
-  {
-    title: "Europe",
-    location: "Country",
-    icon: "icon-flag",
-  },
-  {
-    title: "Centipede Tour - Guided Arizona Desert Tour by ATV",
-    location: "Country",
-    icon: "img/misc/icon.png",
-  },
-  {
-    title: "Istanbul",
-    location: "Turkey",
-    icon: "icon-pin",
-  },
-  {
-    title: "Berlin",
-    location: "Germany, Europe",
-    icon: "icon-pin",
-  },
-  {
-    title: "London",
-    location: "England, Europe",
-    icon: "icon-pin",
-  },
-];
-
 export const CURRENCIES = [
   {label: "U.S. Dollar", value: "USD"},
   // {label: "U.A. Dinar", value: "UAE"},
@@ -525,26 +487,26 @@ export const SEARCH_SUGGESTIONS = [
   {
     destination: "Paris",
     destinationType: "City",
-    destinationId: "a9513523",
+    destinationId: "a2b410d3",
   },
   {
     destination: "Bangkok",
     destinationType: "City",
-    destinationId: "a9513524",
+    destinationId: "10b2afa4",
   },
   {
     destination: "Florida",
     destinationType: "State",
-    destinationId: "a9513525",
+    destinationId: "5b59e3e9",
   },
   {
-    destination: "India",
-    destinationType: "Country",
-    destinationId: "a9513526",
+    destination: "Tamil Nadu",
+    destinationType: "State",
+    destinationId: "1525c1e2",
   },
   {
     destination: "France",
     destinationType: "Country",
-    destinationId: "a9513527",
+    destinationId: "3083e030",
   },
 ];

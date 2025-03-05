@@ -53,9 +53,11 @@ const TourCard = ({
               </span>
             </h3>
 
-            <div className="tourCard__rating d-flex items-center text-13">
-              <Rating rating={rating} reviewCount={reviewCount} />
-            </div>
+            {reviewCount > 0 && (
+              <div className="tourCard__rating d-flex items-center text-13">
+                <Rating rating={rating} reviewCount={reviewCount} />
+              </div>
+            )}
           </div>
           <div className="d-flex justify-between items-center border-1-top text-13 text-dark-1 pt-10 mt-10">
             <div className="d-flex items-center">

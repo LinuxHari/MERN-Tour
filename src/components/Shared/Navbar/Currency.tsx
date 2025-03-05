@@ -27,10 +27,14 @@ const Currency = ({isMobile = false}: CurrencyProps) => {
       </Select.Button>
       <Select.Menu className="min-w-50">
         <div className="headerDropdown">
-          <div className="d-flex flex-column items-center justify-center">
+          <div className="d-flex flex-column align-items-center justify-content-center">
             {currencies.map((currency, index) => (
-              <Select.Option key={index} value={currency} className="px-0 py-2">
-                <span>{currency}</span>
+              <Select.Option
+                key={index}
+                value={currency}
+                className="px-0 py-2 w-100 text-center"
+              >
+                {currency}
               </Select.Option>
             ))}
           </div>

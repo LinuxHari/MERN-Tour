@@ -74,7 +74,9 @@ const TourCard2 = ({
       </div>
 
       <div className="tourCard__content">
-        <Rating rating={averageRating} reviewCount={totalRatings} />
+        {totalRatings > 0 && (
+          <Rating rating={averageRating} reviewCount={totalRatings} />
+        )}
         <div className="tourCard__location">
           <i className="icon-pin" />
           {destination}
