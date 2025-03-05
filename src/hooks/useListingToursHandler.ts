@@ -224,8 +224,8 @@ const useListingToursHandler = () => {
   );
 
   useEffect(() => {
-    if (data?.filters && filterRef.current) {
-      setFilters({...data.filters, ...filters});
+    if (data?.filters) {
+      setFilters(data.filters);
       filterRef.current = 0;
     }
   }, [data]);
@@ -236,6 +236,11 @@ const useListingToursHandler = () => {
       tourTypes: tourType === "All tours" ? undefined : [tourType],
     }));
   }, [tourType]);
+
+  useEffect(() => {
+    filterRef.current = 1;
+    setAppliedFilters(defaultAppliedFilters);
+  }, [destinationId]);
 
   return {
     tours,
