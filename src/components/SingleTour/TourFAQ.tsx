@@ -9,7 +9,7 @@ const TourFAQ = ({faq}: TourFAQProps) => {
   return (
     <>
       <h2 className="text-30">FAQs</h2>
-      <Accordion type="single" className="-simple row y-gap-20 mt-30">
+      <Accordion type="single" className="-simple row y-gap-20 mt-30 mb-30">
         {faq.map((item, index) => (
           <div className="col-12" key={index}>
             <Accordion.Item
@@ -17,8 +17,13 @@ const TourFAQ = ({faq}: TourFAQProps) => {
               index={index}
               className="accordion__item px-20 py-15 border-1 rounded-12"
             >
-              <Accordion.Button className="d-flex items-center justify-between" isShowIcon={false}>
-                <div className="button text-16 text-dark-1">{item.question}</div>
+              <Accordion.Button
+                className="d-flex items-center justify-between"
+                isShowIcon={false}
+              >
+                <div className="button text-16 text-dark-1">
+                  {item.question}
+                </div>
 
                 <div className="accordion__icon size-30 flex-center bg-light-2 rounded-full">
                   <i className="icon-plus text-13" />

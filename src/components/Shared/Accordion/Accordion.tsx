@@ -1,5 +1,8 @@
 import {ReactNode, useState} from "react";
-import {AccordionContext, useAccordionContext} from "../../../context/AccordionContext";
+import {
+  AccordionContext,
+  useAccordionContext,
+} from "../../../context/AccordionContext";
 
 type commonProps = {
   children: ReactNode;
@@ -26,13 +29,25 @@ type AccordionButtonProps = commonProps & {
   isShowIcon?: boolean;
 };
 
-const Accordion = ({type, children, className = "", defaultOpen}: AccordionProps) => {
-  const defaultOpenValues = defaultOpen ? (type === "single" ? [0] : defaultOpen) : [];
-  const [activeAccordions, setActiveAccordions] = useState<number[]>(defaultOpenValues);
+const Accordion = ({
+  type,
+  children,
+  className = "",
+  defaultOpen,
+}: AccordionProps) => {
+  const defaultOpenValues = defaultOpen
+    ? type === "single"
+      ? [0]
+      : defaultOpen
+    : [];
+  const [activeAccordions, setActiveAccordions] =
+    useState<number[]>(defaultOpenValues);
 
   const handleToggle = (index: number) => {
     if (type === "single") {
-      setActiveAccordions((prevState) => (prevState.includes(index) ? [] : [index]));
+      setActiveAccordions((prevState) =>
+        prevState.includes(index) ? [] : [index],
+      );
     } else {
       setActiveAccordions((prevState) =>
         prevState.includes(index)
@@ -43,13 +58,19 @@ const Accordion = ({type, children, className = "", defaultOpen}: AccordionProps
   };
 
   return (
-    <AccordionContext.Provider value={{activeAccordions, onToggle: handleToggle}}>
+    <AccordionContext.Provider
+      value={{activeAccordions, onToggle: handleToggle}}
+    >
       <div className={`accordion js-accordion ${className}`}>{children}</div>
     </AccordionContext.Provider>
   );
 };
 
-const AccordionItem = ({children, index, className = ""}: AccordionItemProps) => {
+const AccordionItem = ({
+  children,
+  index,
+  className = "",
+}: AccordionItemProps) => {
   const {activeAccordions, onToggle} = useAccordionContext();
   const isActive = activeAccordions.includes(index);
 
@@ -72,9 +93,15 @@ const AccordionItem = ({children, index, className = ""}: AccordionItemProps) =>
   );
 };
 
-const AccordionButton = ({children, isShowIcon = true, className = ""}: AccordionButtonProps) => {
+const AccordionButton = ({
+  children,
+  isShowIcon = true,
+  className = "",
+}: AccordionButtonProps) => {
   return (
-    <div className={`accordion__button d-flex justify-content-between ${className}`}>
+    <div
+      className={`accordion__button d-flex justify-content-between ${className}`}
+    >
       {children}
       {isShowIcon && (
         <div className="accordion__icon flex-center">
@@ -86,13 +113,17 @@ const AccordionButton = ({children, isShowIcon = true, className = ""}: Accordio
   );
 };
 
-const AccordionContent = ({children, index, className = ""}: AccordionItemProps) => {
+const AccordionContent = ({
+  children,
+  index,
+  className = "",
+}: AccordionItemProps) => {
   const {activeAccordions} = useAccordionContext();
   const isActive = activeAccordions.includes(index);
 
   return (
     <button
-      className={`accordion__content ${className}`}
+      className={`accordion__content ${className} text-start`}
       style={{display: isActive ? "block" : "none", maxHeight: "300px"}}
       onClick={(e) => {
         e.stopPropagation();

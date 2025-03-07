@@ -15,14 +15,14 @@ const TrendingDestinations = () => {
     },
     {
       name: "Singapore",
-      tourCount: "300",
+      tourCount: "100",
       destinationId: "d404d82f",
       imgSrc:
         "https://firebasestorage.googleapis.com/v0/b/mern-tours-e23a8.appspot.com/o/assets%2Fdestinations%2FSingapore.png?alt=media&token=6332d0d9-d9f5-4aee-ac26-846ad7348525",
     },
     {
       name: "Greece",
-      tourCount: "400",
+      tourCount: "250",
       destinationId: "037794d3",
       imgSrc:
         "https://firebasestorage.googleapis.com/v0/b/mern-tours-e23a8.appspot.com/o/assets%2Fdestinations%2FGreece.jpeg?alt=media&token=d249b39c-ffc9-4899-8f8b-a26e65183bef",
@@ -36,21 +36,21 @@ const TrendingDestinations = () => {
     },
     {
       name: "Bali",
-      tourCount: "600",
+      tourCount: "100",
       destinationId: "aad8480c",
       imgSrc:
         "https://firebasestorage.googleapis.com/v0/b/mern-tours-e23a8.appspot.com/o/assets%2Fdestinations%2FBali.png?alt=media&token=e9b50f08-f3e2-4399-8856-25d6c2605073",
     },
     {
       name: "Phuket",
-      tourCount: "200",
+      tourCount: "150",
       destinationId: "4c68efe1",
       imgSrc:
         "https://firebasestorage.googleapis.com/v0/b/mern-tours-e23a8.appspot.com/o/assets%2Fdestinations%2FPhuket.png?alt=media&token=2c84de08-dce3-45ef-a7e5-06c8ac2bc61e",
     },
     {
       name: "Tokyo",
-      tourCount: "700",
+      tourCount: "200",
       destinationId: "813331c1",
       imgSrc:
         "https://firebasestorage.googleapis.com/v0/b/mern-tours-e23a8.appspot.com/o/assets%2Fdestinations%2FTokyo.png?alt=media&token=778e827d-029a-4713-897f-867e942bd267",
@@ -64,7 +64,7 @@ const TrendingDestinations = () => {
     },
     {
       name: "Tamil Nadu",
-      tourCount: "100",
+      tourCount: "300",
       destinationId: "1525c1e2",
       imgSrc:
         "https://firebasestorage.googleapis.com/v0/b/mern-tours-e23a8.appspot.com/o/assets%2Fdestinations%2FTamilNadu.jpg?alt=media&token=e5ccbcc8-9afe-4a44-971f-8389527751a3",
