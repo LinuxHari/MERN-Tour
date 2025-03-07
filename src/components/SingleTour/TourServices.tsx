@@ -7,7 +7,12 @@ type TourServicesProps = {
   languages: string[];
 };
 
-const TourServices = ({duration, minAge, capacity, languages}: TourServicesProps) => {
+const TourServices = ({
+  duration,
+  minAge,
+  capacity,
+  languages,
+}: TourServicesProps) => {
   const tourDetails = [
     {
       icon: "icon-clock",
@@ -32,7 +37,7 @@ const TourServices = ({duration, minAge, capacity, languages}: TourServicesProps
   ];
 
   return (
-    <div className="row y-gap-20 justify-between items-center layout-pb-md">
+    <div className="row y-gap-20 justify-between items-start layout-pb-md">
       {tourDetails.map((detail, index) => (
         <div key={index} className="col-lg-3 col-6">
           <TourService {...detail} />
