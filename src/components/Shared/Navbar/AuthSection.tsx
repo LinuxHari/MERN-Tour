@@ -14,7 +14,7 @@ type AuthSectionProps = {
 };
 
 const AuthSection = ({isMobile = false}: AuthSectionProps) => {
-  const {user, isLoggedIn} = useUserHandler();
+  const {user, isLoggedIn, isLoading} = useUserHandler();
   const {onLogout} = useAuthHandler();
   const {showModal, onClose, onConfirm, openModal} = useModal();
   const {width} = useWindowSize();
@@ -28,6 +28,15 @@ const AuthSection = ({isMobile = false}: AuthSectionProps) => {
       await onLogout(user.email);
     }
   };
+
+  if (isLoading) {
+    return (
+      <div
+        className="skeleton-element rounded-pill"
+        style={{width: "80px", height: "38px"}}
+      />
+    );
+  }
 
   return (
     <>

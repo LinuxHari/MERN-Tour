@@ -57,7 +57,7 @@ const TrendingDestinations = () => {
     },
     {
       name: "Brazil",
-      tourCount: "900",
+      tourCount: "150",
       destinationId: "3251bfc2",
       imgSrc:
         "https://firebasestorage.googleapis.com/v0/b/mern-tours-e23a8.appspot.com/o/assets%2Fdestinations%2FBrazil.jpeg?alt=media&token=ddbc48c4-7949-43e7-92d8-61177f10f2af",
@@ -71,7 +71,7 @@ const TrendingDestinations = () => {
     },
     {
       name: "Berlin",
-      tourCount: "300",
+      tourCount: "100",
       destinationId: "7e097906",
       imgSrc:
         "https://firebasestorage.googleapis.com/v0/b/mern-tours-e23a8.appspot.com/o/assets%2Fdestinations%2FBerlin.webp?alt=media&token=25cc3865-da4e-4e4a-a1de-d218bee9a844",
