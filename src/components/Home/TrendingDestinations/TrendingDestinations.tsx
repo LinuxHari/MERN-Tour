@@ -78,14 +78,14 @@ const TrendingDestinations = () => {
     },
     {
       name: "Los Angeles",
-      tourCount: "400",
+      tourCount: "300",
       destinationId: "343af849",
       imgSrc:
         "https://firebasestorage.googleapis.com/v0/b/mern-tours-e23a8.appspot.com/o/assets%2Fdestinations%2FLosAngeles.jpeg?alt=media&token=4ab9dc76-8c1d-47bf-8316-b7d0abb30d68",
     },
     {
       name: "Dubai",
-      tourCount: "100",
+      tourCount: "200",
       destinationId: "56187019",
       imgSrc:
         "https://firebasestorage.googleapis.com/v0/b/mern-tours-e23a8.appspot.com/o/assets%2Fdestinations%2FDubai.jpeg?alt=media&token=83d8ce2c-fa23-4da3-8564-4276ec9fb871",
