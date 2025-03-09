@@ -1,5 +1,5 @@
 type PlacesListProps = {
-  data: string[];
+  data: {name: string; url: string}[];
   title: string;
 };
 
@@ -10,7 +10,7 @@ const PlacesList = ({data, title}: PlacesListProps) => {
       <div className="tabsMenu-list__content">
         {data.map((place, index) => (
           <div key={index} className="tabsMenu-list__item">
-            <a href="/">{place}</a>
+            <a href={place.url}>{place.name}</a>
           </div>
         ))}
       </div>
