@@ -186,96 +186,184 @@ export const DESTINATIONS = {
 export const ACTIVITIES = {
   "Top world landmarks": {
     "Highly Rated": [
-      {name: "Eiffel Tower", url: "/tours/eiffel-tower"},
-      {name: "Colosseum", url: "/tours/colosseum"},
-      {name: "Big Ben", url: "/tours/big-ben"},
-      {name: "Sagrada Familia", url: "/tours/sagrada-familia"},
-      {name: "Acropolis", url: "/tours/acropolis"},
-      {name: "Brandenburg Gate", url: "/tours/brandenburg-gate"},
       {
-        name: "Rijksmuseum",
-        url: "/tours/rijksmuseum",
+        name: "Eiffel Tower",
+        url: "/tours/Paris/Parisian-Charm-Bike-Tour/129dbec3",
       },
       {
-        name: "Schonbrunn Palace",
-        url: "/tours/schonbrunn-palace",
+        name: "Colosseum",
+        url: "/tours/Rome/Colosseum-&-Ancient-Rome-Walking-Tour/b668ecd6",
+      },
+      {name: "Big Ben", url: "/tours/London/Big-Ben-Guided-Tour/291d4dca"},
+      {
+        name: "Sagrada Familia",
+        url: "/tours/Barcelona/Sagrada-Familia-Tour/1df90610",
+      },
+      {name: "Acropolis", url: "/tours/Acropolis/Acropolis-Secrets/eb253e09"},
+      {
+        name: "Berlin Fairytale",
+        url: "/tours/Berlin/Berlin's-Fairytale-Walking-Tour/fb400182",
       },
       {
-        name: "Belem Tower",
-        url: "/tours/belem-tower",
+        name: "Canal Cruise",
+        url: "/tours/Amsterdam/Canal-Cruise-&-Cheese/0ab206c3",
       },
       {
-        name: "Lake Geneva",
-        url: "/tours/lake-geneva",
+        name: "Sound of Music",
+        url: "/tours/Salzburg/Salzburg-Sound-of-Music/0334a3a9",
+      },
+      {
+        name: "Soviet History",
+        url: "/tours/Moscow/Moscow's-Soviet-History/48b59f6b",
+      },
+      {
+        name: "Chocolate Delights",
+        url: "/tours/Zurich/Zurich's-Chocolate-Delights/69d09e92",
       },
     ],
     "On Demand": [
       {
-        name: "Buckingham Palace",
-        url: "/tours/buckingham-palace",
+        name: "Ghosty Tales",
+        url: "/tours/London/London's-Ghostly-Tales/c098976c",
       },
       {
-        name: "Neuschwanstein Castle",
-        url: "/tours/neuschwanstein-castle",
+        name: "Bohemian Backstreets",
+        url: "/tours/Berlin/Berlin's-Bohemian-Backstreets/dd382699",
       },
       {
-        name: "Trevi Fountain",
-        url: "/tours/trevi-fountain",
+        name: "Vatican Scavenger Hunt",
+        url: "/tours/Rome/Rome's-Vatican-Scavenger-Hunt/700e009b",
       },
-      {name: "La Rambla", url: "/tours/la-rambla"},
       {
-        name: "Notre Dame",
-        url: "/tours/notre-dame",
+        name: "Modernist Marvels",
+        url: "/tours/Barcelona/Barcelona's-Modernist-Marvels/ea345de7",
       },
-      {name: "Vatican City", url: "/tours/vatican-city"},
-      {name: "Anne Frank House", url: "/tours/anne-frank-house"},
-      {name: "Belvedere Palace", url: "/tours/belvedere-palace"},
+      {
+        name: "Art Adventure",
+        url: "/tours/San-Jose/San-Jose-Street-Art-Adventure/65b582f7",
+      },
+      {
+        name: "Vatican Museum",
+        url: "/tours/Rome/Rome's-Vatican-Museums-Express/37e1003d",
+      },
+      {
+        name: "Broadway Lights",
+        url: "/tours/New-York-City/NYC-Broadway-Lights/6ba92426",
+      },
+      {name: "Hanoi Gems", url: "/tours/Hanoi/Hanoi's-Hidden-Charms/f84e838f"},
 
       {
-        name: "Monastery of Jeronimos",
-        url: "/tours/monastery-of-jeronimos",
+        name: "Kuala Lumpur Street Food",
+        url: "/tours/Kuala-Lumpur/KL-Street-Food-Safari/3679cb81?",
       },
-      {name: "Chillon Castle", url: "/tours/chillon-castle"},
+      {
+        name: "Geneva Gardens",
+        url: "/tours/Geneva/Geneva's-Secret-Gardens/a297760e",
+      },
     ],
   },
   "Food and Nightlife": {
     "Highly Rated": [
-      {name: "Paris", url: "/tours/paris"},
-      {name: "Barcelona", url: "/tours/barcelona"},
-      {name: "Berlin", url: "/tours/berlin"},
-      {name: "Rome", url: "/tours/rome"},
-      {name: "Amsterdam", url: "/tours/amsterdam"},
-      {name: "Athens", url: "/tours/athens"},
-      {name: "Vienna", url: "/tours/vienna"},
-      {name: "Lisbon", url: "/tours/lisbon"},
-      {name: "Zurich", url: "/tours/zurich"},
-      {name: "London", url: "/tours/london"},
+      {
+        name: "Kuala Lumpur",
+        url: "/tours/Kuala-Lumpur/KL-Street-Food-Safari/3679cb81",
+      },
+      {
+        name: "Barcelona",
+        url: "/tours/Barcelona/Barcelona's-Nightlife-Tour/cf152835",
+      },
+      {
+        name: "Berlin",
+        url: "/tours/Berlin/Berlin's-Nightlife-Exploration/1a3022eb",
+      },
+      {name: "Rome", url: "/tours/Rome/Rome's-Trastevere-Food-Tour/0c3ebdc6"},
+      {
+        name: "Zurich",
+        url: "/tours/Zurich/Zurich's-Chocolate-&-Charm/dc55a8e8",
+      },
+      {name: "Athens", url: "/tours/Acropolis/Acropolis-Night-Hike/0622e8e2"},
+      {
+        name: "Bangkok",
+        url: "/tours/Bangkok/Bangkok-by-Night:-Temples-&-Tuk-Tuks/a69585a7",
+      },
+      {
+        name: "Jakarta",
+        url: "/tours/Jakarta/Jakarta-Street-Food-Adventure/9951717b",
+      },
+      {
+        name: "Singapore",
+        url: "/tours/Singapore/Singapore's-Nightlights/0a58953f",
+      },
+      {
+        name: "London",
+        url: "/tours/London/London's-Foodie-Adventures/c15a6d3d",
+      },
     ],
     "On Demand": [
-      {name: "Madrid", url: "/tours/madrid"},
-      {name: "Milan", url: "/tours/milan"},
-      {name: "Prague", url: "/tours/prague"},
-      {name: "Munich", url: "/tours/munich"},
-      {name: "Brussels", url: "/tours/brussels"},
-      {name: "Budapest", url: "/tours/budapest"},
-      {name: "Copenhagen", url: "/tours/copenhagen"},
-      {name: "Dublin", url: "/tours/dublin"},
-      {name: "Stockholm", url: "/tours/stockholm"},
-      {name: "Warsaw", url: "/tours/warsaw"},
+      {
+        name: "Barcelona",
+        url: "/tours/Barcelona/Barcelona's-Nightlife-Tour/cf152835",
+      },
+      {name: "Rome", url: "/tours/Rome/Rome's-Sunset-Vespa-Tour/4f6911e6"},
+      {name: "Tokyo", url: "/tours/Tokyo/Tokyo-Neon-Nights/4cf8a9ca"},
+      {
+        name: "South Korea",
+        url: "/tours/Seoul/Seoul-Street-Food-Adventure/4104078b",
+      },
+      {
+        name: "South Africa",
+        url: "/tours/Cape-Town/Cape-Town-Foodie-Adventure/2b70355f",
+      },
+      {name: "Dubai", url: "/tours/Dubai/Dubai's-Nighttime-Magic/199b2fc7"},
+      {
+        name: "Sweden",
+        url: "/tours/Kiruna/Kiruna-Icehotel-&-Northern-Lights/3a48afac",
+      },
+      {name: "Canada", url: "/tours/Toronto/Toronto-Night-Lights/cf1e33e6"},
+      {
+        name: "Cuba",
+        url: "/tours/Havana/Havana-Street-Food-Adventure/16c8c452",
+      },
+      {
+        name: "Mexico",
+        url: "/tours/Mexico-City/Mexico-City-Street-Food-Adventure/dc8f7334",
+      },
     ],
   },
   "Adventure and Sport": {
     "Highly Rated": [
-      {name: "Swiss Alps", url: "/tours/swiss-alps"},
-      {name: "Pyrenees", url: "/tours/pyrenees"},
-      {name: "Dolomites", url: "/tours/dolomites"},
-      {name: "Lake District", url: "/tours/lake-district"},
-      {name: "Black Forest", url: "/tours/black-forest"},
-      {name: "Tatra Mountains", url: "/tours/tatra-mountains"},
-      {name: "Julian Alps", url: "/tours/julian-alps"},
-      {name: "Mont Blanc", url: "/tours/mont-blanc"},
-      {name: "High Tatras", url: "/tours/high-tatras"},
-      {name: "Algarve", url: "/tours/algarve"},
+      {
+        name: "Tiruchirappalli",
+        url: "/tours/Tiruchirappalli/Trichy's-Sunrise-Temple-Trek/fc45aeeb",
+      },
+      {
+        name: "Hollywood Hills",
+        url: "/tours/Los-Angeles/Hollywood-Hills-Hike/42104915",
+      },
+      {
+        name: "Los Angeles",
+        url: "/tours/Los-Angeles/LA-Street-Art-Exploration/53afa2d0",
+      },
+      {
+        name: "Murmansk",
+        url: "/tours/Murmansk/Murmansk-Ice-Fishing-&-Lunch/b8aec622",
+      },
+      {
+        name: "Dominican Republic",
+        url: "tours/Punta-Cana/Punta-Cana-Adventure-Park/748575c3",
+      },
+      {
+        name: "Bangkok",
+        url: "/tours/Bangkok/Bangkok's-River-Kwai-Adventure/111a61ab",
+      },
+      {
+        name: "Bali",
+        url: "/tours/Bali/Bali's-Rice-Terraces-&-Volcano-Hike/25a99662",
+      },
+      {
+        name: "Kiruna",
+        url: "/tours/Kiruna/Kiruna-Snowmobile-&-Ice-Fishing/163d5b8f",
+      },
     ],
     "On Demand": [
       {name: "Scottish Highlands", url: "/tours/scottish-highlands"},
