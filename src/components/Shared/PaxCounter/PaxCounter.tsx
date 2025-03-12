@@ -10,7 +10,7 @@ type PaxCounterProps = {
   className?: string;
 };
 
-const PaxCounter = ({pax, setPax, price, className}: PaxCounterProps) => {
+const PaxCounter = ({pax, setPax, price, className = ""}: PaxCounterProps) => {
   const paxAgeMap: Record<string, keyof typeof MIN_AGE> = {
     adults: "adult",
     children: "child",

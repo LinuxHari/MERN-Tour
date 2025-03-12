@@ -123,8 +123,7 @@ const AccordionContent = ({
 
   return (
     <button
-      className={`accordion__content ${className} text-start`}
-      style={{display: isActive ? "block" : "none", maxHeight: "300px"}}
+      className={`accordion__content ${className} text-start ${isActive ? "is-active" : ""}`}
       onClick={(e) => {
         e.stopPropagation();
         // Add any additional click handling logic here

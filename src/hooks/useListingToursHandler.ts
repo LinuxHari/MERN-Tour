@@ -186,6 +186,8 @@ const useListingToursHandler = () => {
           }
         }
       }
+
+      if (page !== 1) setPage(1);
     },
     [filters, appliedFilters],
   );
@@ -194,7 +196,10 @@ const useListingToursHandler = () => {
       setPriceRange({minPrice, maxPrice}),
     [],
   );
-  const handlePage = useCallback((page: number) => setPage(page), []);
+  const handlePage = useCallback((page: number) => {
+    setPage(page);
+    setTimeout(() => window.scrollTo(0, 0), 500);
+  }, []);
 
   const handleNavigation = useCallback(
     (id: string, tourName: string, destination: string, duration: number) => {

@@ -1233,7 +1233,7 @@ button:focus {
 }
 
 .contactForm {
-  min-width: 270px;
+  min-width: 300px;
 }
 
 .contactForm select,
@@ -6782,6 +6782,14 @@ h6 {
   overflow: hidden;
   max-height: 0;
   transition: max-height 0.2s ease-out;
+  position: absolute;
+  opacity: 0;
+}
+
+.accordion__content.is-active {
+  max-height: 500px;
+  position: static;
+  opacity: 1;
 }
 
 .accordion__button {
@@ -12959,6 +12967,7 @@ table.table-4.-border-bottom tbody > tr {
 .dropdown.is-active .dropdown__menu {
   opacity: 1;
   pointer-events: auto;
+  transition: 0.1s;
 }
 
 .dropdown {

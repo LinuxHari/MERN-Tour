@@ -45,7 +45,7 @@ const Select = ({
       value={{selectedValue, showContent, toggleDropdown, selectOption}}
     >
       <div
-        className={`dropdown -type-2 js-dropdown js-form-dd is-active ${className}`}
+        className={`dropdown -type-2 js-dropdown js-form-dd ${showContent ? "is-active" : ""} ${className}`}
         ref={focusRef}
       >
         {children}
