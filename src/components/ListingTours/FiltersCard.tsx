@@ -23,7 +23,9 @@ const FiltersCard = ({
   return (
     <div className="sidebar -type-1 rounded-12">
       <div className="sidebar__header bg-accent-1">
-        <div className="text-20 text-white fw-500">Refine your search</div>
+        <div className="text-20 text-white text-center fw-500">
+          Explore with Ease
+        </div>
         <div className="mt-10">
           <button
             className="-md py-2 w-100 rounded -outline-accent-1 text-accent-1 bg-white"
