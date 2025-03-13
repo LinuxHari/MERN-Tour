@@ -2,6 +2,7 @@ import {useFormContext} from "react-hook-form";
 import useSearchSuggestionHandler from "../../../hooks/useSearchSuggestionHandler";
 import Input from "../../Shared/Input/Input";
 import Select2 from "../../Shared/Select/Select2";
+import SearchSkeleton from "../../Skeletons/SearchSkeleton";
 
 const SearchSuggestions = () => {
   const {suggestions, searchText, setSearchText, isFetching, inputRef} =
@@ -42,7 +43,7 @@ const SearchSuggestions = () => {
           ref={inputRef}
         />
         {isFetching ? (
-          <p className="d-flex py-2 js-select-control-choice">Loading...</p>
+          <SearchSkeleton />
         ) : (
           suggestions.map(({destination, destinationId, destinationType}) => (
             <Select2.Option

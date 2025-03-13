@@ -1,5 +1,6 @@
 import {ReviewResponse} from "../../type";
 import Avatar from "../Shared/Avatar/Avatar";
+import SearchSkeleton from "../Skeletons/SearchSkeleton";
 
 type TourRatingProps = {
   reviews: ReviewResponse["userReviews"];
@@ -8,7 +9,7 @@ type TourRatingProps = {
 };
 
 const TourRating = ({reviews, isLoading, totalCount}: TourRatingProps) => {
-  if (isLoading) return <>Loading...</>;
+  if (isLoading) return <SearchSkeleton />;
 
   return (
     <>
