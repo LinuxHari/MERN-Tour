@@ -1,5 +1,5 @@
 import {Outlet, useLocation} from "react-router-dom";
-import {useEffect, useState} from "react";
+import {useLayoutEffect, useState} from "react";
 import Sidebar from "../components/Admin/Sidebar";
 import useUserHandler from "../hooks/useUserHandler";
 import {Role} from "../type";
@@ -19,23 +19,23 @@ const AdminLayout = () => {
   const isRestricted =
     adminPages.includes(pathname) && user && user.role !== Role.admin;
 
-  useEffect(() => {
-    if (!isLoading && !isLoggedIn && isRestricted) {
-      const timer = setTimeout(() => {
-        setShowNotFound(true);
-      }, 2000);
-
-      return () => clearTimeout(timer);
+  useLayoutEffect(() => {
+    if ((!isLoading && !isLoggedIn) || isRestricted) {
+      setShowNotFound(true);
     }
   }, [isLoading, isLoggedIn]);
+
+  if (isLoading) return null;
 
   if (showNotFound) return <NotFound />;
 
   return (
     <div className="dashboard -is-sidebar-visible js-dashboard">
-      <div className="dashboard__sidebar js-dashboard-sidebar">
-        <Sidebar />
-      </div>
+      {!showNotFound && (
+        <div className="dashboard__sidebar js-dashboard-sidebar">
+          <Sidebar />
+        </div>
+      )}
       <div className="dashboard__content">
         {/* <Header /> */}
         <div className="dashboard__content_content">

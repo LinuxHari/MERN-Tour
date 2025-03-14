@@ -4,6 +4,7 @@ import {
   AppliedFiltersProps,
   BookingBody,
   BookingDetailsResponse,
+  ListingCardProps,
   ReserveBody,
   ReservedTourResponse,
   ReserveResponse,
@@ -118,6 +119,12 @@ export const baseApi = createApi({
       }),
       invalidatesTags: (_, __, {tourId}) => [{type: "Review", id: tourId}],
     }),
+    popularTours: builder.query<ListingCardProps[], void>({
+      query: () => ({
+        url: "/tour/popular",
+        method: "GET",
+      }),
+    }),
   }),
 });
 
@@ -132,4 +139,5 @@ export const {
   useCancelBookingMutation,
   useGetReviewQuery,
   useReviewMutation,
+  usePopularToursQuery,
 } = baseApi;
