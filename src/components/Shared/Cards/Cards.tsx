@@ -1,99 +1,16 @@
 import {Swiper, SwiperSlide} from "swiper/react";
 import {Navigation} from "swiper/modules";
 import TourCard from "../../Admin/Favorites/TourCard";
+import {useTrendingToursQuery} from "../../../redux/api/baseApi";
+import CardSkeleton from "../../Skeletons/CardSkeleton";
 
 const Cards = () => {
-  const tourCards = [
-    {
-      location: "Paris, France",
-      title: "Centipede Tour - Guided Arizona Desert Tour by ATV",
-      rating: 4.8,
-      reviews: 269,
-      duration: 4,
-      price: 189,
-      image: "img/tourCards/1/1.png",
-      tourId: "123456",
-      destinationId: "123456",
-    },
-    {
-      location: "New York, USA",
-      title: "Molokini and Turtle Town Snorkeling Adventure Aboard",
-      rating: 4.8,
-      reviews: 269,
-      duration: 4,
-      price: 225,
-      image: "img/tourCards/1/2.png",
-      tourId: "123456",
-      destinationId: "123456",
-    },
-    {
-      location: "London, UK",
-      title: "Westminster Walking Tour & Westminster Abbey Entry",
-      rating: 4.8,
-      reviews: 269,
-      duration: 4,
-      price: 943,
-      image: "img/tourCards/1/3.png",
-      tourId: "123456",
-      destinationId: "123456",
-    },
-    {
-      location: "New York, USA",
-      title: "All Inclusive Ultimate Circle Island Day Tour with Lunch",
-      rating: 4.8,
-      reviews: 269,
-      duration: 4,
-      price: 771,
-      image: "img/tourCards/1/4.png",
-      tourId: "123456",
-      destinationId: "123456",
-    },
-    {
-      location: "Paris, France",
-      title: "Space Center Houston Admission Ticket",
-      rating: 4.8,
-      reviews: 269,
-      duration: 4,
-      price: 189,
-      image: "img/tourCards/1/5.png",
-      tourId: "123456",
-      destinationId: "123456",
-    },
-    {
-      location: "New York, USA",
-      title: "Clear Kayak Tour of Shell Key Preserve and Tampa Bay Area",
-      rating: 4.8,
-      reviews: 269,
-      duration: 4,
-      price: 225,
-      image: "img/tourCards/1/6.png",
-      tourId: "123456",
-      destinationId: "123456",
-    },
-    {
-      location: "London, UK",
-      title: "History and Hauntings of Salem Guided Walking Tour",
-      rating: 4.8,
-      reviews: 269,
-      duration: 4,
-      price: 943,
-      image: "img/tourCards/1/7.png",
-      tourId: "123456",
-      destinationId: "123456",
-    },
-    {
-      location: "New York, USA",
-      title:
-        "Mauna Kea Summit Sunset and Stars Free Astro Photos Hilo Kona Waikoloa Pick Up",
-      rating: 4.8,
-      reviews: 269,
-      duration: 4,
-      price: 771,
-      image: "img/tourCards/1/9.png",
-      tourId: "123456",
-      destinationId: "123456",
-    },
-  ];
+  const {data: tours, isLoading, isError} = useTrendingToursQuery();
+
+  if (!tours || !tours.length || isError) return null;
+
+  if (isLoading)
+    return Array.from({length: 3}).map((_, i) => <CardSkeleton key={i} />);
 
   return (
     <div className="relative pt-40 sm:pt-20 is-in-view">
@@ -113,16 +30,16 @@ const Cards = () => {
             1280: {slidesPerView: 4},
           }}
         >
-          {tourCards.map(
+          {tours.map(
             (
               {
                 location,
                 title,
-                reviews,
+                reviewCount,
                 rating,
                 duration,
                 price,
-                image,
+                images,
                 tourId,
               },
               index,
@@ -131,11 +48,11 @@ const Cards = () => {
                 <TourCard
                   location={location}
                   title={title}
-                  reviewCount={reviews}
+                  reviewCount={reviewCount}
                   rating={rating}
                   duration={duration}
                   price={price}
-                  images={[image]}
+                  images={images}
                   destination={location.split(",")[0]}
                   tourId={tourId}
                 />

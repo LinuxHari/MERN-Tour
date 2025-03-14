@@ -197,7 +197,7 @@ export const ACTIVITIES = {
       {name: "Big Ben", url: "/tours/London/Big-Ben-Guided-Tour/291d4dca"},
       {
         name: "Sagrada Familia",
-        url: "/tours/Barcelona/Sagrada-Familia-Tour/1df90610",
+        url: "/tours/Barcelona/Explore-the-Majestic-Sagrada-Familia-on-an-Unforgettable-Tour/1df90610",
       },
       {name: "Acropolis", url: "/tours/Acropolis/Acropolis-Secrets/eb253e09"},
       {

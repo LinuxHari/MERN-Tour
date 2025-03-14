@@ -3,9 +3,13 @@ import useWindowSize from "./useWindowSize";
 
 type PaginationFn = (page: number) => void;
 
-const usePagination = (page: number, fn: PaginationFn, count: number) => {
+const usePagination = (
+  page: number,
+  perPage: number,
+  fn: PaginationFn,
+  count: number,
+) => {
   const [pages, setPages] = useState([1, null]);
-  const perPage = 10;
 
   const {width} = useWindowSize();
   const numOfPages = Math.ceil(count / perPage);
@@ -23,7 +27,9 @@ const usePagination = (page: number, fn: PaginationFn, count: number) => {
 
   useLayoutEffect(() => {
     if (numOfPages < buttonsToShow) {
-      const pages = Array.from({length: numOfPages}).map((_, index) => index + 1);
+      const pages = Array.from({length: numOfPages}).map(
+        (_, index) => index + 1,
+      );
 
       setPages(pages);
     } else if (page < buttonsToShow) {
@@ -48,7 +54,9 @@ const usePagination = (page: number, fn: PaginationFn, count: number) => {
       const pages = [
         1,
         null,
-        ...Array.from({length: buttonsToShow - 2}).map((_, index) => page - 1 + index),
+        ...Array.from({length: buttonsToShow - 2}).map(
+          (_, index) => page - 1 + index,
+        ),
         null,
         numOfPages,
       ];

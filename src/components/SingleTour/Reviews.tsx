@@ -36,12 +36,12 @@ const Reviews = ({tourId, canReview}: ReviewsProps) => {
               />
             )}
           </>
-          {isLoggedIn && canReview && (
-            <div className="mt-40">
-              <PostReview onSubmit={reviewTour} isLoading={isReviewLoading} />
-            </div>
-          )}
         </TourSectionLayout>
+      )}
+      {isLoggedIn && canReview && (
+        <div className="mt-40">
+          <PostReview onSubmit={reviewTour} isLoading={isReviewLoading} />
+        </div>
       )}
     </>
   );

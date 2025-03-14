@@ -39,7 +39,7 @@ const PostReview = ({onSubmit, isLoading}: PostReviewProps) => {
   }, [errors]);
 
   return (
-    <TourSectionLayout title="Leave a Review" showBorder={false}>
+    <TourSectionLayout title="Leave a Review">
       <form onSubmit={handleSubmit(submitReview)}>
         <div className="reviewsGrid pt-30">
           <Controller

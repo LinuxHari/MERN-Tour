@@ -60,6 +60,7 @@ const Favorites = ({render}: RenderProps) => {
                   totalCount={favoriteTours.totalCount}
                   page={page}
                   setPage={setPage}
+                  perPage={12}
                 />
               </div>
             </>

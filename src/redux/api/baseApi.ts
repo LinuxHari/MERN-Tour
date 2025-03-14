@@ -125,6 +125,12 @@ export const baseApi = createApi({
         method: "GET",
       }),
     }),
+    trendingTours: builder.query<ListingCardProps[], void>({
+      query: () => ({
+        url: "/tour/trending",
+        method: "GET",
+      }),
+    }),
   }),
 });
 
@@ -140,4 +146,5 @@ export const {
   useGetReviewQuery,
   useReviewMutation,
   usePopularToursQuery,
+  useTrendingToursQuery,
 } = baseApi;

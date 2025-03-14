@@ -1,12 +1,14 @@
 import {usePopularToursQuery} from "../../../redux/api/baseApi";
 import TourCard from "../../Admin/Favorites/TourCard";
+import CardSkeleton from "../../Skeletons/CardSkeleton";
 
 const PopularTours = () => {
   const {isLoading, data: tours, isError} = usePopularToursQuery();
 
   if (!tours || !tours.length || isError) return null;
 
-  if (isLoading) return <>Loading...</>;
+  if (isLoading)
+    return Array.from({length: 3}).map((_, i) => <CardSkeleton key={i} />);
 
   return (
     <section className="layout-pt-xl">

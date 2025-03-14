@@ -4,11 +4,18 @@ type PaginationProps = {
   page: number;
   setPage: (page: number) => void;
   totalCount: number;
+  perPage?: number;
 };
 
-const Pagination = ({page, setPage, totalCount}: PaginationProps) => {
-  const {perPage, prev, next, pages, disableNext, disablePrev} = usePagination(
+const Pagination = ({
+  page,
+  setPage,
+  totalCount,
+  perPage = 10,
+}: PaginationProps) => {
+  const {prev, next, pages, disableNext, disablePrev} = usePagination(
     page,
+    perPage,
     setPage,
     totalCount,
   );

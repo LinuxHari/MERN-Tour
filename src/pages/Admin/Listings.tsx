@@ -58,6 +58,7 @@ const Listings = ({render}: RenderProps) => {
               totalCount={publishedTours.totalCount}
               page={page}
               setPage={setPage}
+              perPage={12}
             />
           </div>
         </div>
