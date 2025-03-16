@@ -18,13 +18,7 @@ const SignupForm = ({onSignup, isLoading}: SignupFormProps) => {
   ];
 
   return (
-    <SimpleForm
-      fields={fields}
-      schema={SignupSchema}
-      buttonText="Sign Up"
-      onSubmit={onSignup}
-      isLoading={isLoading}
-    />
+    <SimpleForm fields={fields} schema={SignupSchema} buttonText="Sign Up" onSubmit={onSignup} isLoading={isLoading} />
   );
 };
 

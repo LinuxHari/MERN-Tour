@@ -17,13 +17,8 @@ const NotFound = () => {
               <h1>
                 40<span className="text-accent-1">4</span>
               </h1>
-              <h2 className="text-20 fw-500">
-                Oops! It looks like you&apos;re lost.
-              </h2>
-              <p>
-                The page you&apos;re looking for isn&apos;t available. Try to
-                search again or use the go to.
-              </p>
+              <h2 className="text-20 fw-500">Oops! It looks like you&apos;re lost.</h2>
+              <p>The page you&apos;re looking for isn&apos;t available. Try to search again or use the go to.</p>
 
               <Button buttonType="link" to="/">
                 Go Home

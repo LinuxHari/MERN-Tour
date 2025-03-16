@@ -6,13 +6,7 @@ type DetailCardProps = {
   icon: string;
 };
 
-const DetailCard = ({
-  title,
-  total,
-  currency,
-  amount,
-  icon,
-}: DetailCardProps) => {
+const DetailCard = ({title, total, currency, amount, icon}: DetailCardProps) => {
   return (
     <div className="col-xl-3 col-sm-6">
       <div className="rounded-12 bg-white shadow-2 px-30 py-30 h-full">

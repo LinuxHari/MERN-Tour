@@ -44,9 +44,7 @@ const Advantages = () => {
                   <Image src={icon} alt="icon" className="h-50 w-25" />
                 </div>
 
-                <h3 className="featureIcon__title text-18 fw-500 mt-30">
-                  {title}
-                </h3>
+                <h3 className="featureIcon__title text-18 fw-500 mt-30">{title}</h3>
                 <p className="featureIcon__text mt-10">{text}</p>
               </div>
             </div>

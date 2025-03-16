@@ -1,17 +1,11 @@
 import toast from "react-hot-toast";
-import {
-  useGetUserInfoQuery,
-  useUpdatePasswordMutation,
-  useUpdateUserInfoMutation,
-} from "../redux/api/userApi";
+import {useGetUserInfoQuery, useUpdatePasswordMutation, useUpdateUserInfoMutation} from "../redux/api/userApi";
 import {PasswordSchemaType, UserSchemaType} from "../schema/userSchema";
 
 const useUserHandler = () => {
   const {data, isError, isLoading} = useGetUserInfoQuery();
-  const [updateUserInfo, {isLoading: isUpdatingProfile}] =
-    useUpdateUserInfoMutation();
-  const [updatePassword, {isLoading: isUpdatingPassword}] =
-    useUpdatePasswordMutation();
+  const [updateUserInfo, {isLoading: isUpdatingProfile}] = useUpdateUserInfoMutation();
+  const [updatePassword, {isLoading: isUpdatingPassword}] = useUpdatePasswordMutation();
 
   const updateProfile = async (userInfo: UserSchemaType) => {
     const toastId = toast.loading("Updating profile");

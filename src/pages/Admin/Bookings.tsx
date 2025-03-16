@@ -11,36 +11,16 @@ import NoResult from "../../components/Shared/NoResult/NoResult";
 import TableSkeleton from "../../components/Skeletons/TableSkeleton";
 
 const Bookings = ({render}: RenderProps) => {
-  const tableHeaders = [
-    "ID",
-    "Title",
-    "Start date",
-    "End date",
-    "Details",
-    "Price",
-    "Status",
-    "Action",
-  ];
+  const tableHeaders = ["ID", "Title", "Start date", "End date", "Details", "Price", "Status", "Action"];
 
   const [page, setPage] = useState(1);
   const [currentTab, setCurrentTab] = useState<StatusType>("Confirmed");
-  const {
-    data: bookings,
-    isLoading,
-    isError,
-  } = useGetBookingsQuery({status: currentTab.toLowerCase(), page});
+  const {data: bookings, isLoading, isError} = useGetBookingsQuery({status: currentTab.toLowerCase(), page});
 
   if (isError || (!isLoading && !bookings))
-    return (
-      <NoResult
-        title="Something went wrong"
-        description="Maybe try again later."
-      />
-    );
+    return <NoResult title="Something went wrong" description="Maybe try again later." />;
 
-  const bookingData = bookings
-    ? organizeBookingData(bookings.bookings, currentTab)
-    : [];
+  const bookingData = bookings ? organizeBookingData(bookings.bookings, currentTab) : [];
 
   return (
     <>
@@ -49,10 +29,7 @@ const Bookings = ({render}: RenderProps) => {
         {isLoading ? (
           <TableSkeleton />
         ) : (
-          <Tabs
-            className="-underline-2"
-            onTabChange={(tab) => setCurrentTab(status[tab])}
-          >
+          <Tabs className="-underline-2" onTabChange={(tab) => setCurrentTab(status[tab])}>
             <Tabs.TabList className="row x-gap-40 y-gap-10 lg:x-gap-20">
               {status.map((status, index) => (
                 <div className="col-auto" key={index}>
@@ -72,18 +49,12 @@ const Bookings = ({render}: RenderProps) => {
                 <Tabs.TabContent key={index} index={index}>
                   {!data.length ? (
                     <div className="d-flex align-items-center justify-content-center">
-                      <p className="text-20 fw-500">
-                        No booking is {currentTab}
-                      </p>
+                      <p className="text-20 fw-500">No booking is {currentTab}</p>
                     </div>
                   ) : (
                     <>
                       <Table headers={tableHeaders} data={data} />
-                      <Pagination
-                        page={page}
-                        setPage={setPage}
-                        totalCount={bookings.totalPages}
-                      />
+                      <Pagination page={page} setPage={setPage} totalCount={bookings.totalPages} />
                     </>
                   )}
                 </Tabs.TabContent>

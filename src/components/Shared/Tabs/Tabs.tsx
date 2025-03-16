@@ -62,11 +62,7 @@ const TabContent = ({children, className = "", index}: TabProps) => {
 
   const isVisible = index === activeTab;
 
-  return (
-    <div className={`tabs__pane -tab-item-1 ${isVisible ? "is-tab-el-active" : ""} ${className}`}>
-      {children}
-    </div>
-  );
+  return <div className={`tabs__pane -tab-item-1 ${isVisible ? "is-tab-el-active" : ""} ${className}`}>{children}</div>;
 };
 
 Tabs.TabList = TabList;

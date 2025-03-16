@@ -7,12 +7,7 @@ type TourServicesProps = {
   languages: string[];
 };
 
-const TourServices = ({
-  duration,
-  minAge,
-  capacity,
-  languages,
-}: TourServicesProps) => {
+const TourServices = ({duration, minAge, capacity, languages}: TourServicesProps) => {
   const tourDetails = [
     {
       icon: "icon-clock",

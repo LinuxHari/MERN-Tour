@@ -14,9 +14,7 @@ const EditTour = ({render}: RenderProps) => {
 
   if (isTourError || !publishedTours) return null;
 
-  const tour = publishedTours.tours.find(
-    (publishedTour) => publishedTour.tourId === tourId,
-  );
+  const tour = publishedTours.tours.find((publishedTour) => publishedTour.tourId === tourId);
 
   if (!tour || !tourId) return null;
 

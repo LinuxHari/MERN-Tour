@@ -22,11 +22,7 @@ const LogoutSection = () => {
           <span className="ml-10">Logout</span>
         </button>
       </div>
-      <LogoutModal
-        showModal={showModal}
-        onClose={onClose}
-        onConfirm={() => onConfirm(handleLogout)}
-      />
+      <LogoutModal showModal={showModal} onClose={onClose} onConfirm={() => onConfirm(handleLogout)} />
     </>
   );
 };

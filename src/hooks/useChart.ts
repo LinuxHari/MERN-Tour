@@ -11,29 +11,14 @@ import {
 } from "chart.js";
 import generateLabels from "../utils/generateLabels";
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend,
-);
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 type PassedDataType = {hours: number[]; weekly: number[]; monthly: number[]};
 
 const useChart = (data: PassedDataType) => {
-  const {maxValue: hoursMaxValue, stepSize: hoursStepSize} = generateLabels(
-    data.hours,
-  );
-  const {maxValue: weeklyMaxValue, stepSize: weeklyStepSize} = generateLabels(
-    data.weekly,
-    "Weekly",
-  );
-  const {maxValue: monthlyMaxValue, stepSize: monthlyStepSize} = generateLabels(
-    data.monthly,
-  );
+  const {maxValue: hoursMaxValue, stepSize: hoursStepSize} = generateLabels(data.hours);
+  const {maxValue: weeklyMaxValue, stepSize: weeklyStepSize} = generateLabels(data.weekly, "Weekly");
+  const {maxValue: monthlyMaxValue, stepSize: monthlyStepSize} = generateLabels(data.monthly);
 
   const chartConfig = useMemo(
     () => ({
@@ -95,20 +80,7 @@ const useChart = (data: PassedDataType) => {
   const chartData = useMemo(
     () => [
       {
-        labels: [
-          "12 AM",
-          "2 AM",
-          "4 AM",
-          "6 AM",
-          "8 AM",
-          "10 AM",
-          "12 PM",
-          "2 PM",
-          "4 PM",
-          "6 PM",
-          "8 PM",
-          "10 PM",
-        ],
+        labels: ["12 AM", "2 AM", "4 AM", "6 AM", "8 AM", "10 AM", "12 PM", "2 PM", "4 PM", "6 PM", "8 PM", "10 PM"],
         datasets: [
           {
             label: "#",
@@ -134,20 +106,7 @@ const useChart = (data: PassedDataType) => {
         ],
       },
       {
-        labels: [
-          "Jan",
-          "Feb",
-          "Mar",
-          "Apr",
-          "May",
-          "Jun",
-          "Jul",
-          "Aug",
-          "Sep",
-          "Oct",
-          "Nov",
-          "Dec",
-        ],
+        labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
         datasets: [
           {
             label: "#",

@@ -30,51 +30,28 @@ const ChangePassword = () => {
     <div className="rounded-12 bg-white shadow-2 px-20 pt-40 pb-30 mt-30">
       <h5 className="text-20 fw-500 mb-30">Change Password</h5>
 
-      <form
-        className="contactForm y-gap-30"
-        onSubmit={handleSubmit(updatePassword)}
-        noValidate
-      >
+      <form className="contactForm y-gap-30" onSubmit={handleSubmit(updatePassword)} noValidate>
         <div className="row y-gap-30">
           <div className="col-md-6">
-            <Input
-              label="Old password"
-              type="password"
-              {...register("oldPassword")}
-              autoComplete="off"
-            />
+            <Input label="Old password" type="password" {...register("oldPassword")} autoComplete="off" />
           </div>
         </div>
 
         <div className="row">
           <div className="col-md-6">
-            <Input
-              label="New password"
-              type="password"
-              {...register("newPassword")}
-              autoComplete="off"
-            />
+            <Input label="New password" type="password" {...register("newPassword")} autoComplete="off" />
           </div>
         </div>
 
         <div className="row">
           <div className="col-md-6">
-            <Input
-              label="Confirm new password"
-              type="password"
-              {...register("confirmPassword")}
-              autoComplete="off"
-            />
+            <Input label="Confirm new password" type="password" {...register("confirmPassword")} autoComplete="off" />
           </div>
         </div>
 
         <div className="row">
           <div className="col-12">
-            <Button
-              buttonType="primary"
-              type="submit"
-              disabled={isUpdatingPassword}
-            >
+            <Button buttonType="primary" type="submit" disabled={isUpdatingPassword}>
               Save Changes
             </Button>
           </div>

@@ -11,8 +11,7 @@ const AgeSection = ({render}: RenderProps) => {
   const price = getValues("price");
 
   useEffect(() => {
-    if (currentMinAge === MIN_AGE.adult)
-      setValue("price", {...defaultTourValue.price, adult: price.adult});
+    if (currentMinAge === MIN_AGE.adult) setValue("price", {...defaultTourValue.price, adult: price.adult});
     else if (currentMinAge === MIN_AGE.teen)
       setValue("price", {
         infant: defaultTourValue.price.infant,

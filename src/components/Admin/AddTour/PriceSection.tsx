@@ -19,11 +19,7 @@ const PriceSection = ({render}: RenderProps) => {
       {priceFields.map((field, index) =>
         minAge <= MIN_AGE[field.label.toLowerCase() as keyof typeof MIN_AGE] ? (
           <div key={field.name} className={index % 2 === 1 ? "my-4" : ""}>
-            <Input
-              label={field.label}
-              type="text"
-              {...register(field.name, {valueAsNumber: true})}
-            />
+            <Input label={field.label} type="text" {...register(field.name, {valueAsNumber: true})} />
           </div>
         ) : null,
       )}

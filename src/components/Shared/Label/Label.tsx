@@ -8,9 +8,7 @@ const Label = ({children, type = 2}: Props) => {
 
   return (
     <div className="col-auto">
-      <button className={`button -accent-1 text-14 px-15 rounded-200 ${labelStyle}`}>
-        {children}
-      </button>
+      <button className={`button -accent-1 text-14 px-15 rounded-200 ${labelStyle}`}>{children}</button>
     </div>
   );
 };

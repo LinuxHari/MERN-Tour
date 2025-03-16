@@ -45,8 +45,7 @@ const SideCard = ({price, pax, startDate, endDate, tourId}: SideCardProps) => {
       const paxToSend = {...currentPax};
 
       Object.keys(paxToSend).forEach((key) => {
-        if (!paxToSend[key as keyof PaxProps])
-          delete paxToSend[key as keyof PaxProps];
+        if (!paxToSend[key as keyof PaxProps]) delete paxToSend[key as keyof PaxProps];
       });
       reserve({startDate, endDate, pax: paxToSend, tourId});
     }
@@ -57,9 +56,7 @@ const SideCard = ({price, pax, startDate, endDate, tourId}: SideCardProps) => {
       <div className="tourSingleSidebar">
         <div className="mb-20">
           <h5 className="text-18 fw-500">Tickets</h5>
-          <p className="text-light-2 text-14">
-            You can book for upto 10 people at a time
-          </p>
+          <p className="text-light-2 text-14">You can book for upto 10 people at a time</p>
         </div>
         <PaxCounter setPax={setPax} pax={currentPax} price={price} />
         <div className="line mt-20 mb-20" />
@@ -67,21 +64,11 @@ const SideCard = ({price, pax, startDate, endDate, tourId}: SideCardProps) => {
           <div className="text-18 fw-500">Total:</div>
           <div className="text-18 fw-500">${total.toFixed(2)}</div>
         </div>
-        <Button
-          buttonType="primary"
-          className="w-100 mt-3"
-          onClick={handleReserve}
-          disabled={isLoading}
-        >
+        <Button buttonType="primary" className="w-100 mt-3" onClick={handleReserve} disabled={isLoading}>
           {isLoggedIn ? "Book Now" : "Log In"}
         </Button>
       </div>
-      <LoginModal
-        onClose={onClose}
-        onConfirm={handleLogin}
-        showModal={showModal}
-        isLoading={isLoginLoading}
-      />
+      <LoginModal onClose={onClose} onConfirm={handleLogin} showModal={showModal} isLoading={isLoginLoading} />
     </div>
   );
 };

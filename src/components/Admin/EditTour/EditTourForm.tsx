@@ -21,14 +21,7 @@ type EditTourSchemaProps = {
 };
 
 const EditTourForm = ({tour, tourId}: EditTourSchemaProps) => {
-  const formTabs = [
-    "Content",
-    "Itinerary",
-    "FAQ",
-    "Gallery",
-    "Included",
-    "Languages",
-  ];
+  const formTabs = ["Content", "Itinerary", "FAQ", "Gallery", "Included", "Languages"];
   const formComponents = [
     <ContentForm key="content" isEditForm />,
     <ItineraryForm key="itinerary" />,
@@ -75,8 +68,7 @@ const EditTourForm = ({tour, tourId}: EditTourSchemaProps) => {
         const firstRef = refs[0];
 
         if (firstRef?.focus) {
-          const elementPosition =
-            firstRef.getBoundingClientRect().top + window.scrollY;
+          const elementPosition = firstRef.getBoundingClientRect().top + window.scrollY;
           const offsetPosition = elementPosition - 50;
 
           window.scrollTo({top: offsetPosition, behavior: "smooth"});
@@ -92,10 +84,7 @@ const EditTourForm = ({tour, tourId}: EditTourSchemaProps) => {
 
   return (
     <FormProvider {...form}>
-      <form
-        encType="multipart/form-data"
-        onSubmit={handleSubmit((data) => updateTour(data, tour, tourId, reset))}
-      >
+      <form encType="multipart/form-data" onSubmit={handleSubmit((data) => updateTour(data, tour, tourId, reset))}>
         <div className="row y-gap-30 rounded-12 bg-white shadow-2 px-20 pt-40 pb-30 mt-60">
           <Tabs
             className="-underline-2"
@@ -120,11 +109,7 @@ const EditTourForm = ({tour, tourId}: EditTourSchemaProps) => {
               <div className="col-xl-9 col-lg-10">
                 <Tabs.TabContents>
                   {formComponents.map((Component, index) => (
-                    <Tabs.TabContent
-                      className={`-tab-item-${index + 1}`}
-                      index={index}
-                      key={index}
-                    >
+                    <Tabs.TabContent className={`-tab-item-${index + 1}`} index={index} key={index}>
                       {Component}
                     </Tabs.TabContent>
                   ))}
@@ -149,12 +134,7 @@ const EditTourForm = ({tour, tourId}: EditTourSchemaProps) => {
           >
             Reset
           </Button>
-          <Button
-            buttonType="primary"
-            type="submit"
-            isLoading={isUpdating}
-            disabled={isUpdating}
-          >
+          <Button buttonType="primary" type="submit" isLoading={isUpdating} disabled={isUpdating}>
             Update tour
           </Button>
         </div>

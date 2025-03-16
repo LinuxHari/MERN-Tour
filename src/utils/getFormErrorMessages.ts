@@ -1,8 +1,4 @@
-export const getFormErrorMessages = (
-  errors: object,
-  messages: string[] = [],
-  refs: HTMLElement[] = [],
-) => {
+export const getFormErrorMessages = (errors: object, messages: string[] = [], refs: HTMLElement[] = []) => {
   for (const error of Object.values(errors)) {
     if (typeof error.message !== "string") {
       getFormErrorMessages(error, messages, refs);

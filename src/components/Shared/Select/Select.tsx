@@ -19,15 +19,8 @@ type OptionProps = ButtonProps & {
   value: string;
 };
 
-const Select = ({
-  children,
-  defaultValue,
-  onChange,
-  className = "",
-}: SelectProps) => {
-  const [selectedValue, setSelectedValue] = useState<string>(
-    defaultValue || "",
-  );
+const Select = ({children, defaultValue, onChange, className = ""}: SelectProps) => {
+  const [selectedValue, setSelectedValue] = useState<string>(defaultValue || "");
   const {focusRef, showContent, setShowContent} = useFocusHandler();
 
   const toggleDropdown = () => setShowContent((prev) => !prev);
@@ -41,9 +34,7 @@ const Select = ({
   };
 
   return (
-    <SelectContext.Provider
-      value={{selectedValue, showContent, toggleDropdown, selectOption}}
-    >
+    <SelectContext.Provider value={{selectedValue, showContent, toggleDropdown, selectOption}}>
       <div
         className={`dropdown -type-2 js-dropdown js-form-dd ${showContent ? "is-active" : ""} ${className}`}
         ref={focusRef}
@@ -58,18 +49,12 @@ const Button = ({children, className = "", hideSelectedValue}: ButtonProps) => {
   const {selectedValue, toggleDropdown, showContent} = useSelectContext();
 
   return (
-    <button
-      type="button"
-      className={`dropdown__button js-button ${className}`}
-      onClick={toggleDropdown}
-    >
+    <button type="button" className={`dropdown__button js-button ${className}`} onClick={toggleDropdown}>
       <span className="js-title">
         {children && <>{children}</>}
         {!hideSelectedValue && selectedValue}
       </span>
-      <i
-        className={`icon-chevron-down ml-2 ${showContent ? "rotate-180" : "rotate-0"}`}
-      />
+      <i className={`icon-chevron-down ml-2 ${showContent ? "rotate-180" : "rotate-0"}`} />
     </button>
   );
 };
@@ -77,11 +62,7 @@ const Button = ({children, className = "", hideSelectedValue}: ButtonProps) => {
 const Menu = ({children, className = ""}: ButtonProps) => {
   const {showContent} = useSelectContext();
 
-  return showContent ? (
-    <div className={`dropdown__menu js-menu-items ${className}`}>
-      {children}
-    </div>
-  ) : null;
+  return showContent ? <div className={`dropdown__menu js-menu-items ${className}`}>{children}</div> : null;
 };
 
 const Option = ({value, children, className = ""}: OptionProps) => {

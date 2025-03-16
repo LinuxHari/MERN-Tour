@@ -24,8 +24,7 @@ const TourListHeader = ({totalCount, sortType, setSortType}: TourListHeaderProps
   };
 
   const currentSortType =
-    Object.entries(sortOptions).find(([_, value]) => value === sortType)?.[0] ??
-    sortOptions.Recommended;
+    Object.entries(sortOptions).find(([_, value]) => value === sortType)?.[0] ?? sortOptions.Recommended;
 
   return (
     <div className="row y-gap-5 justify-between mt-30 mt-lg-0">

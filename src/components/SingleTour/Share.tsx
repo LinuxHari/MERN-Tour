@@ -60,11 +60,7 @@ const Share = ({title, description, url}: ShareProps) => {
               <TelegramIcon size={40} round />
             </TelegramShareButton>
           </div>
-          {isError && (
-            <p className="text-danger text-center mt-3">
-              Could not copy, try again.
-            </p>
-          )}
+          {isError && <p className="text-danger text-center mt-3">Could not copy, try again.</p>}
         </Modal.Content>
         <Modal.Footer className="d-flex justify-content-center gap-2">
           <Modal.Close className="my-2">Close</Modal.Close>

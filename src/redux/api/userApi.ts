@@ -1,17 +1,12 @@
 import {PasswordSchemaType, UserSchemaType} from "../../schema/userSchema";
-import {
-  BookingsResponse,
-  FavoriteToursResponse,
-  UserInfoResponse,
-} from "../../type";
+import {BookingsResponse, FavoriteToursResponse, UserInfoResponse} from "../../type";
 import {baseApi} from "./baseApi";
 
 const userApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getUserInfo: builder.query<UserInfoResponse, void>({
       query: () => ({url: "/user", credentials: "include"}),
-      providesTags: (user) =>
-        user ? [{type: "User", id: user.email}] : ["UNAUTHORIZED"],
+      providesTags: (user) => (user ? [{type: "User", id: user.email}] : ["UNAUTHORIZED"]),
     }),
     updateUserInfo: builder.mutation<void, UserSchemaType>({
       query: (userInfo) => ({
@@ -54,10 +49,7 @@ const userApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["Favorites"],
     }),
-    getBookings: builder.query<
-      BookingsResponse,
-      {status: string; page: number}
-    >({
+    getBookings: builder.query<BookingsResponse, {status: string; page: number}>({
       query: ({status, page}) => ({
         url: "/user/bookings",
         params: {status, page},

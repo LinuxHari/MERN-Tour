@@ -7,16 +7,12 @@ const useSearchSuggestionHandler = () => {
   const [searchText, setSearchText] = useState("");
   const debouncedSearchText = useDebounce(searchText.trim(), 500);
   const isValidStr = Boolean(debouncedSearchText);
-  const {data, isFetching} = useGetSearchSuggestionsByTextQuery(
-    debouncedSearchText as string,
-    {
-      skip: !isValidStr,
-    },
-  );
+  const {data, isFetching} = useGetSearchSuggestionsByTextQuery(debouncedSearchText as string, {
+    skip: !isValidStr,
+  });
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const suggestions =
-    isValidStr && data && !isFetching ? data : SEARCH_SUGGESTIONS;
+  const suggestions = isValidStr && data && !isFetching ? data : SEARCH_SUGGESTIONS;
 
   // if (showDropdown) {
   //   setTimeout(() => {

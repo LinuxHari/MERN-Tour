@@ -7,29 +7,15 @@ type PaginationProps = {
   perPage?: number;
 };
 
-const Pagination = ({
-  page,
-  setPage,
-  totalCount,
-  perPage = 10,
-}: PaginationProps) => {
-  const {prev, next, pages, disableNext, disablePrev} = usePagination(
-    page,
-    perPage,
-    setPage,
-    totalCount,
-  );
+const Pagination = ({page, setPage, totalCount, perPage = 10}: PaginationProps) => {
+  const {prev, next, pages, disableNext, disablePrev} = usePagination(page, perPage, setPage, totalCount);
 
   if (!totalCount) return null;
 
   return (
     <>
       <div className="pagination justify-center">
-        <button
-          className="pagination__button button -accent-1 -prev"
-          onClick={prev}
-          disabled={disablePrev}
-        >
+        <button className="pagination__button button -accent-1 -prev" onClick={prev} disabled={disablePrev}>
           <i className="icon-arrow-left text-15" />
         </button>
 
@@ -50,20 +36,13 @@ const Pagination = ({
           )}
         </div>
 
-        <button
-          className="pagination__button button -accent-1 -next"
-          onClick={next}
-          disabled={disableNext}
-        >
+        <button className="pagination__button button -accent-1 -next" onClick={next} disabled={disableNext}>
           <i className="icon-arrow-right text-15" />
         </button>
       </div>
       <div className="text-14 text-center mt-20">
-        Showing results{" "}
-        {totalCount > perPage
-          ? (page - 1) * perPage + 1 + "-" + page * perPage
-          : totalCount}{" "}
-        of {totalCount}
+        Showing results {totalCount > perPage ? (page - 1) * perPage + 1 + "-" + page * perPage : totalCount} of{" "}
+        {totalCount}
       </div>
     </>
   );

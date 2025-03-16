@@ -15,9 +15,7 @@ type FilterProps = {
 const Filters = (props: FilterProps) => {
   const {isMobile} = useWindowSize();
 
-  return (
-    <>{isMobile ? <MobileFilters {...props} /> : <FiltersCard {...props} />}</>
-  );
+  return <>{isMobile ? <MobileFilters {...props} /> : <FiltersCard {...props} />}</>;
 };
 
 export default Filters;

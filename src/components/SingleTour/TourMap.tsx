@@ -13,8 +13,7 @@ const TourMap = ({location}: TourMapProps) => {
   const mapContainerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    if (mapRef.current || !mapContainerRef.current || location.length === 0)
-      return;
+    if (mapRef.current || !mapContainerRef.current || location.length === 0) return;
 
     mapRef.current = L.map(mapContainerRef.current, {
       zoomControl: false,
@@ -54,11 +53,7 @@ const TourMap = ({location}: TourMapProps) => {
   return (
     <TourSectionLayout title="Tour Map">
       <div className="mt-30">
-        <div
-          className="map__content rounded-12 js-map-tour"
-          ref={mapContainerRef}
-          style={{height: "400px"}}
-        />
+        <div className="map__content rounded-12 js-map-tour" ref={mapContainerRef} style={{height: "400px"}} />
       </div>
     </TourSectionLayout>
   );

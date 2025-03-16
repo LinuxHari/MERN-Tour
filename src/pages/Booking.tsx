@@ -9,14 +9,8 @@ import useAfterBookingHandler from "../hooks/useAfterBookingHandler";
 import useModal from "../hooks/useModal";
 
 const Booking = () => {
-  const {
-    booking,
-    isBookingLoading,
-    isBookingError,
-    isCancelLoading,
-    cancelBooking,
-    bookingId,
-  } = useAfterBookingHandler();
+  const {booking, isBookingLoading, isBookingError, isCancelLoading, cancelBooking, bookingId} =
+    useAfterBookingHandler();
   const {onClose, showModal, onConfirm, openModal} = useModal();
 
   if (isBookingLoading)
@@ -28,14 +22,8 @@ const Booking = () => {
 
   if (isBookingError || !booking)
     return (
-      <div
-        className="d-flex align-items-center justify-content-center"
-        style={{minHeight: "100vh"}}
-      >
-        <NoResult
-          title="Unable to Load Booking Details"
-          description="Check internet connection and try again later"
-        />
+      <div className="d-flex align-items-center justify-content-center" style={{minHeight: "100vh"}}>
+        <NoResult title="Unable to Load Booking Details" description="Check internet connection and try again later" />
       </div>
     );
 
@@ -47,23 +35,14 @@ const Booking = () => {
         <div className="container">
           <div className="row">
             <div className="col-lg-8 bg-white rounded-12 shadow-2 py-30 px-20">
-              <BookingInfo
-                {...bookingInfo}
-                amount={amount}
-                bookingId={bookingId}
-              />
+              <BookingInfo {...bookingInfo} amount={amount} bookingId={bookingId} />
               <div className="container mt-3">
                 <div className="row g-2 justify-content-end">
                   {bookingInfo.isCancellable &&
                     bookingInfo.status !== "canceled" &&
                     bookingInfo.status !== "failed" && (
                       <div className="col-12 col-md-auto">
-                        <Button
-                          buttonType="secondary"
-                          className="w-100"
-                          onClick={openModal}
-                          disabled={isCancelLoading}
-                        >
+                        <Button buttonType="secondary" className="w-100" onClick={openModal} disabled={isCancelLoading}>
                           Cancel
                         </Button>
                       </div>

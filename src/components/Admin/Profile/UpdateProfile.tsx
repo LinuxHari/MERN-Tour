@@ -67,11 +67,7 @@ const UpdateProfile = () => {
   }, [errors]);
 
   return (
-    <form
-      className="rounded-12 bg-white shadow-2 px-20 pt-40 pb-30"
-      onSubmit={handleSubmit(updateProfile)}
-      noValidate
-    >
+    <form className="rounded-12 bg-white shadow-2 px-20 pt-40 pb-30" onSubmit={handleSubmit(updateProfile)} noValidate>
       <h5 className="text-20 fw-500 mb-30">Profile Details</h5>
 
       <div className="contactForm row y-gap-30">

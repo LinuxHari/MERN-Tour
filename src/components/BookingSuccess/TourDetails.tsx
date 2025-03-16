@@ -3,13 +3,7 @@ import Button from "../Shared/Button/Button";
 
 type TourDetailsProps = BookingDetailsResponse["tourInfo"] & {amount: number};
 
-const TourDetails = ({
-  tourName,
-  startDate,
-  duration,
-  passengers: pax,
-  amount,
-}: TourDetailsProps) => {
+const TourDetails = ({tourName, startDate, duration, passengers: pax, amount}: TourDetailsProps) => {
   return (
     <div className="pl-50 md:pl-0 mt-30 mt-md-0">
       <div className="bg-white rounded-12 shadow-2 py-30 px-30">
@@ -33,8 +27,7 @@ const TourDetails = ({
           <div className="d-flex items-center justify-between">
             <div className="fw-500">Tickets:</div>
             <div className="">
-              Adult x {pax.adults}{" "}
-              {Boolean(pax?.teens) && `, Teen x ${Boolean(pax.teens)} `}{" "}
+              Adult x {pax.adults} {Boolean(pax?.teens) && `, Teen x ${Boolean(pax.teens)} `}{" "}
               {Boolean(pax?.children) && `, Child x ${pax.children} `}{" "}
               {Boolean(pax?.infants) && `, Infant x ${pax.infants}`}
             </div>
@@ -44,11 +37,7 @@ const TourDetails = ({
             <div className="text-18 fw-500">${amount}</div>
           </div>
         </div>
-        <Button
-          buttonType="primary"
-          className="mt-4 w-100"
-          onClick={() => window.print()}
-        >
+        <Button buttonType="primary" className="mt-4 w-100" onClick={() => window.print()}>
           Print
         </Button>
       </div>

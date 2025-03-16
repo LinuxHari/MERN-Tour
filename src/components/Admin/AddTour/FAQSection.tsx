@@ -27,17 +27,8 @@ const FAQSection = () => {
                 </Button>
               )}
             </div>
-            <Input
-              label={`Question ${index + 1}`}
-              type="text"
-              {...register(`faq.${index}.question`)}
-            />
-            <Input
-              wrapperClassName="mt-30"
-              label="Answer"
-              type="text"
-              {...register(`faq.${index}.answer`)}
-            />
+            <Input label={`Question ${index + 1}`} type="text" {...register(`faq.${index}.question`)} />
+            <Input wrapperClassName="mt-30" label="Answer" type="text" {...register(`faq.${index}.answer`)} />
           </div>
         ))}
         {fields.length < 10 && (

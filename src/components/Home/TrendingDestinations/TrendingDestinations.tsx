@@ -122,30 +122,20 @@ const TrendingDestinations = () => {
             }}
             modules={[Pagination]}
           >
-            {destinations.map(
-              ({imgSrc, name, tourCount, destinationId}, index) => (
-                <SwiperSlide key={index}>
-                  <Link
-                    to={`/tours/${name.replaceAll(" ", "-")}/${destinationId}`}
-                    className="featureImage -type-1 text-center -hover-image-scale"
-                  >
-                    <div className="featureImage__image mx-auto rounded-full -hover-image-scale__image">
-                      <img
-                        src={imgSrc}
-                        alt={name}
-                        className="size-130 object-cover rounded-full"
-                      />
-                    </div>
-                    <h3 className="featureImage__title text-16 fw-500 mt-20">
-                      {name}
-                    </h3>
-                    <p className="featureImage__text text-14">
-                      {tourCount}+ Tours
-                    </p>
-                  </Link>
-                </SwiperSlide>
-              ),
-            )}
+            {destinations.map(({imgSrc, name, tourCount, destinationId}, index) => (
+              <SwiperSlide key={index}>
+                <Link
+                  to={`/tours/${name.replaceAll(" ", "-")}/${destinationId}`}
+                  className="featureImage -type-1 text-center -hover-image-scale"
+                >
+                  <div className="featureImage__image mx-auto rounded-full -hover-image-scale__image">
+                    <img src={imgSrc} alt={name} className="size-130 object-cover rounded-full" />
+                  </div>
+                  <h3 className="featureImage__title text-16 fw-500 mt-20">{name}</h3>
+                  <p className="featureImage__text text-14">{tourCount}+ Tours</p>
+                </Link>
+              </SwiperSlide>
+            ))}
           </Swiper>
 
           <div className="pagination -type-1 justify-center pt-60 md:pt-40 js-dest-pagination" />

@@ -24,8 +24,7 @@ type ExtendedButtonProps =
       styleType?: "primary" | "secondary";
     });
 
-type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> &
-  ExtendedButtonProps;
+type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & ExtendedButtonProps;
 
 const Button = ({
   type = "button",
@@ -52,11 +51,7 @@ const Button = ({
 
   if (buttonType === "secondary") {
     return (
-      <button
-        type={type}
-        className={`button -md -outline-accent-1 text-accent-1 ${className}`}
-        {...buttonProps}
-      >
+      <button type={type} className={`button -md -outline-accent-1 text-accent-1 ${className}`} {...buttonProps}>
         {children}
         {showIcon && <i className="icon-arrow-top-right text-16 ml-10" />}
       </button>
@@ -64,16 +59,10 @@ const Button = ({
   }
 
   if (buttonType === "link") {
-    const styleClass =
-      styleType === "primary"
-        ? "bg-accent-1 text-white"
-        : "-outline-accent-1 text-accent-1";
+    const styleClass = styleType === "primary" ? "bg-accent-1 text-white" : "-outline-accent-1 text-accent-1";
 
     return (
-      <Link
-        className={`button -md -dark-1 ${styleClass} ${className}`}
-        to={to || "/"}
-      >
+      <Link className={`button -md -dark-1 ${styleClass} ${className}`} to={to || "/"}>
         {children}
         {showIcon && <i className="icon-arrow-top-right text-16 ml-10" />}
       </Link>
@@ -81,11 +70,7 @@ const Button = ({
   }
 
   return (
-    <button
-      type={type}
-      className={`button -md -dark-1 bg-accent-1 text-white ${className}`}
-      {...buttonProps}
-    >
+    <button type={type} className={`button -md -dark-1 bg-accent-1 text-white ${className}`} {...buttonProps}>
       {/* {isLoading && <Spinner/>} */}
       {children}
       {showIcon && <i className="icon-arrow-top-right text-16 ml-10" />}

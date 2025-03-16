@@ -45,37 +45,27 @@ const PostReview = ({onSubmit, isLoading}: PostReviewProps) => {
           <Controller
             control={control}
             name="ratings.Location"
-            render={({field: {onChange, value}}) => (
-              <StarRating label="Location" value={value} onChange={onChange} />
-            )}
+            render={({field: {onChange, value}}) => <StarRating label="Location" value={value} onChange={onChange} />}
           />
           <Controller
             control={control}
             name="ratings.Amenities"
-            render={({field: {onChange, value}}) => (
-              <StarRating label="Amenities" value={value} onChange={onChange} />
-            )}
+            render={({field: {onChange, value}}) => <StarRating label="Amenities" value={value} onChange={onChange} />}
           />
           <Controller
             control={control}
             name="ratings.Food"
-            render={({field: {onChange, value}}) => (
-              <StarRating label="Food" value={value} onChange={onChange} />
-            )}
+            render={({field: {onChange, value}}) => <StarRating label="Food" value={value} onChange={onChange} />}
           />
           <Controller
             control={control}
             name="ratings.Room"
-            render={({field: {onChange, value}}) => (
-              <StarRating label="Room" value={value} onChange={onChange} />
-            )}
+            render={({field: {onChange, value}}) => <StarRating label="Room" value={value} onChange={onChange} />}
           />
           <Controller
             control={control}
             name="ratings.Price"
-            render={({field: {onChange, value}}) => (
-              <StarRating label="Price" value={value} onChange={onChange} />
-            )}
+            render={({field: {onChange, value}}) => <StarRating label="Price" value={value} onChange={onChange} />}
           />
           {/* <div className="reviewsGrid__item">
           Tour Operator
@@ -95,32 +85,18 @@ const PostReview = ({onSubmit, isLoading}: PostReviewProps) => {
 
         <div className="contactForm y-gap-30 pt-30">
           <div className="col-12">
-            <Input
-              type="text"
-              required
-              label="How was the tour?"
-              {...register("title")}
-            />
+            <Input type="text" required label="How was the tour?" {...register("title")} />
           </div>
 
           <div className="row">
             <div className="col-12">
-              <Textarea
-                label="What do you think?"
-                rows={8}
-                {...register("comment")}
-              />
+              <Textarea label="What do you think?" rows={8} {...register("comment")} />
             </div>
           </div>
 
           <div className="row">
             <div className="col-12">
-              <Button
-                buttonType="primary"
-                type="submit"
-                isLoading={isLoading}
-                disabled={isLoading}
-              >
+              <Button buttonType="primary" type="submit" isLoading={isLoading} disabled={isLoading}>
                 Post Review
               </Button>
             </div>

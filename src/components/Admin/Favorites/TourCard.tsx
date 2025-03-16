@@ -48,9 +48,7 @@ const TourCard = ({
             </div>
 
             <h3 className="tourCard__title text-16 fw-500 mt-1">
-              <span className="line-clamp-2">
-                {title.length < 55 ? title : title.slice(0, 55) + "..."}
-              </span>
+              <span className="line-clamp-2">{title.length < 55 ? title : title.slice(0, 55) + "..."}</span>
             </h3>
 
             {reviewCount > 0 && (

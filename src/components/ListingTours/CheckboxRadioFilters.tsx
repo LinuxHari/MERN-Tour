@@ -10,13 +10,7 @@ type Props = {
   index: number;
 };
 
-const CheckboxRadioFilters = ({
-  title,
-  filter,
-  appliedFilterValue,
-  setAppliedFilters,
-  index,
-}: Props) => {
+const CheckboxRadioFilters = ({title, filter, appliedFilterValue, setAppliedFilters, index}: Props) => {
   const keyToTile = (key: string) => {
     return key
       .replace(/([A-Z])/g, " $1")
@@ -51,9 +45,7 @@ const CheckboxRadioFilters = ({
                       type="checkbox"
                       label={value}
                       value={value}
-                      onChange={(e) =>
-                        setAppliedFilters(title, e.currentTarget.value, e.target.checked)
-                      }
+                      onChange={(e) => setAppliedFilters(title, e.currentTarget.value, e.target.checked)}
                       checked={
                         appliedFilterValue && typeof appliedFilterValue === "object"
                           ? appliedFilterValue.includes(value as string)

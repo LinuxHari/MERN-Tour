@@ -11,11 +11,7 @@ const Categories = () => {
 
   return (
     <div {...register("category")}>
-      <Select
-        defaultValue={category}
-        onChange={handleCategory}
-        className="w-100"
-      >
+      <Select defaultValue={category} onChange={handleCategory} className="w-100">
         <Select.Button className="d-flex justify-content-between w-100 border p-3 rounded-12">
           Category :&nbsp;{" "}
         </Select.Button>

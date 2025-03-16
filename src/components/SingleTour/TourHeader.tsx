@@ -12,13 +12,7 @@ type TourHeaderProps = {
   description: string;
 };
 
-const TourHeader = ({
-  freeCancellation,
-  name,
-  images,
-  destination,
-  description,
-}: TourHeaderProps) => {
+const TourHeader = ({freeCancellation, name, images, destination, description}: TourHeaderProps) => {
   return (
     <section className="">
       <div className="container">
@@ -54,11 +48,7 @@ const TourHeader = ({
 
           <div className="col-auto">
             <div className="d-flex x-gap-30 y-gap-10">
-              <Share
-                title={name}
-                description={description}
-                url={window.location.href}
-              />
+              <Share title={name} description={description} url={window.location.href} />
               {/* <a href="/" className="d-flex items-center">
                 <i className="icon-heart flex-center text-16 mr-10" />
                 Wishlist

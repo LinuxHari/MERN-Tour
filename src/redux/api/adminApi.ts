@@ -1,10 +1,5 @@
 import {FetchBaseQueryError} from "@reduxjs/toolkit/query";
-import {
-  EarningsResponse,
-  ImgPath,
-  PublishedToursResponse,
-  TourMutationResponse,
-} from "../../type";
+import {EarningsResponse, ImgPath, PublishedToursResponse, TourMutationResponse} from "../../type";
 import {EditTourSchemaType, TourSchemaType} from "../../schema/tourSchema";
 import getFirebaseUpload from "../../utils/getFirebaseUpload";
 import {extractFirebaseImgPath} from "../../utils/extractFirebaseImgPath";
@@ -26,9 +21,7 @@ export const adminApi = baseApi.injectEndpoints({
 
         try {
           const imageUrls = await uploadImages(formData.images, formData.name);
-          const highlights = formData.highlights.map(
-            (highlight) => highlight.value,
-          );
+          const highlights = formData.highlights.map((highlight) => highlight.value);
           const tourData = {...formData, images: imageUrls, highlights};
           const response = await baseQuery({
             url: "/admin/tour",
@@ -38,10 +31,7 @@ export const adminApi = baseApi.injectEndpoints({
           });
 
           if (response.error) {
-            const imagesToDelete = extractFirebaseImgPath(
-              imageUrls,
-              ImgPath.tours,
-            );
+            const imagesToDelete = extractFirebaseImgPath(imageUrls, ImgPath.tours);
 
             await deleteImages(imagesToDelete);
             throw new Error("Failed to add tour");
@@ -58,29 +48,20 @@ export const adminApi = baseApi.injectEndpoints({
       },
       invalidatesTags: ["Tour"],
     }),
-    updateTour: builder.mutation<
-      TourMutationResponse,
-      EditTourSchemaType & {tourId: string}
-    >({
+    updateTour: builder.mutation<TourMutationResponse, EditTourSchemaType & {tourId: string}>({
       queryFn: async (formData, _, __, baseQuery) => {
         const {uploadImages, deleteImages} = getFirebaseUpload();
 
         try {
           const {tourId, existingImages, ...tourData} = formData;
-          const deletedTourImages = existingImages
-            .filter(({isDeleted}) => isDeleted)
-            .map(({url}) => url);
+          const deletedTourImages = existingImages.filter(({isDeleted}) => isDeleted).map(({url}) => url);
 
           const imageUrls = await uploadImages(formData.images, formData.name);
 
           if (deletedTourImages.length) await deleteImages(deletedTourImages);
 
-          const highlights = formData.highlights.map(
-            (highlight) => highlight.value,
-          );
-          const existingTourImages = existingImages
-            .filter(({isDeleted}) => !isDeleted)
-            .map(({url}) => url);
+          const highlights = formData.highlights.map((highlight) => highlight.value);
+          const existingTourImages = existingImages.filter(({isDeleted}) => !isDeleted).map(({url}) => url);
           const response = await baseQuery({
             url: `/admin/tour/${tourId}`,
             method: "PUT",
@@ -93,10 +74,7 @@ export const adminApi = baseApi.injectEndpoints({
           });
 
           if (response.error) {
-            const imagesToDelete = extractFirebaseImgPath(
-              imageUrls,
-              ImgPath.tours,
-            );
+            const imagesToDelete = extractFirebaseImgPath(imageUrls, ImgPath.tours);
 
             await deleteImages(imagesToDelete);
             throw new Error("Failed to update tour");

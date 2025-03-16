@@ -45,13 +45,7 @@ const SimpleForm = <T extends FieldValues>({
   return (
     <form className={`contactForm ${className}`} onSubmit={handleSubmit(onSubmit)} noValidate>
       {fields.map(({type, name}) => (
-        <Input
-          key={name}
-          wrapperClassName="my-4"
-          type={type}
-          label={keyToTitle(name)}
-          {...register(name)}
-        />
+        <Input key={name} wrapperClassName="my-4" type={type} label={keyToTitle(name)} {...register(name)} />
       ))}
       <Button type="submit" buttonType="primary" className="my-4 w-100" disabled={isLoading}>
         {buttonText}

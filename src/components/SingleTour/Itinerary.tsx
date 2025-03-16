@@ -10,16 +10,9 @@ const Itinerary = ({itinerary}: ItineraryProps) => {
   return (
     <TourSectionLayout title="Itinerary">
       <div className="mt-30">
-        <Accordion
-          type="single"
-          className="roadmap accordion -roadmap js-accordion"
-        >
+        <Accordion type="single" className="roadmap accordion -roadmap js-accordion">
           {itinerary.map(({activity, details}, index) => (
-            <Accordion.Item
-              key={index}
-              index={index}
-              className="roadmap__item accordion__item"
-            >
+            <Accordion.Item key={index} index={index} className="roadmap__item accordion__item">
               {index === 0 ? (
                 <div className="roadmap__iconBig">
                   <i className="icon-pin" />
@@ -32,10 +25,7 @@ const Itinerary = ({itinerary}: ItineraryProps) => {
                 <div className="roadmap__icon" />
               )}
               <div className="roadmap__wrap">
-                <Accordion.Button
-                  className="accordion__button d-flex items-center justify-between"
-                  isShowIcon={false}
-                >
+                <Accordion.Button className="accordion__button d-flex items-center justify-between" isShowIcon={false}>
                   <div className="roadmap__title">
                     Day {index + 1}: {activity}
                   </div>

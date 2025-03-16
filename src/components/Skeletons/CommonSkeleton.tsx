@@ -3,32 +3,14 @@ import CardSkeleton from "./CardSkeleton";
 const CommonSkeleton = () => {
   return (
     <div className="skeleton-page container">
-      <nav
-        className="navbar navbar-expand-lg navbar-light bg-white py-4"
-        style={{zIndex: 1}}
-      >
+      <nav className="navbar navbar-expand-lg navbar-light bg-white py-4" style={{zIndex: 1}}>
         <div className="container px-4">
-          <div
-            className="skeleton-element"
-            style={{width: "120px", height: "32px"}}
-          />
-          <div
-            className="skeleton-element mx-4 d-none d-lg-block"
-            style={{width: "300px", height: "40px"}}
-          />
+          <div className="skeleton-element" style={{width: "120px", height: "32px"}} />
+          <div className="skeleton-element mx-4 d-none d-lg-block" style={{width: "300px", height: "40px"}} />
           <div className="d-flex align-items-center gap-3">
-            <div
-              className="skeleton-element d-none d-lg-block"
-              style={{width: "100px", height: "24px"}}
-            />
-            <div
-              className="skeleton-element d-none d-lg-block"
-              style={{width: "100px", height: "24px"}}
-            />
-            <div
-              className="skeleton-element"
-              style={{width: "80px", height: "38px"}}
-            />
+            <div className="skeleton-element d-none d-lg-block" style={{width: "100px", height: "24px"}} />
+            <div className="skeleton-element d-none d-lg-block" style={{width: "100px", height: "24px"}} />
+            <div className="skeleton-element" style={{width: "80px", height: "38px"}} />
           </div>
         </div>
       </nav>
@@ -42,10 +24,7 @@ const CommonSkeleton = () => {
                   className="skeleton-element mx-auto mb-4"
                   style={{width: "60%", maxWidth: "400px", height: "48px"}}
                 />
-                <div
-                  className="skeleton-element mx-auto"
-                  style={{width: "80%", maxWidth: "600px", height: "24px"}}
-                />
+                <div className="skeleton-element mx-auto" style={{width: "80%", maxWidth: "600px", height: "24px"}} />
               </div>
             </div>
           </div>

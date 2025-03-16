@@ -2,11 +2,7 @@ import {useLayoutEffect, useState} from "react";
 import {FormProvider, useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
 import toast from "react-hot-toast";
-import {
-  defaultTourValue,
-  TourSchema,
-  TourSchemaType,
-} from "../../../schema/tourSchema";
+import {defaultTourValue, TourSchema, TourSchemaType} from "../../../schema/tourSchema";
 import Button from "../../Shared/Button/Button";
 import StepNavigator from "../../Shared/Navigator/StepNavigator";
 import useTourSubmitHandler from "../../../hooks/useAdminTourHandler";
@@ -20,14 +16,7 @@ import GallerySection from "./GallerySection";
 import LanguageForm from "./LanguageSection";
 
 const TourForm = () => {
-  const formTabs = [
-    "Content",
-    "Itinerary",
-    "FAQ",
-    "Gallery",
-    "Included",
-    "Languages",
-  ];
+  const formTabs = ["Content", "Itinerary", "FAQ", "Gallery", "Included", "Languages"];
   const formComponents = [
     <ContentForm key="content" />,
     <ItineraryForm key="itinerary" />,
@@ -74,8 +63,7 @@ const TourForm = () => {
         const firstRef = refs[0];
 
         if (firstRef?.focus) {
-          const elementPosition =
-            firstRef.getBoundingClientRect().top + window.scrollY;
+          const elementPosition = firstRef.getBoundingClientRect().top + window.scrollY;
           const offsetPosition = elementPosition - 50;
 
           window.scrollTo({top: offsetPosition, behavior: "smooth"});
@@ -87,10 +75,7 @@ const TourForm = () => {
 
   return (
     <FormProvider {...form}>
-      <form
-        encType="multipart/form-data"
-        onSubmit={handleSubmit((data) => tourSubmitHandler(data, reset))}
-      >
+      <form encType="multipart/form-data" onSubmit={handleSubmit((data) => tourSubmitHandler(data, reset))}>
         <div className="row y-gap-30 rounded-12 bg-white shadow-2 px-20 pt-40 pb-30 mt-60">
           <Tabs
             className="-underline-2"
@@ -115,11 +100,7 @@ const TourForm = () => {
               <div className="col-xl-9 col-lg-10">
                 <Tabs.TabContents>
                   {formComponents.map((Component, index) => (
-                    <Tabs.TabContent
-                      className={`-tab-item-${index + 1}`}
-                      index={index}
-                      key={index}
-                    >
+                    <Tabs.TabContent className={`-tab-item-${index + 1}`} index={index} key={index}>
                       {Component}
                     </Tabs.TabContent>
                   ))}
@@ -146,12 +127,7 @@ const TourForm = () => {
             Reset
           </Button>
 
-          <Button
-            buttonType="primary"
-            type="submit"
-            isLoading={isLoading}
-            disabled={isLoading}
-          >
+          <Button buttonType="primary" type="submit" isLoading={isLoading} disabled={isLoading}>
             Add tour
           </Button>
         </div>

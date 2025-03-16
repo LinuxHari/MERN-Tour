@@ -11,17 +11,14 @@ type GallerySectionProps = {
 
 const GallerySection = ({isEditForm = false}: GallerySectionProps) => {
   const {watch, setValue} = useFormContext();
-  const existingImages = watch(
-    "existingImages",
-  ) as EditTourSchemaType["existingImages"];
+  const existingImages = watch("existingImages") as EditTourSchemaType["existingImages"];
   const {fields, append, remove} = useFieldArray({
     name: "images",
     rules: {minLength: 2},
   });
   const files = watch("images") as TourSchemaType["images"];
   const fileRef = useRef<HTMLInputElement>(null);
-  const showAddImage =
-    (existingImages || []).length + files.length <= MAX_UPLOAD_IMAGES;
+  const showAddImage = (existingImages || []).length + files.length <= MAX_UPLOAD_IMAGES;
 
   const handleAddImages = (event: ChangeEvent<HTMLInputElement>) => {
     const uploadedFiles = Array.from(event.target.files || {length: 0});
@@ -50,20 +47,10 @@ const GallerySection = ({isEditForm = false}: GallerySectionProps) => {
           {isEditForm &&
             existingImages.map(
               ({url, isDeleted}) =>
-                !isDeleted && (
-                  <ImagePreview
-                    key={url}
-                    url={url}
-                    onDelete={() => onExistingImageDeletion(url)}
-                  />
-                ),
+                !isDeleted && <ImagePreview key={url} url={url} onDelete={() => onExistingImageDeletion(url)} />,
             )}
           {files.map(({file}, index) => (
-            <ImagePreview
-              key={fields[index].id}
-              url={URL.createObjectURL(file)}
-              onDelete={() => remove(index)}
-            />
+            <ImagePreview key={fields[index].id} url={URL.createObjectURL(file)} onDelete={() => remove(index)} />
           ))}
         </div>
         {showAddImage && (

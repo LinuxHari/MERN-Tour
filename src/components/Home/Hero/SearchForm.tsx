@@ -12,9 +12,7 @@ import SearchSuggestions from "./SearchSuggestions";
 import TourType from "./TourType";
 import SearchPax from "./SearchPax";
 
-type SearchFormProps =
-  | {isModify?: false; formData?: never}
-  | {isModify: true; formData: SearchSchemaType};
+type SearchFormProps = {isModify?: false; formData?: never} | {isModify: true; formData: SearchSchemaType};
 
 const SearchForm = ({isModify = false, formData}: SearchFormProps) => {
   const form = useForm<SearchSchemaType>({
@@ -73,21 +71,13 @@ const SearchForm = ({isModify = false, formData}: SearchFormProps) => {
     const scrollHeight = isMobile ? 350 : 125;
     const scrolledHeight = isMobile ? 150 : 100;
 
-    if (window.scrollY < scrolledHeight && pathname === "/")
-      window.scrollBy({top: scrollHeight, behavior: "smooth"});
+    if (window.scrollY < scrolledHeight && pathname === "/") window.scrollBy({top: scrollHeight, behavior: "smooth"});
   };
 
   return (
     <FormProvider {...form}>
-      <form
-        className="searchForm -type-1 is-in-view"
-        onSubmit={handleSubmit(handleSearch)}
-      >
-        <div
-          className="searchForm__form"
-          role="presentation"
-          onClick={handleFormScroll}
-        >
+      <form className="searchForm -type-1 is-in-view" onSubmit={handleSubmit(handleSearch)}>
+        <div className="searchForm__form" role="presentation" onClick={handleFormScroll}>
           <SearchSuggestions />
           <SearchDatePicker />
           <TourType />

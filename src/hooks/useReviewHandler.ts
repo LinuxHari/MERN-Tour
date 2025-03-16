@@ -14,8 +14,7 @@ const useReviewHandler = (tourId: string) => {
 
     if (reviewError)
       if (reviewError.status === 400) return toast.error("Failed to add review", {id: toastId});
-      else if (reviewError.status === 401)
-        return toast.error("You must be logged in to post reviews", {id: toastId});
+      else if (reviewError.status === 401) return toast.error("You must be logged in to post reviews", {id: toastId});
       else return toast.error("Something went wrong", {id: toastId});
   };
 

@@ -15,10 +15,7 @@ type ContentSectionProps = {
 const ContentSection = ({isEditForm = false}: ContentSectionProps) => {
   const {register} = useFormContext();
 
-  const render = useCallback(
-    (title: string) => <h4 className="text-18 fw-500 mb-20">{title}</h4>,
-    [],
-  );
+  const render = useCallback((title: string) => <h4 className="text-18 fw-500 mb-20">{title}</h4>, []);
 
   return (
     <div className="contactForm row y-gap-30">
@@ -29,11 +26,7 @@ const ContentSection = ({isEditForm = false}: ContentSectionProps) => {
         <Categories />
       </div>
       <div className="col-12">
-        <Textarea
-          label="Tour Description"
-          rows={8}
-          {...register("description")}
-        />
+        <Textarea label="Tour Description" rows={8} {...register("description")} />
       </div>
       {!isEditForm && (
         <>
@@ -55,11 +48,7 @@ const ContentSection = ({isEditForm = false}: ContentSectionProps) => {
         <Input type="text" label="Zip Code" {...register("zipCode")} />
       </div> */}
       <div className="col-12">
-        <Input
-          label="Tour Capacity"
-          type="number"
-          {...register("capacity", {valueAsNumber: true})}
-        />
+        <Input label="Tour Capacity" type="number" {...register("capacity", {valueAsNumber: true})} />
       </div>
       <div className="col-12">
         <AgeSection render={render} />

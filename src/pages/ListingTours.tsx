@@ -35,19 +35,13 @@ const ListingTours = () => {
     <>
       {!isLoading ? (
         <>
-          <div
-            className="container px-4 mb-4 d-none d-lg-block"
-            style={{marginTop: "100px"}}
-          >
+          <div className="container px-4 mb-4 d-none d-lg-block" style={{marginTop: "100px"}}>
             <div className="border" style={{borderRadius: "10px"}}>
               <SearchForm formData={formData} isModify />
             </div>
           </div>
           {!tours.length && !isFiltersApplied ? (
-            <NoResult
-              title="No tours found"
-              description="Try searching different location"
-            />
+            <NoResult title="No tours found" description="Try searching different location" />
           ) : (
             <>
               <ListingHeader destination={destination} />
@@ -67,28 +61,13 @@ const ListingTours = () => {
                     <div className="col-xl-9 col-lg-8">
                       {!isFetching ? (
                         !tours.length && isFiltersApplied ? (
-                          <NoResult
-                            title="No tours found"
-                            description="Try changing filters"
-                          />
+                          <NoResult title="No tours found" description="Try changing filters" />
                         ) : (
                           <>
-                            <TourListHeader
-                              totalCount={totalCount}
-                              sortType={sortType}
-                              setSortType={setSortType}
-                            />
-                            <TourList
-                              tours={tours}
-                              onSelectTour={onSelectTour}
-                              pax={pax}
-                            />
+                            <TourListHeader totalCount={totalCount} sortType={sortType} setSortType={setSortType} />
+                            <TourList tours={tours} onSelectTour={onSelectTour} pax={pax} />
                             <div className="d-flex justify-center flex-column mt-60">
-                              <Pagination
-                                page={page}
-                                setPage={setPage}
-                                totalCount={totalCount}
-                              />
+                              <Pagination page={page} setPage={setPage} totalCount={totalCount} />
                             </div>
                           </>
                         )

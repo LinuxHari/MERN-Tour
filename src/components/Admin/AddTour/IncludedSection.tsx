@@ -21,27 +21,15 @@ const IncludedSection = () => {
       <div className="col-md-8">
         <div className="row y-gap-20">
           <div className="col-12">
-            <Input
-              type="checkbox"
-              label={includedItems.beverages}
-              {...register("included.beverages")}
-            />
+            <Input type="checkbox" label={includedItems.beverages} {...register("included.beverages")} />
           </div>
 
           <div className="col-12">
-            <Input
-              type="checkbox"
-              label={includedItems.localTaxes}
-              {...register("included.localTaxes")}
-            />
+            <Input type="checkbox" label={includedItems.localTaxes} {...register("included.localTaxes")} />
           </div>
 
           <div className="col-12">
-            <Input
-              type="checkbox"
-              label={includedItems.hotelPickup}
-              {...register("included.hotelPickup")}
-            />
+            <Input type="checkbox" label={includedItems.hotelPickup} {...register("included.hotelPickup")} />
           </div>
 
           <div className="col-12">
@@ -53,19 +41,11 @@ const IncludedSection = () => {
           </div>
 
           <div className="col-12">
-            <Input
-              type="checkbox"
-              label={includedItems.softDrinks}
-              {...register("included.softDrinks")}
-            />
+            <Input type="checkbox" label={includedItems.softDrinks} {...register("included.softDrinks")} />
           </div>
 
           <div className="col-12">
-            <Input
-              type="checkbox"
-              label={includedItems.tourGuide}
-              {...register("included.tourGuide")}
-            />
+            <Input type="checkbox" label={includedItems.tourGuide} {...register("included.tourGuide")} />
           </div>
         </div>
       </div>

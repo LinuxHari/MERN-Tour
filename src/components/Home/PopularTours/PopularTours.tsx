@@ -7,8 +7,7 @@ const PopularTours = () => {
 
   if (!tours || !tours.length || isError) return null;
 
-  if (isLoading)
-    return Array.from({length: 3}).map((_, i) => <CardSkeleton key={i} />);
+  if (isLoading) return Array.from({length: 3}).map((_, i) => <CardSkeleton key={i} />);
 
   return (
     <section className="layout-pt-xl">
@@ -18,35 +17,21 @@ const PopularTours = () => {
         </div>
 
         <div className="row y-gap-30 justify-content-center justify-content-md-between pt-40 sm:pt-20 mobile-css-slider -w-300">
-          {tours.map(
-            (
-              {
-                location,
-                title,
-                rating,
-                reviewCount,
-                duration,
-                price,
-                images,
-                tourId,
-              },
-              index,
-            ) => (
-              <TourCard
-                key={index}
-                images={images}
-                rating={rating}
-                reviewCount={reviewCount}
-                duration={duration}
-                price={price}
-                title={title}
-                location={location}
-                tourId={tourId}
-                destination={location.split(",")[0]}
-                className="col-lg-3 col-md-6"
-              />
-            ),
-          )}
+          {tours.map(({location, title, rating, reviewCount, duration, price, images, tourId}, index) => (
+            <TourCard
+              key={index}
+              images={images}
+              rating={rating}
+              reviewCount={reviewCount}
+              duration={duration}
+              price={price}
+              title={title}
+              location={location}
+              tourId={tourId}
+              destination={location.split(",")[0]}
+              className="col-lg-3 col-md-6"
+            />
+          ))}
         </div>
       </div>
     </section>

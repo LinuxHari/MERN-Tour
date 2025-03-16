@@ -26,11 +26,7 @@ const ListingCard = ({
             <Carousel images={images} />
           </div>
 
-          <button
-            className="tourCard__favorite top-5"
-            onClick={() => deleteTour(tourId)}
-            disabled={isDeletingTour}
-          >
+          <button className="tourCard__favorite top-5" onClick={() => deleteTour(tourId)} disabled={isDeletingTour}>
             <i className="icon-delete" />
           </button>
         </div>
@@ -43,9 +39,7 @@ const ListingCard = ({
             </div>
 
             <h3 className="tourCard__title text-16 fw-500 mt-1">
-              <span className="line-clamp-2">
-                {title.length < 55 ? title : title.slice(0, 55) + "..."}
-              </span>
+              <span className="line-clamp-2">{title.length < 55 ? title : title.slice(0, 55) + "..."}</span>
             </h3>
 
             {reviewCount > 0 && (

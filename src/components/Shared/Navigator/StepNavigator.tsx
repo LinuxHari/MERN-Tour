@@ -13,23 +13,11 @@ const StepNavigator = ({prevClick, nextClick, lastIndex, activeTab}: StepNavigat
 
   return (
     <div className="col-9 mt-20 d-flex justify-content-between">
-      <Button
-        buttonType="secondary"
-        type="button"
-        showIcon={false}
-        onClick={prevClick}
-        disabled={disablePrev}
-      >
+      <Button buttonType="secondary" type="button" showIcon={false} onClick={prevClick} disabled={disablePrev}>
         Previous
       </Button>
 
-      <Button
-        buttonType="secondary"
-        type="button"
-        showIcon={false}
-        onClick={nextClick}
-        disabled={disableNext}
-      >
+      <Button buttonType="secondary" type="button" showIcon={false} onClick={nextClick} disabled={disableNext}>
         Next
       </Button>
     </div>

@@ -27,10 +27,7 @@ type EarningStatisticsProps = {
   }[];
 };
 
-const EarningStatistics = ({
-  chartConfig,
-  chartData,
-}: EarningStatisticsProps) => {
+const EarningStatistics = ({chartConfig, chartData}: EarningStatisticsProps) => {
   const tabs = ["hours", "weekly", "monthly"] as const;
 
   return (
@@ -55,10 +52,7 @@ const EarningStatistics = ({
               {tabs.map((value, index) => (
                 <Tabs.TabContent key={index} index={index}>
                   <div className="chart-container">
-                    <Line
-                      data={chartData[index]}
-                      options={chartConfig[value]}
-                    />
+                    <Line data={chartData[index]} options={chartConfig[value]} />
                   </div>
                 </Tabs.TabContent>
               ))}

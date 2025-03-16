@@ -8,8 +8,7 @@ type FavoriteProps = {
 };
 
 const Favorite = ({isFavorite, tourId, onClick}: FavoriteProps) => {
-  const {removeTourFromFavorite, addTourToFavorites, isMutationLoading} =
-    useUserFavoriteHandler();
+  const {removeTourFromFavorite, addTourToFavorites, isMutationLoading} = useUserFavoriteHandler();
 
   const handleFavorite = async (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();

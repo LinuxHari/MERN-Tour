@@ -73,17 +73,13 @@ const Header = ({children, className = ""}: ModalProps) => (
   <div className={`border-1-bottom py-2 ${className}`}>{children}</div>
 );
 
-const Title = ({children, className = ""}: ModalProps) => (
-  <h5 className={`${className}`}>{children}</h5>
-);
+const Title = ({children, className = ""}: ModalProps) => <h5 className={`${className}`}>{children}</h5>;
 
 const Content = ({children, className = ""}: ModalProps) => (
   <div className={`border-1-bottom py-2 ${className}`}>{children}</div>
 );
 
-const Footer = ({children, className = ""}: ModalProps) => (
-  <div className={` py-2 ${className}`}>{children}</div>
-);
+const Footer = ({children, className = ""}: ModalProps) => <div className={` py-2 ${className}`}>{children}</div>;
 
 const Close = ({children, className = ""}: ModalProps) => {
   const {onClose} = useModalContext();

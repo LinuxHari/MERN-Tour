@@ -10,8 +10,7 @@ type Props = {
 const TourGallery = ({images}: Props) => {
   const {width} = useWindowSize();
 
-  const showModalButton =
-    width < 992 || (width > 992 && images.length > 2) ? true : false; // Minimum length of images is two
+  const showModalButton = width < 992 || (width > 992 && images.length > 2) ? true : false; // Minimum length of images is two
 
   // const dummyImg = "https://media.istockphoto.com/id/1414814850/photo/summer-blue-sky-cloud-gradient-light-white-background-beauty-clear-cloudy-in-sunshine-calm.jpg?s=612x612&w=0&k=20&c=AB8i_X54iwA5B8u3EmkmduL37-W35mYuUmHmOeCSiGw="
 

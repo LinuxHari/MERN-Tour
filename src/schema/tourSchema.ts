@@ -70,12 +70,9 @@ export const BaseTourSchema = z.object({
           .string()
           .transform(removeSpaces)
           .pipe(
-            z
-              .string()
-              .min(20, {message: "Highlight should be minimum 20 characters"})
-              .max(100, {
-                message: "Highlight should be maximum 100 characters",
-              }),
+            z.string().min(20, {message: "Highlight should be minimum 20 characters"}).max(100, {
+              message: "Highlight should be maximum 100 characters",
+            }),
           ),
       }),
     )
@@ -161,24 +158,18 @@ export const BaseTourSchema = z.object({
           .string()
           .transform(removeSpaces)
           .pipe(
-            z
-              .string()
-              .min(8, {message: "FAQ question must be at least 8 characters"})
-              .max(100, {
-                message: "FAQ question must not exceed 100 characters",
-              }),
+            z.string().min(8, {message: "FAQ question must be at least 8 characters"}).max(100, {
+              message: "FAQ question must not exceed 100 characters",
+            }),
           ),
 
         answer: z
           .string()
           .transform(removeSpaces)
           .pipe(
-            z
-              .string()
-              .min(2, {message: "FAQ answer must be at least 2 characters"})
-              .max(300, {
-                message: "FAQ answer must not exceed 300 characters",
-              }),
+            z.string().min(2, {message: "FAQ answer must be at least 2 characters"}).max(300, {
+              message: "FAQ answer must not exceed 300 characters",
+            }),
           ),
       }),
     )
@@ -202,12 +193,7 @@ export const BaseTourSchema = z.object({
     .transform((age) => parseInt(age, 10))
     .pipe(
       z.union(
-        [
-          z.literal(allowedAges[0]),
-          z.literal(allowedAges[1]),
-          z.literal(allowedAges[2]),
-          z.literal(allowedAges[3]),
-        ],
+        [z.literal(allowedAges[0]), z.literal(allowedAges[1]), z.literal(allowedAges[2]), z.literal(allowedAges[3])],
         {
           message: "Invalid age is selected",
         },
@@ -238,18 +224,16 @@ export const BaseTourSchema = z.object({
     .default("yes"),
 });
 
-export const TourSchema = BaseTourSchema.merge(LocationSchema).transform(
-  (tour) => {
-    const {minAge, price} = tour;
+export const TourSchema = BaseTourSchema.merge(LocationSchema).transform((tour) => {
+  const {minAge, price} = tour;
 
-    Object.entries(MIN_AGE).forEach(([type, age]) => {
-      if (minAge > age) delete price[type as keyof typeof price];
-    });
-    tour.price = price;
+  Object.entries(MIN_AGE).forEach(([type, age]) => {
+    if (minAge > age) delete price[type as keyof typeof price];
+  });
+  tour.price = price;
 
-    return tour;
-  },
-);
+  return tour;
+});
 
 export const EditTourSchema = z
   .object({

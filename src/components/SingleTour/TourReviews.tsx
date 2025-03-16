@@ -19,9 +19,7 @@ const TourReviews = (tourReviewProps: TourReviewsProps) => {
 
             <div className="overallRating__info">
               <h5 className="text-16 fw-500">Overall Rating</h5>
-              <div className="lh-15 text-15">
-                {reviewTags[overallRating as keyof typeof reviewTags]}
-              </div>
+              <div className="lh-15 text-15">{reviewTags[overallRating as keyof typeof reviewTags]}</div>
             </div>
           </div>
 

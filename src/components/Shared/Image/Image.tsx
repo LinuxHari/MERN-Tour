@@ -34,14 +34,7 @@ const Image = ({
   }, []);
 
   return (
-    <img
-      ref={imgRef}
-      src={isVisible ? src : ""}
-      alt={alt}
-      className={className}
-      {...otherImgProps}
-      loading="lazy"
-    />
+    <img ref={imgRef} src={isVisible ? src : ""} alt={alt} className={className} {...otherImgProps} loading="lazy" />
   );
 };
 

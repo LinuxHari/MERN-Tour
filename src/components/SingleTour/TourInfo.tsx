@@ -49,12 +49,7 @@ const TourInfo = ({
       <div className="container">
         <div className="row y-gap-30 d-flex justify-between">
           <div className="col-lg-8 order-lg-0 order-1">
-            <TourServices
-              duration={duration}
-              minAge={minAge}
-              capacity={capacity}
-              languages={languages}
-            />
+            <TourServices duration={duration} minAge={minAge} capacity={capacity} languages={languages} />
             <TourOverview description={description} highlights={highlights} />
             <IncludedServices included={included} />
             <Itinerary itinerary={itinerary} />
@@ -63,13 +58,7 @@ const TourInfo = ({
             <TourFAQ faq={faq} />
           </div>
           <div className="col-12 col-lg-4 order-lg-1 order-0">
-            <SideCard
-              pax={pax}
-              price={price}
-              startDate={startDate}
-              endDate={endDate}
-              tourId={tourId}
-            />
+            <SideCard pax={pax} price={price} startDate={startDate} endDate={endDate} tourId={tourId} />
           </div>
         </div>
       </div>

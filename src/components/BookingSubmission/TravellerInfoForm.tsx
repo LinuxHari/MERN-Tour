@@ -1,8 +1,4 @@
-import {
-  UseFormGetValues,
-  UseFormRegister,
-  UseFormSetValue,
-} from "react-hook-form";
+import {UseFormGetValues, UseFormRegister, UseFormSetValue} from "react-hook-form";
 import PhoneInput, {CountryData} from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import phone from "phone";
@@ -20,14 +16,7 @@ type TravellerInfoFormProps = {
   country: string;
 };
 
-const TravellerInfoForm = ({
-  register,
-  setValue,
-  expiresAt,
-  onTimeout,
-  getValues,
-  country,
-}: TravellerInfoFormProps) => {
+const TravellerInfoForm = ({register, setValue, expiresAt, onTimeout, getValues, country}: TravellerInfoFormProps) => {
   const formFields = [
     {type: "text", name: "fullName"},
     {type: "text", name: "email"},

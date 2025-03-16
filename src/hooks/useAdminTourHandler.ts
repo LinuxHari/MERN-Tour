@@ -15,18 +15,11 @@ const useAdminTourHandler = () => {
   const [page, setPage] = useState(1);
   const [createTour, {isLoading}] = useCreateTourMutation();
   const [editTour, {isLoading: isUpdating}] = useUpdateTourMutation();
-  const {
-    data: publishedTours,
-    isLoading: isTourLoading,
-    isError: isTourError,
-  } = useGetAdminPublishedToursQuery(page);
+  const {data: publishedTours, isLoading: isTourLoading, isError: isTourError} = useGetAdminPublishedToursQuery(page);
 
   const [deleteTour, {isLoading: isDeletingTour}] = useDeleteTourMutation();
 
-  const tourSubmitHandler = async (
-    formData: TourSchemaType,
-    reset: UseFormReset<TourSchemaType>,
-  ) => {
+  const tourSubmitHandler = async (formData: TourSchemaType, reset: UseFormReset<TourSchemaType>) => {
     const toastId = toast.loading("Adding new tour...");
     const {error} = await createTour({...formData});
 
@@ -41,20 +34,13 @@ const useAdminTourHandler = () => {
     tourId: string,
     reset: UseFormReset<EditTourSchemaType>,
   ) => {
-    if (_.isEqual(defaultValues, formData))
-      return toast.error("There are no changes to update");
+    if (_.isEqual(defaultValues, formData)) return toast.error("There are no changes to update");
 
     const numOfImages = formData.existingImages.length + formData.images.length;
 
-    if (numOfImages > MAX_UPLOAD_IMAGES)
-      return toast.error(
-        `Only upto ${MAX_UPLOAD_IMAGES} images can be uploaded`,
-      );
+    if (numOfImages > MAX_UPLOAD_IMAGES) return toast.error(`Only upto ${MAX_UPLOAD_IMAGES} images can be uploaded`);
 
-    if (numOfImages < MIN_UPLOAD_IMAGES)
-      return toast.error(
-        `Atleast ${MIN_UPLOAD_IMAGES} images must be uploaded`,
-      );
+    if (numOfImages < MIN_UPLOAD_IMAGES) return toast.error(`Atleast ${MIN_UPLOAD_IMAGES} images must be uploaded`);
 
     const toastId = toast.loading("updating tour...");
     const {error} = await editTour({...formData, tourId});

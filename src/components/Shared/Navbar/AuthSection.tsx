@@ -19,9 +19,7 @@ const AuthSection = ({isMobile = false}: AuthSectionProps) => {
   const {showModal, onClose, onConfirm, openModal} = useModal();
   const {width} = useWindowSize();
   const [dashboardLabel, dashboardUrl] =
-    user?.role === Role.admin
-      ? ["Dashboard", "/dashboard"]
-      : ["Profile", "/dashboard/profile"];
+    user?.role === Role.admin ? ["Dashboard", "/dashboard"] : ["Profile", "/dashboard/profile"];
 
   const handleLogout = async () => {
     if (user && isLoggedIn) {
@@ -30,12 +28,7 @@ const AuthSection = ({isMobile = false}: AuthSectionProps) => {
   };
 
   if (isLoading) {
-    return (
-      <div
-        className="skeleton-element rounded-pill"
-        style={{width: "80px", height: "38px"}}
-      />
-    );
+    return <div className="skeleton-element rounded-pill" style={{width: "80px", height: "38px"}} />;
   }
 
   return (
@@ -45,11 +38,7 @@ const AuthSection = ({isMobile = false}: AuthSectionProps) => {
           <Dropdown.Toggle className="px-0 mx-2" dataClick="header-currency">
             {!isMobile ? (
               <>
-                <Avatar
-                  type="small"
-                  string={user.email}
-                  profile={user.profile}
-                />
+                <Avatar type="small" string={user.email} profile={user.profile} />
                 <p className="text-clamp-10 m-0">{user.firstName}</p>
                 <i className="icon-chevron-down text-18" />
               </>
@@ -74,19 +63,11 @@ const AuthSection = ({isMobile = false}: AuthSectionProps) => {
                   </Link>
                 </div>
                 <div className="headerDropdown__item text-decoration-none">
-                  <button
-                    className="text-danger d-flex align-items-center text-decoration-none"
-                    onClick={openModal}
-                  >
-                    <i className="icon-logout text-18 text-decoration-none" />{" "}
-                    &nbsp; Logout
+                  <button className="text-danger d-flex align-items-center text-decoration-none" onClick={openModal}>
+                    <i className="icon-logout text-18 text-decoration-none" /> &nbsp; Logout
                   </button>
                 </div>
-                <LogoutModal
-                  showModal={showModal}
-                  onClose={onClose}
-                  onConfirm={() => onConfirm(handleLogout)}
-                />
+                <LogoutModal showModal={showModal} onClose={onClose} onConfirm={() => onConfirm(handleLogout)} />
               </div>
             </div>
           </Dropdown.Content>

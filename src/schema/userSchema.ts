@@ -24,10 +24,7 @@ export const BaseUserSchema = z
     //       message: "Only images are allowed to be sent.",
     //     }),
     // }),
-    address: z
-      .string({message: "Invalid address"})
-      .transform(removeSpaces)
-      .pipe(z.string().min(10).max(200)),
+    address: z.string({message: "Invalid address"}).transform(removeSpaces).pipe(z.string().min(10).max(200)),
   })
   .merge(NameSchema); // Adding 3 merges in a row caused https://github.com/colinhacks/zod/issues/2697, so added email with shape merged and extended
 
@@ -38,10 +35,8 @@ export const PasswordSchema = z
     confirmPassword: LoginSchema.shape.password,
   })
   .refine(({newPassword, confirmPassword, oldPassword}) => {
-    if (newPassword === confirmPassword)
-      return {message: "Password did not match"};
-    else if (newPassword === oldPassword)
-      return {message: "Old password and new password both are same"};
+    if (newPassword === confirmPassword) return {message: "Password did not match"};
+    else if (newPassword === oldPassword) return {message: "Old password and new password both are same"};
   });
 
 export const UserSchema = z.intersection(BaseUserSchema, LocationSchema);

@@ -10,14 +10,9 @@ const AdminLayout = () => {
   const {pathname} = useLocation();
   const [showNotFound, setShowNotFound] = useState(false);
 
-  const adminPages = [
-    "/dashboard",
-    "/dashboard/listings",
-    "/dashboard/addTour",
-  ];
+  const adminPages = ["/dashboard", "/dashboard/listings", "/dashboard/addTour"];
 
-  const isRestricted =
-    adminPages.includes(pathname) && user && user.role !== Role.admin;
+  const isRestricted = adminPages.includes(pathname) && user && user.role !== Role.admin;
 
   useLayoutEffect(() => {
     if ((!isLoading && !isLoggedIn) || isRestricted) {

@@ -2,11 +2,7 @@ import {useCallback} from "react";
 import toast from "react-hot-toast";
 import {useNavigate} from "react-router-dom";
 import {FetchBaseQueryError} from "@reduxjs/toolkit/query";
-import {
-  useLoginMutation,
-  useLogoutMutation,
-  useSignupMutation,
-} from "../redux/api/authApi";
+import {useLoginMutation, useLogoutMutation, useSignupMutation} from "../redux/api/authApi";
 import {LoginSchemaType, SignupSchemaType} from "../schema/authSchema";
 
 type LoginData = LoginSchemaType & {
@@ -30,8 +26,7 @@ const useAuthHandler = () => {
     if (error) {
       const loginError = error as FetchBaseQueryError;
 
-      if (loginError.status === 500)
-        return toast.error("Something went wrong", {id: toastId});
+      if (loginError.status === 500) return toast.error("Something went wrong", {id: toastId});
       else return toast.error("Invalid email or password", {id: toastId});
     }
     toast.success("Logged in successfully", {id: toastId});

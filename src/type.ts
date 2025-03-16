@@ -92,10 +92,7 @@ export type TourListResponse = {
   filters?: Omit<Filters, "rating">;
 };
 
-export type SingleTourResponse = Omit<
-  Tour,
-  "freeCancellation" | "city" | "state" | "country"
-> & {
+export type SingleTourResponse = Omit<Tour, "freeCancellation" | "city" | "state" | "country"> & {
   freeCancellation: boolean;
   duration: number;
   destination: string;

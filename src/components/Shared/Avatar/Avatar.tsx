@@ -13,10 +13,7 @@ const Avatar = ({type, string, profile}: AvatarProps) => {
       {profile ? (
         <img src={profile} style={style} alt="profile" />
       ) : (
-        <div
-          style={style}
-          className="-dark-1 bg-accent-1 text-white d-flex align-items-center justify-content-center"
-        >
+        <div style={style} className="-dark-1 bg-accent-1 text-white d-flex align-items-center justify-content-center">
           {string[0].toUpperCase()}
         </div>
       )}

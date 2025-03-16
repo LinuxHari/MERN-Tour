@@ -17,13 +17,7 @@ type OptionProps = CommonProps & {
   value: string;
 };
 
-const Select2 = ({
-  defaultValue,
-  onSelect,
-  onContentShowing,
-  children,
-  className = "",
-}: SelectProps) => {
+const Select2 = ({defaultValue, onSelect, onContentShowing, children, className = ""}: SelectProps) => {
   const {focusRef, showContent, setShowContent} = useFocusHandler();
 
   const handleSelect = (value: string) => {
@@ -45,9 +39,7 @@ const Select2 = ({
   }, [defaultValue]);
 
   return (
-    <Select2Context.Provider
-      value={{defaultValue, onSelect: handleSelect, toggleDropdown, showContent}}
-    >
+    <Select2Context.Provider value={{defaultValue, onSelect: handleSelect, toggleDropdown, showContent}}>
       <div className={`searchFormItem js-select-control js-form-dd ${className}`} ref={focusRef}>
         {children}
       </div>

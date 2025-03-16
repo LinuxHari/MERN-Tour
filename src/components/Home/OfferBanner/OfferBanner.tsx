@@ -24,9 +24,7 @@ const OfferBanner = () => {
                 Destination
               </h2>
 
-              <p className="mt-10">
-                Limited time offer, don&apos;t miss the opportunity
-              </p>
+              <p className="mt-10">Limited time offer, don&apos;t miss the opportunity</p>
 
               <div className="mt-30 md:mt-20">
                 <button className="button -md -dark-1 bg-accent-1 text-white">

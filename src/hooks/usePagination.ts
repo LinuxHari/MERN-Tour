@@ -3,12 +3,7 @@ import useWindowSize from "./useWindowSize";
 
 type PaginationFn = (page: number) => void;
 
-const usePagination = (
-  page: number,
-  perPage: number,
-  fn: PaginationFn,
-  count: number,
-) => {
+const usePagination = (page: number, perPage: number, fn: PaginationFn, count: number) => {
   const [pages, setPages] = useState([1, null]);
 
   const {width} = useWindowSize();
@@ -27,26 +22,18 @@ const usePagination = (
 
   useLayoutEffect(() => {
     if (numOfPages < buttonsToShow) {
-      const pages = Array.from({length: numOfPages}).map(
-        (_, index) => index + 1,
-      );
+      const pages = Array.from({length: numOfPages}).map((_, index) => index + 1);
 
       setPages(pages);
     } else if (page < buttonsToShow) {
-      const pages = [
-        ...Array.from({length: buttonsToShow}).map((_, index) => index + 1),
-        null,
-        numOfPages,
-      ];
+      const pages = [...Array.from({length: buttonsToShow}).map((_, index) => index + 1), null, numOfPages];
 
       setPages(pages);
     } else if (numOfPages - (page - 2) <= buttonsToShow) {
       const pages = [
         1,
         null,
-        ...Array.from({length: buttonsToShow}).map(
-          (_, index) => numOfPages - buttonsToShow + index + 1,
-        ),
+        ...Array.from({length: buttonsToShow}).map((_, index) => numOfPages - buttonsToShow + index + 1),
       ];
 
       setPages(pages);
@@ -54,9 +41,7 @@ const usePagination = (
       const pages = [
         1,
         null,
-        ...Array.from({length: buttonsToShow - 2}).map(
-          (_, index) => page - 1 + index,
-        ),
+        ...Array.from({length: buttonsToShow - 2}).map((_, index) => page - 1 + index),
         null,
         numOfPages,
       ];

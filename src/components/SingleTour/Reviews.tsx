@@ -12,8 +12,7 @@ type ReviewsProps = {
 
 const Reviews = ({tourId, canReview}: ReviewsProps) => {
   const {isLoggedIn} = useUserHandler();
-  const {reviews, isError, isLoading, reviewTour, isReviewLoading} =
-    useReviewHandler(tourId);
+  const {reviews, isError, isLoading, reviewTour, isReviewLoading} = useReviewHandler(tourId);
 
   return (
     <>
@@ -29,11 +28,7 @@ const Reviews = ({tourId, canReview}: ReviewsProps) => {
               overallRating={reviews.overallRating}
             />
             {Boolean(reviews.userReviews.length) && (
-              <TourRating
-                reviews={reviews.userReviews}
-                totalCount={reviews.totalCount}
-                isLoading={isLoading}
-              />
+              <TourRating reviews={reviews.userReviews} totalCount={reviews.totalCount} isLoading={isLoading} />
             )}
           </>
         </TourSectionLayout>

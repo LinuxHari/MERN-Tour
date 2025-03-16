@@ -1,7 +1,6 @@
 import {z} from "zod";
 
-const passwordRegex =
-  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 const alphabetOnlyRegex = /^[A-Za-z]+$/;
 
 const alphabetSchema = (type: string) =>
@@ -10,9 +9,7 @@ const alphabetSchema = (type: string) =>
   });
 
 export const EmailSchema = z.object({
-  email: z
-    .string({message: "Invalid email address"})
-    .email({message: "Invalid email address"}),
+  email: z.string({message: "Invalid email address"}).email({message: "Invalid email address"}),
 });
 export const NameSchema = z.object({
   firstName: z
@@ -30,8 +27,7 @@ export const NameSchema = z.object({
 export const LoginSchema = z
   .object({
     password: z.string().min(8).max(32).regex(passwordRegex, {
-      message:
-        "Password must contain atleast one lowercase, one uppercase and one special character",
+      message: "Password must contain atleast one lowercase, one uppercase and one special character",
     }),
   })
   .merge(EmailSchema);

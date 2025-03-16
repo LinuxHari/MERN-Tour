@@ -7,8 +7,7 @@ import CommonSkeleton from "../../components/Skeletons/CommonSkeleton";
 import NoResult from "../../components/Shared/NoResult/NoResult";
 
 const Favorites = ({render}: RenderProps) => {
-  const {favoriteTours, page, setPage, isFetchingFavoriteTours} =
-    useUserFavoriteHandler();
+  const {favoriteTours, page, setPage, isFetchingFavoriteTours} = useUserFavoriteHandler();
 
   return (
     <>
@@ -21,27 +20,11 @@ const Favorites = ({render}: RenderProps) => {
             <>
               <div className="row y-gap-30">
                 {favoriteTours.favoriteTours.map(
-                  (
-                    {
-                      images,
-                      title,
-                      rating,
-                      reviewCount,
-                      duration,
-                      price,
-                      tourId,
-                      city,
-                      state,
-                      country,
-                    },
-                    i,
-                  ) => (
+                  ({images, title, rating, reviewCount, duration, price, tourId, city, state, country}, i) => (
                     <TourCard
                       key={i}
                       images={images}
-                      location={
-                        city.name || "" + state.name || "" + country.name
-                      }
+                      location={city.name || "" + state.name || "" + country.name}
                       title={title}
                       rating={rating}
                       reviewCount={reviewCount}
@@ -56,19 +39,11 @@ const Favorites = ({render}: RenderProps) => {
                 )}
               </div>
               <div className="mt-60">
-                <Pagination
-                  totalCount={favoriteTours.totalCount}
-                  page={page}
-                  setPage={setPage}
-                  perPage={12}
-                />
+                <Pagination totalCount={favoriteTours.totalCount} page={page} setPage={setPage} perPage={12} />
               </div>
             </>
           ) : (
-            <NoResult
-              title="You do not have favorite tours!"
-              description="Add your favorite tours"
-            />
+            <NoResult title="You do not have favorite tours!" description="Add your favorite tours" />
           )}
         </div>
       )}
