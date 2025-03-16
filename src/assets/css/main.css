@@ -14351,3 +14351,10 @@ a {
 .leaflet-top {
   z-index: 500 !important;
 }
+
+.dashboard__img {
+  width: 100px;
+  max-width: 50px;
+  height: 50px;
+  object-fit: cover;
+}

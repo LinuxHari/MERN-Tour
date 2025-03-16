@@ -2,6 +2,7 @@ import BreadCrumbs from "../components/Shared/BreadCrumbs/BreadCrumbs";
 import NoResult from "../components/Shared/NoResult/NoResult";
 import TourHeader from "../components/SingleTour/TourHeader";
 import TourInfo from "../components/SingleTour/TourInfo";
+import TourSuggestions from "../components/SingleTour/TourSuggestions";
 import TourDetailSkeleton from "../components/Skeletons/TourDetailSkeleton";
 import useSingleTourHandler from "../hooks/useSingleTourHandler";
 
@@ -43,7 +44,7 @@ const SingleTour = () => {
         tourId={tourId}
         canReview={data.canReview}
       />
-      {/* <TourSuggestions /> */}
+      <TourSuggestions />
     </>
   );
 };

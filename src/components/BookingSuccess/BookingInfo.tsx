@@ -50,22 +50,22 @@ const BookingInfo = ({
 
       <div className="border-dashed-1 py-30 px-50 rounded-12 mt-30">
         <div className="row y-gap-15">
-          <div className="col-md-3 col-6">
+          <div className="col-md-3 col-12">
             <div>Order Number</div>
             <div className="text-accent-2">{bookingId}</div>
           </div>
 
-          <div className="col-md-3 col-6">
+          <div className="col-md-3 col-12">
             <div>Date</div>
             <div className="text-accent-2">{bookDate.toString().split("T")[0]}</div>
           </div>
 
-          <div className="col-md-3 col-6">
+          <div className="col-md-3 col-12">
             <div>Total</div>
             <div className="text-accent-2">${amount}</div>
           </div>
 
-          <div className="col-md-3 col-6">
+          <div className="col-md-3 col-12">
             <div>Payment Method</div>
             <div className="text-accent-2">{paymentMethod}</div>
           </div>

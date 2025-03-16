@@ -28,7 +28,7 @@ const useStatsInfo = () => {
       title: "Total Booking",
       total: revenue?.successfulEarnings || 0,
       currency: "$",
-      today: revenue?.successfulEarningsToday || 0,
+      today: revenue?.todaySuccessfulEarnings || 0,
       icon: "icon-booking",
     },
   ];

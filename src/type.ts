@@ -219,7 +219,7 @@ export type EarningsResponse = {
   totalPendingEarnings: number;
   todayPendingEarnings: number;
   successfulEarnings: number;
-  successfulEarningsToday: number;
+  todaySuccessfulEarnings: number;
   earningsByTwoHours: number[];
   earningsByWeek: number[];
   earningsByMonth: number[];

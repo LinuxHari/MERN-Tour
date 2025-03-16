@@ -13,8 +13,8 @@ const TableRow = ({id, tour, startDate, endDate, url, price, passengers, status}
     <tr>
       <td>#{id}</td>
       <td className="min-w-300">
-        <div className="d-flex items-center">
-          <Image src={tour.imgUrl} alt="" className="w-25 rounded" />
+        <div className="d-flex align-items-center">
+          <Image src={tour.imgUrl} alt="" className="dashboard__img rounded" />
           <div className="ml-20">{tour.name}</div>
         </div>
       </td>
