@@ -1,20 +1,20 @@
-import {useCallback, useEffect, useMemo, useRef, useState} from "react";
-import {
-  createSearchParams,
-  useNavigate,
-  useParams,
-  useSearchParams,
-} from "react-router-dom";
+import {useCallback, useEffect, useMemo, useRef} from "react";
+import {createSearchParams, useNavigate, useParams, useSearchParams} from "react-router-dom";
 import {listingUrlParamsHandler} from "../utils/urlParamsHandler";
 import {useGetToursBySearchQuery} from "../redux/api/baseApi";
 import {AppliedFiltersProps, Filters, SortTypes} from "../type";
-import {
-  reTransformUrlName,
-  transformToUrlName,
-} from "../utils/urlNameTransformer";
+import {reTransformUrlName, transformToUrlName} from "../utils/urlNameTransformer";
 import {SearchSchemaType} from "../schema/searchSchema";
+import useFilter from "./useFilter";
 
-type PriceRangeProps = {
+export type PaxType = {
+  adults: number;
+  children: number;
+  teens: number;
+  infants: number;
+};
+
+export type PriceRangeProps = {
   minPrice?: number;
   maxPrice?: number;
 };
@@ -26,7 +26,7 @@ type ParamType = {
 
 const useListingToursHandler = () => {
   const {destinationId, destination} = useParams() as ParamType;
-  const [searchParams, _] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const urlParams = Object.fromEntries(searchParams);
   const {
     tourType,
@@ -50,35 +50,43 @@ const useListingToursHandler = () => {
     destination,
   });
 
-  const filterRef = useRef(1);
-
+  const filterRef = useRef<number>(1);
   const navigate = useNavigate();
 
-  const defaultSortType = "RCM";
-  const defaultAppliedFilters = {
+  // Initial values for filter hook
+  const defaultSortType: SortTypes = "RCM";
+  const defaultAppliedFilters: AppliedFiltersProps = {
     tourTypes: tourType === "All tours" ? undefined : [tourType],
     rating: 0,
   };
-  const defaultPriceRange = {
+  const defaultPriceRange: PriceRangeProps = {
     minPrice: undefined,
     maxPrice: undefined,
   };
-
-  const [page, setPage] = useState(1);
-  const [sortType, setSortType] = useState<SortTypes>(defaultSortType);
-  const [filters, setFilters] = useState<Filters>({
+  const initialFilters: Filters = {
     rating: [
       {count: 5, label: "Outstanding(5)"},
       {count: 4, label: "Great(4)"},
       {count: 3, label: "Satisfactory(3)"},
       {count: 0, label: "Any"},
     ],
-  });
-  const [appliedFilters, setAppliedFilters] = useState<AppliedFiltersProps>(
-    defaultAppliedFilters,
-  );
-  const [priceRange, setPriceRange] =
-    useState<PriceRangeProps>(defaultPriceRange);
+  };
+
+  const {
+    filters,
+    setFilters,
+    appliedFilters,
+    priceRange,
+    sortType,
+    page,
+    isFiltersApplied,
+    handleSortType,
+    handleAppliedFilters,
+    handlePriceRange,
+    handlePage,
+    handleReset,
+  } = useFilter(initialFilters, defaultAppliedFilters, defaultPriceRange, defaultSortType);
+
   const queryParams = useMemo(
     () => ({
       destinationId: selectedDestinationId,
@@ -116,7 +124,7 @@ const useListingToursHandler = () => {
 
   const tours = data?.tours || [];
   const totalCount = data?.totalCount || 0;
-  const pax = {
+  const pax: PaxType = {
     adults,
     teens,
     children,
@@ -135,89 +143,20 @@ const useListingToursHandler = () => {
     pax,
   };
 
-  const handleReset = useCallback(() => {
-    setAppliedFilters(defaultAppliedFilters);
-    setSortType(defaultSortType);
-    setPage(1);
-    setPriceRange(defaultPriceRange);
-  }, []);
-
-  const handleSortType = useCallback(
-    (type: SortTypes) => setSortType(type),
-    [],
-  );
-
-  const handleAppliedFilters = useCallback(
-    (filterKey: string, value: string, isSelected?: boolean) => {
-      const isArrFilter =
-        Array.isArray(filters[filterKey as keyof typeof filters]) &&
-        filterKey !== "rating";
-      const currentFiltervalue =
-        appliedFilters[filterKey as keyof typeof appliedFilters];
-      const filterValue = isArrFilter
-        ? currentFiltervalue || []
-        : currentFiltervalue;
-
-      if (typeof isSelected === "undefined")
-        //check box filters does not pass selected param
-        setAppliedFilters({...appliedFilters, [filterKey]: value});
-      else if (isSelected)
-        setAppliedFilters({
-          ...appliedFilters,
-          [filterKey]: [...(filterValue as Array<string>), value],
-        });
-      else {
-        if (isArrFilter) {
-          let updatedFilter = appliedFilters[
-            filterKey as keyof typeof appliedFilters
-          ] as Array<string>;
-
-          updatedFilter = updatedFilter.filter(
-            (filterValue) => filterValue !== value,
-          );
-
-          if (!updatedFilter.length) {
-            const updatedFilters = {...appliedFilters};
-
-            delete updatedFilters[filterKey as keyof typeof updatedFilters];
-            setAppliedFilters(updatedFilters);
-          } else {
-            setAppliedFilters({...appliedFilters, [filterKey]: updatedFilter});
-          }
-        }
-      }
-
-      if (page !== 1) setPage(1);
-    },
-    [filters, appliedFilters],
-  );
-  const handlePriceRange = useCallback(
-    (minPrice: number, maxPrice?: number) =>
-      setPriceRange({minPrice, maxPrice}),
-    [],
-  );
-  const handlePage = useCallback((page: number) => {
-    setPage(page);
-    setTimeout(() => window.scrollTo(0, 0), 500);
-  }, []);
-
   const handleNavigation = useCallback(
     (id: string, tourName: string, destination: string, duration: number) => {
-      const endDate = new Date(
-        new Date(startDate).setDate(new Date(startDate).getDate() + duration),
-      )
+      const calculatedEndDate = new Date(new Date(startDate).setDate(new Date(startDate).getDate() + duration))
         .toISOString()
         .split("T")[0];
 
       const transformedName = transformToUrlName(tourName);
-
       const transformedDestination = transformToUrlName(destination);
 
       navigate({
         pathname: `/tours/${transformedDestination}/${transformedName}/${id}`,
         search: createSearchParams({
           startDate,
-          endDate: String(endDate),
+          endDate: String(calculatedEndDate),
           adults: String(adults),
           children: String(children),
           infants: String(infants),
@@ -225,7 +164,7 @@ const useListingToursHandler = () => {
         }).toString(),
       });
     },
-    [],
+    [navigate, startDate, adults, children, infants, teens],
   );
 
   useEffect(() => {
@@ -236,15 +175,12 @@ const useListingToursHandler = () => {
   }, [data]);
 
   useEffect(() => {
-    setAppliedFilters((prev) => ({
-      ...prev,
-      tourTypes: tourType === "All tours" ? undefined : [tourType],
-    }));
+    handleAppliedFilters("tourTypes", tourType);
   }, [tourType]);
 
   useEffect(() => {
     filterRef.current = 1;
-    setAppliedFilters(defaultAppliedFilters);
+    handleReset();
   }, [destinationId]);
 
   return {
@@ -264,11 +200,7 @@ const useListingToursHandler = () => {
     resetFilters: handleReset,
     filters,
     pax,
-    isFiltersApplied:
-      Object.keys(appliedFilters).length > 2 ||
-      appliedFilters.rating !== 0 ||
-      priceRange.maxPrice ||
-      priceRange.minPrice,
+    isFiltersApplied,
     destination: transformedDestination,
     formData,
   };

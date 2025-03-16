@@ -5,14 +5,9 @@ import Rating from "../Rating/Rating";
 import Favorite from "../Others/Favorite";
 import Carousel from "../Image/Carousel";
 
-type TourCard2Props = TourListResponse["tours"][0] & {pax: PaxProps} & {
+type TourCard2Props = TourListResponse["tours"][0] & {pax?: PaxProps} & {
   className?: string;
-  onSelect: (
-    id: string,
-    tourName: string,
-    destination: string,
-    duration: number,
-  ) => void;
+  onSelect: (id: string, tourName: string, destination: string, duration: number) => void;
 };
 
 const TourCard2 = ({
@@ -31,18 +26,21 @@ const TourCard2 = ({
   totalRatings,
   isFavorite,
 }: TourCard2Props) => {
-  const {teens, adults, children, infants} = pax;
   const [isFavoriteTour, setFavoriteTour] = useState(isFavorite);
 
   const total = (() => {
-    let totalPrice = 0;
+    if (pax) {
+      let totalPrice = 0;
 
-    if (adults) totalPrice += adults * price.adult;
-    if (teens) totalPrice += teens * (price?.teen || 0);
-    if (children) totalPrice += children * (price?.child || 0);
-    if (infants) totalPrice += infants * (price?.infant || 0);
+      if (pax?.adults) totalPrice += pax.adults * price.adult;
+      if (pax?.teens) totalPrice += pax.teens * (price?.teen || 0);
+      if (pax?.children) totalPrice += pax.children * (price?.child || 0);
+      if (pax?.infants) totalPrice += pax.infants * (price?.infant || 0);
 
-    return totalPrice;
+      return totalPrice;
+    }
+
+    return price.adult;
   })();
 
   return (
@@ -74,9 +72,7 @@ const TourCard2 = ({
       </div>
 
       <div className="tourCard__content">
-        {totalRatings > 0 && (
-          <Rating rating={averageRating} reviewCount={totalRatings} />
-        )}
+        {totalRatings > 0 && <Rating rating={averageRating} reviewCount={totalRatings} />}
         <div className="tourCard__location">
           <i className="icon-pin" />
           {destination}
@@ -107,20 +103,13 @@ const TourCard2 = ({
             {duration} Days
           </div>
           <div className="tourCard__price">
-            <div>
-              {/* {offer && `$${getOriginalPrice(price, offer.percentage)}`} */}
-            </div>
+            <div>{/* {offer && `$${getOriginalPrice(price, offer.percentage)}`} */}</div>
             <div className="d-flex items-center">
               Total <span className="text-20 fw-500 ml-5">${total}</span>
             </div>
           </div>
         </div>
-        <Button
-          buttonType="secondary"
-          onClick={() =>
-            onSelect(tourId, name, destination.split(",")[0], duration)
-          }
-        >
+        <Button buttonType="secondary" onClick={() => onSelect(tourId, name, destination.split(",")[0], duration)}>
           View Details
         </Button>
       </div>

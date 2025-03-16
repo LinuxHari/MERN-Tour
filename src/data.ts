@@ -690,3 +690,32 @@ export const SEARCH_SUGGESTIONS = [
     destinationId: "3083e030",
   },
 ];
+
+export const POPULAR_THINGS = [
+  {
+    title: "Cruises",
+    image: "img/features/1/1.png",
+    url: "/tours/category/Cruises",
+  },
+  {
+    title: "Nature Tours",
+    image: "img/features/1/2.png",
+    url: "/tours/category/Nature",
+  },
+  {
+    title: "City Tours",
+    image: "img/features/1/3.png",
+    url: "/tours/category/City",
+  },
+  {
+    title: "Cultural Tours",
+    image: "img/features/1/4.png",
+    url: "/tours/category/Cultural",
+  },
+  {title: "Food", image: "img/features/1/5.png", url: "/tours/category/Food"},
+  {
+    title: "Adventure",
+    image: "img/features/1/6.png",
+    url: "/tours/category/Adventure",
+  },
+];

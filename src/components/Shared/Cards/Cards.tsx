@@ -1,17 +1,13 @@
 import {Swiper, SwiperSlide} from "swiper/react";
 import {Navigation} from "swiper/modules";
 import TourCard from "../../Admin/Favorites/TourCard";
-import {useTrendingToursQuery} from "../../../redux/api/baseApi";
-import CardSkeleton from "../../Skeletons/CardSkeleton";
+import {ListingCardProps} from "../../../type";
 
-const Cards = () => {
-  const {data: tours, isLoading, isError} = useTrendingToursQuery();
+type CardsProps = {
+  tours: ListingCardProps[];
+};
 
-  if (!tours || !tours.length || isError) return null;
-
-  if (isLoading)
-    return Array.from({length: 3}).map((_, i) => <CardSkeleton key={i} />);
-
+const Cards = ({tours}: CardsProps) => {
   return (
     <div className="relative pt-40 sm:pt-20 is-in-view">
       <div className="overflow-hidden pb-30">
@@ -30,35 +26,21 @@ const Cards = () => {
             1280: {slidesPerView: 4},
           }}
         >
-          {tours.map(
-            (
-              {
-                location,
-                title,
-                reviewCount,
-                rating,
-                duration,
-                price,
-                images,
-                tourId,
-              },
-              index,
-            ) => (
-              <SwiperSlide key={index}>
-                <TourCard
-                  location={location}
-                  title={title}
-                  reviewCount={reviewCount}
-                  rating={rating}
-                  duration={duration}
-                  price={price}
-                  images={images}
-                  destination={location.split(",")[0]}
-                  tourId={tourId}
-                />
-              </SwiperSlide>
-            ),
-          )}
+          {tours.map(({location, title, reviewCount, rating, duration, price, images, tourId}, index) => (
+            <SwiperSlide key={index}>
+              <TourCard
+                location={location}
+                title={title}
+                reviewCount={reviewCount}
+                rating={rating}
+                duration={duration}
+                price={price}
+                images={images}
+                destination={location.split(",")[0]}
+                tourId={tourId}
+              />
+            </SwiperSlide>
+          ))}
         </Swiper>
       </div>
 

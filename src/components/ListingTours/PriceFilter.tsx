@@ -13,9 +13,7 @@ const PriceFilter = ({priceRange, setPriceRange}: PriceFilterProps) => {
   const [currentPriceRange, setCurrentRange] = useState([5, 1500]);
   const [currentMinPrice, currentMaxPrice] = currentPriceRange;
   const handleRange = (range: number[]) =>
-    range[1] === defaultRange.maxPrice || range[1] === currentMaxPrice
-      ? setPriceRange(range[0])
-      : setPriceRange(range[0], range[1]);
+    range[1] === defaultRange.maxPrice ? setPriceRange(range[0]) : setPriceRange(range[0], range[1]);
 
   useEffect(() => {
     const {minPrice, maxPrice} = priceRange;
@@ -50,10 +48,7 @@ const PriceFilter = ({priceRange, setPriceRange}: PriceFilterProps) => {
                     <span className="fw-500 js-lower">${currentMinPrice}</span>
                     <span> - </span>
                     <span className="fw-500 js-upper">
-                      $
-                      {currentMaxPrice === defaultRange.maxPrice
-                        ? currentMaxPrice + "+"
-                        : currentMaxPrice}
+                      ${currentMaxPrice === defaultRange.maxPrice ? currentMaxPrice + "+" : currentMaxPrice}
                     </span>
                   </div>
                 </div>

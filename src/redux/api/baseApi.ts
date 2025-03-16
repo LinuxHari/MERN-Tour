@@ -15,14 +15,7 @@ import {
 } from "../../type";
 import {RatingType} from "../../schema/reviewSchema";
 
-type TourSearchParams = {
-  destinationId: string;
-  startDate: string;
-  endDate: string;
-  adults: number;
-  children: number;
-  infants: number;
-  teens: number;
+type BaseSearchParams = {
   page: number;
   filters: number;
   appliedFilters: AppliedFiltersProps & {
@@ -31,6 +24,16 @@ type TourSearchParams = {
     maxPrice?: number;
   };
 };
+
+type TourSearchParams = {
+  destinationId: string;
+  startDate: string;
+  endDate: string;
+  adults: number;
+  children: number;
+  infants: number;
+  teens: number;
+} & BaseSearchParams;
 
 type SingleTourParams = {
   id: string;
@@ -79,10 +82,7 @@ export const baseApi = createApi({
     getReservedTour: builder.query<ReservedTourResponse, string>({
       query: (id) => ({url: `/tour/reserve/${id}`, credentials: "include"}),
     }),
-    bookTour: builder.mutation<
-      {clientSecret: string; bookingId: string},
-      BookingBody
-    >({
+    bookTour: builder.mutation<{clientSecret: string; bookingId: string}, BookingBody>({
       query: ({id, ...bookingData}) => ({
         url: `/tour/book/${id}`,
         method: "POST",
@@ -131,6 +131,18 @@ export const baseApi = createApi({
         method: "GET",
       }),
     }),
+    getToursByCategory: builder.query<TourListResponse, BaseSearchParams>({
+      query: (params) => {
+        const {appliedFilters, ...restParams} = params;
+        const {tourTypes, ...otherAppliedFilters} = appliedFilters;
+
+        return {
+          url: `/tour/category/${tourTypes}`,
+          params: {...restParams, ...otherAppliedFilters},
+          credentials: "include",
+        };
+      },
+    }),
   }),
 });
 
@@ -147,4 +159,5 @@ export const {
   useReviewMutation,
   usePopularToursQuery,
   useTrendingToursQuery,
+  useGetToursByCategoryQuery,
 } = baseApi;

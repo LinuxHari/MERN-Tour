@@ -20,30 +20,21 @@ const Checkout = lazy(() => import("./pages/Checkout"));
 const Login = lazy(() => import("./pages/Auth/Login"));
 const Signup = lazy(() => import("./pages/Auth/Signup"));
 const NotFound = lazy(() => import("./pages/NotFound"));
+const CategoryTours = lazy(() => import("./pages/CategoryTours"));
 
 const AppRoutes = () => {
-  const render = useCallback(
-    (title: string, desc: string = "") => (
-      <CommonHeader title={title} desc={desc} />
-    ),
-    [],
-  );
+  const render = useCallback((title: string, desc: string = "") => <CommonHeader title={title} desc={desc} />, []);
 
   return (
     <Suspense fallback={<CommonSkeleton />}>
       <Routes>
         <Route path="/" element={<AppLayout />}>
           <Route index element={<Home />} />
-          <Route
-            path="tours/:destination/:destinationId"
-            element={<ListingTours />}
-          />
-          <Route
-            path="tours/:destination/:tourName/:tourId"
-            element={<Tour />}
-          />
+          <Route path="tours/:destination/:destinationId" element={<ListingTours />} />
+          <Route path="tours/:destination/:tourName/:tourId" element={<Tour />} />
           <Route path="checkout/:reserveId" element={<Checkout />} />
           <Route path="booking/:bookingId" element={<Booking />} />
+          <Route path="tours/category/:category" element={<CategoryTours />} />
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<Signup />} />
           <Route path="*" element={<NotFound />} />
@@ -53,10 +44,7 @@ const AppRoutes = () => {
           <Route path="booking" element={<Bookings render={render} />} />
           <Route path="listings" element={<Listings render={render} />} />
           <Route path="add-tour" element={<AddTour render={render} />} />
-          <Route
-            path="edit-tour/:tourId"
-            element={<EditTour render={render} />}
-          />
+          <Route path="edit-tour/:tourId" element={<EditTour render={render} />} />
           <Route path="favorites" element={<Favorites render={render} />} />
           <Route path="profile" element={<Profile render={render} />} />
         </Route>

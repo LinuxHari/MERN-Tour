@@ -30,12 +30,7 @@ type SingleTourParams = {
 const formatPaxNumbers = (value: string, defaultValue: number) => {
   const formattedValue = Number(value);
 
-  if (
-    isNaN(formattedValue) ||
-    formattedValue > 9 ||
-    formattedValue < defaultValue ||
-    !Number.isInteger(formattedValue)
-  )
+  if (isNaN(formattedValue) || formattedValue > 9 || formattedValue < defaultValue || !Number.isInteger(formattedValue))
     return defaultValue;
 
   return formattedValue;
@@ -59,8 +54,7 @@ const validatePaxDates = (
     today >= formattedStartDate ||
     formattedStartDate >= formattedEndDate
   ) {
-    const {startDate: defaultStartDate, endDate: defaultEndDate} =
-      getDefaultDateRange();
+    const {startDate: defaultStartDate, endDate: defaultEndDate} = getDefaultDateRange();
 
     startDate = new Date(defaultStartDate).toISOString().split("T")[0];
     endDate = new Date(defaultEndDate).toISOString().split("T")[0];
@@ -81,25 +75,18 @@ const validatePaxDates = (
   };
 };
 
+export const validateCategory = (tourType: string, fallbackValue?: string) => {
+  if (!tourType || !TOUR_TYPES.includes(tourType as (typeof TOUR_TYPES)[number]))
+    return fallbackValue || TOUR_TYPES[TOUR_TYPES.length - 1];
+
+  return tourType;
+};
+
 export const listingUrlParamsHandler = (params: ListingParams) => {
-  const {
-    startDate,
-    endDate,
-    destination,
-    destinationId,
-    adults,
-    children,
-    infants,
-    teens,
-    ...otherParams
-  } = params;
+  const {startDate, endDate, destination, destinationId, adults, children, infants, teens, ...otherParams} = params;
   let {tourType} = otherParams;
 
-  if (
-    !tourType ||
-    !TOUR_TYPES.includes(tourType as (typeof TOUR_TYPES)[number])
-  )
-    tourType = TOUR_TYPES[TOUR_TYPES.length - 1];
+  tourType = validateCategory(tourType);
 
   const {
     startDate: validatedStartDate,
@@ -124,18 +111,7 @@ export const listingUrlParamsHandler = (params: ListingParams) => {
 };
 
 export const singleTourUrlParamsHandler = (params: SingleTourParams) => {
-  const {
-    id,
-    redirect,
-    startDate,
-    endDate,
-    adults,
-    children,
-    infants,
-    teens,
-    destination,
-    tourId,
-  } = params;
+  const {id, redirect, startDate, endDate, adults, children, infants, teens, destination, tourId} = params;
   const {
     startDate: validatedStartDate,
     endDate: validatedEndDate,
