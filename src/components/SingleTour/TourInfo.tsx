@@ -25,6 +25,7 @@ type TourInfoProps = {
   endDate: string;
   tourId: string;
   canReview?: boolean;
+  setStartDate: (date: Date) => void;
 };
 
 const TourInfo = ({
@@ -43,6 +44,7 @@ const TourInfo = ({
   endDate,
   tourId,
   canReview,
+  setStartDate,
 }: TourInfoProps) => {
   return (
     <section className="layout-pt-md js-pin-container">
@@ -58,7 +60,14 @@ const TourInfo = ({
             <TourFAQ faq={faq} />
           </div>
           <div className="col-12 col-lg-4 order-lg-1 order-0">
-            <SideCard pax={pax} price={price} startDate={startDate} endDate={endDate} tourId={tourId} />
+            <SideCard
+              pax={pax}
+              price={price}
+              startDate={startDate}
+              endDate={endDate}
+              tourId={tourId}
+              setStartDate={setStartDate}
+            />
           </div>
         </div>
       </div>

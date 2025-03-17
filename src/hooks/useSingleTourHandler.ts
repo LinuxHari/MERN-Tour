@@ -1,8 +1,9 @@
-import {useMemo} from "react";
+import {useMemo, useState} from "react";
 import {useNavigate, useParams, useSearchParams} from "react-router-dom";
 import {useGetTourByIdQuery} from "../redux/api/baseApi";
 import {singleTourUrlParamsHandler} from "../utils/urlParamsHandler";
 import {MIN_AGE} from "../config/tourConfig";
+import getNewDateRange from "../utils/getNewDateRange";
 
 type ParamType = {destination: string; tourName: string; tourId: string};
 
@@ -34,6 +35,8 @@ const useSingleTourHandler = () => {
     teens,
   });
 
+  const [dates, setDates] = useState([startDate, endDate]);
+
   const pax = useMemo(() => {
     const tourMinAge = data?.minAge || 0;
 
@@ -52,13 +55,20 @@ const useSingleTourHandler = () => {
     }
   }, [data]);
 
+  const setStartDate = (newStartDate: Date) => {
+    const newDateRange = getNewDateRange(newStartDate, data?.duration);
+
+    setDates(newDateRange);
+  };
+
   return {
     data,
     isLoading,
     pax,
-    startDate,
-    endDate,
     tourId,
+    startDate: dates[0],
+    endDate: dates[1],
+    setStartDate,
   };
 };
 

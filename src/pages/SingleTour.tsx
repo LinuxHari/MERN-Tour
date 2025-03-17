@@ -7,7 +7,7 @@ import TourDetailSkeleton from "../components/Skeletons/TourDetailSkeleton";
 import useSingleTourHandler from "../hooks/useSingleTourHandler";
 
 const SingleTour = () => {
-  const {data, isLoading, pax, startDate, endDate, tourId} = useSingleTourHandler();
+  const {data, isLoading, pax, startDate, endDate, tourId, setStartDate} = useSingleTourHandler();
 
   if (isLoading) {
     return <TourDetailSkeleton />;
@@ -43,6 +43,7 @@ const SingleTour = () => {
         endDate={endDate}
         tourId={tourId}
         canReview={data.canReview}
+        setStartDate={setStartDate}
       />
       <TourSuggestions />
     </>

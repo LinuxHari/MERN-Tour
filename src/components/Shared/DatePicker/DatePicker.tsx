@@ -1,5 +1,5 @@
-import "react-date-range/dist/styles.css"; // main style file
-import "react-date-range/dist/theme/default.css"; // theme css file
+import "react-date-range/dist/styles.css";
+import "react-date-range/dist/theme/default.css";
 
 import {DateRange, Range, RangeKeyDict} from "react-date-range";
 import React, {useState} from "react";
@@ -7,12 +7,12 @@ import {getDefaultDateRange} from "../../../utils/getDefaultDateRange";
 import useWindowSize from "../../../hooks/useWindowSize";
 
 type DateRangeType = {
-  startDate: Date | null; // Adjust type as necessary
-  endDate: Date | null; // Adjust type as necessary
+  startDate: Date | null;
+  endDate: Date | null;
 };
 
 type DatePickerProps = {
-  onChange: (dates: DateRangeType) => void; // Use the defined type for dates
+  onChange: (dates: DateRangeType) => void;
 };
 
 const DatePicker = ({onChange}: DatePickerProps) => {

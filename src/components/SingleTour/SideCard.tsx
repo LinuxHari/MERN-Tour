@@ -9,6 +9,7 @@ import useModal from "../../hooks/useModal";
 import useAuthHandler from "../../hooks/useAuthHandler";
 import {LoginSchemaType} from "../../schema/authSchema";
 import useBookingHandler from "../../hooks/useBookingHandler";
+import SingleDatePicker from "../Shared/DatePicker/SingleDatePicker";
 
 type SideCardProps = {
   pax: PaxProps;
@@ -16,9 +17,10 @@ type SideCardProps = {
   startDate: string;
   endDate: string;
   tourId: string;
+  setStartDate: (date: Date) => void;
 };
 
-const SideCard = ({price, pax, startDate, endDate, tourId}: SideCardProps) => {
+const SideCard = ({price, pax, startDate, endDate, tourId, setStartDate}: SideCardProps) => {
   const {currentPax, setPax} = usePaxHandler(pax);
   const total = (() => {
     let totalAmount = currentPax.adults * price.adult;
@@ -58,6 +60,7 @@ const SideCard = ({price, pax, startDate, endDate, tourId}: SideCardProps) => {
           <h5 className="text-18 fw-500">Tickets</h5>
           <p className="text-light-2 text-14">You can book for upto 10 people at a time</p>
         </div>
+        <SingleDatePicker startDate={new Date(startDate)} setStartDate={setStartDate} />
         <PaxCounter setPax={setPax} pax={currentPax} price={price} />
         <div className="line mt-20 mb-20" />
         <div className="d-flex items-center justify-between">
