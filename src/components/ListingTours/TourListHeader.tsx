@@ -1,13 +1,6 @@
 import {SortTypes} from "../../type";
 import Select from "../Shared/Select/Select";
 
-// type SortProps =
-//   | "Recommended"
-//   | "Price: Low to High"
-//   | "Price: High to Low"
-//   | "Rating: Low to High"
-//   | "Rating: High to Low";
-
 type TourListHeaderProps = {
   totalCount: number;
   sortType: SortTypes;
