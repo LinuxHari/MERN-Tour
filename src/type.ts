@@ -97,6 +97,8 @@ export type SingleTourResponse = Omit<Tour, "freeCancellation" | "city" | "state
   duration: number;
   destination: string;
   canReview?: boolean;
+  totalRatings: number;
+  averageRating: number;
 };
 
 // export type TourCategories = "Nature" | "Adventure" | "Cultural" | "Food" | "City" | "Cruises"

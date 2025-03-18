@@ -695,27 +695,31 @@ export const POPULAR_THINGS = [
   {
     title: "Cruises",
     image: "img/features/1/1.png",
-    url: "/tours/category/Cruises",
+    url: "https://firebasestorage.googleapis.com/v0/b/mern-tours-e23a8.appspot.com/o/assets%2Fcategories%2Fadventure.png?alt=media&token=bcdf7d84-4ee8-4721-b0ee-2dd7c5e59643/cruise,ong",
   },
   {
     title: "Nature Tours",
     image: "img/features/1/2.png",
-    url: "/tours/category/Nature",
+    url: "https://firebasestorage.googleapis.com/v0/b/mern-tours-e23a8.appspot.com/o/assets%2Fcategories%2Fadventure.png?alt=media&token=bcdf7d84-4ee8-4721-b0ee-2dd7c5e59643/nature.png",
   },
   {
     title: "City Tours",
     image: "img/features/1/3.png",
-    url: "/tours/category/City",
+    url: "https://firebasestorage.googleapis.com/v0/b/mern-tours-e23a8.appspot.com/o/assets%2Fcategories%2Fadventure.png?alt=media&token=bcdf7d84-4ee8-4721-b0ee-2dd7c5e59643/city.png",
   },
   {
     title: "Cultural Tours",
     image: "img/features/1/4.png",
-    url: "/tours/category/Cultural",
+    url: "https://firebasestorage.googleapis.com/v0/b/mern-tours-e23a8.appspot.com/o/assets%2Fcategories%2Fadventure.png?alt=media&token=bcdf7d84-4ee8-4721-b0ee-2dd7c5e59643/cultural.png",
   },
-  {title: "Food", image: "img/features/1/5.png", url: "/tours/category/Food"},
+  {
+    title: "Food",
+    image: "img/features/1/5.png",
+    url: "https://firebasestorage.googleapis.com/v0/b/mern-tours-e23a8.appspot.com/o/assets%2Fcategories%2Fadventure.png?alt=media&token=bcdf7d84-4ee8-4721-b0ee-2dd7c5e59643/food.png",
+  },
   {
     title: "Adventure",
     image: "img/features/1/6.png",
-    url: "/tours/category/Adventure",
+    url: "https://firebasestorage.googleapis.com/v0/b/mern-tours-e23a8.appspot.com/o/assets%2Fcategories%2Fadventure.png?alt=media&token=bcdf7d84-4ee8-4721-b0ee-2dd7c5e59643/adventure.png",
   },
 ];

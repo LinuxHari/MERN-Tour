@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useLayoutEffect, useState} from "react";
 import {TabContext, useTabContext} from "../../../context/TabContext";
 
 type CommonTabProps = {
@@ -23,7 +23,7 @@ const Tabs = ({children, className = "", defaultIndex = 0, onTabChange}: TabsPro
     if (onTabChange) onTabChange(index);
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     setActiveIndex(defaultIndex);
   }, [defaultIndex]);
 

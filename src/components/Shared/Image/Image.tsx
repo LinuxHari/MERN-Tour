@@ -1,11 +1,6 @@
 import {useState, useEffect, useRef} from "react";
 
-const Image = ({
-  src,
-  alt,
-  className = "object-fit-cover",
-  ...otherImgProps
-}: React.ImgHTMLAttributes<HTMLImageElement>) => {
+const Image = ({src, alt, className = "", ...otherImgProps}: React.ImgHTMLAttributes<HTMLImageElement>) => {
   const [isVisible, setIsVisible] = useState(false);
   const imgRef = useRef<HTMLImageElement | null>(null);
 
@@ -34,7 +29,14 @@ const Image = ({
   }, []);
 
   return (
-    <img ref={imgRef} src={isVisible ? src : ""} alt={alt} className={className} {...otherImgProps} loading="lazy" />
+    <img
+      ref={imgRef}
+      src={isVisible ? src : ""}
+      alt={alt}
+      className={className + " object-fit-cover"}
+      {...otherImgProps}
+      loading="lazy"
+    />
   );
 };
 

@@ -1,7 +1,6 @@
 import {ReservedTourResponse} from "../../type";
 import Button from "../Shared/Button/Button";
 import Carousel from "../Shared/Image/Carousel";
-import SearchSkeleton from "../Skeletons/SearchSkeleton";
 
 type BookingDetailsCardProps = {
   isPayformLoaded: boolean;
@@ -11,8 +10,7 @@ type BookingDetailsCardProps = {
 };
 
 const BookingDetailsCard = ({isPayformLoaded, isLoading, isError, reservedTour}: BookingDetailsCardProps) => {
-  if (isLoading) return <SearchSkeleton />;
-  else if (isError || !reservedTour) return "Something went wrong";
+  if (isError || !reservedTour) return "Something went wrong";
 
   return (
     <>

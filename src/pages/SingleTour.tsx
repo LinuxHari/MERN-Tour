@@ -26,6 +26,8 @@ const SingleTour = () => {
         destination={data.destination}
         freeCancellation={data.freeCancellation}
         description={data.description}
+        totalRatings={data.totalRatings}
+        averageRating={data.averageRating}
       />
       <TourInfo
         duration={data.duration}

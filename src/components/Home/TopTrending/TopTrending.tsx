@@ -5,9 +5,16 @@ import CardSkeleton from "../../Skeletons/CardSkeleton";
 const TopTrending = () => {
   const {data: tours, isLoading, isError} = useTrendingToursQuery();
 
-  if (!tours || !tours.length || isError) return null;
+  if (isLoading)
+    return (
+      <div className="container layout-pt-xl  layout-pb-xl d-flex gap-3">
+        {Array.from({length: 3}).map((_, i) => (
+          <CardSkeleton key={i} />
+        ))}
+      </div>
+    );
 
-  if (isLoading) return Array.from({length: 3}).map((_, i) => <CardSkeleton key={i} />);
+  if (!tours || !tours.length || isError) return null;
 
   return (
     <section className="layout-pt-xl layout-pb-xl ">

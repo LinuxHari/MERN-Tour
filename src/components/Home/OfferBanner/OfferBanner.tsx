@@ -1,3 +1,4 @@
+import Button from "../../Shared/Button/Button";
 import Image from "../../Shared/Image/Image";
 
 const OfferBanner = () => {
@@ -27,10 +28,9 @@ const OfferBanner = () => {
               <p className="mt-10">Limited time offer, don&apos;t miss the opportunity</p>
 
               <div className="mt-30 md:mt-20">
-                <button className="button -md -dark-1 bg-accent-1 text-white">
+                <Button buttonType="primary" type="button" onClick={() => window.scrollTo(0, 0)}>
                   Book Now
-                  <i className="icon-arrow-top-right ml-10 text-16" />
-                </button>
+                </Button>
               </div>
             </div>
           </div>
