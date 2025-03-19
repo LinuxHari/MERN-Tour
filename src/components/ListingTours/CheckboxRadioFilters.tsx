@@ -18,48 +18,58 @@ const CheckboxRadioFilters = ({title, filter, appliedFilterValue, setAppliedFilt
       .trim();
   };
 
+  const showFilter =
+    Array.isArray(filter) &&
+    (((title === "tourTypes" || title === "languages") && filter.length > 1) || title !== "tourTypes");
+
   return (
-    <div className="sidebar__item">
-      <Accordion.Item index={index}>
-        <Accordion.Button isShowIcon={true}>
-          <h5 className="text-18 fw-500">{keyToTile(title)}</h5>
-        </Accordion.Button>
-        <Accordion.Content index={index}>
-          <div className="pt-15">
-            <div className="d-flex flex-column y-gap-15">
-              {filter.map((value, index) =>
-                typeof value === "object" ? (
-                  <div key={index}>
-                    <Input
-                      type="radio"
-                      name={title}
-                      label={value.label}
-                      value={value.count}
-                      onChange={(e) => setAppliedFilters(title, e.currentTarget.value)}
-                      checked={value.count == appliedFilterValue}
-                    />
+    <>
+      {showFilter ? (
+        <div className={`order-${index}`}>
+          <div className="sidebar__item">
+            <Accordion.Item index={index}>
+              <Accordion.Button isShowIcon={true}>
+                <h5 className="text-18 fw-500">{keyToTile(title)}</h5>
+              </Accordion.Button>
+              <Accordion.Content index={index}>
+                <div className="pt-15">
+                  <div className="d-flex flex-column y-gap-15">
+                    {filter.map((value, index) =>
+                      typeof value === "object" ? (
+                        <div key={index}>
+                          <Input
+                            type="radio"
+                            name={title}
+                            label={value.label}
+                            value={value.count}
+                            onChange={(e) => setAppliedFilters(title, e.currentTarget.value)}
+                            checked={value.count == appliedFilterValue}
+                          />
+                        </div>
+                      ) : (
+                        <div key={index}>
+                          <Input
+                            type="checkbox"
+                            label={value}
+                            value={value}
+                            onChange={(e) => setAppliedFilters(title, e.currentTarget.value, e.target.checked)}
+                            checked={
+                              appliedFilterValue && typeof appliedFilterValue === "object"
+                                ? appliedFilterValue.includes(value as string)
+                                : false
+                            }
+                          />
+                        </div>
+                      ),
+                    )}
                   </div>
-                ) : (
-                  <div key={index}>
-                    <Input
-                      type="checkbox"
-                      label={value}
-                      value={value}
-                      onChange={(e) => setAppliedFilters(title, e.currentTarget.value, e.target.checked)}
-                      checked={
-                        appliedFilterValue && typeof appliedFilterValue === "object"
-                          ? appliedFilterValue.includes(value as string)
-                          : false
-                      }
-                    />
-                  </div>
-                ),
-              )}
-            </div>
+                </div>
+              </Accordion.Content>
+            </Accordion.Item>
           </div>
-        </Accordion.Content>
-      </Accordion.Item>
-    </div>
+        </div>
+      ) : null}
+    </>
   );
 };
 

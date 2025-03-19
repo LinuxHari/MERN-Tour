@@ -5,6 +5,7 @@ import {useGetToursBySearchQuery} from "../redux/api/baseApi";
 import {AppliedFiltersProps, Filters, SortTypes} from "../type";
 import {reTransformUrlName, transformToUrlName} from "../utils/urlNameTransformer";
 import {SearchSchemaType} from "../schema/searchSchema";
+import {RATINGS} from "../data";
 import useFilter from "./useFilter";
 
 export type PaxType = {
@@ -64,12 +65,7 @@ const useListingToursHandler = () => {
     maxPrice: undefined,
   };
   const initialFilters: Filters = {
-    rating: [
-      {count: 5, label: "Outstanding(5)"},
-      {count: 4, label: "Great(4)"},
-      {count: 3, label: "Satisfactory(3)"},
-      {count: 0, label: "Any"},
-    ],
+    rating: RATINGS,
   };
 
   const {
@@ -169,19 +165,15 @@ const useListingToursHandler = () => {
 
   useEffect(() => {
     if (data?.filters) {
-      setFilters(data.filters);
+      setFilters({...data.filters, ...initialFilters});
       filterRef.current = 0;
     }
   }, [data]);
 
   useEffect(() => {
-    handleAppliedFilters("tourTypes", tourType);
-  }, [tourType]);
-
-  useEffect(() => {
     filterRef.current = 1;
     handleReset();
-  }, [destinationId]);
+  }, [searchParams]);
 
   return {
     tours,

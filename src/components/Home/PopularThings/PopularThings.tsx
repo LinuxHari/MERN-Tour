@@ -17,7 +17,7 @@ const PopularThings = () => {
               className="featureCard -type-1 -hover-1 overflow-hidden rounded-12 px-30 py-30"
             >
               <div className="featureCard__image">
-                <Image src={feature.image} alt={feature.title} />
+                <Image src={feature.image} />
               </div>
               <div className="featureCard__content">
                 <h4 className="text-white">{feature.title}</h4>

@@ -4,6 +4,7 @@ import "react-date-range/dist/theme/default.css";
 import {useState} from "react";
 import {Calendar} from "react-date-range";
 import Dropdown from "../Dropdown/Dropdown";
+import {getDefaultDateRange} from "../../../utils/getDefaultDateRange";
 
 type SingleDatePickerProps = {
   startDate: Date;
@@ -12,6 +13,7 @@ type SingleDatePickerProps = {
 
 const SingleDatePicker = ({startDate, setStartDate}: SingleDatePickerProps) => {
   const [close, setClose] = useState(false);
+  const {startDate: defaultStartDate, maxDate} = getDefaultDateRange();
 
   const onDateChange = (date: Date) => {
     setClose(true);
@@ -34,7 +36,13 @@ const SingleDatePicker = ({startDate, setStartDate}: SingleDatePickerProps) => {
         </div>
       </Dropdown.Toggle>
       <Dropdown.Content className="absolute top-50 start-50 translate-middle-x z-5">
-        <Calendar date={startDate} onChange={onDateChange} color="#eb662b" />
+        <Calendar
+          date={startDate}
+          onChange={onDateChange}
+          color="#eb662b"
+          minDate={new Date(defaultStartDate)}
+          maxDate={new Date(maxDate)}
+        />
       </Dropdown.Content>
     </Dropdown>
   );

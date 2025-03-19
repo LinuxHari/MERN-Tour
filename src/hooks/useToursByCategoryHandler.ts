@@ -5,6 +5,7 @@ import {useGetToursByCategoryQuery} from "../redux/api/baseApi";
 import {transformToUrlName} from "../utils/urlNameTransformer";
 import {validateCategory} from "../utils/urlParamsHandler";
 import {TOUR_TYPES} from "../config/tourConfig";
+import {RATINGS} from "../data";
 import {PriceRangeProps} from "./useListingToursHandler";
 import useFilter from "./useFilter";
 
@@ -27,12 +28,7 @@ const useToursByCategoryHandler = () => {
     maxPrice: undefined,
   };
   const initialFilters: Filters = {
-    rating: [
-      {count: 5, label: "Outstanding(5)"},
-      {count: 4, label: "Great(4)"},
-      {count: 3, label: "Satisfactory(3)"},
-      {count: 0, label: "Any"},
-    ],
+    rating: RATINGS,
   };
 
   const {
@@ -81,7 +77,7 @@ const useToursByCategoryHandler = () => {
 
   useEffect(() => {
     if (data?.filters) {
-      setFilters(data.filters);
+      setFilters({...data.filters, ...initialFilters});
       filterRef.current = 0;
     }
   }, [data]);

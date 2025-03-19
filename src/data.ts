@@ -729,3 +729,10 @@ export const POPULAR_THINGS = [
       "https://firebasestorage.googleapis.com/v0/b/mern-tours-e23a8.appspot.com/o/assets%2Fcategories%2Fadventure.png?alt=media&token=bcdf7d84-4ee8-4721-b0ee-2dd7c5e59643/adventure.png",
   },
 ];
+
+export const RATINGS = [
+  {count: 5, label: "Outstanding(5)"},
+  {count: 4, label: "Great(4)"},
+  {count: 3, label: "Satisfactory(3)"},
+  {count: 0, label: "Any"},
+];

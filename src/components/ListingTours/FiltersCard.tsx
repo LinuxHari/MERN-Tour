@@ -37,15 +37,14 @@ const FiltersCard = ({
 
       <Accordion type="multiple" className="-simple-2 sidebar__content d-flex flex-column" defaultOpen={[0, 1, 2, 3]}>
         {Object.entries(filters).map(([key, value], index) => (
-          <div className={`order-${index === 0 ? index : index + 1}`} key={key}>
-            <CheckboxRadioFilters
-              title={key}
-              filter={value}
-              setAppliedFilters={setAppliedFilters}
-              appliedFilterValue={appliedFilters[key as keyof typeof appliedFilters]}
-              index={index}
-            />
-          </div>
+          <CheckboxRadioFilters
+            title={key}
+            key={index}
+            filter={value}
+            setAppliedFilters={setAppliedFilters}
+            appliedFilterValue={appliedFilters[key as keyof typeof appliedFilters]}
+            index={index}
+          />
         ))}
         <div className="order-1">
           <PriceFilter setPriceRange={setPriceRange} priceRange={priceRange} />

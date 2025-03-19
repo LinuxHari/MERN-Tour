@@ -12770,7 +12770,7 @@ table.table-4.-border-bottom tbody > tr {
 .dropdown {
   cursor: pointer;
   position: relative;
-  z-index: 10;
+  z-index: 4;
 }
 
 @media (max-width: 767px) {
@@ -12907,7 +12907,7 @@ table.table-4.-border-bottom tbody > tr {
   cursor: pointer;
   position: relative;
   display: inline-block;
-  z-index: 10;
+  z-index: 4;
 }
 
 .dropdown.-type-list .dropdown__button {
@@ -12948,7 +12948,7 @@ table.table-4.-border-bottom tbody > tr {
 .dropdown {
   cursor: pointer;
   position: relative;
-  z-index: 10;
+  z-index: 4;
 }
 
 .dropdown.-type-2 .dropdown__button {
