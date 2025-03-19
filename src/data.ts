@@ -764,7 +764,7 @@ export const TRENDING_DESTINATIONS = [
     tourCount: "100",
     destinationId: "0a098c18",
     imgSrc:
-      "https://firebasestorage.googleapis.com/v0/b/mern-tours-e23a8.appspot.com/o/assets%2Fdestinations%2FBali.jpeg?alt=media&token=6f2dade6-b28c-433a-a91c-51fe03ea3a46",
+      "https://firebasestorage.googleapis.com/v0/b/mern-tours-e23a8.appspot.com/o/assets%2Fdestinations%2FBangkok.jpeg?alt=media&token=43026f2e-9b4f-479e-8e13-ff018464f0ab",
   },
   {
     name: "Bali",
