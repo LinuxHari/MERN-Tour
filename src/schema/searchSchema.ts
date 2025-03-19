@@ -3,7 +3,10 @@ import {MAX_PAX_COUNT, MIN_PAX_COUNT, TOUR_TYPES} from "../config/tourConfig";
 import calculatePaxTotal from "../utils/calculatePaxTotal";
 
 export const searchSchema = z.object({
-  destination: z.string().min(2, {message: "Invalid destination"}).max(85, {message: "Invalid destination"}),
+  destination: z
+    .string({message: "Please select a destination"})
+    .min(2, {message: "Invalid destination"})
+    .max(85, {message: "Invalid destination"}),
   destinationId: z
     .string({message: "Please select a destination"})
     .min(8, {message: "Invalid destination id"})
