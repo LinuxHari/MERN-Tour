@@ -696,37 +696,37 @@ export const POPULAR_THINGS = [
     title: "Cruises",
     url: "/tours/categories/Cruises",
     image:
-      "https://firebasestorage.googleapis.com/v0/b/mern-tours-e23a8.appspot.com/o/assets%2Fcategories%2Fcruises.png?alt=media&token=bcdf7d84-4ee8-4721-b0ee-2dd7c5e59643/cruise,ong",
+      "https://firebasestorage.googleapis.com/v0/b/mern-tours-e23a8.appspot.com/o/assets%2Fcategories%2Fcruises.jpeg?alt=media&token=a8540476-d6ea-4bf8-bf14-6ff689a1e303",
   },
   {
     title: "Nature Tours",
     url: "/tours/categories/Nature",
     image:
-      "https://firebasestorage.googleapis.com/v0/b/mern-tours-e23a8.appspot.com/o/assets%2Fcategories%2Fnature.png?alt=media&token=bcdf7d84-4ee8-4721-b0ee-2dd7c5e59643/nature.png",
+      "https://firebasestorage.googleapis.com/v0/b/mern-tours-e23a8.appspot.com/o/assets%2Fcategories%2Fnature.jpeg?alt=media&token=640e5e5a-0585-43c7-8ffc-ba18182f18ff",
   },
   {
     title: "City Tours",
     url: "/tours/categories/City",
     image:
-      "https://firebasestorage.googleapis.com/v0/b/mern-tours-e23a8.appspot.com/o/assets%2Fcategories%2Fcity.png?alt=media&token=bcdf7d84-4ee8-4721-b0ee-2dd7c5e59643/city.png",
+      "https://firebasestorage.googleapis.com/v0/b/mern-tours-e23a8.appspot.com/o/assets%2Fcategories%2Fcity.jpeg?alt=media&token=e57f0a5a-b44a-4707-b6e5-ebe7e80011ef",
   },
   {
     title: "Cultural Tours",
     url: "/tours/categories/Cultural",
     image:
-      "https://firebasestorage.googleapis.com/v0/b/mern-tours-e23a8.appspot.com/o/assets%2Fcategories%2Fcultural.png?alt=media&token=bcdf7d84-4ee8-4721-b0ee-2dd7c5e59643/cultural.png",
+      "https://firebasestorage.googleapis.com/v0/b/mern-tours-e23a8.appspot.com/o/assets%2Fcategories%2Fculture.jpeg?alt=media&token=25744626-9cd3-43f2-a342-60f549f3eaf1",
   },
   {
     title: "Food",
     url: "/tours/categories/Food",
     image:
-      "https://firebasestorage.googleapis.com/v0/b/mern-tours-e23a8.appspot.com/o/assets%2Fcategories%2Ffood.png?alt=media&token=bcdf7d84-4ee8-4721-b0ee-2dd7c5e59643/food.png",
+      "https://firebasestorage.googleapis.com/v0/b/mern-tours-e23a8.appspot.com/o/assets%2Fcategories%2Ffood.jpeg?alt=media&token=0e2d4b50-74b4-42d0-bd88-f6bc9dffb9c1",
   },
   {
     title: "Adventure",
     url: "/tours/categories/Adventure",
     image:
-      "https://firebasestorage.googleapis.com/v0/b/mern-tours-e23a8.appspot.com/o/assets%2Fcategories%2Fadventure.png?alt=media&token=bcdf7d84-4ee8-4721-b0ee-2dd7c5e59643/adventure.png",
+      "https://firebasestorage.googleapis.com/v0/b/mern-tours-e23a8.appspot.com/o/assets%2Fcategories%2Fadventure.jpeg?alt=media&token=bf59c598-8a07-4317-b48e-d379e109d3c9",
   },
 ];
 
@@ -735,4 +735,91 @@ export const RATINGS = [
   {count: 4, label: "Great(4)"},
   {count: 3, label: "Satisfactory(3)"},
   {count: 0, label: "Any"},
+];
+
+export const TRENDING_DESTINATIONS = [
+  {
+    name: "Paris",
+    tourCount: "100",
+    destinationId: "a2b410d3",
+    imgSrc:
+      "https://firebasestorage.googleapis.com/v0/b/mern-tours-e23a8.appspot.com/o/assets%2Fdestinations%2FParis.jpeg?alt=media&token=7b4ddf54-c64d-456f-941d-89f5e00dd503",
+  },
+  {
+    name: "Singapore",
+    tourCount: "100",
+    destinationId: "d404d82f",
+    imgSrc:
+      "https://firebasestorage.googleapis.com/v0/b/mern-tours-e23a8.appspot.com/o/assets%2Fdestinations%2FSingapore.jpeg?alt=media&token=9e50a61d-1073-4e2a-b1d2-9c444f8e6a68",
+  },
+  {
+    name: "Greece",
+    tourCount: "250",
+    destinationId: "037794d3",
+    imgSrc:
+      "https://firebasestorage.googleapis.com/v0/b/mern-tours-e23a8.appspot.com/o/assets%2Fdestinations%2FGreece.jpeg?alt=media&token=01ed36b6-8538-42cc-90ed-c6a116643df3",
+  },
+  {
+    name: "Bangkok",
+    tourCount: "100",
+    destinationId: "0a098c18",
+    imgSrc:
+      "https://firebasestorage.googleapis.com/v0/b/mern-tours-e23a8.appspot.com/o/assets%2Fdestinations%2FBali.jpeg?alt=media&token=6f2dade6-b28c-433a-a91c-51fe03ea3a46",
+  },
+  {
+    name: "Bali",
+    tourCount: "100",
+    destinationId: "aad8480c",
+    imgSrc:
+      "https://firebasestorage.googleapis.com/v0/b/mern-tours-e23a8.appspot.com/o/assets%2Fdestinations%2FBali.jpeg?alt=media&token=6f2dade6-b28c-433a-a91c-51fe03ea3a46",
+  },
+  {
+    name: "Phuket",
+    tourCount: "150",
+    destinationId: "4c68efe1",
+    imgSrc:
+      "https://firebasestorage.googleapis.com/v0/b/mern-tours-e23a8.appspot.com/o/assets%2Fdestinations%2FPhuket.jpeg?alt=media&token=b71c0f18-e0bc-475b-a3b8-28c18276d153",
+  },
+  {
+    name: "Tokyo",
+    tourCount: "200",
+    destinationId: "813331c1",
+    imgSrc:
+      "https://firebasestorage.googleapis.com/v0/b/mern-tours-e23a8.appspot.com/o/assets%2Fdestinations%2FTokyo.jpeg?alt=media&token=83d32514-a17b-4090-b962-92abaa3cb1bd",
+  },
+  {
+    name: "Brazil",
+    tourCount: "150",
+    destinationId: "3251bfc2",
+    imgSrc:
+      "https://firebasestorage.googleapis.com/v0/b/mern-tours-e23a8.appspot.com/o/assets%2Fdestinations%2FBrazil.jpeg?alt=media&token=3170619e-c878-49ba-b338-065846ea45b1",
+  },
+  {
+    name: "Tamil Nadu",
+    tourCount: "300",
+    destinationId: "1525c1e2",
+    imgSrc:
+      "https://firebasestorage.googleapis.com/v0/b/mern-tours-e23a8.appspot.com/o/assets%2Fdestinations%2FTamilNadu.jpg?alt=media&token=9ee320ba-3753-48f2-9a95-f74816caab15",
+  },
+  {
+    name: "Berlin",
+    tourCount: "100",
+    destinationId: "7e097906",
+    imgSrc:
+      "https://firebasestorage.googleapis.com/v0/b/mern-tours-e23a8.appspot.com/o/assets%2Fdestinations%2FBerlin.webp?alt=media&token=4f1fa14f-80ca-4a1a-93da-655d02309fd8",
+  },
+  {
+    name: "Los Angeles",
+    tourCount: "300",
+    destinationId: "343af849",
+    imgSrc:
+      "https://firebasestorage.googleapis.com/v0/b/mern-tours-e23a8.appspot.com/o/assets%2Fdestinations%2FLosAngeles.jpeg?alt=media&token=50a2e358-67bf-4628-b0fb-5e8ba9618500",
+  },
+  {
+    name: "Dubai",
+    tourCount: "200",
+    destinationId: "56187019",
+    imgSrc:
+      "https://firebasestorage.googleapis.com/v0/b/mern-tours-e23a8.appspot.com/o/assets%2Fdestinations%2FDubai.jpeg?alt=media&token=6a1b5ff8-a076-479e-841e-7be376632fa4",
+  },
 ];
