@@ -6,9 +6,10 @@ import Image from "./Image";
 type TourImagesProps = {
   images: string[];
   onSlide?: (index: number) => void;
+  imageClassName?: string;
 };
 
-const Carousel = ({images, onSlide}: TourImagesProps) => {
+const Carousel = ({images, onSlide, imageClassName = "object-fit-cover w-100"}: TourImagesProps) => {
   const rawId = useId();
   const uniqueId = `carousel-${rawId.replace(/[^a-zA-Z0-9_-]/g, "")}`;
 
@@ -33,8 +34,8 @@ const Carousel = ({images, onSlide}: TourImagesProps) => {
         }}
       >
         {images.map((imageUrl, index) => (
-          <SwiperSlide key={index}>
-            <Image src={imageUrl} className="h-100 w-100" alt="" />
+          <SwiperSlide key={index} className="d-flex justify-content-center items-center">
+            <Image src={imageUrl} className={`h-100 ${imageClassName}`} alt="" />
           </SwiperSlide>
         ))}
       </Swiper>

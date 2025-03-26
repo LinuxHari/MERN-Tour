@@ -7,9 +7,9 @@ import {
   useGetAdminPublishedToursQuery,
   useDeleteTourMutation,
   useUpdateTourMutation,
-} from "../redux/api/adminApi";
-import {EditTourSchemaType, TourSchemaType} from "../schema/tourSchema";
-import {MAX_UPLOAD_IMAGES, MIN_UPLOAD_IMAGES} from "../config/adminConfig";
+} from "../../redux/api/adminApi";
+import {EditTourSchemaType, TourSchemaType} from "../../schema/tourSchema";
+import {MAX_UPLOAD_IMAGES, MIN_UPLOAD_IMAGES} from "../../config/adminConfig";
 
 const useAdminTourHandler = () => {
   const [page, setPage] = useState(1);

@@ -1,7 +1,7 @@
 import {Outlet, useLocation} from "react-router-dom";
 import {useLayoutEffect, useState} from "react";
 import Sidebar from "../components/Admin/Sidebar";
-import useUserHandler from "../hooks/useUserHandler";
+import useUserHandler from "../hooks/Users/useUserHandler";
 import {Role} from "../type";
 import NotFound from "../pages/NotFound";
 

@@ -1,5 +1,5 @@
 import {useMemo} from "react";
-import {BookingDetailsResponse} from "../../type";
+import {BookingDetailsResponse} from "../../redux/api/type";
 
 type BookingInfoProps = Omit<BookingDetailsResponse, "tourInfo"> & {
   bookingId: string;

@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import {Select2Context, useSelect2Context} from "../../../context/Select2Context";
-import useFocusHandler from "../../../hooks/useFocusHandler";
+import useFocusHandler from "../../../hooks/Shared/useFocusHandler";
 
 type CommonProps = {
   children: React.ReactNode;

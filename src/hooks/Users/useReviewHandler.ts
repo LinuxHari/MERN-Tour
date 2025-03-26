@@ -1,7 +1,7 @@
 import toast from "react-hot-toast";
 import {FetchBaseQueryError} from "@reduxjs/toolkit/query";
-import {useGetReviewQuery, useReviewMutation} from "../redux/api/baseApi";
-import {RatingType} from "../schema/reviewSchema";
+import {useGetReviewQuery, useReviewMutation} from "../../redux/api/baseApi";
+import {RatingType} from "../../schema/reviewSchema";
 
 const useReviewHandler = (tourId: string) => {
   const {isLoading, data: reviews, isError} = useGetReviewQuery(tourId);

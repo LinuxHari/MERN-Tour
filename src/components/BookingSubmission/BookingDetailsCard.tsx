@@ -1,4 +1,4 @@
-import {ReservedTourResponse} from "../../type";
+import {ReservedTourResponse} from "../../redux/api/type";
 import Button from "../Shared/Button/Button";
 import Carousel from "../Shared/Image/Carousel";
 

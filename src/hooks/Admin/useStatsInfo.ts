@@ -1,4 +1,4 @@
-import {useGetEarningsQuery} from "../redux/api/adminApi";
+import {useGetEarningsQuery} from "../../redux/api/adminApi";
 import useChart from "./useChart";
 
 const useStatsInfo = () => {

@@ -6,7 +6,7 @@ import TourListHeader from "../components/ListingTours/TourListHeader";
 import NoResult from "../components/Shared/NoResult/NoResult";
 import Pagination from "../components/Shared/Pagination/Pagination";
 import TourListingSkeleton from "../components/Skeletons/TourListingSkeleton";
-import useListingToursHandler from "../hooks/useListingToursHandler";
+import useListingToursHandler from "../hooks/Tours/useListingToursHandler";
 
 const ListingTours = () => {
   const {

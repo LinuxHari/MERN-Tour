@@ -1,6 +1,6 @@
 import {RenderProps} from "../../type";
 import Pagination from "../../components/Shared/Pagination/Pagination";
-import useAdminTourHandler from "../../hooks/useAdminTourHandler";
+import useAdminTourHandler from "../../hooks/Admin/useAdminTourHandler";
 import ListingCard from "../../components/Admin/Listings/ListingCard";
 import withAuth from "../../hocs/withAuth";
 import CommonSkeleton from "../../components/Skeletons/CommonSkeleton";

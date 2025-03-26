@@ -1,5 +1,5 @@
 import LoginForm from "../../components/Auth/LoginForm";
-import useAuthHandler from "../../hooks/useAuthHandler";
+import useAuthHandler from "../../hooks/Users/useAuthHandler";
 import AuthLayout from "../../layouts/AuthLayout";
 
 const Login = () => {

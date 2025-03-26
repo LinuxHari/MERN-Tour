@@ -1,7 +1,7 @@
 import {useState} from "react";
-import {PaxProps} from "../type";
-import calculatePaxTotal from "../utils/calculatePaxTotal";
-import {MAX_PAX_COUNT, MIN_PAX_COUNT} from "../config/tourConfig";
+import {PaxProps} from "../../type";
+import calculatePaxTotal from "../../utils/calculatePaxTotal";
+import {MAX_PAX_COUNT, MIN_PAX_COUNT} from "../../config/tourConfig";
 
 const usePaxHandler = (pax: PaxProps) => {
   const [currentPax, setPax] = useState(pax);

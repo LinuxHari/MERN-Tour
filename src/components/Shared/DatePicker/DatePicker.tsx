@@ -2,9 +2,9 @@ import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 
 import {DateRange, Range, RangeKeyDict} from "react-date-range";
-import React, {useState} from "react";
+import {useState} from "react";
 import {getDefaultDateRange} from "../../../utils/getDefaultDateRange";
-import useWindowSize from "../../../hooks/useWindowSize";
+import useWindowSize from "../../../hooks/Shared/useWindowSize";
 
 type DateRangeType = {
   startDate: Date | null;
@@ -51,6 +51,4 @@ const DatePicker = ({onChange}: DatePickerProps) => {
   );
 };
 
-const MemoizedDatePicker = React.memo(DatePicker);
-
-export default MemoizedDatePicker;
+export default DatePicker;

@@ -1,5 +1,5 @@
 import SimpleForm from "../../components/Shared/Forms/SimpleForm";
-import useAuthHandler from "../../hooks/useAuthHandler";
+import useAuthHandler from "../../hooks/Users/useAuthHandler";
 import AuthLayout from "../../layouts/AuthLayout";
 import {SignupSchema} from "../../schema/authSchema";
 

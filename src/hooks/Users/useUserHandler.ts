@@ -1,6 +1,6 @@
 import toast from "react-hot-toast";
-import {useGetUserInfoQuery, useUpdatePasswordMutation, useUpdateUserInfoMutation} from "../redux/api/userApi";
-import {PasswordSchemaType, UserSchemaType} from "../schema/userSchema";
+import {useGetUserInfoQuery, useUpdatePasswordMutation, useUpdateUserInfoMutation} from "../../redux/api/userApi";
+import {PasswordSchemaType, UserSchemaType} from "../../schema/userSchema";
 
 const useUserHandler = () => {
   const {data, isError, isLoading} = useGetUserInfoQuery();

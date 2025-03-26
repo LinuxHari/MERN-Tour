@@ -1,11 +1,11 @@
 import {useCallback, useEffect, useMemo, useRef} from "react";
 import {createSearchParams, useNavigate, useParams, useSearchParams} from "react-router-dom";
-import {listingUrlParamsHandler} from "../utils/urlParamsHandler";
-import {useGetToursBySearchQuery} from "../redux/api/baseApi";
-import {AppliedFiltersProps, Filters, SortTypes} from "../type";
-import {reTransformUrlName, transformToUrlName} from "../utils/urlNameTransformer";
-import {SearchSchemaType} from "../schema/searchSchema";
-import {RATINGS} from "../data";
+import {listingUrlParamsHandler} from "../../utils/urlParamsHandler";
+import {AppliedFiltersProps, Filters, SortTypes} from "../../type";
+import {RATINGS} from "../../data";
+import {reTransformUrlName, transformToUrlName} from "../../utils/urlNameTransformer";
+import {useGetToursBySearchQuery} from "../../redux/api/baseApi";
+import {SearchSchemaType} from "../../schema/searchSchema";
 import useFilter from "./useFilter";
 
 export type PaxType = {
@@ -160,7 +160,7 @@ const useListingToursHandler = () => {
         }).toString(),
       });
     },
-    [navigate, startDate, adults, children, infants, teens],
+    [startDate, adults, children, infants, teens],
   );
 
   useEffect(() => {
@@ -173,6 +173,7 @@ const useListingToursHandler = () => {
   useEffect(() => {
     filterRef.current = 1;
     handleReset();
+    handleSortType("RCM");
   }, [searchParams]);
 
   return {

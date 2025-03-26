@@ -2,7 +2,7 @@ import {RenderProps} from "../../type";
 import DetailCard from "../../components/Admin/Dashboard/DetailCard";
 import EarningStatistics from "../../components/Admin/Dashboard/EarningStatistics";
 import withAuth from "../../hocs/withAuth";
-import useStatsInfo from "../../hooks/useStatsInfo";
+import useStatsInfo from "../../hooks/Admin/useStatsInfo";
 import CommonSkeleton from "../../components/Skeletons/CommonSkeleton";
 import NoResult from "../../components/Shared/NoResult/NoResult";
 

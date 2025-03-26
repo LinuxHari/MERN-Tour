@@ -10,8 +10,9 @@ type PriceFilterProps = {
 
 const PriceFilter = ({priceRange, setPriceRange}: PriceFilterProps) => {
   const defaultRange = {minPrice: 5, maxPrice: 2000};
-  const [currentPriceRange, setCurrentRange] = useState([5, 1500]);
+  const [currentPriceRange, setCurrentRange] = useState([defaultRange.minPrice, defaultRange.maxPrice]);
   const [currentMinPrice, currentMaxPrice] = currentPriceRange;
+
   const handleRange = (range: number[]) =>
     range[1] === defaultRange.maxPrice ? setPriceRange(range[0]) : setPriceRange(range[0], range[1]);
 

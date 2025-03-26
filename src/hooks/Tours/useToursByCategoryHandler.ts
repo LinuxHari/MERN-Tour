@@ -1,13 +1,13 @@
 import {useNavigate, useParams} from "react-router-dom";
 import {useCallback, useEffect, useMemo, useRef} from "react";
-import {AppliedFiltersProps, Filters, SortTypes} from "../type";
-import {useGetToursByCategoryQuery} from "../redux/api/baseApi";
-import {transformToUrlName} from "../utils/urlNameTransformer";
-import {validateCategory} from "../utils/urlParamsHandler";
-import {TOUR_TYPES} from "../config/tourConfig";
-import {RATINGS} from "../data";
-import {PriceRangeProps} from "./useListingToursHandler";
+import {AppliedFiltersProps, Filters, SortTypes} from "../../type";
+import {useGetToursByCategoryQuery} from "../../redux/api/baseApi";
+import {transformToUrlName} from "../../utils/urlNameTransformer";
+import {validateCategory} from "../../utils/urlParamsHandler";
+import {TOUR_TYPES} from "../../config/tourConfig";
+import {RATINGS} from "../../data";
 import useFilter from "./useFilter";
+import {PriceRangeProps} from "./useListingToursHandler";
 
 type ParamsType = {
   category: string;

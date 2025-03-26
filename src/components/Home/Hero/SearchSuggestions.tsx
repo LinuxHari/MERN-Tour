@@ -1,5 +1,5 @@
 import {useFormContext} from "react-hook-form";
-import useSearchSuggestionHandler from "../../../hooks/useSearchSuggestionHandler";
+import useSearchSuggestionHandler from "../../../hooks/Tours/useSearchSuggestionHandler";
 import Input from "../../Shared/Input/Input";
 import Select2 from "../../Shared/Select/Select2";
 import SearchSkeleton from "../../Skeletons/SearchSkeleton";

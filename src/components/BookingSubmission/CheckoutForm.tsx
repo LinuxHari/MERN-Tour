@@ -5,10 +5,10 @@ import toast from "react-hot-toast";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {PaymentElement, useElements, useStripe} from "@stripe/react-stripe-js";
 import BookingSchema, {BookingSchemaType} from "../../schema/bookingSchema";
-import useBookingHandler from "../../hooks/useBookingHandler";
-import useUserHandler from "../../hooks/useUserHandler";
-import {UserInfoResponse} from "../../type";
+import useBookingHandler from "../../hooks/Tours/useBookingHandler";
+import useUserHandler from "../../hooks/Users/useUserHandler";
 import {getFormErrorMessages} from "../../utils/getFormErrorMessages";
+import {UserInfoResponse} from "../../redux/api/type";
 import NoResult from "../Shared/NoResult/NoResult";
 import BookingFormSkeleton from "../Skeletons/BookingFormSkeleton";
 import CheckoutModal from "./CheckoutModal";
@@ -35,8 +35,16 @@ const CheckoutForm = () => {
     resolver: zodResolver(BookingSchema),
     defaultValues,
   });
-  const {book, reservedTour, isReservedDetailsError, isReservedDetailsLoading, isBookingLoading, modalInfo, onTimeout} =
-    useBookingHandler();
+  const {
+    book,
+    reservedTour,
+    isReservedDetailsError,
+    isReservedDetailsLoading,
+    isBookingLoading,
+    modalInfo,
+    onTimeout,
+    onClose,
+  } = useBookingHandler();
   const stripe = useStripe();
   const elements = useElements();
   const {reserveId} = useParams();
@@ -84,10 +92,11 @@ const CheckoutForm = () => {
       {modalInfo && (
         <CheckoutModal
           showModal={Boolean(modalInfo)}
-          onClose={modalInfo.onClose}
+          onClose={onClose}
           title={modalInfo.title}
           content={modalInfo.content}
           closeText={modalInfo.closeText}
+          onConfirm={modalInfo.onSubmit}
         />
       )}
     </form>

@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import useUserHandler from "../hooks/useUserHandler";
+import useUserHandler from "../hooks/Users/useUserHandler";
 import NotFound from "../pages/NotFound";
 import CommonSkeleton from "../components/Skeletons/CommonSkeleton";
 

@@ -1,4 +1,4 @@
-import {ReviewResponse} from "../../type";
+import {ReviewResponse} from "../../redux/api/type";
 import keyToTitle from "../../utils/keyToTitle";
 
 type TourReviewsProps = Omit<ReviewResponse, "userReviews" | "totalCount">;

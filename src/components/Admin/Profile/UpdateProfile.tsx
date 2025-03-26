@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 import PhoneInput, {CountryData} from "react-phone-input-2";
 import phone from "phone";
 import "react-phone-input-2/lib/style.css";
-import useUserHandler from "../../../hooks/useUserHandler";
+import useUserHandler from "../../../hooks/Users/useUserHandler";
 import Button from "../../Shared/Button/Button";
 import Input from "../../Shared/Input/Input";
 import Textarea from "../../Shared/Teaxtarea/Textarea";

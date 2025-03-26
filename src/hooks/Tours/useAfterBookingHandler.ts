@@ -1,7 +1,7 @@
 import {useParams} from "react-router-dom";
 import {useCallback} from "react";
 import toast from "react-hot-toast";
-import {useCancelBookingMutation, useGetBookingQuery} from "../redux/api/baseApi";
+import {useCancelBookingMutation, useGetBookingQuery} from "../../redux/api/baseApi";
 
 type Params = {
   bookingId: string;

@@ -1,9 +1,12 @@
 import {useState} from "react";
-import {PaxProps, TourListResponse} from "../../../type";
+import {PaxProps} from "../../../type";
+import useModal from "../../../hooks/Shared/useModal";
+import {TourListResponse} from "../../../redux/api/type";
 import Button from "../Button/Button";
 import Rating from "../Rating/Rating";
 import Favorite from "../Others/Favorite";
 import Carousel from "../Image/Carousel";
+import PriceDetailsModal from "./PriceDetailsModal";
 
 type TourCard2Props = TourListResponse["tours"][0] & {pax?: PaxProps} & {
   className?: string;
@@ -27,6 +30,7 @@ const TourCard2 = ({
   isFavorite,
 }: TourCard2Props) => {
   const [isFavoriteTour, setFavoriteTour] = useState(isFavorite);
+  const {showModal, openModal, onClose} = useModal();
 
   const total = (() => {
     if (pax) {
@@ -102,10 +106,16 @@ const TourCard2 = ({
             <i className="icon-clock mr-10" />
             {duration} Days
           </div>
-          <div className="tourCard__price">
+          <div className="tourCard__price w-100">
             <div>{/* {offer && `$${getOriginalPrice(price, offer.percentage)}`} */}</div>
-            <div className="d-flex items-center">
-              Total <span className="text-20 fw-500 ml-5">${total}</span>
+            <div className="d-flex flex-row justify-content-between flex-lg-column items-center">
+              <p className="mb-1">
+                Total <span className="text-20 fw-500 ml-5">${total}</span>
+              </p>
+              <button onClick={openModal} className="d-flex text-15 fw-500 text-accent-2 underline">
+                Price details
+              </button>
+              <PriceDetailsModal price={price} showModal={showModal} onClose={onClose} />
             </div>
           </div>
         </div>

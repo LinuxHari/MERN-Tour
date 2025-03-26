@@ -1,7 +1,9 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
 import env from "../../config/envConfig";
+import {RatingType} from "../../schema/reviewSchema";
 import {
-  AppliedFiltersProps,
+  AvailabilityResponse,
+  BaseSearchParams,
   BookingBody,
   BookingDetailsResponse,
   ListingCardProps,
@@ -10,40 +12,11 @@ import {
   ReserveResponse,
   ReviewResponse,
   SearchSuggestions,
+  SingleTourParams,
   SingleTourResponse,
   TourListResponse,
-} from "../../type";
-import {RatingType} from "../../schema/reviewSchema";
-
-type BaseSearchParams = {
-  page: number;
-  filters: number;
-  appliedFilters: AppliedFiltersProps & {
-    sortType?: string;
-    minPrice?: number;
-    maxPrice?: number;
-  };
-};
-
-type TourSearchParams = {
-  destinationId: string;
-  startDate: string;
-  endDate: string;
-  adults: number;
-  children: number;
-  infants: number;
-  teens: number;
-} & BaseSearchParams;
-
-type SingleTourParams = {
-  id: string;
-  startDate: string;
-  endDate: string;
-  adults: number;
-  children: number;
-  infants: number;
-  teens: number;
-};
+  TourSearchParams,
+} from "./type";
 
 export const baseApi = createApi({
   reducerPath: "api",
@@ -143,6 +116,11 @@ export const baseApi = createApi({
         };
       },
     }),
+    getAvailability: builder.query<AvailabilityResponse, string>({
+      query: (tourId: string) => ({
+        url: `/tour/${tourId}/availability`,
+      }),
+    }),
   }),
 });
 
@@ -160,4 +138,5 @@ export const {
   usePopularToursQuery,
   useTrendingToursQuery,
   useGetToursByCategoryQuery,
+  useGetAvailabilityQuery,
 } = baseApi;

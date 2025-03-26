@@ -1,4 +1,4 @@
-import {ReviewResponse} from "../../type";
+import {ReviewResponse} from "../../redux/api/type";
 import Avatar from "../Shared/Avatar/Avatar";
 import SearchSkeleton from "../Skeletons/SearchSkeleton";
 

@@ -1,4 +1,4 @@
-import useWindowSize from "../../hooks/useWindowSize";
+import useWindowSize from "../../hooks/Shared/useWindowSize";
 import BreadCrumbs from "../Shared/BreadCrumbs/BreadCrumbs";
 
 const ListingHeader = ({destination}: {destination: string}) => {

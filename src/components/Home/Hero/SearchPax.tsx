@@ -1,14 +1,14 @@
 import {useEffect} from "react";
 import {useFormContext} from "react-hook-form";
-import usePaxHandler from "../../../hooks/usePaxHandler";
+import usePaxHandler from "../../../hooks/Tours/usePaxHandler";
 import Dropdown from "../../Shared/Dropdown/Dropdown";
 import PaxCounter from "../../Shared/PaxCounter/PaxCounter";
 
 const SearchPax = () => {
   const defaultPax = {
     adults: 1,
-    children: 0,
     teens: 0,
+    children: 0,
     infants: 0,
   };
   const {setValue} = useFormContext();

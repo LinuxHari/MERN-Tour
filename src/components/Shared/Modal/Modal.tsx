@@ -1,8 +1,9 @@
 import React, {useEffect} from "react";
 import {ModalContext, useModalContext} from "../../../context/ModalContext";
-import useFocusHandler from "../../../hooks/useFocusHandler";
+import useFocusHandler from "../../../hooks/Shared/useFocusHandler";
 import Button from "../Button/Button";
 import Portal from "../Portal/Portal";
+import useAfterEffect from "../../../hooks/Shared/useAfterEffect";
 
 type ModalProps = {
   children: React.ReactNode;
@@ -41,7 +42,7 @@ const Modal = ({children, className = "", show, onClose: onModalClose}: ModalCon
     else onClose();
   }, [show]);
 
-  useEffect(() => {
+  useAfterEffect(() => {
     if (!showContent && onModalClose) onModalClose();
   }, [showContent]);
 

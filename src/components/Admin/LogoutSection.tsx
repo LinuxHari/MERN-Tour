@@ -1,6 +1,6 @@
-import useAuthHandler from "../../hooks/useAuthHandler";
-import useModal from "../../hooks/useModal";
-import useUserHandler from "../../hooks/useUserHandler";
+import useAuthHandler from "../../hooks/Users/useAuthHandler";
+import useModal from "../../hooks/Shared/useModal";
+import useUserHandler from "../../hooks/Users/useUserHandler";
 import LogoutModal from "../Auth/LogoutModal";
 
 const LogoutSection = () => {

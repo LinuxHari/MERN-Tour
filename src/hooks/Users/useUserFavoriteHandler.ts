@@ -6,7 +6,7 @@ import {
   useAddTourToFavoriteMutation,
   useGetFavoriteToursQuery,
   useRemoveTourFromFavoriteMutation,
-} from "../redux/api/userApi";
+} from "../../redux/api/userApi";
 
 const useUserFavoriteHandler = () => {
   const [page, setPage] = useState(1);

@@ -13,7 +13,7 @@ const TourImages = ({images}: TourImagesProps) => {
         <span>{currentSlide}</span>/{images.length}
       </div>
       <div className="tour__images">
-        <Carousel images={images} onSlide={(index) => setCurrentSlide(index)} />
+        <Carousel images={images} onSlide={(index) => setCurrentSlide(index)} imageClassName="object-fit-fill" />
       </div>
     </>
   );

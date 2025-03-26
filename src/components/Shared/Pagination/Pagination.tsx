@@ -1,4 +1,4 @@
-import usePagination from "../../../hooks/usePagination";
+import usePagination from "../../../hooks/Shared/usePagination";
 
 type PaginationProps = {
   page: number;

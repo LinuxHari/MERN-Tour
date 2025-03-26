@@ -70,7 +70,12 @@ const Button = ({
   }
 
   return (
-    <button type={type} className={`button -md -dark-1 bg-accent-1 text-white ${className}`} {...buttonProps}>
+    <button
+      type={type}
+      disabled={isLoading}
+      className={`button -md -dark-1 bg-accent-1 text-white ${className}`}
+      {...buttonProps}
+    >
       {/* {isLoading && <Spinner/>} */}
       {children}
       {showIcon && <i className="icon-arrow-top-right text-16 ml-10" />}

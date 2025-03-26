@@ -1,4 +1,4 @@
-import useWindowSize from "../../hooks/useWindowSize";
+import useWindowSize from "../../hooks/Shared/useWindowSize";
 import Image from "../Shared/Image/Image";
 import Modal from "../Shared/Modal/Modal";
 import TourImages from "./TourImages";

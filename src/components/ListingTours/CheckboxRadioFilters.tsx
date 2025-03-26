@@ -1,6 +1,7 @@
-import React from "react";
+import useModal from "../../hooks/Shared/useModal";
 import Accordion from "../Shared/Accordion/Accordion";
 import Input from "../Shared/Input/Input";
+import FilterModal from "./FilterModal";
 
 type Props = {
   title: string;
@@ -20,7 +21,10 @@ const CheckboxRadioFilters = ({title, filter, appliedFilterValue, setAppliedFilt
 
   const showFilter =
     Array.isArray(filter) &&
-    (((title === "tourTypes" || title === "languages") && filter.length > 1) || title !== "tourTypes");
+    (((title === "tourTypes" || title === "languages") && filter.length > 1) ||
+      (title !== "tourTypes" && title !== "languages" && filter.length > 0));
+
+  const {showModal, openModal, onClose} = useModal();
 
   return (
     <>
@@ -34,7 +38,7 @@ const CheckboxRadioFilters = ({title, filter, appliedFilterValue, setAppliedFilt
               <Accordion.Content index={index}>
                 <div className="pt-15">
                   <div className="d-flex flex-column y-gap-15">
-                    {filter.map((value, index) =>
+                    {filter.slice(0, 6).map((value, index) =>
                       typeof value === "object" ? (
                         <div key={index}>
                           <Input
@@ -62,6 +66,22 @@ const CheckboxRadioFilters = ({title, filter, appliedFilterValue, setAppliedFilt
                         </div>
                       ),
                     )}
+                    {filter.length > 6 && (
+                      <>
+                        <button className="d-flex text-15 fw-500 text-accent-2" onClick={openModal}>
+                          See more
+                        </button>
+
+                        <FilterModal
+                          title={title}
+                          filter={filter}
+                          setAppliedFilters={setAppliedFilters}
+                          appliedFilterValue={appliedFilterValue}
+                          showModal={showModal}
+                          onClose={onClose}
+                        />
+                      </>
+                    )}
                   </div>
                 </div>
               </Accordion.Content>
@@ -73,6 +93,4 @@ const CheckboxRadioFilters = ({title, filter, appliedFilterValue, setAppliedFilt
   );
 };
 
-const MemoizedCheckboxRadioFilters = React.memo(CheckboxRadioFilters);
-
-export default MemoizedCheckboxRadioFilters;
+export default CheckboxRadioFilters;

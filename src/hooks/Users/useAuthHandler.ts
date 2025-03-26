@@ -2,8 +2,8 @@ import {useCallback} from "react";
 import toast from "react-hot-toast";
 import {useNavigate} from "react-router-dom";
 import {FetchBaseQueryError} from "@reduxjs/toolkit/query";
-import {useLoginMutation, useLogoutMutation, useSignupMutation} from "../redux/api/authApi";
-import {LoginSchemaType, SignupSchemaType} from "../schema/authSchema";
+import {useLoginMutation, useLogoutMutation, useSignupMutation} from "../../redux/api/authApi";
+import {LoginSchemaType, SignupSchemaType} from "../../schema/authSchema";
 
 type LoginData = LoginSchemaType & {
   skipRedirect?: boolean;
@@ -43,7 +43,7 @@ const useAuthHandler = () => {
     if (error) {
       const signupError = error as FetchBaseQueryError;
 
-      if (signupError.status === 500)
+      if (signupError.status === 409)
         return toast.error("User with given email already exists", {
           id: toastId,
         });

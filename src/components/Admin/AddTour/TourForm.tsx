@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 import {defaultTourValue, TourSchema, TourSchemaType} from "../../../schema/tourSchema";
 import Button from "../../Shared/Button/Button";
 import StepNavigator from "../../Shared/Navigator/StepNavigator";
-import useTourSubmitHandler from "../../../hooks/useAdminTourHandler";
+import useTourSubmitHandler from "../../../hooks/Admin/useAdminTourHandler";
 import {getFormErrorMessages} from "../../../utils/getFormErrorMessages";
 import Tabs from "../../Shared/Tabs/Tabs";
 import ContentForm from "./ContentSection";

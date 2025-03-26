@@ -1335,8 +1335,8 @@ input.text-white::placeholder {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 18px;
-  height: 18px;
+  min-width: 18px;
+  min-height: 18px;
   border: 1px solid #05073c;
   border-radius: 4px;
 }
@@ -14172,6 +14172,7 @@ a {
 @media (max-width: 768px) {
   .modal-body {
     padding-inline: 10px;
+    min-width: 280px;
   }
 }
 

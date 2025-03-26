@@ -1,6 +1,6 @@
 import {PasswordSchemaType, UserSchemaType} from "../../schema/userSchema";
-import {BookingsResponse, FavoriteToursResponse, UserInfoResponse} from "../../type";
 import {baseApi} from "./baseApi";
+import {BookingsResponse, FavoriteToursResponse, UserInfoResponse} from "./type";
 
 const userApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({

@@ -1,5 +1,5 @@
-import useReviewHandler from "../../hooks/useReviewHandler";
-import useUserHandler from "../../hooks/useUserHandler";
+import useReviewHandler from "../../hooks/Users/useReviewHandler";
+import useUserHandler from "../../hooks/Users/useUserHandler";
 import TourSectionLayout from "../../layouts/TourSectionLayout";
 import PostReview from "./PostReview";
 import TourRating from "./TourRating";

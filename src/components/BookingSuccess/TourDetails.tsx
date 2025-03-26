@@ -1,4 +1,4 @@
-import {BookingDetailsResponse} from "../../type";
+import {BookingDetailsResponse} from "../../redux/api/type";
 import Button from "../Shared/Button/Button";
 
 type TourDetailsProps = BookingDetailsResponse["tourInfo"] & {amount: number};

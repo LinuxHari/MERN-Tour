@@ -14,7 +14,7 @@ const TourFAQ = ({faq}: TourFAQProps) => {
           <div className="col-12" key={index}>
             <Accordion.Item key={index} index={index} className="accordion__item px-20 py-15 border-1 rounded-12">
               <Accordion.Button className="d-flex items-center justify-between" isShowIcon={false}>
-                <div className="button text-16 text-dark-1">{item.question}</div>
+                <div className="button text-16 text-dark-1 text-start">{item.question}</div>
 
                 <div className="accordion__icon size-30 flex-center bg-light-2 rounded-full">
                   <i className="icon-plus text-13" />
@@ -23,7 +23,7 @@ const TourFAQ = ({faq}: TourFAQProps) => {
               </Accordion.Button>
 
               <Accordion.Content index={index}>
-                <div className="pt-20">
+                <div className="pt-20 text-start">
                   <p>{item.answer}</p>
                 </div>
               </Accordion.Content>

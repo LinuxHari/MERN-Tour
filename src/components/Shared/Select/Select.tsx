@@ -1,6 +1,6 @@
 import {useState, ReactNode} from "react";
 import {SelectContext, useSelectContext} from "../../../context/SelectContext";
-import useFocusHandler from "../../../hooks/useFocusHandler";
+import useFocusHandler from "../../../hooks/Shared/useFocusHandler";
 
 type SelectProps = {
   children: ReactNode;

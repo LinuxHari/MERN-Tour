@@ -1,7 +1,7 @@
 import {useRef, useState} from "react";
-import {useGetSearchSuggestionsByTextQuery} from "../redux/api/baseApi";
-import {SEARCH_SUGGESTIONS} from "../data";
-import useDebounce from "./useDebounce";
+import {useGetSearchSuggestionsByTextQuery} from "../../redux/api/baseApi";
+import {SEARCH_SUGGESTIONS} from "../../data";
+import useDebounce from "../Shared/useDebounce";
 
 const useSearchSuggestionHandler = () => {
   const [searchText, setSearchText] = useState("");

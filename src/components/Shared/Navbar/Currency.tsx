@@ -1,6 +1,6 @@
 import {CURRENCIES} from "../../../data";
 import Select from "../Select/Select";
-import useLocalStorage from "../../../hooks/useLocalStorage";
+import useLocalStorage from "../../../hooks/Shared/useLocalStorage";
 
 type CurrencyProps = {
   isMobile?: boolean;

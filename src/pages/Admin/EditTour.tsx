@@ -2,7 +2,7 @@ import {useParams} from "react-router-dom";
 import withAuth from "../../hocs/withAuth";
 import {RenderProps} from "../../type";
 import TourForm from "../../components/Admin/EditTour/EditTourForm";
-import useAdminTourHandler from "../../hooks/useAdminTourHandler";
+import useAdminTourHandler from "../../hooks/Admin/useAdminTourHandler";
 import CommonSkeleton from "../../components/Skeletons/CommonSkeleton";
 import {EditTourSchemaType} from "../../schema/tourSchema";
 

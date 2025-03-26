@@ -1,4 +1,5 @@
-import {useEffect, useState} from "react";
+import {useLayoutEffect, useState} from "react";
+import MiniSkeleton from "../Skeletons/MiniSkeleton";
 
 type TimeoutProps = {
   expiresAt: number;
@@ -7,8 +8,9 @@ type TimeoutProps = {
 
 const Timeout = ({expiresAt, onTimeout}: TimeoutProps) => {
   const [count, setCount] = useState(0);
+  const [isLoading, setLoading] = useState(true); // Adding it to show skeleton to prevent time's up glitch
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const id = setInterval(() => {
       const count = Math.max(0, Math.floor((expiresAt - Date.now()) / 1000));
       const remainingTime = Math.max(0, count - 1);
@@ -18,6 +20,8 @@ const Timeout = ({expiresAt, onTimeout}: TimeoutProps) => {
         onTimeout();
         clearInterval(id);
       }
+
+      if (isLoading) setLoading(false);
     }, 1000);
 
     return () => clearInterval(id);
@@ -25,6 +29,8 @@ const Timeout = ({expiresAt, onTimeout}: TimeoutProps) => {
 
   const minutes = Math.floor(count / 60);
   const seconds = count % 60;
+
+  if (isLoading) return <MiniSkeleton />;
 
   return (
     <div className="my-2 px-0 text-danger fw-500">

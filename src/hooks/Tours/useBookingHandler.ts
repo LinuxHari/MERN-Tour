@@ -3,11 +3,15 @@ import toast from "react-hot-toast";
 import {useNavigate, useParams} from "react-router-dom";
 import {Stripe, StripeElements} from "@stripe/stripe-js";
 import {FetchBaseQueryError} from "@reduxjs/toolkit/query";
-import {useBookTourMutation, useGetReservedTourQuery, useReserveTourMutation} from "../redux/api/baseApi";
-import {BookingBody, ReserveBody} from "../type";
+import {useBookTourMutation, useGetReservedTourQuery, useReserveTourMutation} from "../../redux/api/baseApi";
+import {BookingBody, ReserveBody} from "../../redux/api/type";
 
 type Params = {
   reserveId: string;
+};
+
+type ReserveParams = ReserveBody & {
+  onError: () => void;
 };
 
 const useBookingHandler = () => {
@@ -28,19 +32,19 @@ const useBookingHandler = () => {
       title: "Booking Failed",
       content: "Booking has failed, try booking another tour.",
       closeText: "Go to home",
-      onClose: () => goHome,
+      onSubmit: goHome,
     },
     timeout: {
       title: "Reservation Expired",
       content: "Reservation has exipired, try booking again.",
       closeText: "Go to home",
-      onClose: () => goHome,
+      onSubmit: goHome,
     },
     gone: {
       title: "Reservation Expired",
       content: "Reservation has exipired, try booking another tour.",
       closeText: "Go to home",
-      onClose: () => goHome,
+      onSubmit: goHome,
     },
   } as const;
 
@@ -48,7 +52,7 @@ const useBookingHandler = () => {
     (typeof modalConfig)["failed"] | (typeof modalConfig)["gone"] | (typeof modalConfig)["timeout"] | null
   >(null);
 
-  const reserve = useCallback(async (data: ReserveBody) => {
+  const reserve = useCallback(async ({onError, ...data}: ReserveParams) => {
     const toastId = toast.loading("Reserving tour");
     const pax: ReserveBody["pax"] = {adults: data.pax.adults};
 
@@ -59,7 +63,13 @@ const useBookingHandler = () => {
     });
     const {error, data: reserveData} = await reserveTour({...data, pax});
 
-    if (error) return toast.error("Failed to reserve tour", {id: toastId});
+    if (error) {
+      const reserveError = error as FetchBaseQueryError;
+
+      if (reserveError.status === 409) return onError();
+
+      return toast.error("Failed to reserve tour", {id: toastId});
+    }
     toast.success("Tour reserved successfully!", {id: toastId});
     navigate(`/checkout/${reserveData.reserveId}`);
   }, []);
@@ -96,6 +106,8 @@ const useBookingHandler = () => {
 
   const onTimeout = useCallback(() => setModalInfo(modalConfig["timeout"]), []);
 
+  const handleModalClose = () => setModalInfo(null);
+
   return {
     reserve,
     isLoading,
@@ -106,6 +118,7 @@ const useBookingHandler = () => {
     isBookingLoading,
     modalInfo,
     onTimeout,
+    onClose: handleModalClose,
   };
 };
 

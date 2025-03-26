@@ -1,13 +1,14 @@
 import {Link} from "react-router-dom";
 import Dropdown from "../Dropdown/Dropdown";
 import Avatar from "../Avatar/Avatar";
-import useUserHandler from "../../../hooks/useUserHandler";
+import useUserHandler from "../../../hooks/Users/useUserHandler";
 import LogoutModal from "../../Auth/LogoutModal";
-import useAuthHandler from "../../../hooks/useAuthHandler";
-import useModal from "../../../hooks/useModal";
+import useAuthHandler from "../../../hooks/Users/useAuthHandler";
+import useModal from "../../../hooks/Shared/useModal";
 import {Role} from "../../../type";
 import Button from "../Button/Button";
-import useWindowSize from "../../../hooks/useWindowSize";
+import useWindowSize from "../../../hooks/Shared/useWindowSize";
+import MiniSkeleton from "../../Skeletons/MiniSkeleton";
 
 type AuthSectionProps = {
   isMobile?: boolean;
@@ -28,7 +29,7 @@ const AuthSection = ({isMobile = false}: AuthSectionProps) => {
   };
 
   if (isLoading) {
-    return <div className="skeleton-element rounded-pill" style={{width: "80px", height: "38px"}} />;
+    return <MiniSkeleton />;
   }
 
   return (

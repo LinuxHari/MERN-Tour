@@ -1,9 +1,9 @@
 import {useMemo, useState} from "react";
 import {useNavigate, useParams, useSearchParams} from "react-router-dom";
-import {useGetTourByIdQuery} from "../redux/api/baseApi";
-import {singleTourUrlParamsHandler} from "../utils/urlParamsHandler";
-import {MIN_AGE} from "../config/tourConfig";
-import getNewDateRange from "../utils/getNewDateRange";
+import {useGetTourByIdQuery} from "../../redux/api/baseApi";
+import {singleTourUrlParamsHandler} from "../../utils/urlParamsHandler";
+import {MIN_AGE} from "../../config/tourConfig";
+import getNewDateRange from "../../utils/getNewDateRange";
 
 type ParamType = {destination: string; tourName: string; tourId: string};
 

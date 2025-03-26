@@ -5,8 +5,8 @@ import Button from "../components/Shared/Button/Button";
 import NoResult from "../components/Shared/NoResult/NoResult";
 import BookingFormSkeleton from "../components/Skeletons/BookingFormSkeleton";
 import withAuth from "../hocs/withAuth";
-import useAfterBookingHandler from "../hooks/useAfterBookingHandler";
-import useModal from "../hooks/useModal";
+import useAfterBookingHandler from "../hooks/Tours/useAfterBookingHandler";
+import useModal from "../hooks/Shared/useModal";
 
 const Booking = () => {
   const {booking, isBookingLoading, isBookingError, isCancelLoading, cancelBooking, bookingId} =

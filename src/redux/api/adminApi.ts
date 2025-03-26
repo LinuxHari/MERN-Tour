@@ -1,9 +1,10 @@
 import {FetchBaseQueryError} from "@reduxjs/toolkit/query";
-import {EarningsResponse, ImgPath, PublishedToursResponse, TourMutationResponse} from "../../type";
+import {ImgPath} from "../../type";
 import {EditTourSchemaType, TourSchemaType} from "../../schema/tourSchema";
 import getFirebaseUpload from "../../utils/getFirebaseUpload";
 import {extractFirebaseImgPath} from "../../utils/extractFirebaseImgPath";
 import {baseApi} from "./baseApi";
+import {EarningsResponse, PublishedToursResponse, TourMutationResponse} from "./type";
 
 export const adminApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({

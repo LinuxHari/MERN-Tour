@@ -2,7 +2,7 @@ import {useForm} from "react-hook-form";
 import {useLayoutEffect} from "react";
 import toast from "react-hot-toast";
 import {zodResolver} from "@hookform/resolvers/zod";
-import useUserHandler from "../../../hooks/useUserHandler";
+import useUserHandler from "../../../hooks/Users/useUserHandler";
 import Button from "../../Shared/Button/Button";
 import Input from "../../Shared/Input/Input";
 import {PasswordSchema, PasswordSchemaType} from "../../../schema/userSchema";

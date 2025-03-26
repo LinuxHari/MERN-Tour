@@ -2,12 +2,18 @@ import {useTrendingToursQuery} from "../../redux/api/baseApi";
 import Cards from "../Shared/Cards/Cards";
 import CardSkeleton from "../Skeletons/CardSkeleton";
 
-const TourSuggestions = () => {
+type TourSuggestionsProps = {
+  tourId?: string;
+};
+
+const TourSuggestions = ({tourId}: TourSuggestionsProps) => {
   const {data: tours, isLoading, isError} = useTrendingToursQuery();
 
   if (!tours || !tours.length || isError) return null;
 
   if (isLoading) return Array.from({length: 3}).map((_, i) => <CardSkeleton key={i} />);
+
+  const allTours = tourId ? tours.filter((tour) => tour.tourId !== tourId) : tours;
 
   return (
     <section className="layout-pb-xl">
@@ -17,7 +23,7 @@ const TourSuggestions = () => {
             <h2 className="text-30">You might also like...</h2>
           </div>
         </div>
-        <Cards tours={tours} />
+        <Cards tours={allTours} />
       </div>
     </section>
   );

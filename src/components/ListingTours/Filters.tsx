@@ -1,4 +1,4 @@
-import useWindowSize from "../../hooks/useWindowSize";
+import useWindowSize from "../../hooks/Shared/useWindowSize";
 import {AppliedFiltersProps, Filters as FiltersType} from "../../type";
 import MobileFilters from "./MobileFilters";
 import FiltersCard from "./FiltersCard";

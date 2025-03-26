@@ -1,9 +1,9 @@
 import {Link} from "react-router-dom";
-import {ListingCardProps} from "../../../type";
 import {transformToUrlName} from "../../../utils/urlNameTransformer";
 import Rating from "../../Shared/Rating/Rating";
 import Favorite from "../../Shared/Others/Favorite";
 import Carousel from "../../Shared/Image/Carousel";
+import {ListingCardProps} from "../../../redux/api/type";
 
 type TourCardProps = ListingCardProps & {
   tourId: string;

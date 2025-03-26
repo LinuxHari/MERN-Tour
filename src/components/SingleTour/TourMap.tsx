@@ -2,7 +2,7 @@ import {useEffect, useRef} from "react";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import TourSectionLayout from "../../layouts/TourSectionLayout";
-import {SingleTourResponse} from "../../type";
+import {SingleTourResponse} from "../../redux/api/type";
 
 type TourMapProps = {
   location: SingleTourResponse["itinerary"];

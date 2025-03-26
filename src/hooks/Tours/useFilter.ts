@@ -1,5 +1,5 @@
 import {useCallback, useState} from "react";
-import {AppliedFiltersProps, Filters, SortTypes} from "../type";
+import {AppliedFiltersProps, Filters, SortTypes} from "../../type";
 
 type PriceRangeProps = {
   minPrice?: number;

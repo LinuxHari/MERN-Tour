@@ -12,8 +12,8 @@ import {
 } from "react-share";
 import Modal from "../Shared/Modal/Modal";
 import Button from "../Shared/Button/Button";
-import useModal from "../../hooks/useModal";
-import useClipboard from "../../hooks/useClipboard";
+import useModal from "../../hooks/Shared/useModal";
+import useClipboard from "../../hooks/Shared/useClipboard";
 
 type ShareProps = {
   title: string;

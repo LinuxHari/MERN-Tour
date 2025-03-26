@@ -1,9 +1,9 @@
 import Rating from "../../Shared/Rating/Rating";
-import {ListingCardProps} from "../../../type";
 import {transformToUrlName} from "../../../utils/urlNameTransformer";
 import Button from "../../Shared/Button/Button";
-import useAdminTourHandler from "../../../hooks/useAdminTourHandler";
+import useAdminTourHandler from "../../../hooks/Admin/useAdminTourHandler";
 import Carousel from "../../Shared/Image/Carousel";
+import {ListingCardProps} from "../../../redux/api/type";
 
 const ListingCard = ({
   images,

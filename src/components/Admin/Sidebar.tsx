@@ -1,5 +1,5 @@
 import {Link, useLocation} from "react-router-dom";
-import useUserHandler from "../../hooks/useUserHandler";
+import useUserHandler from "../../hooks/Users/useUserHandler";
 import {Role} from "../../type";
 import {DASHBOARD_ADMIN, DASHBOARD_USER} from "../../config/adminConfig";
 import Header from "./SidebarHeader";

@@ -1,5 +1,5 @@
 import {MouseEvent} from "react";
-import useUserFavoriteHandler from "../../../hooks/useUserFavoriteHandler";
+import useUserFavoriteHandler from "../../../hooks/Users/useUserFavoriteHandler";
 
 type FavoriteProps = {
   isFavorite: boolean;

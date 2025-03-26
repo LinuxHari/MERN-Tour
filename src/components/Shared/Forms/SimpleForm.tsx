@@ -5,7 +5,7 @@ import {useForm, FieldValues, Path} from "react-hook-form";
 import Button from "../Button/Button";
 import Input from "../Input/Input";
 import keyToTitle from "../../../utils/keyToTitle";
-import useAfterEffect from "../../../hooks/useAfterEffect";
+import useAfterEffect from "../../../hooks/Shared/useAfterEffect";
 import {getFormErrorMessages} from "../../../utils/getFormErrorMessages";
 
 type SimpleFormProps<T extends FieldValues> = {

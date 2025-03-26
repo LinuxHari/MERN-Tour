@@ -1,6 +1,6 @@
 import {ReactNode, useEffect} from "react";
 import {DropdownContext, useDropdownContext} from "../../../context/DropdownContext";
-import useFocusHandler from "../../../hooks/useFocusHandler";
+import useFocusHandler from "../../../hooks/Shared/useFocusHandler";
 
 type DropdownProps = {
   className?: string;
