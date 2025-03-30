@@ -1,3 +1,8 @@
+:root {
+  --rmdp-accent-color: #ff6347;
+  --rmdp-accent-background-color: #ffe4e1;
+}
+
 .ratio {
   position: relative;
   display: block;
@@ -14362,4 +14367,35 @@ a {
 
 .leaflet-control-attribution.leaflet-control {
   display: none;
+}
+
+.rmdp-week-day {
+  color: var(--color-accent-1) !important;
+}
+
+.rmdp-day.rmdp-selected span:not(.highlight),
+.rmdp-arrow-container:hover {
+  background-color: var(--color-accent-1) !important;
+  color: white;
+}
+
+.rmdp-arrow-container:hover {
+  padding-top: 2px;
+}
+
+.rmdp-arrow-container .rmdp-arrow {
+  border: solid var(--color-accent-1) !important;
+  border-width: 0 2px 2px 0 !important;
+}
+
+.rmdp-arrow-container:hover .rmdp-arrow {
+  border: solid white !important;
+  border-width: 0 2px 2px 0 !important;
+}
+
+.rmdp-day:hover .sd,
+.rmdp-today span {
+  background-color: var(--color-accent-1) !important;
+  opacity: 0.5;
+  color: white;
 }

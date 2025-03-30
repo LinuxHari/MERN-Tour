@@ -54,7 +54,7 @@ export const adminApi = baseApi.injectEndpoints({
         const {uploadImages, deleteImages} = getFirebaseUpload();
 
         try {
-          const {tourId, existingImages, ...tourData} = formData;
+          const {tourId, existingImages, availableDates, ...tourData} = formData;
           const deletedTourImages = existingImages.filter(({isDeleted}) => isDeleted).map(({url}) => url);
 
           const imageUrls = await uploadImages(formData.images, formData.name);
@@ -70,6 +70,11 @@ export const adminApi = baseApi.injectEndpoints({
               ...tourData,
               highlights,
               images: [...existingTourImages, ...imageUrls],
+              availableDates: availableDates.map((date) => {
+                return new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()))
+                  .toISOString()
+                  .split("T")[0];
+              }),
             },
             credentials: "include",
           });

@@ -36,6 +36,13 @@ const EditTour = ({render}: RenderProps) => {
     faq: tour.faq,
     included: tour.included,
     images: [],
+    availableDates: tour.availableDates.map((dateStr) => {
+      const date = new Date(dateStr);
+
+      date.setUTCHours(0, 0, 0, 0);
+
+      return date;
+    }),
   };
 
   return (

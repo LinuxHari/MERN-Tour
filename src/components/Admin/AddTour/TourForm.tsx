@@ -14,9 +14,10 @@ import FAQForm from "./FAQSection";
 import IncludedForm from "./IncludedSection";
 import GallerySection from "./GallerySection";
 import LanguageForm from "./LanguageSection";
+import AvailabilitySection from "./AvailabilitySection";
 
 const TourForm = () => {
-  const formTabs = ["Content", "Itinerary", "FAQ", "Gallery", "Included", "Languages"];
+  const formTabs = ["Content", "Itinerary", "FAQ", "Gallery", "Included", "Languages", "Availability"];
   const formComponents = [
     <ContentForm key="content" />,
     <ItineraryForm key="itinerary" />,
@@ -24,6 +25,7 @@ const TourForm = () => {
     <GallerySection key="gallery" />,
     <IncludedForm key="included" />,
     <LanguageForm key="languages" />,
+    <AvailabilitySection key="availability" />,
   ];
   const lastIndex = formComponents.length - 1;
 

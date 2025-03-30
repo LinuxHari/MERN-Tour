@@ -179,6 +179,7 @@ export type PublishedToursResponse = {
     averageRating: number;
     duration: number;
     tourId: string;
+    availableDates: string[];
   } & CardDestination)[];
   totalPages: number;
   totalCount: number;

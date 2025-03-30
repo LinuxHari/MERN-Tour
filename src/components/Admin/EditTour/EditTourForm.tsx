@@ -8,12 +8,13 @@ import StepNavigator from "../../Shared/Navigator/StepNavigator";
 import useAdminTourHandler from "../../../hooks/Admin/useAdminTourHandler";
 import {getFormErrorMessages} from "../../../utils/getFormErrorMessages";
 import Tabs from "../../Shared/Tabs/Tabs";
-import ContentForm from "../AddTour/ContentSection";
-import ItineraryForm from "../AddTour/ItinerarySection";
-import FAQForm from "../AddTour/FAQSection";
-import IncludedForm from "../AddTour/IncludedSection";
+import ContentSection from "../AddTour/ContentSection";
+import ItinerarySection from "../AddTour/ItinerarySection";
+import FAQSection from "../AddTour/FAQSection";
+import IncludedSection from "../AddTour/IncludedSection";
 import GallerySection from "../AddTour/GallerySection";
-import LanguageForm from "../AddTour/LanguageSection";
+import LanguageSection from "../AddTour/LanguageSection";
+import AvailabilitySection from "../AddTour/AvailabilitySection";
 
 type EditTourSchemaProps = {
   tour: EditTourSchemaType;
@@ -21,14 +22,15 @@ type EditTourSchemaProps = {
 };
 
 const EditTourForm = ({tour, tourId}: EditTourSchemaProps) => {
-  const formTabs = ["Content", "Itinerary", "FAQ", "Gallery", "Included", "Languages"];
+  const formTabs = ["Content", "Itinerary", "FAQ", "Gallery", "Included", "Languages", "Availablility"];
   const formComponents = [
-    <ContentForm key="content" isEditForm />,
-    <ItineraryForm key="itinerary" />,
-    <FAQForm key="faq" />,
+    <ContentSection key="content" isEditForm />,
+    <ItinerarySection key="itinerary" />,
+    <FAQSection key="faq" />,
     <GallerySection key="gallery" isEditForm />,
-    <IncludedForm key="included" />,
-    <LanguageForm key="languages" />,
+    <IncludedSection key="included" />,
+    <LanguageSection key="languages" />,
+    <AvailabilitySection key="availability" />,
   ];
   const lastIndex = formComponents.length - 1;
 

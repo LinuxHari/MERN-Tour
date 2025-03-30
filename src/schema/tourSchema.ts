@@ -222,6 +222,10 @@ export const BaseTourSchema = z.object({
       message: "Invalid value provided",
     })
     .default("yes"),
+  availableDates: z
+    .array(z.date(), {message: "Invalid dates are selected"})
+    .min(1, {message: "Minimum one available date should be selected."})
+    .max(400, {message: "Available dates cannot be more than 400"}),
 });
 
 export const TourSchema = BaseTourSchema.merge(LocationSchema).transform((tour) => {
@@ -328,4 +332,5 @@ export const defaultTourValue: TourSchemaType = {
   minAge: 18,
   freeCancellation: "yes",
   images: [],
+  availableDates: [],
 };
