@@ -15,7 +15,7 @@ const useAdminTourHandler = () => {
   const [page, setPage] = useState(1);
   const [createTour, {isLoading}] = useCreateTourMutation();
   const [editTour, {isLoading: isUpdating}] = useUpdateTourMutation();
-  const {data: publishedTours, isLoading: isTourLoading, isError: isTourError} = useGetAdminPublishedToursQuery(page);
+  const {data: publishedTours, isFetching: isTourLoading, isError: isTourError} = useGetAdminPublishedToursQuery(page);
 
   const [deleteTour, {isLoading: isDeletingTour}] = useDeleteTourMutation();
 

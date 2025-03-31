@@ -1,9 +1,10 @@
-import {useCallback} from "react";
+import {useCallback, useState} from "react";
 import toast from "react-hot-toast";
 import {useNavigate} from "react-router-dom";
 import {FetchBaseQueryError} from "@reduxjs/toolkit/query";
 import {useLoginMutation, useLogoutMutation, useSignupMutation} from "../../redux/api/authApi";
 import {LoginSchemaType, SignupSchemaType} from "../../schema/authSchema";
+import useVerificationHandler from "./useVerificationHandler";
 
 type LoginData = LoginSchemaType & {
   skipRedirect?: boolean;
@@ -15,6 +16,8 @@ const useAuthHandler = () => {
   const [login, {isLoading: isLoginLoading}] = useLoginMutation();
   const [signup, {isLoading: isSignupLoading}] = useSignupMutation();
   const [logout] = useLogoutMutation();
+  const {sendMail, isSendingMail} = useVerificationHandler();
+  const [isVerificationError, setVerificationError] = useState(false);
   const navigate = useNavigate();
 
   const onLogin = useCallback(async (data: LoginData) => {
@@ -27,7 +30,11 @@ const useAuthHandler = () => {
       const loginError = error as FetchBaseQueryError;
 
       if (loginError.status === 500) return toast.error("Something went wrong", {id: toastId});
-      else return toast.error("Invalid email or password", {id: toastId});
+      else if (loginError.status === 401) {
+        setVerificationError(true);
+
+        return toast.error("Email is not verified yet", {id: toastId});
+      } else return toast.error("Invalid email or password", {id: toastId});
     }
     toast.success("Logged in successfully", {id: toastId});
     if (!skipRedirect)
@@ -49,7 +56,7 @@ const useAuthHandler = () => {
         });
       else return toast.error("Something went wrong", {id: toastId});
     }
-    toast.success("Account created successfully", {id: toastId});
+    toast.success(`A verification email is sent to ${data.email}`, {id: toastId});
     setTimeout(() => {
       navigate("/login");
     }, 1000);
@@ -64,7 +71,7 @@ const useAuthHandler = () => {
     navigate("/");
   }, []);
 
-  return {onLogin, onSignup, isLoginLoading, isSignupLoading, onLogout};
+  return {onLogin, onSignup, isLoginLoading, isSignupLoading, onLogout, sendMail, isSendingMail, isVerificationError};
 };
 
 export default useAuthHandler;

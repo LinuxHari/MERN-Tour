@@ -19,6 +19,7 @@ const Booking = lazy(() => import("./pages/Booking"));
 const Checkout = lazy(() => import("./pages/Checkout"));
 const Login = lazy(() => import("./pages/Auth/Login"));
 const Signup = lazy(() => import("./pages/Auth/Signup"));
+const EmailVerification = lazy(() => import("./pages/Auth/EmailVerification"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const CategoryTours = lazy(() => import("./pages/CategoryTours"));
 
@@ -37,6 +38,7 @@ const AppRoutes = () => {
           <Route path="tours/categories/:category" element={<CategoryTours />} />
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<Signup />} />
+          <Route path="verify-email/:token" element={<EmailVerification />} />
           <Route path="*" element={<NotFound />} />
         </Route>
         <Route path="/dashboard" element={<AdminLayout />}>

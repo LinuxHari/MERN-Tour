@@ -38,7 +38,7 @@ const useSideCardUtils = ({pax, price, startDate, endDate, tourId}: SideCardUtil
   const {showModal, onClose, openModal} = useModal();
   const {showModal: showErrorModal, onClose: onErrorClose, openModal: openErrorModal} = useModal();
   const {showModal: showAvailModal, onClose: onAvailClose, openModal: openAvailModal} = useModal();
-  const {onLogin, isLoginLoading} = useAuthHandler();
+  const {onLogin, isLoginLoading, isVerificationError} = useAuthHandler();
   const {reserve, isLoading} = useBookingHandler();
   const {data: availability, isError, isLoading: isAvailabilityLoading} = useGetAvailabilityQuery(tourId);
   const availableDates = availability?.map((data) => new Date(data.date));
@@ -106,6 +106,7 @@ const useSideCardUtils = ({pax, price, startDate, endDate, tourId}: SideCardUtil
     showAvailModal,
     onAvailClose,
     openAvailModal,
+    isVerificationError,
   };
 };
 

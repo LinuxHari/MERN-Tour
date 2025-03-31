@@ -56,6 +56,24 @@ const userApi = baseApi.injectEndpoints({
         credentials: "include",
       }),
     }),
+    verifyEmail: builder.mutation<void, string>({
+      query: (token) => ({
+        url: "/user/verify-email",
+        method: "POST",
+        body: {
+          authToken: token,
+        },
+      }),
+    }),
+    sendVerficationEmail: builder.mutation<void, string>({
+      query: (email) => ({
+        url: "/user/send-verification-email",
+        method: "POST",
+        body: {
+          email,
+        },
+      }),
+    }),
   }),
 });
 
@@ -67,4 +85,6 @@ export const {
   useRemoveTourFromFavoriteMutation,
   useGetBookingsQuery,
   useUpdatePasswordMutation,
+  useSendVerficationEmailMutation,
+  useVerifyEmailMutation,
 } = userApi;

@@ -38,6 +38,7 @@ const SideCard = ({price, pax, startDate, endDate, tourId, setStartDate}: SideCa
     goBack,
     showAvailModal,
     onAvailClose,
+    isVerificationError,
   } = useSideCardUtils({price, pax, startDate, endDate, tourId});
 
   return (
@@ -64,7 +65,13 @@ const SideCard = ({price, pax, startDate, endDate, tourId, setStartDate}: SideCa
               {isLoggedIn ? "Book Now" : "Log In"}
             </Button>
           </div>
-          <LoginModal onClose={onClose} onConfirm={handleLogin} showModal={showModal} isLoading={isLoginLoading} />
+          <LoginModal
+            onClose={onClose}
+            onConfirm={handleLogin}
+            showModal={showModal}
+            isLoading={isLoginLoading}
+            isVerificationError={isVerificationError}
+          />
           <NotAvailableModal showModal={showAvailModal} onClose={onAvailClose} />
         </div>
       )}
