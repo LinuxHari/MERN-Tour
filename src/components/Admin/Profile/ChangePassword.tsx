@@ -50,7 +50,7 @@ const ChangePassword = () => {
         </div>
 
         <div className="row">
-          <div className="col-12">
+          <div className="col-md-6 d-flex justify-content-end">
             <Button buttonType="primary" type="submit" disabled={isUpdatingPassword}>
               Save Changes
             </Button>

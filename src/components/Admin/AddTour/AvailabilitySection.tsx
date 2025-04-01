@@ -5,18 +5,19 @@ import {getDefaultDateRange} from "../../../utils/getDefaultDateRange";
 import dateObjectConverter from "../../../utils/dateObjectConverter";
 
 const AvailabilitySection = () => {
-  const {isSmallScreen, isMobile} = useWindowSize();
+  const {isMobile, isSmallDesktop} = useWindowSize();
   const {control} = useFormContext();
   const {startDate, maxDate} = getDefaultDateRange("year");
+  const numOfMonths = isMobile ? 1 : isSmallDesktop ? 2 : 3;
 
   return (
-    <div style={{minHeight: "35vh"}}>
+    <div style={{minHeight: "45vh"}}>
       <Controller
         control={control}
         name="availableDates"
         render={({field: {onChange, value}}) => (
           <Calendar
-            numberOfMonths={isMobile ? 1 : isSmallScreen ? 2 : 3}
+            numberOfMonths={numOfMonths}
             multiple={true}
             value={value}
             onChange={(dates) => onChange(dateObjectConverter(dates))}

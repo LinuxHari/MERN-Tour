@@ -95,7 +95,7 @@ const PostReview = ({onSubmit, isLoading}: PostReviewProps) => {
           </div>
 
           <div className="row">
-            <div className="col-12">
+            <div className="col-12 d-flex justify-content-end">
               <Button buttonType="primary" type="submit" isLoading={isLoading} disabled={isLoading}>
                 Post Review
               </Button>

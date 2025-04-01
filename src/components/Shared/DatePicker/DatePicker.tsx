@@ -1,8 +1,5 @@
-import "react-date-range/dist/styles.css";
-import "react-date-range/dist/theme/default.css";
-
-import {DateRange, Range, RangeKeyDict} from "react-date-range";
 import {useState} from "react";
+import {Calendar, DateObject} from "react-multi-date-picker";
 import {getDefaultDateRange} from "../../../utils/getDefaultDateRange";
 import useWindowSize from "../../../hooks/Shared/useWindowSize";
 
@@ -17,36 +14,35 @@ type DatePickerProps = {
 
 const DatePicker = ({onChange}: DatePickerProps) => {
   const {startDate, endDate, maxDate} = getDefaultDateRange();
-  const [dateRange, setDateRange] = useState<Range[]>([
-    {
-      startDate: new Date(startDate),
-      endDate: new Date(endDate),
-      key: "selection",
-    },
+  const [selectedDates, setSelectedDates] = useState<DateObject[]>([
+    new DateObject(startDate),
+    new DateObject(endDate),
   ]);
 
   const {width} = useWindowSize();
   const isLaptop = width >= 1200;
 
-  const handleChange = (dates: RangeKeyDict) => {
-    setDateRange([dates.selection]);
+  const handleDateChange = (dates: DateObject[]) => {
+    if (dates.length < 1) return;
+
+    const sortedDates = dates.sort((a, b) => a.toDate().getTime() - b.toDate().getTime());
+
+    setSelectedDates(sortedDates);
+
     onChange({
-      startDate: dates.selection.startDate ?? null,
-      endDate: dates.selection.endDate ?? null,
+      startDate: sortedDates[0]?.toDate() ?? null,
+      endDate: sortedDates[sortedDates.length - 1]?.toDate() ?? null,
     });
   };
 
   return (
-    <DateRange
-      className="searchFormItemDropdown__container"
-      months={isLaptop ? 2 : 1}
-      direction="horizontal"
-      minDate={new Date(startDate)}
-      maxDate={new Date(maxDate)}
-      ranges={dateRange}
-      rangeColors={["#EB662B"]}
-      editableDateInputs
-      onChange={handleChange}
+    <Calendar
+      value={selectedDates}
+      onChange={handleDateChange}
+      range
+      numberOfMonths={isLaptop ? 2 : 1}
+      minDate={new DateObject(startDate)}
+      maxDate={new DateObject(maxDate)}
     />
   );
 };

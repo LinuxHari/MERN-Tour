@@ -75,7 +75,7 @@ const useBookingHandler = () => {
   }, []);
 
   const book = useCallback(async (data: BookingBody, stripe: Stripe | null, elements: StripeElements | null) => {
-    const toastId = toast.loading("Reserving tour");
+    const toastId = toast.loading("Booking tour");
 
     if (!stripe || !elements) return toast.error("Payment is not submitted", {id: toastId});
 

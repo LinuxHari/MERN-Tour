@@ -1,40 +1,29 @@
-import "react-date-range/dist/styles.css";
-import "react-date-range/dist/theme/default.css";
-
 import {useState} from "react";
-import {Calendar} from "react-date-range";
+import {Calendar, DateObject} from "react-multi-date-picker";
 import Dropdown from "../Dropdown/Dropdown";
 import {getDefaultDateRange} from "../../../utils/getDefaultDateRange";
 
 type SingleDatePickerProps = {
   startDate: Date;
   setStartDate: (date: Date) => void;
-  dateRange?: Date[];
+  dateRange?: {date: Date; extraInfo?: number | string}[];
 };
 
 const SingleDatePicker = ({startDate, setStartDate, dateRange}: SingleDatePickerProps) => {
   const [close, setClose] = useState(false);
-  const {startDate: defaultStartDate, maxDate} = getDefaultDateRange();
+  const {startDate: defaultStartDate, maxDate} = getDefaultDateRange("year");
 
-  const onDateChange = (date: Date) => {
-    if (dateRange?.some((d) => d.toDateString() === date.toDateString())) {
-      setStartDate(date);
+  const onDateChange = (date: DateObject | null) => {
+    if (!date || !dateRange || !Array.isArray(dateRange)) return;
+
+    const selectedDate = new Date(date.year, date.month.number - 1, date.day);
+
+    const isValidDate = dateRange.some((d) => d.date.toDateString() === selectedDate.toDateString());
+
+    if (isValidDate) {
+      setStartDate(selectedDate);
       setClose(true);
     }
-  };
-
-  const getDisabledDates = () => {
-    const disabledDates: Date[] = [];
-    const start = new Date(defaultStartDate);
-    const end = new Date(maxDate);
-
-    for (let d = new Date(start); d <= end; d.setDate(d.getDate() + 1)) {
-      if (!dateRange?.some((availableDate) => availableDate.toDateString() === d.toDateString())) {
-        disabledDates.push(new Date(d));
-      }
-    }
-
-    return disabledDates;
   };
 
   return (
@@ -52,14 +41,38 @@ const SingleDatePicker = ({startDate, setStartDate, dateRange}: SingleDatePicker
           <p className="text-14 text-light-2 mb-0">{startDate.toDateString()}</p>
         </div>
       </Dropdown.Toggle>
-      <Dropdown.Content className="absolute top-50 start-50 translate-middle-x z-5">
+      <Dropdown.Content className="absolute top-100 start-50 translate-middle-x z-5">
         <Calendar
-          date={startDate}
+          value={new DateObject(startDate)}
           onChange={onDateChange}
-          color="#eb662b"
-          minDate={new Date(defaultStartDate)}
-          maxDate={new Date(maxDate)}
-          disabledDates={getDisabledDates()}
+          minDate={new DateObject(defaultStartDate)}
+          maxDate={new DateObject(maxDate)}
+          mapDays={({date}) => {
+            const jsDate = new Date(date.year, date.month.number - 1, date.day);
+            const foundDate = dateRange?.find((d) => d.date.toDateString() === jsDate.toDateString());
+
+            return {
+              disabled: !foundDate,
+              children: (
+                <div style={{position: "relative", textAlign: "center", fontSize: "12px"}}>
+                  <span>{date.day}</span>
+                  {foundDate?.extraInfo && (
+                    <div
+                      style={{
+                        position: "absolute",
+                        bottom: "2px",
+                        right: "5px",
+                        fontSize: "9px",
+                        color: "blue",
+                      }}
+                    >
+                      {foundDate.extraInfo}
+                    </div>
+                  )}
+                </div>
+              ),
+            };
+          }}
         />
       </Dropdown.Content>
     </Dropdown>

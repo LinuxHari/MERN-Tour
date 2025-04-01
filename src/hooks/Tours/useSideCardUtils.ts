@@ -41,7 +41,7 @@ const useSideCardUtils = ({pax, price, startDate, endDate, tourId}: SideCardUtil
   const {onLogin, isLoginLoading, isVerificationError} = useAuthHandler();
   const {reserve, isLoading} = useBookingHandler();
   const {data: availability, isError, isLoading: isAvailabilityLoading} = useGetAvailabilityQuery(tourId);
-  const availableDates = availability?.map((data) => new Date(data.date));
+  const availableDates = availability?.map((data) => ({date: new Date(data.date), extraInfo: data.availableSeats}));
   const isAvailable = (() => {
     if (!availability) return false;
     else {

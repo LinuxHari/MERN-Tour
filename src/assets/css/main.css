@@ -14374,13 +14374,19 @@ a {
 }
 
 .rmdp-day.rmdp-selected span:not(.highlight),
-.rmdp-arrow-container:hover {
+.rmdp-arrow-container:hover,
+.rmdp-range {
   background-color: var(--color-accent-1) !important;
   color: white;
 }
 
 .rmdp-arrow-container:hover {
   padding-top: 2px;
+}
+
+.rmdp-day {
+  width: 44px !important;
+  height: 44px !important;
 }
 
 .rmdp-arrow-container .rmdp-arrow {
@@ -14398,4 +14404,8 @@ a {
   background-color: var(--color-accent-1) !important;
   opacity: 0.5;
   color: white;
+}
+
+.rmdp-wrapper {
+  box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.12) !important;
 }

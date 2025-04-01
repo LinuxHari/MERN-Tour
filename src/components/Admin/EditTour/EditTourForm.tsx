@@ -126,7 +126,7 @@ const EditTourForm = ({tour, tourId}: EditTourSchemaProps) => {
             prevClick={() => setCurrentTab(currentTab - 1)}
           />
         </div>
-        <div className="d-flex gap-4 mt-40">
+        <div className="d-flex gap-4 mt-40 justify-content-end col-9">
           <Button
             buttonType="secondary"
             type="button"

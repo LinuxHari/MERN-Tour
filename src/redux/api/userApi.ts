@@ -74,6 +74,9 @@ const userApi = baseApi.injectEndpoints({
         },
       }),
     }),
+    getUserStatistics: builder.query<string, void>({
+      query: () => ({url: "/user/statistics", credentials: "include"}),
+    }),
   }),
 });
 

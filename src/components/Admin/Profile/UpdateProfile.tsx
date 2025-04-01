@@ -126,7 +126,7 @@ const UpdateProfile = () => {
         </div> */}
       </div>
 
-      <div className="d-flex pt-30">
+      <div className="d-flex pt-30 justify-content-end">
         <Button buttonType="primary" type="submit" disabled={isUpdatingProfile}>
           Save Changes
         </Button>
