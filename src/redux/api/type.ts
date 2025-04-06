@@ -198,11 +198,13 @@ export type EarningsResponse = {
   todayEarnings: number;
   totalPendingEarnings: number;
   todayPendingEarnings: number;
-  successfulEarnings: number;
+  totalSuccessfulEarnings: number;
   todaySuccessfulEarnings: number;
   earningsByTwoHours: number[];
   earningsByWeek: number[];
   earningsByMonth: number[];
+  retainedFromCanceled: number;
+  retainedFromCanceledToday: number;
 };
 
 export type UpdatePasswordBody = {

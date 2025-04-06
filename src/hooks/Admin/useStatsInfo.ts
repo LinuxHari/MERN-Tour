@@ -29,9 +29,16 @@ const useStatsInfo = () => {
     },
     {
       title: "Total Booking",
-      total: formatPrice(revenue?.successfulEarnings || 0),
+      total: formatPrice(revenue?.totalSuccessfulEarnings || 0),
       currency: currencyCode,
       today: formatPrice(revenue?.todaySuccessfulEarnings || 0),
+      icon: "icon-booking",
+    },
+    {
+      title: "Non-Free Cancel",
+      total: formatPrice(revenue?.retainedFromCanceled || 0),
+      currency: currencyCode,
+      today: formatPrice(revenue?.retainedFromCanceledToday || 0),
       icon: "icon-booking",
     },
   ];

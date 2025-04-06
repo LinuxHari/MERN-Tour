@@ -8,7 +8,7 @@ type DetailCardProps = {
 
 const DetailCard = ({title, total, currency, amount, icon}: DetailCardProps) => {
   return (
-    <div className="col-xl-3 col-sm-6">
+    <div className="col-sm-6">
       <div className="rounded-12 bg-white shadow-2 px-30 py-30 h-full">
         <div className="row y-gap-20 items-center justify-between">
           <div className="col-auto">

@@ -26,7 +26,7 @@ const useUserStatsInfo = () => {
     },
     {
       title: "Total Booking",
-      total: statistics?.successfulEarnings || 0,
+      total: statistics?.totalSuccessfulEarnings || 0,
       currency: "$",
       today: statistics?.todaySuccessfulEarnings || 0,
       icon: "icon-booking",
