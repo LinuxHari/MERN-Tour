@@ -86,7 +86,10 @@ const BookingDetailsCard = ({isPayformLoaded, isLoading, isError, reservedTour}:
 
           <div className="d-flex items-center justify-between">
             <div className="fw-500">Total</div>
-            <div>{reservedTour.totalAmount.toFixed(2)}</div>
+            <div>
+              {reservedTour.currencyCode}
+              {reservedTour.totalAmount.toFixed(2)}
+            </div>
           </div>
 
           {/* <div className="d-flex items-center justify-between">

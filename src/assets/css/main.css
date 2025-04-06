@@ -5893,6 +5893,9 @@ h6 {
     padding: 0 !important;
     width: 100% !important;
   }
+  .tourCard.-type-1 .tourCard__content {
+    height: 164px;
+  }
 }
 
 .tourCard.-type-2 .tourCard__image {

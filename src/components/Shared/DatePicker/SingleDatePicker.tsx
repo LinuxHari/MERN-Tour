@@ -1,7 +1,7 @@
 import {useState} from "react";
 import {Calendar, DateObject} from "react-multi-date-picker";
 import Dropdown from "../Dropdown/Dropdown";
-import {getDefaultDateRange} from "../../../utils/getDefaultDateRange";
+import getDefaultDateRange from "../../../utils/getDefaultDateRange";
 
 type SingleDatePickerProps = {
   startDate: Date;
@@ -11,7 +11,7 @@ type SingleDatePickerProps = {
 
 const SingleDatePicker = ({startDate, setStartDate, dateRange}: SingleDatePickerProps) => {
   const [close, setClose] = useState(false);
-  const {startDate: defaultStartDate, maxDate} = getDefaultDateRange("year");
+  const {startDate: defaultStartDate, maxDate} = getDefaultDateRange();
 
   const onDateChange = (date: DateObject | null) => {
     if (!date || !dateRange || !Array.isArray(dateRange)) return;

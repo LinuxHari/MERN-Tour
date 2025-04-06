@@ -1,6 +1,6 @@
 import {useState} from "react";
 import {Calendar, DateObject} from "react-multi-date-picker";
-import {getDefaultDateRange} from "../../../utils/getDefaultDateRange";
+import getDefaultDateRange from "../../../utils/getDefaultDateRange";
 import useWindowSize from "../../../hooks/Shared/useWindowSize";
 
 type DateRangeType = {

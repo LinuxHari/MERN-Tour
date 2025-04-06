@@ -1,6 +1,6 @@
 import "../polyfills/arrayPolyfills";
 import {TOUR_TYPES} from "../config/tourConfig";
-import {getDefaultDateRange} from "./getDefaultDateRange";
+import getDefaultDateRange from "./getDefaultDateRange";
 
 type ListingParams = {
   destination: string;

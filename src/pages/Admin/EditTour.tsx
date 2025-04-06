@@ -2,21 +2,19 @@ import {useParams} from "react-router-dom";
 import withAuth from "../../hocs/withAuth";
 import {RenderProps} from "../../type";
 import TourForm from "../../components/Admin/EditTour/EditTourForm";
-import useAdminTourHandler from "../../hooks/Admin/useAdminTourHandler";
-import CommonSkeleton from "../../components/Skeletons/CommonSkeleton";
 import {EditTourSchemaType} from "../../schema/tourSchema";
+import {useGetAdminPublishedTourQuery} from "../../redux/api/adminApi";
+import CommonSkeleton from "../../components/Skeletons/CommonSkeleton";
+import NoResult from "../../components/Shared/NoResult/NoResult";
 
 const EditTour = ({render}: RenderProps) => {
-  const {publishedTours, isTourLoading, isTourError} = useAdminTourHandler();
   const {tourId} = useParams();
+  const {data: tour, isLoading, isError} = useGetAdminPublishedTourQuery(tourId as string);
 
-  if (isTourLoading) return <CommonSkeleton />;
+  if (isLoading) return <CommonSkeleton />;
 
-  if (isTourError || !publishedTours) return null;
-
-  const tour = publishedTours.tours.find((publishedTour) => publishedTour.tourId === tourId);
-
-  if (!tour || !tourId) return null;
+  if (isError || !tour || !tourId)
+    return <NoResult title="No tours found" description="There could be an error or tour id is not valid" />;
 
   const defaultValue: EditTourSchemaType = {
     name: tour.name,

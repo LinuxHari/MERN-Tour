@@ -1,13 +1,13 @@
 import {Calendar} from "react-multi-date-picker";
 import {Controller, useFormContext} from "react-hook-form";
 import useWindowSize from "../../../hooks/Shared/useWindowSize";
-import {getDefaultDateRange} from "../../../utils/getDefaultDateRange";
+import getDefaultDateRange from "../../../utils/getDefaultDateRange";
 import dateObjectConverter from "../../../utils/dateObjectConverter";
 
 const AvailabilitySection = () => {
   const {isMobile, isSmallDesktop} = useWindowSize();
   const {control} = useFormContext();
-  const {startDate, maxDate} = getDefaultDateRange("year");
+  const {startDate, maxDate} = getDefaultDateRange();
   const numOfMonths = isMobile ? 1 : isSmallDesktop ? 2 : 3;
 
   return (

@@ -10,11 +10,17 @@ export const adminApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getAdminPublishedTours: builder.query<PublishedToursResponse, PublishedToursBody>({
       query: ({page, tourName}) => ({
-        url: "/admin/tour",
+        url: "/admin/tours",
         params: tourName ? {page, tourName} : {page},
         credentials: "include",
       }),
-      providesTags: ["Tour"],
+      providesTags: (result) =>
+        result
+          ? [
+              ...result.tours.map(({tourId}) => ({type: "Tour" as const, id: tourId})),
+              {type: "Tour" as const, id: "LIST"},
+            ]
+          : [{type: "Tour" as const, id: "LIST"}],
     }),
     createTour: builder.mutation<TourMutationResponse, TourSchemaType>({
       queryFn: async (formData, _, __, baseQuery) => {
@@ -47,7 +53,7 @@ export const adminApi = baseApi.injectEndpoints({
           return {error: {error: "Network Error"} as FetchBaseQueryError};
         }
       },
-      invalidatesTags: ["Tour"],
+      invalidatesTags: [{type: "Tour", id: "LIST"}],
     }),
     updateTour: builder.mutation<TourMutationResponse, EditTourSchemaType & {tourId: string}>({
       queryFn: async (formData, _, __, baseQuery) => {
@@ -95,7 +101,10 @@ export const adminApi = baseApi.injectEndpoints({
           return {error: {error: "Network Error"} as FetchBaseQueryError};
         }
       },
-      invalidatesTags: ["Tour"],
+      invalidatesTags: (_, __, arg) => [
+        {type: "Tour", id: arg.tourId},
+        {type: "Tour", id: "LIST"},
+      ],
     }),
     deleteTour: builder.mutation<void, string>({
       query: (tourId) => ({
@@ -103,16 +112,28 @@ export const adminApi = baseApi.injectEndpoints({
         method: "DELETE",
         credentials: "include",
       }),
-      invalidatesTags: ["Tour"],
+      invalidatesTags: (_, __, tourId) => [
+        {type: "Tour", id: tourId},
+        {type: "Tour", id: "LIST"},
+      ],
     }),
     getEarnings: builder.query<EarningsResponse, void>({
       query: () => ({url: "/admin/stats", credentials: "include"}),
+      providesTags: ["Earnings"],
+    }),
+    getAdminPublishedTour: builder.query<PublishedToursResponse["tours"][number], string>({
+      query: (tourId: string) => ({
+        url: `/admin/tour/${tourId}`,
+        credentials: "include",
+      }),
+      providesTags: (_, __, tourId) => [{type: "Tour", id: tourId}],
     }),
   }),
 });
 
 export const {
   useGetAdminPublishedToursQuery,
+  useGetAdminPublishedTourQuery,
   useCreateTourMutation,
   useDeleteTourMutation,
   useGetEarningsQuery,

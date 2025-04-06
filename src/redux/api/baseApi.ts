@@ -21,7 +21,7 @@ import {
 export const baseApi = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({baseUrl: `${env.API_BASE_URL}`}),
-  tagTypes: ["Tour", "User", "Book", "Review", "Favorites", "UNAUTHORIZED"],
+  tagTypes: ["Tour", "User", "Book", "Review", "Favorites", "Earnings", "UNAUTHORIZED"],
   endpoints: (builder) => ({
     getSearchSuggestionsByText: builder.query<SearchSuggestions, string>({
       query: (searchText) => ({url: "/tour/search", params: {searchText}}),
