@@ -1,6 +1,7 @@
 import {useParams} from "react-router-dom";
 import {useCallback} from "react";
 import toast from "react-hot-toast";
+import {FetchBaseQueryError} from "@reduxjs/toolkit/query";
 import {useCancelBookingMutation, useGetBookingQuery} from "../../redux/api/baseApi";
 
 type Params = {
@@ -16,7 +17,13 @@ const useAfterBookingHandler = () => {
     const toastId = toast.loading("Cancelling booking");
     const {error} = await cancelBooking(bookingId);
 
-    if (error) return toast.error("Failed to cancel booking", {id: toastId});
+    if (error) {
+      const cancelError = error as FetchBaseQueryError;
+
+      if (cancelError.status === 409) return toast.error("Past booking cannot be cancelled", {id: toastId});
+
+      return toast.error("Failed to cancel booking", {id: toastId});
+    }
     toast.success("Booking cancelled successfully", {id: toastId});
   }, []);
 

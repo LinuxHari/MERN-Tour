@@ -1,4 +1,5 @@
 import {useGetEarningsQuery} from "../../redux/api/adminApi";
+import useCurrencyHandler from "../Others/useCurrencyHandler";
 import useChart from "./useChart";
 
 const useStatsInfo = () => {
@@ -9,26 +10,28 @@ const useStatsInfo = () => {
     monthly: revenue?.earningsByMonth || [],
   });
 
+  const {formatPrice, currencyCode} = useCurrencyHandler();
+
   const dashboardData = [
     {
       title: "Total Earnings",
-      total: revenue?.totalEarnings || 0,
-      currency: "$",
-      today: revenue?.todayEarnings || 0,
+      total: formatPrice(revenue?.totalEarnings || 0),
+      currency: currencyCode,
+      today: formatPrice(revenue?.todayEarnings || 0),
       icon: "icon-wallet",
     },
     {
       title: "Total Pending",
-      total: revenue?.totalPendingEarnings || 0,
-      currency: "$",
-      today: revenue?.todayPendingEarnings || 0,
+      total: formatPrice(revenue?.totalPendingEarnings || 0),
+      currency: currencyCode,
+      today: formatPrice(revenue?.todayPendingEarnings || 0),
       icon: "icon-payment",
     },
     {
       title: "Total Booking",
-      total: revenue?.successfulEarnings || 0,
-      currency: "$",
-      today: revenue?.todaySuccessfulEarnings || 0,
+      total: formatPrice(revenue?.successfulEarnings || 0),
+      currency: currencyCode,
+      today: formatPrice(revenue?.todaySuccessfulEarnings || 0),
       icon: "icon-booking",
     },
   ];

@@ -2,6 +2,7 @@ import PriceRangeSlider from "rc-slider";
 import "rc-slider/assets/index.css";
 import {useEffect, useState} from "react";
 import Accordion from "../Shared/Accordion/Accordion";
+import useCurrencyHandler from "../../hooks/Others/useCurrencyHandler";
 
 type PriceFilterProps = {
   setPriceRange: (minPrice: number, maxPrice?: number) => void;
@@ -10,6 +11,7 @@ type PriceFilterProps = {
 
 const PriceFilter = ({priceRange, setPriceRange}: PriceFilterProps) => {
   const defaultRange = {minPrice: 5, maxPrice: 2000};
+  const {currencyCode} = useCurrencyHandler();
   const [currentPriceRange, setCurrentRange] = useState([defaultRange.minPrice, defaultRange.maxPrice]);
   const [currentMinPrice, currentMaxPrice] = currentPriceRange;
 
@@ -46,10 +48,14 @@ const PriceFilter = ({priceRange, setPriceRange}: PriceFilterProps) => {
                 <div className="d-flex justify-between mt-20">
                   <div className="">
                     <span className="">Price: </span>
-                    <span className="fw-500 js-lower">${currentMinPrice}</span>
+                    <span className="fw-500 js-lower">
+                      {currencyCode}
+                      {currentMinPrice}
+                    </span>
                     <span> - </span>
                     <span className="fw-500 js-upper">
-                      ${currentMaxPrice === defaultRange.maxPrice ? currentMaxPrice + "+" : currentMaxPrice}
+                      {currencyCode} {currentMaxPrice}
+                      {currentMaxPrice === defaultRange.maxPrice && "+"}
                     </span>
                   </div>
                 </div>

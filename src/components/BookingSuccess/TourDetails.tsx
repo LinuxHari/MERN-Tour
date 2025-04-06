@@ -1,9 +1,9 @@
 import {BookingDetailsResponse} from "../../redux/api/type";
 import Button from "../Shared/Button/Button";
 
-type TourDetailsProps = BookingDetailsResponse["tourInfo"] & {amount: number};
+type TourDetailsProps = BookingDetailsResponse["tourInfo"] & {amount: number; currencyCode: string};
 
-const TourDetails = ({tourName, startDate, duration, passengers: pax, amount}: TourDetailsProps) => {
+const TourDetails = ({tourName, startDate, duration, passengers: pax, amount, currencyCode}: TourDetailsProps) => {
   return (
     <div className="pl-50 md:pl-0 mt-30 mt-md-0">
       <div className="bg-white rounded-12 shadow-2 py-30 px-30">
@@ -34,7 +34,10 @@ const TourDetails = ({tourName, startDate, duration, passengers: pax, amount}: T
           </div>
           <div className="d-flex items-center justify-between">
             <div className="fw-500">Amount:</div>
-            <div className="text-18 fw-500">${amount}</div>
+            <div className="text-18 fw-500">
+              {currencyCode}
+              {amount}
+            </div>
           </div>
         </div>
         <Button buttonType="primary" className="mt-4 w-100" onClick={() => window.print()}>

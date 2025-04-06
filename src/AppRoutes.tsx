@@ -20,6 +20,7 @@ const Checkout = lazy(() => import("./pages/Checkout"));
 const Login = lazy(() => import("./pages/Auth/Login"));
 const Signup = lazy(() => import("./pages/Auth/Signup"));
 const EmailVerification = lazy(() => import("./pages/Auth/EmailVerification"));
+const ResetPassword = lazy(() => import("./pages/Auth/ResetPassword"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const CategoryTours = lazy(() => import("./pages/CategoryTours"));
 
@@ -39,6 +40,7 @@ const AppRoutes = () => {
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<Signup />} />
           <Route path="verify-email/:token" element={<EmailVerification />} />
+          <Route path="reset-password/:token" element={<ResetPassword />} />
           <Route path="*" element={<NotFound />} />
         </Route>
         <Route path="/dashboard" element={<AdminLayout />}>

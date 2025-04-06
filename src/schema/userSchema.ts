@@ -41,5 +41,13 @@ export const PasswordSchema = z
 
 export const UserSchema = z.intersection(BaseUserSchema, LocationSchema);
 
+export const getAdminSearchSchema = (minLength: number, maxLength: number) =>
+  z.object({
+    search: z
+      .string()
+      .min(minLength, `Minimum ${minLength} characters required`)
+      .max(maxLength, `Maximum ${maxLength} characters required`),
+  });
+
 export type UserSchemaType = z.infer<typeof UserSchema>;
 export type PasswordSchemaType = z.infer<typeof PasswordSchema>;

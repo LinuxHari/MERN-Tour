@@ -2,6 +2,7 @@ import {MIN_AGE} from "../../../config/tourConfig";
 import {TourSchemaType} from "../../../schema/tourSchema";
 import {PaxProps} from "../../../type";
 import stringToTitle from "../../../utils/stringToTitle";
+import Price from "../Price/Price";
 
 type PaxCounterProps = {
   pax: PaxProps;
@@ -37,7 +38,9 @@ const PaxCounter = ({pax, setPax, price, className = ""}: PaxCounterProps) => {
               {stringToTitle(paxType)} ({minAge}
               {typeof maxAge === "number" ? ` - ${maxAge}` : "+"}) &nbsp;
               {paxPrice > 0 ? (
-                <span className="fw-500">${(paxPrice * paxCount).toFixed(2)}</span>
+                <span className="fw-500">
+                  <Price price={paxPrice * paxCount} />
+                </span>
               ) : price ? (
                 <span className="text-10 text-light-2 mb-0">&nbsp;(No charge)</span>
               ) : null}

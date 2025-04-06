@@ -2,7 +2,17 @@ import {OrganizedBookings, StatusColor} from "../../../type";
 import Button from "../../Shared/Button/Button";
 import Image from "../../Shared/Image/Image";
 
-const TableRow = ({id, tour, startDate, endDate, url, price, passengers, status}: OrganizedBookings[number]) => {
+const TableRow = ({
+  id,
+  tour,
+  startDate,
+  endDate,
+  url,
+  price,
+  passengers,
+  status,
+  currencyCode,
+}: OrganizedBookings[number]) => {
   const statusColors: Record<string, StatusColor> = {
     Pending: "yellow",
     Confirmed: "purple",
@@ -21,7 +31,10 @@ const TableRow = ({id, tour, startDate, endDate, url, price, passengers, status}
       <td>{startDate}</td>
       <td>{endDate}</td>
       <td className="text-nowrap">{passengers} People</td>
-      <td>${price}</td>
+      <td>
+        {currencyCode}
+        {price}
+      </td>
       <td>
         <div className={`circle text-${statusColors[status]}-1`}>{status}</div>
       </td>

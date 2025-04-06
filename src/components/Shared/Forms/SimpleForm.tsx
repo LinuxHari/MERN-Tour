@@ -1,3 +1,4 @@
+import React from "react";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {ZodSchema} from "zod";
 import toast from "react-hot-toast";
@@ -18,6 +19,7 @@ type SimpleFormProps<T extends FieldValues> = {
   buttonText: string;
   isLoading: boolean;
   className?: string;
+  render?: () => React.ReactNode;
 };
 
 const SimpleForm = <T extends FieldValues>({
@@ -27,6 +29,7 @@ const SimpleForm = <T extends FieldValues>({
   buttonText,
   isLoading,
   className = "border-1 rounded-12 px-60 py-60 md:px-25 md:py-30",
+  render,
 }: SimpleFormProps<T>) => {
   const {
     register,
@@ -50,6 +53,7 @@ const SimpleForm = <T extends FieldValues>({
       <Button type="submit" buttonType="primary" className="my-4 w-100" disabled={isLoading}>
         {buttonText}
       </Button>
+      {render && render()}
     </form>
   );
 };

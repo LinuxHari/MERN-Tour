@@ -5,9 +5,10 @@ import ListingCard from "../../components/Admin/Listings/ListingCard";
 import withAuth from "../../hocs/withAuth";
 import CommonSkeleton from "../../components/Skeletons/CommonSkeleton";
 import NoResult from "../../components/Shared/NoResult/NoResult";
+import AdminSearchForm from "../../components/Shared/Forms/AdminSearchForm";
 
 const Listings = ({render}: RenderProps) => {
-  const {publishedTours, isTourLoading, page, setPage} = useAdminTourHandler();
+  const {publishedTours, isTourLoading, page, setPage, setTourName} = useAdminTourHandler();
 
   return (
     <>
@@ -16,6 +17,9 @@ const Listings = ({render}: RenderProps) => {
         <CommonSkeleton />
       ) : publishedTours && publishedTours.tours.length ? (
         <div className="rounded-12 bg-white shadow-2 px-20 pt-40 pb-30 mt-60">
+          <div className="d-flex justify-content-end">
+            <AdminSearchForm placeholder="Tour Name" onSearch={setTourName} />
+          </div>
           <div className="row y-gap-30">
             {publishedTours.tours.map(
               ({images, name, country, state, city, price, totalRatings, duration, averageRating, tourId}, index) => (

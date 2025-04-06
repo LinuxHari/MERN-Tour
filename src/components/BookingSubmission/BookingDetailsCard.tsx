@@ -40,8 +40,8 @@ const BookingDetailsCard = ({isPayformLoaded, isLoading, isError, reservedTour}:
           <div className="d-flex items-center justify-between">
             <div className="fw-500">Tickets:</div>
             <div className="">
-              Adult x{reservedTour.passengers.adults} = $
-              {reservedTour.passengers.adults * reservedTour.tourDetails.price.adult}
+              Adult x{reservedTour.passengers.adults} = {reservedTour.currencyCode}
+              {(reservedTour.passengers.adults * reservedTour.tourDetails.price.adult).toFixed(2)}
             </div>
           </div>
 
@@ -49,8 +49,8 @@ const BookingDetailsCard = ({isPayformLoaded, isLoading, isError, reservedTour}:
             <div className="d-flex items-center justify-between">
               <div className="fw-500" />
               <div className="">
-                Teens x{reservedTour.passengers.teens} = $
-                {reservedTour.passengers.teens * (reservedTour.tourDetails.price?.teen || 0)}
+                Teens x{reservedTour.passengers.teens} = {reservedTour.currencyCode}
+                {(reservedTour.passengers.teens * (reservedTour.tourDetails.price?.teen || 0)).toFixed(2)}
               </div>
             </div>
           ) : null}
@@ -59,8 +59,8 @@ const BookingDetailsCard = ({isPayformLoaded, isLoading, isError, reservedTour}:
             <div className="d-flex items-center justify-between">
               <div className="fw-500" />
               <div className="">
-                Children x{reservedTour.passengers.children} = $
-                {reservedTour.passengers.children * (reservedTour.tourDetails.price?.child || 0)}
+                Children x{reservedTour.passengers.children} = {reservedTour.currencyCode}
+                {(reservedTour.passengers.children * (reservedTour.tourDetails.price?.child || 0)).toFixed(2)}
               </div>
             </div>
           ) : null}
@@ -69,8 +69,8 @@ const BookingDetailsCard = ({isPayformLoaded, isLoading, isError, reservedTour}:
             <div className="d-flex items-center justify-between">
               <div className="fw-500" />
               <div className="">
-                Infants x{reservedTour.passengers.infants} = $
-                {reservedTour.passengers.infants * (reservedTour.tourDetails.price?.infant || 0)}
+                Infants x{reservedTour.passengers.infants} = {reservedTour.currencyCode}
+                {(reservedTour.passengers.infants * (reservedTour.tourDetails.price?.infant || 0)).toFixed(2)}
               </div>
             </div>
           ) : null}
@@ -86,7 +86,7 @@ const BookingDetailsCard = ({isPayformLoaded, isLoading, isError, reservedTour}:
 
           <div className="d-flex items-center justify-between">
             <div className="fw-500">Total</div>
-            <div className="">${reservedTour.totalAmount}</div>
+            <div>{reservedTour.totalAmount.toFixed(2)}</div>
           </div>
 
           {/* <div className="d-flex items-center justify-between">

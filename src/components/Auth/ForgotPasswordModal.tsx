@@ -7,35 +7,42 @@ import Modal from "../Shared/Modal/Modal";
 
 type SendVerificationModalProps = {
   showModal: boolean;
+  onClose: () => void;
 };
 
-const SendVerificationModal = ({showModal: showVerificationModal}: SendVerificationModalProps) => {
+const ForgotPasswordModal = ({showModal: showForgotPassModal, onClose: closeModal}: SendVerificationModalProps) => {
   const fields = [{type: "email", name: "email"}] as const;
-  const {sendMail, isSendingMail} = useVerificationHandler();
+  const {sendResetMail, isSendingResetMail} = useVerificationHandler();
   const {showModal, onClose, openModal} = useModal();
 
   useEffect(() => {
-    if (showVerificationModal) openModal();
-  }, [showVerificationModal]);
+    if (showForgotPassModal) openModal();
+  }, [showForgotPassModal]);
 
   return (
     //Below we use and operator to keep modal state also, because when user clicks outside or close modal, modal should be closed.
-    <Modal show={showModal && showVerificationModal} onClose={onClose}>
+    <Modal
+      show={showModal && showForgotPassModal}
+      onClose={() => {
+        onClose();
+        closeModal();
+      }}
+    >
       <Modal.Header>
-        <Modal.Title>Verify Email</Modal.Title>
+        <Modal.Title>Reset Password</Modal.Title>
       </Modal.Header>
       <Modal.Content>
         <SimpleForm
           fields={[...fields]} // Spead operator is used here to escape from read-only as I used asserted as const above.
           schema={EmailSchema}
-          buttonText={"Send Verification Email"}
-          onSubmit={sendMail}
+          buttonText={"Send Reset Email"}
+          onSubmit={sendResetMail}
           className="px-2"
-          isLoading={isSendingMail}
+          isLoading={isSendingResetMail}
         />
       </Modal.Content>
     </Modal>
   );
 };
 
-export default SendVerificationModal;
+export default ForgotPasswordModal;

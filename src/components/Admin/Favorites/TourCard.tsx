@@ -4,6 +4,7 @@ import Rating from "../../Shared/Rating/Rating";
 import Favorite from "../../Shared/Others/Favorite";
 import Carousel from "../../Shared/Image/Carousel";
 import {ListingCardProps} from "../../../redux/api/type";
+import Price from "../../Shared/Price/Price";
 
 type TourCardProps = ListingCardProps & {
   tourId: string;
@@ -64,7 +65,10 @@ const TourCard = ({
             </div>
 
             <div>
-              From <span className="text-16 fw-500">${price}</span>
+              From{" "}
+              <span className="text-16 fw-500">
+                <Price price={price} />
+              </span>
             </div>
           </div>
         </div>

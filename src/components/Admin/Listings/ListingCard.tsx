@@ -4,6 +4,7 @@ import Button from "../../Shared/Button/Button";
 import useAdminTourHandler from "../../../hooks/Admin/useAdminTourHandler";
 import Carousel from "../../Shared/Image/Carousel";
 import {ListingCardProps} from "../../../redux/api/type";
+import Price from "../../Shared/Price/Price";
 
 const ListingCard = ({
   images,
@@ -56,7 +57,10 @@ const ListingCard = ({
             </div>
 
             <div>
-              From <span className="text-16 fw-500">${price}</span>
+              From{" "}
+              <span className="text-16 fw-500">
+                <Price price={price} />
+              </span>
             </div>
           </div>
         </div>

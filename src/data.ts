@@ -661,7 +661,13 @@ export const ACTIVITIES = {
   },
 };
 
-export const CURRENCIES = [{label: "U.S. Dollar", value: "USD"}];
+export const CURRENCIES = [
+  {label: "U.S. Dollar", value: "USD"},
+  {label: "A.E. Dirham", value: "AED"},
+  {label: "British Pound", value: "GBP"},
+  {label: "Indian Rupee", value: "INR"},
+  {label: "Euro", value: "EUR"},
+];
 
 export const SEARCH_SUGGESTIONS = [
   {

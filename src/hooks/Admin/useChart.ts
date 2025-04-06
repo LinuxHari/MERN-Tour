@@ -10,6 +10,7 @@ import {
   Legend,
 } from "chart.js";
 import generateLabels from "../../utils/generateLabels";
+import useCurrencyHandler from "../Others/useCurrencyHandler";
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
@@ -19,6 +20,7 @@ const useChart = (data: PassedDataType) => {
   const {maxValue: hoursMaxValue, stepSize: hoursStepSize} = generateLabels(data.hours);
   const {maxValue: weeklyMaxValue, stepSize: weeklyStepSize} = generateLabels(data.weekly, "Weekly");
   const {maxValue: monthlyMaxValue, stepSize: monthlyStepSize} = generateLabels(data.monthly);
+  const {formatPrices, currencyCode, formatPrice} = useCurrencyHandler();
 
   const chartConfig = useMemo(
     () => ({
@@ -32,7 +34,7 @@ const useChart = (data: PassedDataType) => {
         scales: {
           y: {
             min: 0,
-            max: hoursMaxValue,
+            max: formatPrice(hoursMaxValue),
             ticks: {
               stepSize: hoursStepSize,
             },
@@ -49,7 +51,7 @@ const useChart = (data: PassedDataType) => {
         scales: {
           y: {
             min: 0,
-            max: weeklyMaxValue,
+            max: formatPrice(weeklyMaxValue),
             ticks: {
               stepSize: weeklyStepSize,
             },
@@ -66,7 +68,7 @@ const useChart = (data: PassedDataType) => {
         scales: {
           y: {
             min: 0,
-            max: monthlyMaxValue,
+            max: formatPrice(monthlyMaxValue),
             ticks: {
               stepSize: monthlyStepSize,
             },
@@ -74,7 +76,7 @@ const useChart = (data: PassedDataType) => {
         },
       },
     }),
-    [monthlyMaxValue, weeklyMaxValue, hoursMaxValue],
+    [monthlyMaxValue, weeklyMaxValue, hoursMaxValue, formatPrice],
   );
 
   const chartData = useMemo(
@@ -83,8 +85,8 @@ const useChart = (data: PassedDataType) => {
         labels: ["12 AM", "2 AM", "4 AM", "6 AM", "8 AM", "10 AM", "12 PM", "2 PM", "4 PM", "6 PM", "8 PM", "10 PM"],
         datasets: [
           {
-            label: "#",
-            data: data.hours,
+            label: currencyCode,
+            data: formatPrices(data.hours),
             tension: 0.4,
             backgroundColor: "#336CFB",
             borderColor: "#336CFB",
@@ -96,8 +98,8 @@ const useChart = (data: PassedDataType) => {
         labels: ["1st", "2nd", "3rd", "4th", "5th"],
         datasets: [
           {
-            label: "#",
-            data: data.weekly,
+            label: currencyCode,
+            data: formatPrices(data.weekly),
             tension: 0.4,
             backgroundColor: "#336CFB",
             borderColor: "#336CFB",
@@ -109,8 +111,8 @@ const useChart = (data: PassedDataType) => {
         labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
         datasets: [
           {
-            label: "#",
-            data: data.monthly,
+            label: currencyCode,
+            data: formatPrices(data.monthly),
             tension: 0.4,
             backgroundColor: "#336CFB",
             borderColor: "#336CFB",

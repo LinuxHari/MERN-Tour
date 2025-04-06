@@ -19,8 +19,7 @@ const DatePicker = ({onChange}: DatePickerProps) => {
     new DateObject(endDate),
   ]);
 
-  const {width} = useWindowSize();
-  const isLaptop = width >= 1200;
+  const {isMobile} = useWindowSize();
 
   const handleDateChange = (dates: DateObject[]) => {
     if (dates.length < 1) return;
@@ -40,7 +39,7 @@ const DatePicker = ({onChange}: DatePickerProps) => {
       value={selectedDates}
       onChange={handleDateChange}
       range
-      numberOfMonths={isLaptop ? 2 : 1}
+      numberOfMonths={isMobile ? 1 : 2}
       minDate={new DateObject(startDate)}
       maxDate={new DateObject(maxDate)}
     />

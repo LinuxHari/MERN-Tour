@@ -42,5 +42,18 @@ export const SignupSchema = z
     message: "Password did not match",
   });
 
+export const ResetPasswordSchema = z
+  .object({
+    newPassword: LoginSchema.shape.password,
+    confirmPassword: LoginSchema.shape.password,
+    authToken: z
+      .string({message: "Invalid token"})
+      .min(8, {message: "Invalid token"})
+      .max(50, {message: "Invalid token"}),
+  })
+  .refine(({newPassword, confirmPassword}) => newPassword === confirmPassword, {
+    message: "Password did not match",
+  });
+
 export type SignupSchemaType = z.infer<typeof SignupSchema>;
 export type LoginSchemaType = z.infer<typeof LoginSchema>;

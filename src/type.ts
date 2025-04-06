@@ -24,6 +24,7 @@ export type Bookings = {
   price: number;
   status: Status;
   passengers: number;
+  currencyCode: string;
 };
 
 export type OrganizedBookings = {
@@ -39,6 +40,7 @@ export type OrganizedBookings = {
   status: string;
   url: string;
   passengers: number;
+  currencyCode: string;
 }[];
 
 export type StatusColor = "purple" | "yellow" | "red";

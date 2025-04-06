@@ -1,6 +1,7 @@
 import {TourSchemaType} from "../../../schema/tourSchema";
 import getAgeRange from "../../../utils/getAgeRange";
 import Modal from "../Modal/Modal";
+import Price from "../Price/Price";
 
 type PriceDetailsProps = {
   showModal: boolean;
@@ -20,7 +21,10 @@ const PriceDetailsModal = ({showModal, onClose, price}: PriceDetailsProps) => {
         {ageRanges.map(({category, minAge, maxAge}) =>
           price?.[category] ? (
             <p key={category}>
-              <span className="fw-500">${price[category]}</span> per {getLabel(category, minAge, maxAge)}
+              <span className="fw-500">
+                <Price price={price[category]} />
+              </span>{" "}
+              per {getLabel(category, minAge, maxAge)}
             </p>
           ) : null,
         )}

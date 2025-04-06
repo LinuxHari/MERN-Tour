@@ -1,29 +1,32 @@
 import {useEffect, useRef} from "react";
 import {useParams} from "react-router-dom";
-import useVerificationHandler from "../../hooks/Users/useVerificationHandler";
 import CommonSkeleton from "../../components/Skeletons/CommonSkeleton";
+import usePasswordResetHandler from "../../hooks/Users/usePasswordResetHandler";
+import ResetPasswordForm from "../../components/Auth/ResetPasswordForm";
 import NoResult from "../../components/Shared/NoResult/NoResult";
 
 type Params = {
   token: string;
 };
 
-const EmailVerification = () => {
+const ResetPassword = () => {
   const {token} = useParams() as Params;
-  const {verifyMail, isVerifyingMail, isVerificationError} = useVerificationHandler();
+  const {verifyToken, isVerifyingToken, isTokenVerified} = usePasswordResetHandler();
   const hasRunRef = useRef(false);
 
   useEffect(() => {
     if (!hasRunRef.current) {
-      verifyMail(token);
+      verifyToken(token);
       hasRunRef.current = true;
     }
   }, [token]);
 
+  if (isVerifyingToken) return <CommonSkeleton />;
+
   return (
     <div className="d-flex align-items-center justify-content-center" style={{height: "100vh"}}>
-      {isVerifyingMail || !isVerificationError ? (
-        <CommonSkeleton />
+      {isTokenVerified ? (
+        <ResetPasswordForm />
       ) : (
         <NoResult title="Invalid token" description="Token could have been expired" />
       )}
@@ -31,4 +34,4 @@ const EmailVerification = () => {
   );
 };
 
-export default EmailVerification;
+export default ResetPassword;

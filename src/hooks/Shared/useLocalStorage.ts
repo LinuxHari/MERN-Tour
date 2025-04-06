@@ -1,11 +1,11 @@
 import {useEffect, useState} from "react";
 
-const useLocalStorage = (key: string, initialValue: object | number | string | null = null) => {
-  const [value, setValue] = useState<object | number | string | null>(initialValue);
+const useLocalStorage = <T>(key: string, initialValue: T | null = null) => {
+  const [value, setValue] = useState<T | null>(initialValue);
 
-  const setLocalValue = (value: string | number | object) => {
-    localStorage.setItem(key, typeof value === "object" ? JSON.stringify(value) : String(value));
-    setValue(value);
+  const setLocalValue = (val: T) => {
+    localStorage.setItem(key, typeof val === "object" ? JSON.stringify(val) : String(val));
+    setValue(val);
   };
 
   const getValue = () => {
@@ -13,13 +13,13 @@ const useLocalStorage = (key: string, initialValue: object | number | string | n
 
     if (storedValue) {
       try {
-        setValue(JSON.parse(storedValue));
+        setValue(JSON.parse(storedValue) as T);
       } catch {
-        if (!Number.isNaN(Number(storedValue))) setValue(Number(storedValue));
-        else setValue(storedValue);
+        if (!Number.isNaN(Number(storedValue))) setValue(Number(storedValue) as T);
+        else setValue(storedValue as T);
       }
     } else {
-      if (initialValue) setLocalValue(initialValue);
+      if (initialValue !== null) setLocalValue(initialValue);
     }
   };
 

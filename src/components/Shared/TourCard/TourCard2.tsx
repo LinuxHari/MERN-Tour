@@ -6,6 +6,7 @@ import Button from "../Button/Button";
 import Rating from "../Rating/Rating";
 import Favorite from "../Others/Favorite";
 import Carousel from "../Image/Carousel";
+import Price from "../Price/Price";
 import PriceDetailsModal from "./PriceDetailsModal";
 
 type TourCard2Props = TourListResponse["tours"][0] & {pax?: PaxProps} & {
@@ -110,7 +111,10 @@ const TourCard2 = ({
             <div>{/* {offer && `$${getOriginalPrice(price, offer.percentage)}`} */}</div>
             <div className="d-flex flex-row justify-content-between flex-lg-column items-center">
               <p className="mb-1">
-                Total <span className="text-20 fw-500 ml-5">${total}</span>
+                Total{" "}
+                <span className="text-20 fw-500 ml-5">
+                  <Price price={total} />
+                </span>
               </p>
               <button onClick={openModal} className="d-flex text-15 fw-500 text-accent-2 underline">
                 Price details

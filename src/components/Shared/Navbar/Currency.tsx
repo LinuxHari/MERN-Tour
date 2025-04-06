@@ -1,6 +1,8 @@
 import {CURRENCIES} from "../../../data";
-import Select from "../Select/Select";
 import useLocalStorage from "../../../hooks/Shared/useLocalStorage";
+import useCurrencyHandler from "../../../hooks/Others/useCurrencyHandler";
+import useAfterEffect from "../../../hooks/Shared/useAfterEffect";
+import Select from "../Select/Select";
 
 type CurrencyProps = {
   isMobile?: boolean;
@@ -9,6 +11,11 @@ type CurrencyProps = {
 const Currency = ({isMobile = false}: CurrencyProps) => {
   const currencies = CURRENCIES.map(({value}) => value);
   const [storedCurrency, setCurrencyValue] = useLocalStorage("currency", currencies[0]);
+  const {getExchangeRate} = useCurrencyHandler();
+
+  useAfterEffect(() => {
+    getExchangeRate(storedCurrency as string);
+  }, [storedCurrency]);
 
   return (
     <Select className="js-form-dd" defaultValue={storedCurrency as string} onChange={setCurrencyValue}>

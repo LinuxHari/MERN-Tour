@@ -51,7 +51,6 @@ const SingleDatePicker = ({startDate, setStartDate, dateRange}: SingleDatePicker
             const jsDate = new Date(date.year, date.month.number - 1, date.day);
             const foundDate = dateRange?.find((d) => d.date.toDateString() === jsDate.toDateString());
 
-            // Check if the date is strictly before minDate
             const isBeforeMinDate = jsDate.getTime() < new Date(defaultStartDate).setHours(0, 0, 0, 0);
 
             return {
@@ -59,7 +58,6 @@ const SingleDatePicker = ({startDate, setStartDate, dateRange}: SingleDatePicker
               children: (
                 <div style={{position: "relative", textAlign: "center", fontSize: "12px"}}>
                   <span>{date.day}</span>
-                  {/* Show extraInfo only if the date is NOT strictly before minDate */}
                   {foundDate?.extraInfo && !isBeforeMinDate && (
                     <div
                       style={{

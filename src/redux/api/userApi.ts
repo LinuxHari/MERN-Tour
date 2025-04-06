@@ -1,6 +1,6 @@
 import {PasswordSchemaType, UserSchemaType} from "../../schema/userSchema";
 import {baseApi} from "./baseApi";
-import {BookingsResponse, FavoriteToursResponse, UserInfoResponse} from "./type";
+import {BookingsBody, BookingsResponse, FavoriteToursResponse, UpdatePasswordBody, UserInfoResponse} from "./type";
 
 const userApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
@@ -49,19 +49,19 @@ const userApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["Favorites"],
     }),
-    getBookings: builder.query<BookingsResponse, {status: string; page: number}>({
-      query: ({status, page}) => ({
+    getBookings: builder.query<BookingsResponse, BookingsBody>({
+      query: ({status, page, bookingId}) => ({
         url: "/user/bookings",
-        params: {status, page},
+        params: bookingId ? {status, page, bookingId} : {status, page},
         credentials: "include",
       }),
     }),
     verifyEmail: builder.mutation<void, string>({
-      query: (token) => ({
+      query: (authToken) => ({
         url: "/user/verify-email",
         method: "POST",
         body: {
-          authToken: token,
+          authToken,
         },
       }),
     }),
@@ -72,6 +72,31 @@ const userApi = baseApi.injectEndpoints({
         body: {
           email,
         },
+      }),
+    }),
+    sendResetPassMail: builder.mutation<void, string>({
+      query: (email) => ({
+        url: "/user/reset-mail",
+        method: "POST",
+        body: {
+          email,
+        },
+      }),
+    }),
+    verifyResetToken: builder.mutation<void, string>({
+      query: (authToken) => ({
+        url: "/user/verify-reset-token",
+        method: "POST",
+        body: {
+          authToken,
+        },
+      }),
+    }),
+    updateResetPassword: builder.mutation<void, UpdatePasswordBody>({
+      query: (body) => ({
+        url: "/user/update-password",
+        method: "PATCH",
+        body,
       }),
     }),
     getUserStatistics: builder.query<string, void>({
@@ -90,4 +115,7 @@ export const {
   useUpdatePasswordMutation,
   useSendVerficationEmailMutation,
   useVerifyEmailMutation,
+  useSendResetPassMailMutation,
+  useVerifyResetTokenMutation,
+  useUpdateResetPasswordMutation,
 } = userApi;

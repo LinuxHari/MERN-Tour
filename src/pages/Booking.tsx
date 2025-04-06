@@ -27,7 +27,7 @@ const Booking = () => {
       </div>
     );
 
-  const {tourInfo, amount, ...bookingInfo} = booking;
+  const {tourInfo, amount, currencyCode, ...bookingInfo} = booking;
 
   return (
     <main className="bg-light-1" style={{minHeight: "80vh"}}>
@@ -35,7 +35,7 @@ const Booking = () => {
         <div className="container">
           <div className="row">
             <div className="col-lg-8 bg-white rounded-12 shadow-2 py-30 px-20">
-              <BookingInfo {...bookingInfo} amount={amount} bookingId={bookingId} />
+              <BookingInfo {...bookingInfo} amount={amount} currencyCode={currencyCode} bookingId={bookingId} />
               <div className="container mt-3">
                 <div className="row g-2 justify-content-end">
                   {bookingInfo.isCancellable &&
@@ -56,7 +56,7 @@ const Booking = () => {
               </div>
             </div>
             <div className="col-lg-4 px-0">
-              <TourDetails {...tourInfo} amount={amount} />
+              <TourDetails {...tourInfo} amount={amount} currencyCode={currencyCode} />
             </div>
           </div>
         </div>

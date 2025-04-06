@@ -3,11 +3,13 @@ import {useNavigate} from "react-router-dom";
 import {useGetAvailabilityQuery} from "../../redux/api/baseApi";
 import {LoginSchemaType} from "../../schema/authSchema";
 import {TourSchemaType} from "../../schema/tourSchema";
+import {CURRENCIES} from "../../data";
 import {PaxProps} from "../../type";
 import useAuthHandler from "../Users/useAuthHandler";
 import useModal from "../Shared/useModal";
 import useUserHandler from "../Users/useUserHandler";
 import useAfterEffect from "../Shared/useAfterEffect";
+import useLocalStorage from "../Shared/useLocalStorage";
 import useBookingHandler from "./useBookingHandler";
 import usePaxHandler from "./usePaxHandler";
 
@@ -42,6 +44,7 @@ const useSideCardUtils = ({pax, price, startDate, endDate, tourId}: SideCardUtil
   const {reserve, isLoading} = useBookingHandler();
   const {data: availability, isError, isLoading: isAvailabilityLoading} = useGetAvailabilityQuery(tourId);
   const availableDates = availability?.map((data) => ({date: new Date(data.date), extraInfo: data.availableSeats}));
+  const [currency] = useLocalStorage("currency", CURRENCIES[0].value);
   const isAvailable = (() => {
     if (!availability) return false;
     else {
@@ -71,7 +74,7 @@ const useSideCardUtils = ({pax, price, startDate, endDate, tourId}: SideCardUtil
       Object.keys(paxToSend).forEach((key) => {
         if (!paxToSend[key as keyof PaxProps]) delete paxToSend[key as keyof PaxProps];
       });
-      reserve({startDate, endDate, pax: paxToSend, tourId, onError: openAvailModal});
+      reserve({startDate, endDate, pax: paxToSend, tourId, onError: openAvailModal, currency: currency as string});
     }
   };
 

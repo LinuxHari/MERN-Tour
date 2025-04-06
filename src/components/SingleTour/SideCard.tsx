@@ -6,6 +6,7 @@ import Button from "../Shared/Button/Button";
 import LoginModal from "../Auth/LoginModal";
 import SingleDatePicker from "../Shared/DatePicker/SingleDatePicker";
 import CardSkeleton from "../Skeletons/CardSkeleton";
+import Price from "../Shared/Price/Price";
 import AvailabilityErrorModal from "./AvailabilityErrorModal";
 import NotAvailableModal from "./NotAvailableModal";
 
@@ -59,7 +60,9 @@ const SideCard = ({price, pax, startDate, endDate, tourId, setStartDate}: SideCa
             <div className="line mt-20 mb-20" />
             <div className="d-flex items-center justify-between">
               <div className="text-18 fw-500">Total:</div>
-              <div className="text-18 fw-500">${total.toFixed(2)}</div>
+              <div className="text-18 fw-500">
+                <Price price={total} />
+              </div>
             </div>
             <Button buttonType="primary" className="w-100 mt-3" onClick={handleReserve} disabled={isLoading}>
               {isLoggedIn ? "Book Now" : "Log In"}

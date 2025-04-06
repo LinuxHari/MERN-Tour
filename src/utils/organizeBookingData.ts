@@ -18,6 +18,7 @@ const organizeBookingData = (bookings: Bookings[], currentTab: StatusType) => {
     passengers: booking.passengers,
     status: booking.status,
     url: `/booking/${booking.bookingId}`,
+    currencyCode: booking.currencyCode,
   }));
 
   const allBookings: OrganizedBookings[] = [];

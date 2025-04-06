@@ -4,14 +4,14 @@ import {EditTourSchemaType, TourSchemaType} from "../../schema/tourSchema";
 import getFirebaseUpload from "../../utils/getFirebaseUpload";
 import {extractFirebaseImgPath} from "../../utils/extractFirebaseImgPath";
 import {baseApi} from "./baseApi";
-import {EarningsResponse, PublishedToursResponse, TourMutationResponse} from "./type";
+import {EarningsResponse, PublishedToursBody, PublishedToursResponse, TourMutationResponse} from "./type";
 
 export const adminApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    getAdminPublishedTours: builder.query<PublishedToursResponse, number>({
-      query: (page) => ({
+    getAdminPublishedTours: builder.query<PublishedToursResponse, PublishedToursBody>({
+      query: ({page, tourName}) => ({
         url: "/admin/tour",
-        params: {page},
+        params: tourName ? {page, tourName} : {page},
         credentials: "include",
       }),
       providesTags: ["Tour"],

@@ -13,9 +13,14 @@ import {MAX_UPLOAD_IMAGES, MIN_UPLOAD_IMAGES} from "../../config/adminConfig";
 
 const useAdminTourHandler = () => {
   const [page, setPage] = useState(1);
+  const [tourName, setTourName] = useState("");
   const [createTour, {isLoading}] = useCreateTourMutation();
   const [editTour, {isLoading: isUpdating}] = useUpdateTourMutation();
-  const {data: publishedTours, isFetching: isTourLoading, isError: isTourError} = useGetAdminPublishedToursQuery(page);
+  const {
+    data: publishedTours,
+    isFetching: isTourLoading,
+    isError: isTourError,
+  } = useGetAdminPublishedToursQuery({page, tourName});
 
   const [deleteTour, {isLoading: isDeletingTour}] = useDeleteTourMutation();
 
@@ -73,6 +78,7 @@ const useAdminTourHandler = () => {
     isTourError,
     page,
     setPage,
+    setTourName: (tourName: string) => setTourName(tourName),
   };
 };
 

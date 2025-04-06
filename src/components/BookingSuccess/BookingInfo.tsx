@@ -16,6 +16,7 @@ const BookingInfo = ({
   status,
   freeCancellation,
   isCancellable,
+  currencyCode,
 }: BookingInfoProps) => {
   const message = useMemo(() => {
     switch (status) {
@@ -62,7 +63,10 @@ const BookingInfo = ({
 
           <div className="col-md-3 col-12">
             <div>Total</div>
-            <div className="text-accent-2">${amount}</div>
+            <div className="text-accent-2">
+              {currencyCode}
+              {amount}
+            </div>
           </div>
 
           <div className="col-md-3 col-12">

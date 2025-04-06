@@ -4,6 +4,7 @@ import Sidebar from "../components/Admin/Sidebar";
 import useUserHandler from "../hooks/Users/useUserHandler";
 import {Role} from "../type";
 import NotFound from "../pages/NotFound";
+import Header from "../components/Admin/Header";
 
 const AdminLayout = () => {
   const {user, isLoggedIn, isLoading} = useUserHandler(); // Loading will be managed in withAuth
@@ -31,7 +32,7 @@ const AdminLayout = () => {
         </div>
       )}
       <div className="dashboard__content">
-        {/* <Header /> */}
+        <Header />
         <div className="dashboard__content_content">
           <Outlet />
         </div>

@@ -63,6 +63,7 @@ export type BookingDetailsResponse = {
   freeCancellation: boolean;
   isCancellable: boolean;
   refundableAmount: number;
+  currencyCode: string;
   tourInfo: {
     tourName: string;
     startDate: Date;
@@ -99,6 +100,7 @@ export type ReserveBody = {
   };
   startDate: string;
   endDate: string;
+  currency: string;
 };
 
 export type ReservedTourResponse = Omit<ReserveBody, "tourId" | "pax"> & {
@@ -112,6 +114,7 @@ export type ReservedTourResponse = Omit<ReserveBody, "tourId" | "pax"> & {
     name: string;
     minAge: string;
   };
+  currencyCode: string;
 };
 
 export type ReserveResponse = {
@@ -173,6 +176,11 @@ export type TourMutationResponse = {
   error: boolean;
 };
 
+export type PublishedToursBody = {
+  page: number;
+  tourName: string;
+};
+
 export type PublishedToursResponse = {
   tours: (Tour & {
     totalRatings: number;
@@ -196,3 +204,16 @@ export type EarningsResponse = {
   earningsByWeek: number[];
   earningsByMonth: number[];
 };
+
+export type UpdatePasswordBody = {
+  newPassword: string;
+  confirmPassword: string;
+  authToken: string;
+};
+
+export type ExchangeRateResponse = {
+  exchangeRate: number;
+  currencyCode: string;
+};
+
+export type BookingsBody = {status: string; page: number; bookingId: string};
