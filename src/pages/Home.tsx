@@ -25,7 +25,6 @@ const Home = () => {
 
     window.addEventListener("resize", handleResize);
 
-    // Clean up
     return () => {
       window.removeEventListener("resize", handleResize);
     };
@@ -33,7 +32,7 @@ const Home = () => {
 
   return (
     <>
-      <div data-aos="fade-down">
+      <div data-aos="fade-down" className="hero-wrapper">
         <Hero />
       </div>
 

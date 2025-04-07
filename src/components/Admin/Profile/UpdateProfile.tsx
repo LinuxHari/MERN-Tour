@@ -12,25 +12,15 @@ import Textarea from "../../Shared/Teaxtarea/Textarea";
 import {UserSchema, UserSchemaType} from "../../../schema/userSchema";
 import {getFormErrorMessages} from "../../../utils/getFormErrorMessages";
 
-// import ImagePlaceholder from "../AddTour/ImagePlaceholder"
-
 const UpdateProfile = () => {
-  const {user, updateProfile, isUpdatingProfile} = useUserHandler();
+  const {user, updateProfile, isUpdatingProfile, defaultValues} = useUserHandler();
   const {
     register,
     handleSubmit,
     setValue,
     formState: {errors},
   } = useForm<UserSchemaType>({
-    defaultValues: {
-      firstName: user?.firstName || "",
-      lastName: user?.lastName || "",
-      email: user?.email || "",
-      city: user?.city || "",
-      state: user?.state || "",
-      country: user?.country || "",
-      address: user?.address || "",
-    },
+    defaultValues,
     resolver: zodResolver(UserSchema),
   });
 
@@ -39,7 +29,10 @@ const UpdateProfile = () => {
       const phoneInfo = phone(user?.phone.toString(), {country: user.country});
 
       if (phoneInfo.isValid) {
+        const number = phoneInfo.phoneNumber.slice(phoneInfo.countryCode.length);
+
         setValue("countryCode", parseInt(phoneInfo.countryCode));
+        setValue("phone", parseInt(number));
 
         return phoneInfo.phoneNumber;
       }

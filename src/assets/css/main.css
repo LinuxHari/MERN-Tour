@@ -14444,3 +14444,11 @@ a {
     transform: translateX(200%);
   }
 }
+
+/* Isolating hero section for animation overlapping */
+
+.hero-wrapper {
+  position: relative;
+  isolation: isolate;
+  z-index: 10;
+}

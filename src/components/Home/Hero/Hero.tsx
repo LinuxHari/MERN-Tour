@@ -5,7 +5,7 @@ const Hero = () => {
   return (
     <section className="hero -type-1">
       <div className="hero__bg">
-        <Image src="img/hero/1/1.png" alt="" />
+        <Image src="img/hero/1/1.jpeg" alt="" />
         <Image src="img/hero/1/shape.svg" alt="" />
       </div>
 
