@@ -1,33 +1,30 @@
-import {MIN_AGE} from "../../../config/tourConfig";
 import {TourSchemaType} from "../../../schema/tourSchema";
 import {PaxProps} from "../../../type";
+import paxCounterUtils from "../../../utils/paxCounterUtils";
 import stringToTitle from "../../../utils/stringToTitle";
 import Price from "../Price/Price";
 
-type PaxCounterProps = {
+// Conditional props: require minAge when price is passed
+type WithPrice = {
   pax: PaxProps;
   setPax: (type: keyof PaxProps, value: number) => void;
-  price?: TourSchemaType["price"];
+  price: TourSchemaType["price"];
+  minAge: number;
   className?: string;
 };
 
-const PaxCounter = ({pax, setPax, price, className = ""}: PaxCounterProps) => {
-  const paxAgeMap: Record<keyof PaxProps, keyof typeof MIN_AGE> = {
-    adults: "adult",
-    teens: "teen",
-    children: "child",
-    infants: "infant",
-  };
-  const paxEntries = Object.entries(paxAgeMap) as [keyof PaxProps, keyof typeof MIN_AGE][];
+type WithoutPrice = {
+  pax: PaxProps;
+  setPax: (type: keyof PaxProps, value: number) => void;
+  price?: undefined;
+  minAge?: never;
+  className?: string;
+};
 
-  const paxData = paxEntries.map(([paxType, ageCategory], index) => ({
-    paxType,
-    ageCategory,
-    paxCount: pax[paxType] || 0,
-    paxPrice: price?.[ageCategory] ?? 0,
-    minAge: MIN_AGE[ageCategory],
-    maxAge: index > 0 ? MIN_AGE[paxEntries[index - 1][1]] - 1 : "+",
-  }));
+type PaxCounterProps = WithPrice | WithoutPrice;
+
+const PaxCounter = ({pax, setPax, price, className = "", minAge}: PaxCounterProps) => {
+  const paxData = paxCounterUtils({pax, price, minAge});
 
   return (
     <div className={`pax__counter d-flex flex-column w-100 ${className}`}>
@@ -41,8 +38,6 @@ const PaxCounter = ({pax, setPax, price, className = ""}: PaxCounterProps) => {
                 <span className="fw-500">
                   <Price price={paxPrice * paxCount} />
                 </span>
-              ) : price ? (
-                <span className="text-10 text-light-2 mb-0">&nbsp;(No charge)</span>
               ) : null}
             </div>
             <div className="d-flex items-center js-counter">

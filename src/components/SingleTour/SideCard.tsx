@@ -17,9 +17,10 @@ type SideCardProps = {
   endDate: string;
   tourId: string;
   setStartDate: (date: Date) => void;
+  minAge: number;
 };
 
-const SideCard = ({price, pax, startDate, endDate, tourId, setStartDate}: SideCardProps) => {
+const SideCard = ({price, pax, startDate, endDate, tourId, setStartDate, minAge}: SideCardProps) => {
   const {
     currentPax,
     total,
@@ -56,7 +57,7 @@ const SideCard = ({price, pax, startDate, endDate, tourId, setStartDate}: SideCa
               <p className="text-light-2 text-14">You can book for upto 10 people at a time</p>
             </div>
             <SingleDatePicker startDate={new Date(startDate)} setStartDate={setStartDate} dateRange={availableDates} />
-            <PaxCounter setPax={setPax} pax={currentPax} price={price} />
+            <PaxCounter setPax={setPax} pax={currentPax} price={price} minAge={minAge} />
             <div className="line mt-20 mb-20" />
             <div className="d-flex items-center justify-between">
               <div className="text-18 fw-500">Total:</div>

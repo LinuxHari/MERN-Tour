@@ -67,6 +67,7 @@ const TourInfo = ({
               endDate={endDate}
               tourId={tourId}
               setStartDate={setStartDate}
+              minAge={minAge}
             />
           </div>
         </div>
