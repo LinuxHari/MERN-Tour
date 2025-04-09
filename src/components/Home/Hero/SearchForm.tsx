@@ -1,12 +1,7 @@
-import {useEffect} from "react";
-import {FormProvider, useForm} from "react-hook-form";
-import toast from "react-hot-toast";
-import {createSearchParams, useLocation, useNavigate} from "react-router-dom";
-import {zodResolver} from "@hookform/resolvers/zod";
+import {FormProvider} from "react-hook-form";
 import Button from "../../Shared/Button/Button";
-import {searchSchema, SearchSchemaType} from "../../../schema/searchSchema";
-import {getFormErrorMessages} from "../../../utils/getFormErrorMessages";
-import {transformToUrlName} from "../../../utils/urlNameTransformer";
+import {SearchSchemaType} from "../../../schema/searchSchema";
+import useSearchHandler from "../../../hooks/Others/useSearchHandler";
 import SearchDatePicker from "./SearchDatePicker";
 import SearchSuggestions from "./SearchSuggestions";
 import TourType from "./TourType";
@@ -15,73 +10,21 @@ import SearchPax from "./SearchPax";
 type SearchFormProps = {isModify?: false; formData?: never} | {isModify: true; formData: SearchSchemaType};
 
 const SearchForm = ({isModify = false, formData}: SearchFormProps) => {
-  const form = useForm<SearchSchemaType>({
-    resolver: zodResolver(searchSchema),
-    defaultValues: isModify ? formData : {},
-  });
-  const navigate = useNavigate();
-  const {pathname} = useLocation();
-  const {
-    formState: {errors},
-    handleSubmit,
-    reset,
-  } = form;
+  const {handleFormScroll, handleSearch, form, disableTourType, handleSubmit, searchRef, dateRef, tourTypeRef} =
+    useSearchHandler(isModify, formData);
 
-  useEffect(() => {
-    if (isModify && formData) {
-      reset(formData);
-    }
-  }, [formData]);
-
-  useEffect(() => {
-    if (Object.keys(errors).length) {
-      const {errorMessages} = getFormErrorMessages(errors);
-
-      toast.error(errorMessages[0]);
-    }
-  }, [errors]);
-
-  const handleSearch = (formData: SearchSchemaType) => {
-    const {
-      dateRange: {startDate, endDate},
-      destination,
-      destinationId,
-      tourType,
-      pax: {adults, teens, children, infants},
-    } = formData;
-    const transformedDestination = transformToUrlName(destination);
-
-    reset();
-    navigate({
-      pathname: `/tours/${transformedDestination}/${destinationId}`,
-      search: createSearchParams({
-        tourType,
-        startDate: startDate.toISOString().split("T")[0],
-        endDate: endDate.toISOString().split("T")[0],
-        adults: String(adults),
-        children: String(children),
-        infants: String(infants),
-        teens: String(teens),
-      }).toString(),
-    });
-  };
-
-  const handleFormScroll = () => {
-    const isMobile = window.innerWidth < 992;
-    const scrollHeight = isMobile ? 350 : 125;
-    const scrolledHeight = isMobile ? 150 : 100;
-
-    if (window.scrollY < scrolledHeight && pathname === "/") window.scrollBy({top: scrollHeight, behavior: "smooth"});
-  };
+  const minAge = form.watch("minAge");
 
   return (
     <FormProvider {...form}>
       <form className="searchForm -type-1 is-in-view" onSubmit={handleSubmit(handleSearch)}>
         <div className="searchForm__form" role="presentation" onClick={handleFormScroll}>
-          <SearchSuggestions />
-          <SearchDatePicker />
-          <TourType />
-          <SearchPax />
+          <SearchSuggestions ref={searchRef} />
+          <SearchDatePicker ref={dateRef} />
+          <div style={disableTourType ? {pointerEvents: "none", opacity: 0.4} : {}}>
+            <TourType ref={tourTypeRef} />
+          </div>
+          <SearchPax minAge={minAge} />
         </div>
 
         <div className="searchForm__button">

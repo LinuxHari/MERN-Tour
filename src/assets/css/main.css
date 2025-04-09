@@ -90,6 +90,8 @@
 :root {
   --text-8: 8px;
   --text-10: 10px;
+  --text-11: 11px;
+  --text-12: 12px;
   --text-13: 13px;
   --text-14: 14px;
   --text-15: 15px;
@@ -1601,6 +1603,14 @@ h6 {
 
 .text-10 {
   font-size: var(--text-10) !important;
+}
+
+.text-11 {
+  font-size: var(--text-11) !important;
+}
+
+.text-12 {
+  font-size: var(--text-12) !important;
 }
 
 .text-13 {
@@ -4624,7 +4634,7 @@ h6 {
   white-space: nowrap;
   margin: 0;
   width: fit-content;
-  max-width: 20ch;
+  max-width: 16ch;
   text-overflow: ellipsis;
   overflow: hidden;
 }
@@ -14276,6 +14286,13 @@ a {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.line-clamp-1 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
 }
 
 .line-clamp-2 {

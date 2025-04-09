@@ -13,7 +13,11 @@ const Logo = () => {
         onLoad={() => setLoaded(true)}
         style={{display: loaded ? "block" : "none"}}
       />
-      {loaded && <span style={{fontSize: "0.5rem"}}>Adventure Awaits! Let&apos;s Begin</span>}
+      {loaded && (
+        <span style={{fontSize: "0.5rem", textAlign: "center"}}>
+          Adventure Awaits! <span className="text-nowrap">Let&apos;s Begin</span>
+        </span>
+      )}
     </Link>
   );
 };

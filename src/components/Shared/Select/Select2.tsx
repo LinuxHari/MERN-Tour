@@ -82,8 +82,8 @@ const Option = ({value, children, className = ""}: OptionProps) => {
   const {onSelect} = useSelect2Context();
 
   return (
-    <div className={`searchFormItemDropdown__item ${className}}`}>
-      <button className="js-select-control-button" type="button" onClick={() => onSelect(value)}>
+    <div className="searchFormItemDropdown__item">
+      <button className={`js-select-control-button ${className}`} type="button" onClick={() => onSelect(value)}>
         {children}
       </button>
     </div>

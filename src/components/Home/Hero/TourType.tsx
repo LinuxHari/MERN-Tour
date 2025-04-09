@@ -1,10 +1,10 @@
+import {forwardRef} from "react";
 import {useFormContext} from "react-hook-form";
 import {TOUR_TYPES} from "../../../config/tourConfig";
 import Select2 from "../../Shared/Select/Select2";
 
-const TourType = () => {
+const TourType = forwardRef<HTMLDivElement>((_, ref) => {
   const {setValue, watch} = useFormContext();
-
   const tourType = watch("tourType");
 
   return (
@@ -13,7 +13,7 @@ const TourType = () => {
         <div className="searchFormItem__icon size-50 rounded-12 border-1 flex-center">
           <i className="text-20 icon-flag" />
         </div>
-        <div className="searchFormItem__content">
+        <div className="searchFormItem__content" ref={ref}>
           <h5>Tour Type</h5>
           <p className="js-select-control-chosen">{tourType || "Category"}</p>
         </div>
@@ -28,6 +28,8 @@ const TourType = () => {
       </Select2.Menu>
     </Select2>
   );
-};
+});
+
+TourType.displayName = "TourType";
 
 export default TourType;

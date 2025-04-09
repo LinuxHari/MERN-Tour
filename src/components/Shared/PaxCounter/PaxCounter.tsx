@@ -4,31 +4,30 @@ import paxCounterUtils from "../../../utils/paxCounterUtils";
 import stringToTitle from "../../../utils/stringToTitle";
 import Price from "../Price/Price";
 
-// Conditional props: require minAge when price is passed
-type WithPrice = {
+type CommonProps = {
   pax: PaxProps;
   setPax: (type: keyof PaxProps, value: number) => void;
+  className?: string;
+};
+
+type RequireMinAgeWithPrice = {
   price: TourSchemaType["price"];
   minAge: number;
-  className?: string;
 };
 
-type WithoutPrice = {
-  pax: PaxProps;
-  setPax: (type: keyof PaxProps, value: number) => void;
+type OptionalMinAgeWithoutPrice = {
   price?: undefined;
-  minAge?: never;
-  className?: string;
+  minAge?: number;
 };
 
-type PaxCounterProps = WithPrice | WithoutPrice;
+type PaxCounterProps = CommonProps & (RequireMinAgeWithPrice | OptionalMinAgeWithoutPrice);
 
-const PaxCounter = ({pax, setPax, price, className = "", minAge}: PaxCounterProps) => {
+const PaxCounter = ({pax, setPax, price, className = "", minAge = 0}: PaxCounterProps) => {
   const paxData = paxCounterUtils({pax, price, minAge});
 
   return (
     <div className={`pax__counter d-flex flex-column w-100 ${className}`}>
-      {paxData.map(({paxType, paxCount, paxPrice, minAge, maxAge}) => (
+      {paxData.map(({paxType, paxCount, paxPrice, minAge, maxAge, disableDecrement}) => (
         <div className="mb-2" key={paxType}>
           <div className="d-flex items-center justify-between gap-1">
             <div className="text-14">
@@ -45,7 +44,7 @@ const PaxCounter = ({pax, setPax, price, className = "", minAge}: PaxCounterProp
                 className="button size-30 border-1 rounded-full js-down"
                 type="button"
                 onClick={() => paxCount > 0 && setPax(paxType, paxCount - 1)}
-                disabled={paxCount === 0}
+                disabled={paxCount === 0 || disableDecrement}
               >
                 <i className="icon-minus text-10" />
               </button>

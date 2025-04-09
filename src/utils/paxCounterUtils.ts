@@ -22,7 +22,7 @@ const paxCounterUtils = ({pax, price, minAge}: PaxCounterUtilsParams) => {
   const paxEntries = Object.entries(paxAgeMap) as [PaxType, PaxAgeCategory][];
 
   const eligibleAgeCategories =
-    price && minAge !== undefined
+    minAge !== undefined
       ? (Object.entries(MIN_AGE) as [PaxAgeCategory, number][]).filter(([_, age]) => age >= minAge).map(([key]) => key)
       : null;
 
@@ -40,6 +40,7 @@ const paxCounterUtils = ({pax, price, minAge}: PaxCounterUtilsParams) => {
         paxPrice,
         minAge: categoryMinAge,
         maxAge,
+        disableDecrement: paxType === "adults" && paxCount <= 1,
       };
     });
 

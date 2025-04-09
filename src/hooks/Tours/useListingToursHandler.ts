@@ -129,14 +129,15 @@ const useListingToursHandler = () => {
   const transformedDestination = reTransformUrlName(selectedDestination);
 
   const formData: SearchSchemaType = {
-    destination: transformedDestination,
-    destinationId: selectedDestinationId,
+    name: transformedDestination,
+    id: selectedDestinationId,
     tourType: tourType as SearchSchemaType["tourType"],
     dateRange: {
       startDate: new Date(startDate),
       endDate: new Date(endDate),
     },
     pax,
+    tour: "",
   };
 
   const handleNavigation = useCallback(

@@ -112,6 +112,24 @@ export type CardDestination = {
   country: Destination;
 };
 
+export type DestinationSearch = {
+  type: "destination";
+  destination: string;
+  destinationType: string;
+  id: string;
+};
+
+export type TourSearch = {
+  type: "tour";
+  id: string;
+  name: string;
+  image: string;
+  minAge: number;
+  destination: string;
+};
+
+export type SearchOptionType = DestinationSearch | TourSearch;
+
 export enum ImgPath {
   tours = "/tours",
   profile = "/profile",

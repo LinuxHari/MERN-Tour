@@ -139,7 +139,16 @@ export type ReviewResponse = {
   }[];
 };
 
-export type SearchSuggestions = typeof SEARCH_SUGGESTIONS;
+export type SearchSuggestions = {
+  destinations: typeof SEARCH_SUGGESTIONS;
+  tours: {
+    name: string;
+    tourId: string;
+    image: string;
+    destination: string;
+    minAge: number;
+  }[];
+};
 
 export type SingleTourResponse = Omit<Tour, "freeCancellation" | "city" | "state" | "country"> & {
   freeCancellation: boolean;

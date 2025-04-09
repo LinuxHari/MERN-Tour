@@ -1,10 +1,10 @@
-import {useState} from "react";
+import {forwardRef, useState} from "react";
 import {useFormContext} from "react-hook-form";
 import DatePicker from "../../Shared/DatePicker/DatePicker";
 import {formatDate} from "../../../utils/formatDate";
 import Dropdown from "../../Shared/Dropdown/Dropdown";
 
-const SearchDatePicker = () => {
+const SearchDatePicker = forwardRef<HTMLDivElement>((_, ref) => {
   const {setValue, watch} = useFormContext();
   const [close, setClose] = useState(false);
 
@@ -43,7 +43,7 @@ const SearchDatePicker = () => {
         <div className="searchFormItem__icon size-50 rounded-12 border-1 flex-center">
           <i className="text-20 icon-calendar" />
         </div>
-        <div className="searchFormItem__content">
+        <div className="searchFormItem__content" ref={ref}>
           <h5 className="mb-1">When</h5>
           <p className="js-first-date d-inline">{placeholder}</p>
           {dateRange && <span>&nbsp;-&nbsp;</span>}
@@ -55,6 +55,8 @@ const SearchDatePicker = () => {
       </Dropdown.Content>
     </Dropdown>
   );
-};
+});
+
+SearchDatePicker.displayName = "SearchDatePicker";
 
 export default SearchDatePicker;
