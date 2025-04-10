@@ -12,7 +12,7 @@ const Logo = ({isInverted}: LogoProps) => {
     <Link to="/" className="header__logo d-flex flex-column">
       {!loaded && <div className="skeleton-element mx-4" style={{width: "120px", height: "32px"}} />}
       <img
-        src="https://firebasestorage.googleapis.com/v0/b/mern-tours-e23a8.appspot.com/o/assets%2Flogo.png?alt=media&token=eea3d436-7c99-4e81-876c-ba0f720dadfe"
+        src="https://firebasestorage.googleapis.com/v0/b/mern-tours-e23a8.appspot.com/o/assets%2Flogo.png?alt=media&token=626fdce0-f733-49d0-bdcb-ea7f63b0963a"
         alt="MERN-Tours"
         onLoad={() => setLoaded(true)}
         style={{
