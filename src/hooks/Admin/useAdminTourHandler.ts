@@ -1,7 +1,7 @@
 import {useCallback, useState} from "react";
 import toast from "react-hot-toast";
 import {UseFormReset} from "react-hook-form";
-import _ from "lodash";
+import isEqual from "lodash/isEqual";
 import {
   useCreateTourMutation,
   useGetAdminPublishedToursQuery,
@@ -40,7 +40,7 @@ const useAdminTourHandler = () => {
       tourId: string,
       reset: UseFormReset<EditTourSchemaType>,
     ) => {
-      if (_.isEqual(defaultValues, formData)) return toast.error("There are no changes to update");
+      if (isEqual(defaultValues, formData)) return toast.error("There are no changes to update");
 
       const numOfImages = formData.existingImages.length + formData.images.length;
 

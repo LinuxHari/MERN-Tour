@@ -29,12 +29,12 @@ const TourHeader = ({
       <div className="container">
         <div className="row y-gap-20 justify-between items-end">
           <div className="col-auto">
-            <div className="row x-gap-10 y-gap-10 items-center">
+            <div className="row x-gap-10 items-center">
               {/* {freeCancellation && <Label type={1}>Best seller</Label>} */}
               {freeCancellation && <Label>Free cancellation</Label>}
             </div>
 
-            <h2 className="text-40 sm:text-30 lh-14">{name}</h2>
+            <h2 className="text-40 sm:text-30">{name}</h2>
 
             <div className="row x-gap-20 y-gap-20 items-center">
               {/* <div className="col-auto">
@@ -47,8 +47,8 @@ const TourHeader = ({
                     <Rating rating={averageRating} reviewCount={totalRatings} type="multiple" />
                   </div>
                 )}
-                <div className={`d-flex items-center ${totalRatings ? "mx-xl-3" : ""}`}>
-                  <i className="icon-pin text-16 mr-5" />
+                <div className={`d-flex items-center text-16 text-light-2 ${totalRatings ? "mx-xl-3" : ""}`}>
+                  <i className="icon-pin mr-5" />
                   {destination}
                 </div>
               </div>

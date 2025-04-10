@@ -1,6 +1,10 @@
-const CardSkeleton = () => {
+type CardSkeletonProps = {
+  fullWidth?: boolean;
+};
+
+const CardSkeleton = ({fullWidth}: CardSkeletonProps) => {
   return (
-    <div className="col-12 col-md-6 col-lg-4">
+    <div className={fullWidth ? "col-12" : "col-12 col-md-6 col-lg-4"}>
       <div className="card border-0 shadow-sm">
         <div className="skeleton-element" style={{height: "200px"}} />
         <div className="card-body">

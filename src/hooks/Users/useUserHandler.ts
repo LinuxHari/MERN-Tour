@@ -1,5 +1,5 @@
 import toast from "react-hot-toast";
-import _ from "lodash";
+import isEqual from "lodash/isEqual";
 import {useGetUserInfoQuery, useUpdatePasswordMutation, useUpdateUserInfoMutation} from "../../redux/api/userApi";
 import {PasswordSchemaType, UserSchemaType} from "../../schema/userSchema";
 
@@ -21,7 +21,7 @@ const useUserHandler = () => {
   };
 
   const updateProfile = async (userInfo: UserSchemaType) => {
-    if (_.isEqual(defaultValues, userInfo)) return toast.error("No changes to update", {id: "profile-error"});
+    if (isEqual(defaultValues, userInfo)) return toast.error("No changes to update", {id: "profile-error"});
 
     const toastId = toast.loading("Updating profile");
     const {error} = await updateUserInfo(userInfo);

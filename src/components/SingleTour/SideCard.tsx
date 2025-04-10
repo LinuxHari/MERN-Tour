@@ -46,7 +46,7 @@ const SideCard = ({price, pax, startDate, endDate, tourId, setStartDate, minAge}
   return (
     <>
       {isAvailabilityLoading ? (
-        <CardSkeleton />
+        <CardSkeleton fullWidth />
       ) : isError ? (
         <AvailabilityErrorModal showModal={showErrorModal} onClose={onErrorClose} onConfirm={goBack} />
       ) : (
