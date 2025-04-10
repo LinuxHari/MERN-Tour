@@ -33,9 +33,7 @@ const TourHeader = ({
               {/* {freeCancellation && <Label type={1}>Best seller</Label>} */}
               {freeCancellation && <Label>Free cancellation</Label>}
             </div>
-
             <h2 className="text-40 sm:text-30">{name}</h2>
-
             <div className="row x-gap-20 y-gap-20 items-center">
               {/* <div className="col-auto">
                 <Rating rating={rating} reviewCount={reviewCount}/>
