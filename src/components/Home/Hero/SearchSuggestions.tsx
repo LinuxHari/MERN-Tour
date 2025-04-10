@@ -33,6 +33,18 @@ const SearchSuggestions = forwardRef<HTMLDivElement>((_, ref) => {
           <SearchSkeleton />
         ) : (
           <>
+            {suggestions.tours.map(({destination, tourId, name, image, minAge}) => (
+              <Select2.Option value={destination + "|" + name + "|" + tourId + "|" + minAge + "|" + image} key={tourId}>
+                <SearchOption
+                  type="tour"
+                  destination={destination}
+                  id={tourId}
+                  name={name}
+                  image={image}
+                  minAge={minAge}
+                />
+              </Select2.Option>
+            ))}
             {suggestions.destinations.map(({destination, destinationId, destinationType}) => (
               <Select2.Option
                 value={destination + "|" + destinationId + "|" + destinationType}
@@ -48,18 +60,6 @@ const SearchSuggestions = forwardRef<HTMLDivElement>((_, ref) => {
               </Select2.Option>
             ))}
             {/* <div className="mt-2" /> */}
-            {suggestions.tours.map(({destination, tourId, name, image, minAge}) => (
-              <Select2.Option value={destination + "|" + name + "|" + tourId + "|" + minAge + "|" + image} key={tourId}>
-                <SearchOption
-                  type="tour"
-                  destination={destination}
-                  id={tourId}
-                  name={name}
-                  image={image}
-                  minAge={minAge}
-                />
-              </Select2.Option>
-            ))}
 
             {/* {searchText.length < 2 &&
               recentSearches?.map((data) =>

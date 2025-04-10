@@ -40,7 +40,7 @@ const Footer = () => {
                   <div className="col-auto">
                     <div className="text-20 fw-500">
                       Speak to our expert at
-                      <span className="text-accent-1 mx-2">1-800-453-6744</span>
+                      <span className="text-accent-1 mx-2">1-555-555-4444</span>
                     </div>
                   </div>
                 </div>
@@ -62,7 +62,7 @@ const Footer = () => {
       <div className="container">
         <div className="footer__bottom">
           <div className="col-auto">
-            <div>© Copyright Viatours 2024. All Rights Reserved.</div>
+            <div>© Copyright MERN Tours 2024. All Rights Reserved.</div>
           </div>
         </div>
       </div>

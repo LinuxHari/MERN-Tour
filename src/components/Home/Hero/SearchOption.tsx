@@ -21,7 +21,12 @@ const SearchOption = (props: SearchOptionType) => {
       <div className="d-flex flex-column w-100">
         <span className="text-15 line-clamp-2 text-start fw-500">{name}</span>
         <div className="d-flex justify-content-between text-13 text-start">
-          <span className="js-select-control-choice text-light-2">{destination}</span>
+          <span
+            className="js-select-control-choice text-light-2"
+            style={{maxWidth: "20ch", textOverflow: "ellipsis", overflow: "hidden"}}
+          >
+            {destination}
+          </span>
           {minAge > 0 && <span className="js-select-control-choice text-success">Min. age {minAge}</span>}
         </div>
       </div>
