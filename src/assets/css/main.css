@@ -14469,3 +14469,19 @@ a {
   isolation: isolate;
   z-index: 10;
 }
+
+.logo {
+  width: 162px;
+  height: 42px;
+}
+
+.logo.inverted {
+  filter: brightness(0) invert(1);
+}
+
+@media (max-width: 440px) {
+  .logo {
+    width: 120px;
+    height: 32px;
+  }
+}

@@ -15,12 +15,7 @@ const Logo = ({isInverted}: LogoProps) => {
         src="https://firebasestorage.googleapis.com/v0/b/mern-tours-e23a8.appspot.com/o/assets%2Flogo.png?alt=media&token=626fdce0-f733-49d0-bdcb-ea7f63b0963a"
         alt="MERN-Tours"
         onLoad={() => setLoaded(true)}
-        style={{
-          display: loaded ? "block" : "none",
-          width: "160px",
-          height: "42px",
-          filter: isInverted ? "brightness(0) invert(1)" : "none",
-        }}
+        className={`${loaded ? "d-block" : "d-none"} logo ${isInverted ? "inverted" : ""}`}
       />
       {/* {loaded && (
         <span style={{fontSize: "0.5rem", textAlign: "center"}}>

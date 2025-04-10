@@ -40,7 +40,7 @@ const Footer = () => {
                   <div className="col-auto">
                     <div className="text-20 fw-500">
                       Speak to our expert at
-                      <span className="text-accent-1 mx-2">1-555-555-4444</span>
+                      <span className="text-accent-1 mx-2">91-555-555-4444</span>
                     </div>
                   </div>
                 </div>

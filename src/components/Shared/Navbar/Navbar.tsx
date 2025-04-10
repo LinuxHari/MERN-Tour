@@ -11,7 +11,7 @@ const Navbar = () => {
         <div className="header__logo">
           <Logo />
         </div>
-        <div className="headerMobile__right ml-40 items-center mt-2">
+        <div className="headerMobile__right ml-5 items-center">
           <Currency isMobile />
           <AuthSection isMobile />
         </div>
