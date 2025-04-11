@@ -35,7 +35,7 @@ const TourMap = ({location}: TourMapProps) => {
         className: "custom-icon",
         html: `<div style="position:relative">
         <img src="https://firebasestorage.googleapis.com/v0/b/mern-tours-e23a8.appspot.com/o/assets%2Flocation-pin.png?alt=media&token=e056406c-d1aa-4f1a-87b1-5e7a27e2c991" style="height: 32px; width: 28px" />
-        <div style="padding: 5px; background: white; border-radius: 3px; position: absolute; bottom: 32px; box-shadow: 1px 1px 1px rgba(0,0,0,0.2); display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2;overflow: hidden;max-width: 150px;text-overflow: ellipsis;word-break: break-word;">${activity}</div>
+        <div style="padding: 5px; font-family: lexend; background: white; border-radius: 5px; position: absolute; bottom: 32px; box-shadow: 1px 1px 1px rgba(0,0,0,0.2); display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2;overflow: hidden;max-width: 150px;text-overflow: ellipsis;word-break: break-word; font-weight: 500">${activity}</div>
         </div>`,
         iconSize: [100, 40],
         iconAnchor: [50, 40],
