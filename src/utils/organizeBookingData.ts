@@ -9,12 +9,12 @@ const organizeBookingData = (bookings: Bookings[], currentTab: StatusType) => {
       imgUrl: booking.tour.imgUrl,
     },
     startDate: booking.startDate.split("T")[0],
-    endDate: new Date(new Date(booking.startDate).getTime() + 2 * 24 * 60 * 60 * 1000)
+    endDate: new Date(new Date(booking.startDate).getTime() + booking.duration * 24 * 60 * 60 * 1000)
       .toISOString()
       .toString()
       .split("T")[0],
     details: "",
-    price: booking.price,
+    amount: booking.amount,
     passengers: booking.passengers,
     status: booking.status,
     url: `/booking/${booking.bookingId}`,

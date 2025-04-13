@@ -7,6 +7,7 @@ const Home = lazy(() => import("./pages/Home"));
 const AdminLayout = lazy(() => import("./layouts/AdminLayout"));
 const Dashboard = lazy(() => import("./pages/Admin/Dashboard"));
 const Bookings = lazy(() => import("./pages/Admin/Bookings"));
+const TotalBookings = lazy(() => import("./pages/Admin/TotalBookings"));
 const Listings = lazy(() => import("./pages/Admin/Listings"));
 const AddTour = lazy(() => import("./pages/Admin/AddTour"));
 const EditTour = lazy(() => import("./pages/Admin/EditTour"));
@@ -46,6 +47,7 @@ const AppRoutes = () => {
         <Route path="/dashboard" element={<AdminLayout />}>
           <Route index element={<Dashboard render={render} />} />
           <Route path="booking" element={<Bookings render={render} />} />
+          <Route path="total-booking" element={<TotalBookings render={render} />} />
           <Route path="listings" element={<Listings render={render} />} />
           <Route path="add-tour" element={<AddTour render={render} />} />
           <Route path="edit-tour/:tourId" element={<EditTour render={render} />} />

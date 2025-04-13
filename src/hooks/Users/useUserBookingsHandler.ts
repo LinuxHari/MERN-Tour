@@ -1,13 +1,10 @@
-import {useState} from "react";
-import {StatusType} from "../../type";
 import {useGetBookingsQuery} from "../../redux/api/userApi";
+import useBookingUtils from "../Shared/useBookingUtils";
 
 const useUserBookingsHandler = () => {
-  const tableHeaders = ["ID", "Title", "Start date", "End date", "Details", "Price", "Status", "Action"];
+  const tableHeaders = ["ID", "Title", "Start date", "End date", "Details", "Amount", "Status", "Action"];
 
-  const [page, setPage] = useState(1);
-  const [bookingId, setBookingId] = useState<string>("");
-  const [currentTab, setCurrentTab] = useState<StatusType>("Confirmed");
+  const {page, setPage, currentTab, setTab, setBookingId, bookingId} = useBookingUtils();
 
   const {
     data: bookings,
@@ -29,8 +26,8 @@ const useUserBookingsHandler = () => {
     isLoading,
     isError,
     currentTab,
-    setCurrentTab,
-    setBookingId: (bookingId: string) => setBookingId(bookingId),
+    setCurrentTab: setTab,
+    setBookingId,
     page,
     setPage,
     tableHeaders,

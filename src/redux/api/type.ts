@@ -10,6 +10,7 @@ import {
   Filters,
   ListingCard2Props,
   Role,
+  TotalBookings,
   Tour,
 } from "../../type";
 
@@ -225,6 +226,11 @@ export type UpdatePasswordBody = {
 export type ExchangeRateResponse = {
   exchangeRate: number;
   currencyCode: string;
+};
+
+export type TotalBookingsResponse = {
+  bookings: TotalBookings[];
+  totalPages: number;
 };
 
 export type BookingsBody = {status: string; page: number; bookingId: string};

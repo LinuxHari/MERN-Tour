@@ -72,7 +72,7 @@ const Menu = ({children, className = ""}: CommonProps) => {
       data-x-toggle="is-active"
     >
       <div className="searchFormItemDropdown__container">
-        <div className="searchFormItemDropdown__list sroll-bar-1">{children}</div>
+        <div className="searchFormItemDropdown__list">{children}</div>
       </div>
     </div>
   );

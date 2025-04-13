@@ -4,7 +4,14 @@ import {EditTourSchemaType, TourSchemaType} from "../../schema/tourSchema";
 import getFirebaseUpload from "../../utils/getFirebaseUpload";
 import {extractFirebaseImgPath} from "../../utils/extractFirebaseImgPath";
 import {baseApi} from "./baseApi";
-import {EarningsResponse, PublishedToursBody, PublishedToursResponse, TourMutationResponse} from "./type";
+import {
+  BookingsBody,
+  EarningsResponse,
+  PublishedToursBody,
+  PublishedToursResponse,
+  TotalBookingsResponse,
+  TourMutationResponse,
+} from "./type";
 
 export const adminApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
@@ -128,6 +135,21 @@ export const adminApi = baseApi.injectEndpoints({
       }),
       providesTags: (_, __, tourId) => [{type: "Tour", id: tourId}],
     }),
+    getTotalBookings: builder.query<TotalBookingsResponse, BookingsBody>({
+      query: ({page, status, bookingId}) => ({
+        url: "/admin/bookings",
+        params: bookingId ? {status, page, bookingId} : {status, page},
+        credentials: "include",
+      }),
+      providesTags: (_, __, params) => [{type: "TotalBookings", id: params.status}],
+    }),
+    cancelBookedTour: builder.mutation<void, string>({
+      query: (bookingId: string) => ({
+        url: `/admin/bookings/${bookingId}/cancel`,
+        method: "POST",
+        credentials: "include",
+      }),
+    }),
   }),
 });
 
@@ -138,4 +160,6 @@ export const {
   useDeleteTourMutation,
   useGetEarningsQuery,
   useUpdateTourMutation,
+  useGetTotalBookingsQuery,
+  useCancelBookedTourMutation,
 } = adminApi;

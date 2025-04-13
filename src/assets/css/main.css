@@ -4686,7 +4686,7 @@ h6 {
 }
 
 .searchForm.-type-1 .searchFormItemDropdown.-location .searchFormItemDropdown__list {
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
   display: flex;
   flex-direction: column;
   height: auto;

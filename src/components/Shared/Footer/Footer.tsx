@@ -61,7 +61,7 @@ const Footer = () => {
 
       <div className="container">
         <div className="footer__bottom">
-          <div className="col-auto">
+          <div className="col-auto text-end">
             <div>© Copyright MERN Tours 2024. All Rights Reserved.</div>
           </div>
         </div>

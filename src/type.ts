@@ -19,9 +19,9 @@ export type Bookings = {
     name: string;
   };
   startDate: string;
-  endDate: string;
+  duration: number;
   details: string;
-  price: number;
+  amount: number;
   status: Status;
   passengers: number;
   currencyCode: string;
@@ -36,7 +36,7 @@ export type OrganizedBookings = {
   startDate: string;
   endDate: string;
   details: string;
-  price: number;
+  amount: number;
   status: string;
   url: string;
   passengers: number;
@@ -127,6 +127,37 @@ export type TourSearch = {
   minAge: number;
   destination: string;
 };
+
+export type TotalBookings = Bookings & {
+  name: string;
+  email: string;
+  refundableAmount: number;
+  phoneNumber: number;
+  countryCode: number;
+  isCancelable: boolean;
+};
+
+export type OrganizedTotalBookings = {
+  id: string;
+  tour: {
+    name: string;
+    imgUrl: string;
+  };
+  name: string;
+  email: string;
+  phoneNumber: string;
+  startDate: string;
+  endDate: string;
+  details: string;
+  amount: number;
+  refundableAmount: number;
+  status: string;
+  url: string;
+  passengers: number;
+  currencyCode: string;
+  isCancelable: boolean;
+  cancelBooking: (bookingId: string) => void;
+}[];
 
 export type SearchOptionType = DestinationSearch | TourSearch;
 
