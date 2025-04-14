@@ -23,31 +23,31 @@ const Bookings = ({render}: RenderProps) => {
     <>
       {render("Bookings", "My Bookings")}
       <div className="rounded-12 bg-white shadow-2 px-40 pt-40 pb-30 md:px-20 md:pt-20 md:mb-20 mt-60">
-        {isLoading ? (
-          <TableSkeleton />
-        ) : (
-          <Tabs className="-underline-2" onTabChange={(tab) => setCurrentTab(status[tab])}>
-            <Tabs.TabList className="d-flex flex-wrap x-gap-40 y-gap-40 lg:x-gap-20 items-center justify-content-between">
-              <div className="row x-gap-40 y-gap-10 lg:x-gap-20">
-                {status.map((status, index) => (
-                  <div className="col-auto d-flex flex-wrap justify-content-between" key={index}>
-                    <Tabs.Tab
-                      className="text-20 lh-12 fw-500 pb-15 lg:pb-0 js-tabs-button"
-                      data-tab-target=".-tab-item-1"
-                      index={index}
-                    >
-                      {status}
-                    </Tabs.Tab>
-                  </div>
-                ))}
-              </div>
-              <div className="col-auto">
-                <AdminSearchForm placeholder="Booking ID" onSearch={onSearch} minLength={8} maxLength={8} />
-              </div>
-            </Tabs.TabList>
+        <Tabs className="-underline-2" onTabChange={(tab) => setCurrentTab(status[tab])}>
+          <Tabs.TabList className="d-flex flex-wrap x-gap-40 y-gap-40 lg:x-gap-20 items-center justify-content-between">
+            <div className="row x-gap-40 y-gap-10 lg:x-gap-20">
+              {status.map((bookingStatus, index) => (
+                <div className="col-auto d-flex flex-wrap justify-content-between" key={index}>
+                  <Tabs.Tab
+                    className="text-20 lh-12 fw-500 pb-15 lg:pb-0 js-tabs-button"
+                    data-tab-target=".-tab-item-1"
+                    index={index}
+                  >
+                    {bookingStatus}
+                  </Tabs.Tab>
+                </div>
+              ))}
+            </div>
+            <div className="col-auto">
+              <AdminSearchForm placeholder="Booking ID" onSearch={onSearch} minLength={8} maxLength={8} />
+            </div>
+          </Tabs.TabList>
 
-            <Tabs.TabContents>
-              {bookingData.map((data: OrganizedBookings, index: number) => (
+          <Tabs.TabContents>
+            {isLoading ? (
+              <TableSkeleton />
+            ) : (
+              bookingData.map((data: OrganizedBookings, index: number) => (
                 <Tabs.TabContent key={index} index={index}>
                   {!data.length ? (
                     <div className="d-flex align-items-center justify-content-center">
@@ -60,10 +60,10 @@ const Bookings = ({render}: RenderProps) => {
                     </>
                   )}
                 </Tabs.TabContent>
-              ))}
-            </Tabs.TabContents>
-          </Tabs>
-        )}
+              ))
+            )}
+          </Tabs.TabContents>
+        </Tabs>
       </div>
     </>
   );
