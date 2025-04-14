@@ -5,12 +5,12 @@ const OfferBanner = () => {
   return (
     <section className="cta -type-2">
       <div className="cta__bg">
-        <Image src="img/cta/2/bg.png" alt="" />
+        <Image src="img/cta/bg.png" alt="" />
 
         <div className="cta__image">
-          <Image src="img/cta/2/1.png" alt="" />
-          <Image src="img/cta/2/shape.svg" alt="" />
-          <Image src="img/cta/2/shape2.svg" alt="" />
+          <Image src="img/cta/fg.png" alt="" />
+          <Image src="img/cta/shape.svg" alt="" />
+          <Image src="img/cta/shape2.svg" alt="" />
         </div>
       </div>
 

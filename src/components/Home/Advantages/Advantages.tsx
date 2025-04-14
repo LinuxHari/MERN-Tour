@@ -3,22 +3,22 @@ import Image from "../../Shared/Image/Image";
 const Advantages = () => {
   const advantagesData = [
     {
-      icon: "img/icons/1/ticket.svg",
+      icon: "img/icons/ticket.svg",
       title: "Ultimate flexibility",
       text: "You're in control, with free cancellation and payment options to satisfy any plan or budget.",
     },
     {
-      icon: "img/icons/1/hot-air-balloon.svg",
+      icon: "img/icons/hot-air-balloon.svg",
       title: "Memorable experiences",
       text: "Browse and book tours and activities so incredible, you'll want to tell your friends.",
     },
     {
-      icon: "img/icons/1/diamond.svg",
+      icon: "img/icons/diamond.svg",
       title: "Quality at our core",
       text: "High quality standards. Millions of reviews. A tourz company.",
     },
     {
-      icon: "img/icons/1/medal.svg",
+      icon: "img/icons/medal.svg",
       title: "Award-winning support",
       text: "New price? New plan? No problem. We're here to help, 24/7.",
     },

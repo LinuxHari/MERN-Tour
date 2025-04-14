@@ -26,7 +26,7 @@ const Footer = () => {
     <footer className="footer -type-1">
       <div className="footer__main">
         <div className="footer__bg">
-          <Image src="/img/footer/1/bg.svg" alt="Footer background" />
+          <Image src="/img/footer/bg.svg" alt="Footer background" />
         </div>
 
         <div className="container">
