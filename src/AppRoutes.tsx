@@ -46,8 +46,8 @@ const AppRoutes = () => {
         </Route>
         <Route path="/dashboard" element={<AdminLayout />}>
           <Route index element={<Dashboard render={render} />} />
-          <Route path="booking" element={<Bookings render={render} />} />
-          <Route path="total-booking" element={<TotalBookings render={render} />} />
+          <Route path="bookings" element={<Bookings render={render} />} />
+          <Route path="total-bookings" element={<TotalBookings render={render} />} />
           <Route path="listings" element={<Listings render={render} />} />
           <Route path="add-tour" element={<AddTour render={render} />} />
           <Route path="edit-tour/:tourId" element={<EditTour render={render} />} />
