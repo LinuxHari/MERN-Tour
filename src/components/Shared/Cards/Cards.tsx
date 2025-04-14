@@ -1,6 +1,6 @@
 import {Swiper, SwiperSlide} from "swiper/react";
 import {Navigation} from "swiper/modules";
-import TourCard from "../../Admin/Favorites/TourCard";
+import TourCard from "../../User/Favorites/TourCard";
 import {ListingCardProps} from "../../../redux/api/type";
 
 type CardsProps = {

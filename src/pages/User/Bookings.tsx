@@ -1,6 +1,6 @@
 import {OrganizedBookings, RenderProps} from "../../type";
 import Tabs from "../../components/Shared/Tabs/Tabs";
-import Table from "../../components/Admin/Bookings/Table";
+import Table from "../../components/User/Bookings/Table";
 import Pagination from "../../components/Shared/Pagination/Pagination";
 import {status} from "../../config/userConfig";
 import organizeBookingData from "../../utils/organizeBookingData";

@@ -1,5 +1,5 @@
 import {usePopularToursQuery} from "../../../redux/api/baseApi";
-import TourCard from "../../Admin/Favorites/TourCard";
+import TourCard from "../../User/Favorites/TourCard";
 import CardSkeleton from "../../Skeletons/CardSkeleton";
 
 const PopularTours = () => {

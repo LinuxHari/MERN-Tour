@@ -1,6 +1,13 @@
 import {PasswordSchemaType, UserSchemaType} from "../../schema/userSchema";
 import {baseApi} from "./baseApi";
-import {BookingsBody, BookingsResponse, FavoriteToursResponse, UpdatePasswordBody, UserInfoResponse} from "./type";
+import {
+  BookingsBody,
+  BookingsResponse,
+  FavoriteToursResponse,
+  UpdatePasswordBody,
+  UserInfoResponse,
+  UserStatistics,
+} from "./type";
 
 const userApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
@@ -99,7 +106,7 @@ const userApi = baseApi.injectEndpoints({
         body,
       }),
     }),
-    getUserStatistics: builder.query<string, void>({
+    getUserStatistics: builder.query<UserStatistics, void>({
       query: () => ({url: "/user/statistics", credentials: "include"}),
     }),
   }),
@@ -118,4 +125,5 @@ export const {
   useSendResetPassMailMutation,
   useVerifyResetTokenMutation,
   useUpdateResetPasswordMutation,
+  useGetUserStatisticsQuery,
 } = userApi;

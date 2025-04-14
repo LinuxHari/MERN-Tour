@@ -1,5 +1,5 @@
 import {RenderProps} from "../../type";
-import TourCard from "../../components/Admin/Favorites/TourCard";
+import TourCard from "../../components/User/Favorites/TourCard";
 import Pagination from "../../components/Shared/Pagination/Pagination";
 import useUserFavoriteHandler from "../../hooks/Users/useUserFavoriteHandler";
 import withAuth from "../../hocs/withAuth";

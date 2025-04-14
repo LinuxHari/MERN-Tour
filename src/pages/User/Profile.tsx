@@ -1,5 +1,5 @@
-import ChangePassword from "../../components/Admin/Profile/ChangePassword";
-import UpdateProfile from "../../components/Admin/Profile/UpdateProfile";
+import ChangePassword from "../../components/User/Profile/ChangePassword";
+import UpdateProfile from "../../components/User/Profile/UpdateProfile";
 import withAuth from "../../hocs/withAuth";
 import {RenderProps} from "../../type";
 

@@ -1,39 +1,87 @@
-import {useGetEarningsQuery} from "../../redux/api/adminApi";
-import useChart from "./useChart";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
+import {useGetUserStatisticsQuery} from "../../redux/api/userApi";
+
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 const useUserStatsInfo = () => {
-  const {data: statistics, isLoading, isError} = useGetEarningsQuery();
-  const {chartData, chartConfig} = useChart({
-    hours: statistics?.earningsByTwoHours || [],
-    weekly: statistics?.earningsByWeek || [],
-    monthly: statistics?.earningsByMonth || [],
-  });
+  const {data: statistics, isLoading, isError} = useGetUserStatisticsQuery();
 
   const dashboardData = [
     {
-      title: "Total Earnings",
-      total: statistics?.totalEarnings || 0,
-      currency: "$",
-      today: statistics?.todayEarnings || 0,
+      title: "Total Bookings",
+      total: statistics?.totalBookings || 0,
+      // currency: "$",
+      // today: statistics?.todayEarnings || 0,
       icon: "icon-wallet",
     },
     {
-      title: "Total Pending",
-      total: statistics?.totalPendingEarnings || 0,
-      currency: "$",
-      today: statistics?.todayPendingEarnings || 0,
-      icon: "icon-payment",
+      title: "Total Destinations",
+      total: statistics?.totalDestinations || 0,
+      // currency: "$",
+      // today: statistics?.todayPendingEarnings || 0,
+      icon: "icon-pin",
     },
     {
-      title: "Total Booking",
-      total: statistics?.totalSuccessfulEarnings || 0,
-      currency: "$",
-      today: statistics?.todaySuccessfulEarnings || 0,
+      title: "Upcoming Trips",
+      total: statistics?.upcomingTrips || 0,
+      // currency: "$",
+      // today: statistics?.todaySuccessfulEarnings || 0,
       icon: "icon-booking",
+    },
+    {
+      title: "Total Days",
+      total: statistics?.totalDays || 0,
+      // currency: "$",
+      // today: statistics?.todaySuccessfulEarnings || 0,
+      icon: "icon-calendar",
     },
   ];
 
-  return {isLoading, isError, dashboardData, chartConfig, chartData};
+  const chartConfig = {
+    responsive: true,
+    plugins: {
+      legend: {
+        display: false,
+      },
+    },
+    scales: {
+      y: {
+        min: 0,
+        max: 31,
+        ticks: {
+          stepSize: 5,
+        },
+      },
+    },
+  };
+
+  const chartData = {
+    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+    datasets: [
+      {
+        label: "D",
+        data:
+          statistics?.monthlyData && statistics.monthlyData.length
+            ? statistics?.monthlyData
+            : Array.from({length: 12}).fill(0),
+        tension: 0.4,
+        backgroundColor: "#336CFB",
+        borderColor: "#336CFB",
+        borderWidth: 2,
+      },
+    ],
+  };
+
+  return {isLoading, isError, dashboardData, chartData, chartConfig};
 };
 
 export default useUserStatsInfo;

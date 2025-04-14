@@ -9,7 +9,7 @@ export const DASHBOARD_ADMIN = [
 ];
 
 export const DASHBOARD_USER = [
-  // {href: "/dashboard", iconClass: "icon-dashboard", text: "Dashboard"},
+  {href: "overview", iconClass: "icon-dashboard", text: "Overview"},
   {href: "bookings", iconClass: "icon-calendar", text: "My Bookings"},
   // {href: "listings", iconClass: "icon-menu", text: "My Listings"},
   // {href: "add-tour", iconClass: "icon-clipboard", text: "Add Tour"},

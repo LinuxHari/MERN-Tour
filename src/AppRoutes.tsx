@@ -2,17 +2,18 @@ import {lazy, useCallback, Suspense} from "react";
 import {Route, Routes} from "react-router-dom";
 import AppLayout from "./layouts/AppLayout";
 import CommonSkeleton from "./components/Skeletons/CommonSkeleton";
+import Overview from "./pages/User/Overview";
 
 const Home = lazy(() => import("./pages/Home"));
 const AdminLayout = lazy(() => import("./layouts/AdminLayout"));
 const Dashboard = lazy(() => import("./pages/Admin/Dashboard"));
-const Bookings = lazy(() => import("./pages/Admin/Bookings"));
+const Bookings = lazy(() => import("./pages/User/Bookings"));
 const TotalBookings = lazy(() => import("./pages/Admin/TotalBookings"));
 const Listings = lazy(() => import("./pages/Admin/Listings"));
 const AddTour = lazy(() => import("./pages/Admin/AddTour"));
 const EditTour = lazy(() => import("./pages/Admin/EditTour"));
-const Favorites = lazy(() => import("./pages/Admin/Favorites"));
-const Profile = lazy(() => import("./pages/Admin/Profile"));
+const Favorites = lazy(() => import("./pages/User/Favorites"));
+const Profile = lazy(() => import("./pages/User/Profile"));
 const CommonHeader = lazy(() => import("./components/Admin/CommonHeader"));
 const ListingTours = lazy(() => import("./pages/ListingTours"));
 const Tour = lazy(() => import("./pages/SingleTour"));
@@ -46,6 +47,7 @@ const AppRoutes = () => {
         </Route>
         <Route path="/dashboard" element={<AdminLayout />}>
           <Route index element={<Dashboard render={render} />} />
+          <Route path="overview" element={<Overview render={render} />} />
           <Route path="bookings" element={<Bookings render={render} />} />
           <Route path="total-bookings" element={<TotalBookings render={render} />} />
           <Route path="listings" element={<Listings render={render} />} />

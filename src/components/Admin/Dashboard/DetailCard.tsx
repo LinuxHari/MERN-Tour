@@ -2,7 +2,7 @@ type DetailCardProps = {
   title: string;
   total: number;
   currency?: string;
-  amount: number;
+  amount?: number;
   icon: string;
 };
 
@@ -14,17 +14,19 @@ const DetailCard = ({title, total, currency, amount, icon}: DetailCardProps) => 
           <div className="col-auto">
             <div>{title}</div>
             <div className="text-30 fw-700">
-              {currency}
+              {currency && currency}
               {total}
             </div>
 
-            <div>
-              <span className="text-accent-1">
-                {currency}
-                {amount}
-              </span>{" "}
-              Today
-            </div>
+            {typeof amount !== "undefined" && (
+              <div>
+                <span className="text-accent-1">
+                  {currency && currency}
+                  {amount}
+                </span>{" "}
+                Today
+              </div>
+            )}
           </div>
 
           <div className="col-auto">

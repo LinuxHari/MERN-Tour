@@ -1,4 +1,4 @@
-import Table from "../../components/Admin/Bookings/Table";
+import Table from "../../components/User/Bookings/Table";
 import CancelModal from "../../components/Admin/TotalBookings/CancelModal";
 import AdminSearchForm from "../../components/Shared/Forms/AdminSearchForm";
 import NoResult from "../../components/Shared/NoResult/NoResult";

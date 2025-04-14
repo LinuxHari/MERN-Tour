@@ -66,7 +66,7 @@ const TableRow = ({booking}: TableRowProps) => {
                 Cancel
               </Button>
             ) : (
-              <span className="text-danger">Cancelation Period Over</span>
+              <span className="text-danger">Cancelation expired</span>
             )}
           </form>
         ) : (

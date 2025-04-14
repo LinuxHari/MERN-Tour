@@ -233,4 +233,12 @@ export type TotalBookingsResponse = {
   totalPages: number;
 };
 
+export type UserStatistics = {
+  totalBookings: number;
+  upcomingTrips: number;
+  totalDestinations: number;
+  totalDays: number;
+  monthlyData: number[];
+};
+
 export type BookingsBody = {status: string; page: number; bookingId: string};
