@@ -48,7 +48,7 @@ const usePagination = (page: number, perPage: number, fn: PaginationFn, count: n
 
       setPages(pages);
     }
-  }, [page, width]);
+  }, [page, width, numOfPages]);
 
   return {perPage, next, prev, pages, disableNext, disablePrev, numOfPages};
 };

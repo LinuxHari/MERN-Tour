@@ -16,7 +16,7 @@ const useSearchSuggestionHandler = () => {
   });
 
   const {reset, watch} = useFormContext();
-  const {name: selectedPlace, tour: selectedTour, dateRange, pax} = watch();
+  const {name: selectedPlace, tour: selectedTour, dateRange, pax, tourType} = watch();
 
   const inputRef = useRef<HTMLInputElement>(null);
   const [recentSearches, setRecentSearches] = useLocalStorage<SearchOptionType[]>("recent-searches");
@@ -71,7 +71,7 @@ const useSearchSuggestionHandler = () => {
         destinationType,
       };
       reset(
-        {id: destinationId, name: destination, tour: "", minAge: 0, dateRange, pax},
+        {id: destinationId, name: destination, tour: "", minAge: 0, dateRange, pax, tourType},
         {keepDirty: true, keepTouched: true, keepErrors: true},
       );
     } else {

@@ -9,6 +9,7 @@ import {status} from "../../config/userConfig";
 import useTotalBookingsHandler from "../../hooks/Admin/useTotalBookingsHandler";
 import {OrganizedTotalBookings, RenderProps} from "../../type";
 import organizeTotalBookingData from "../../utils/organizeTotalBookings";
+import withAuth from "../../hocs/withAuth";
 
 const TotalBookings = ({render}: RenderProps) => {
   const {
@@ -26,6 +27,7 @@ const TotalBookings = ({render}: RenderProps) => {
     cancelBookedTour,
     handleCancel,
     cancelBookingId,
+    isCancelLoading,
   } = useTotalBookingsHandler();
 
   if (isError || (!isLoading && !bookings))
@@ -83,10 +85,13 @@ const TotalBookings = ({render}: RenderProps) => {
           onClose={closeModal}
           onConfirm={cancelBookedTour}
           bookingId={cancelBookingId}
+          isCanceling={isCancelLoading}
         />
       </div>
     </>
   );
 };
 
-export default TotalBookings;
+const AuthenticatedTotalBookings = withAuth(TotalBookings);
+
+export default AuthenticatedTotalBookings;

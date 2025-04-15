@@ -39,6 +39,7 @@ const useTotalBookingsHandler = () => {
 
     if (error) return toast.error("Failed to cancel booking", {id: toastId});
     toast.success("Booking was canceled successfully!", {id: toastId});
+    onClose();
   }, []);
 
   const handleCancel = useCallback((bookingId: string) => {

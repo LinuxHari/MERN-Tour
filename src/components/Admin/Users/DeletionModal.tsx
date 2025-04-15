@@ -2,22 +2,25 @@ import {ModalProps} from "../../../type";
 import Button from "../../Shared/Button/Button";
 import Modal from "../../Shared/Modal/Modal";
 
-type CancelModalProps = Omit<ModalProps, "onConfirm"> & {
-  onConfirm: (bookingId: string) => void;
-  bookingId: string;
-  isCanceling: boolean;
+type DeletionModalProps = Omit<ModalProps, "onConfirm"> & {
+  onConfirm: (email: string) => void;
+  email: string;
+  isDeleting: boolean;
 };
 
-const CancelModal = ({showModal, onClose, onConfirm, bookingId, isCanceling}: CancelModalProps) => {
+const DeletionModal = ({showModal, onClose, onConfirm, email, isDeleting}: DeletionModalProps) => {
   return (
     <Modal show={showModal} onClose={onClose}>
       <Modal.Header>
-        <Modal.Title>Confirm Cancelation</Modal.Title>
+        <Modal.Title>Confirm Deletion</Modal.Title>
       </Modal.Header>
 
       <Modal.Content>
         <p>
-          Are you sure you want to cancel the booking <span className="fw-600">{bookingId}</span>?
+          Are you sure you want to delete the user with{" "}
+          <span className="d-block">
+            email <span className="fw-600">{email}</span>?
+          </span>
         </p>
       </Modal.Content>
 
@@ -26,15 +29,15 @@ const CancelModal = ({showModal, onClose, onConfirm, bookingId, isCanceling}: Ca
         <Button
           className="py-2 px-5"
           buttonType="primary"
-          onClick={() => onConfirm(bookingId)}
+          onClick={() => onConfirm(email)}
           showIcon={false}
-          disabled={isCanceling}
+          disabled={isDeleting}
         >
-          Confirm
+          Delete
         </Button>
       </Modal.Footer>
     </Modal>
   );
 };
 
-export default CancelModal;
+export default DeletionModal;

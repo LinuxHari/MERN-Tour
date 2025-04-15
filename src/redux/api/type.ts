@@ -241,4 +241,26 @@ export type UserStatistics = {
   monthlyData: number[];
 };
 
+export type UsersBody = {
+  email?: string;
+  page: number;
+};
+
+export type UsersResponse = {
+  users: {
+    firstName: string;
+    lastName: string;
+    email: string;
+    countryCode?: number;
+    phone?: number;
+    country?: string;
+    state?: string;
+    city?: string;
+    address?: string;
+    isVerified: boolean;
+    createdAt: string;
+  }[];
+  totalPages: number;
+};
+
 export type BookingsBody = {status: string; page: number; bookingId: string};

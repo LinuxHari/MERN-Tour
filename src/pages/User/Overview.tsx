@@ -2,6 +2,7 @@ import {Line} from "react-chartjs-2";
 import DetailCard from "../../components/Admin/Dashboard/DetailCard";
 import useUserStatsInfo from "../../hooks/Admin/useUserStatesInfo";
 import {RenderProps} from "../../type";
+import withAuth from "../../hocs/withAuth";
 
 const Overview = ({render}: RenderProps) => {
   const {dashboardData, chartData, chartConfig} = useUserStatsInfo();
@@ -28,4 +29,6 @@ const Overview = ({render}: RenderProps) => {
   );
 };
 
-export default Overview;
+const AuthenticatedOverview = withAuth(Overview);
+
+export default AuthenticatedOverview;

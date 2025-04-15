@@ -11,6 +11,8 @@ import {
   PublishedToursResponse,
   TotalBookingsResponse,
   TourMutationResponse,
+  UsersBody,
+  UsersResponse,
 } from "./type";
 
 export const adminApi = baseApi.injectEndpoints({
@@ -150,6 +152,21 @@ export const adminApi = baseApi.injectEndpoints({
         credentials: "include",
       }),
     }),
+    getUsers: builder.query<UsersResponse, UsersBody>({
+      query: ({email, page}) => ({
+        url: "/admin/users",
+        params: email ? {email, page} : {page},
+        credentials: "include",
+      }),
+    }),
+    deleteUser: builder.mutation<void, string>({
+      query: (email: string) => ({
+        url: "/admin/users",
+        method: "DELETE",
+        params: {email},
+        credentials: "include",
+      }),
+    }),
   }),
 });
 
@@ -162,4 +179,6 @@ export const {
   useUpdateTourMutation,
   useGetTotalBookingsQuery,
   useCancelBookedTourMutation,
+  useGetUsersQuery,
+  useDeleteUserMutation,
 } = adminApi;

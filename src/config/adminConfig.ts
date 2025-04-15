@@ -1,6 +1,7 @@
 export const DASHBOARD_ADMIN = [
   {href: "/dashboard", iconClass: "icon-dashboard", text: "Dashboard"},
   {href: "total-bookings", iconClass: "icon-calendar", text: "Bookings"},
+  {href: "users", iconClass: "icon-calendar", text: "Users"},
   {href: "listings", iconClass: "icon-menu", text: "My Listings"},
   {href: "bookings", iconClass: "icon-calendar", text: "My Bookings"},
   {href: "add-tour", iconClass: "icon-clipboard", text: "Add Tour"},
