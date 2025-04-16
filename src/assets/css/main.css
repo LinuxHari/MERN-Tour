@@ -542,6 +542,7 @@ body {
   color: var(--color-dark-1);
   font-size: 15px;
   line-height: 1.875;
+  top: 0px !important;
 }
 
 select,
@@ -14290,9 +14291,9 @@ a {
 
 .line-clamp-1 {
   overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
 }
 
 .line-clamp-2 {

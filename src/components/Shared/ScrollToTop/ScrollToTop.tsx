@@ -7,7 +7,7 @@ const ScrollToTop = () => {
 
   const scroll = () => window.scrollTo(0, 0);
   const handleScroll = () => {
-    if (window.scrollY > window.innerHeight) setIsVisible(true);
+    if (window.scrollY > window.innerHeight && !pathname.includes("dashboard")) setIsVisible(true);
     else setIsVisible(false);
   };
 

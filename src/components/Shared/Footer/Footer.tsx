@@ -6,7 +6,6 @@ import Newsletter from "./NewsLetter";
 const Footer = () => {
   const companyLinks = [
     {text: "About Us", href: "#"},
-    {text: "Tourz Reviews", href: "#"},
     {text: "Contact Us", href: "#"},
     {text: "Travel Guides", href: "#"},
     {text: "Data Policy", href: "#"},

@@ -11,7 +11,7 @@ type PriceFilterProps = {
 
 const PriceFilter = ({priceRange, setPriceRange}: PriceFilterProps) => {
   const defaultRange = {minPrice: 5, maxPrice: 2000};
-  const {currencyCode} = useCurrencyHandler();
+  const {currencyCode, formatPriceInt} = useCurrencyHandler();
   const [currentPriceRange, setCurrentRange] = useState([defaultRange.minPrice, defaultRange.maxPrice]);
   const [currentMinPrice, currentMaxPrice] = currentPriceRange;
 
@@ -50,11 +50,11 @@ const PriceFilter = ({priceRange, setPriceRange}: PriceFilterProps) => {
                     <span className="">Price: </span>
                     <span className="fw-500 js-lower">
                       {currencyCode}
-                      {currentMinPrice}
+                      {formatPriceInt(currentMinPrice)}
                     </span>
                     <span> - </span>
                     <span className="fw-500 js-upper">
-                      {currencyCode} {currentMaxPrice}
+                      {currencyCode} {formatPriceInt(currentMaxPrice)}
                       {currentMaxPrice === defaultRange.maxPrice && "+"}
                     </span>
                   </div>

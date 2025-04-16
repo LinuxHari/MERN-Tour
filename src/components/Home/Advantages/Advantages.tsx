@@ -29,7 +29,7 @@ const Advantages = () => {
       <div data-anim-wrap className="container animated">
         <div data-anim-child="slide-up" className="row is-in-view">
           <div className="col-auto">
-            <h2 className="text-30 md:text-24">Why choose Tourz</h2>
+            <h2 className="text-30 md:text-24">Why choose MERN Tours</h2>
           </div>
         </div>
 

@@ -43,9 +43,9 @@ const TourCard = ({
 
         <div className="tourCard__content d-flex flex-column justify-content-between px-10 pt-10">
           <div>
-            <div className="tourCard__location d-flex items-center text-13 text-light-2 line-clamp-1">
+            <div className="tourCard__location d-flex items-center text-13 text-light-2">
               <i className="icon-pin d-flex text-16 text-light-2 mr-5" />
-              {location}
+              <span className="line-clamp-1">{location}</span>
             </div>
 
             <h3 className="tourCard__title text-16 fw-500 mt-1 line-clamp-2">

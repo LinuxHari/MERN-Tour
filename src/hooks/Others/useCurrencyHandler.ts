@@ -39,6 +39,13 @@ const useCurrencyHandler = () => {
     [exchangeRate],
   );
 
+  const formatPriceInt = useCallback(
+    (price: number) => {
+      return Math.ceil(price * exchangeRate);
+    },
+    [exchangeRate],
+  );
+
   const formatPriceWithCode = useCallback(
     (price: number) => {
       return `${currencyCode}${(price * exchangeRate).toFixed(2)}`;
@@ -60,6 +67,7 @@ const useCurrencyHandler = () => {
     getExchangeRate: getCurrencyExchangeRate,
     setCurrency: setCurrencyValue,
     formatPrice,
+    formatPriceInt,
     formatPriceWithCode,
     formatPrices,
     storedCurrency,
