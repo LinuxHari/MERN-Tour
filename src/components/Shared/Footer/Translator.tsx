@@ -5,21 +5,19 @@ const Translator = () => {
   const {selectedLang, handleLanguageChange, languages} = useTranslator();
 
   return (
-    <div>
-      <select
-        onChange={handleLanguageChange}
-        value={selectedLang}
-        style={{
-          padding: "8px",
-          fontSize: "14px",
-          borderRadius: "6px",
-          border: "1px solid #ccc",
-          marginBottom: "10px",
-        }}
-      >
-        <option value="" disabled>
+    <div
+      style={{
+        padding: "8px",
+        fontSize: "14px",
+        borderRadius: "6px",
+        border: "1px solid #ccc",
+        marginBottom: "10px",
+      }}
+    >
+      <select onChange={handleLanguageChange} value={selectedLang}>
+        {/* <option value="" disabled>
           Select Language
-        </option>
+        </option> */}
         {languages.map((lang) => (
           <option key={lang.code} value={lang.code}>
             {lang.name}

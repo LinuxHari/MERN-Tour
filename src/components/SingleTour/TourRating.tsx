@@ -1,14 +1,32 @@
 import {ReviewResponse} from "../../redux/api/type";
 import Avatar from "../Shared/Avatar/Avatar";
+import Button from "../Shared/Button/Button";
+import Pagination from "../Shared/Pagination/Pagination";
 import SearchSkeleton from "../Skeletons/SearchSkeleton";
 
 type TourRatingProps = {
   reviews: ReviewResponse["userReviews"];
   isLoading: boolean;
   totalCount: number;
+  page: number;
+  setPage: (page: number) => void;
+  perPage: number;
+  setShowReviewForm: () => void;
+  isDeleting: boolean;
+  deleteReview: () => void;
 };
 
-const TourRating = ({reviews, isLoading, totalCount}: TourRatingProps) => {
+const TourRating = ({
+  reviews,
+  isLoading,
+  totalCount,
+  page,
+  perPage,
+  setPage,
+  setShowReviewForm,
+  isDeleting,
+  deleteReview,
+}: TourRatingProps) => {
   if (isLoading) return <SearchSkeleton />;
 
   return (
@@ -37,13 +55,20 @@ const TourRating = ({reviews, isLoading, totalCount}: TourRatingProps) => {
           </div>
 
           <p className="mt-10">{review.comment}</p>
+
+          {review.isUserReview && (
+            <div className="d-flex justify-content-end x-gap-40 px-3">
+              <Button type="button" className="mx-1" buttonType="icon" disabled={isDeleting} onClick={deleteReview}>
+                <i className="icon-delete" />
+              </Button>
+              <Button type="button" buttonType="icon" onClick={setShowReviewForm}>
+                <i className="icon-pencil" />
+              </Button>
+            </div>
+          )}
         </div>
       ))}
-      {/* 
-    <button className="button -md -outline-accent-1 text-accent-1 mt-30">
-      See more reviews
-      <i className="icon-arrow-top-right text-16 ml-10"></i>
-    </button> */}
+      {totalCount > perPage && <Pagination totalCount={totalCount} page={page} setPage={setPage} perPage={perPage} />}
     </>
   );
 };

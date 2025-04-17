@@ -8,15 +8,17 @@ import Button from "../Shared/Button/Button";
 import Input from "../Shared/Input/Input";
 import Textarea from "../Shared/Teaxtarea/Textarea";
 import {getFormErrorMessages} from "../../utils/getFormErrorMessages";
+import {ReviewResponse} from "../../redux/api/type";
 import StarRating from "./StarRating";
 
 type PostReviewProps = {
   onSubmit: (data: RatingType) => void;
   isLoading: boolean;
+  defaultValues?: ReviewResponse["userReviews"][number];
 };
 
-const PostReview = ({onSubmit, isLoading}: PostReviewProps) => {
-  const form = useForm<RatingType>({resolver: zodResolver(StarRatingSchema)});
+const PostReview = ({onSubmit, isLoading, defaultValues}: PostReviewProps) => {
+  const form = useForm<RatingType>({resolver: zodResolver(StarRatingSchema), defaultValues});
   const {
     control,
     handleSubmit,
@@ -39,7 +41,7 @@ const PostReview = ({onSubmit, isLoading}: PostReviewProps) => {
   }, [errors]);
 
   return (
-    <TourSectionLayout title="Leave a Review">
+    <TourSectionLayout title={`${defaultValues ? "Update Your" : "Leave a"} Review`}>
       <form onSubmit={handleSubmit(submitReview)}>
         <div className="reviewsGrid pt-30">
           <Controller
@@ -97,7 +99,7 @@ const PostReview = ({onSubmit, isLoading}: PostReviewProps) => {
           <div className="row">
             <div className="col-12 d-flex justify-content-end">
               <Button buttonType="primary" type="submit" isLoading={isLoading} disabled={isLoading}>
-                Post Review
+                {defaultValues ? "Update" : "Post"} Review
               </Button>
             </div>
           </div>

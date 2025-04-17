@@ -10,6 +10,7 @@ import {
   ReserveBody,
   ReservedTourResponse,
   ReserveResponse,
+  ReviewBody,
   ReviewResponse,
   SearchSuggestions,
   SingleTourParams,
@@ -75,13 +76,13 @@ export const baseApi = createApi({
       }),
       invalidatesTags: (_, __, bookingId) => [{type: "Book", id: bookingId}],
     }),
-    getReview: builder.query<ReviewResponse, string>({
-      query: (id) => ({
-        url: `/tour/review/${id}`,
-        method: "GET",
+    getReview: builder.query<ReviewResponse, ReviewBody>({
+      query: ({tourId, page}) => ({
+        url: `/tour/review/${tourId}`,
+        params: {page},
         credentials: "include",
       }),
-      providesTags: (_, __, tourId) => [{type: "Review", id: tourId}],
+      providesTags: (_, __, tour) => [{type: "Review", id: tour.tourId}],
     }),
     review: builder.mutation<void, RatingType & {tourId: string}>({
       query: ({tourId, ...review}) => ({
@@ -91,6 +92,20 @@ export const baseApi = createApi({
         body: review,
       }),
       invalidatesTags: (_, __, {tourId}) => [{type: "Review", id: tourId}],
+    }),
+    updateReview: builder.mutation<void, RatingType & {tourId: string}>({
+      query: ({tourId, ...review}) => ({
+        url: `/tour/review/${tourId}`,
+        method: "POST",
+        credentials: "include",
+        body: review,
+      }),
+      invalidatesTags: (_, __, {tourId}) => [{type: "Review", id: tourId}],
+    }),
+    deleteReview: builder.mutation<void, string>({
+      query: (tourId: string) => ({
+        url: `/tour/review/${tourId}`,
+      }),
     }),
     popularTours: builder.query<ListingCardProps[], void>({
       query: () => ({
@@ -135,6 +150,8 @@ export const {
   useCancelBookingMutation,
   useGetReviewQuery,
   useReviewMutation,
+  useUpdateReviewMutation,
+  useDeleteReviewMutation,
   usePopularToursQuery,
   useTrendingToursQuery,
   useGetToursByCategoryQuery,

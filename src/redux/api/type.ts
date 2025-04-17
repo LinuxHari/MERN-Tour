@@ -1,5 +1,6 @@
 import {SEARCH_SUGGESTIONS} from "../../data";
 import {BookingSchemaType} from "../../schema/bookingSchema";
+import {RatingType} from "../../schema/reviewSchema";
 import {UserSchemaType} from "../../schema/userSchema";
 import {
   AppliedFiltersProps,
@@ -122,6 +123,12 @@ export type ReserveResponse = {
   reserveId: string;
 };
 
+export type ReviewBody = {
+  tourId: string;
+  page: number;
+  limit?: number;
+};
+
 export type ReviewResponse = {
   location: number;
   food: number;
@@ -137,6 +144,8 @@ export type ReviewResponse = {
     title: string;
     comment: string;
     profile: string;
+    isUserReview?: boolean;
+    ratings?: RatingType["ratings"];
   }[];
 };
 

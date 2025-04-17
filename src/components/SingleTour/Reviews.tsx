@@ -12,7 +12,22 @@ type ReviewsProps = {
 
 const Reviews = ({tourId, canReview}: ReviewsProps) => {
   const {isLoggedIn} = useUserHandler();
-  const {reviews, isError, isLoading, reviewTour, isReviewLoading} = useReviewHandler(tourId);
+  const {
+    reviews,
+    isError,
+    isLoading,
+    reviewTour,
+    isReviewLoading,
+    isReviewDeletionLoading,
+    deleteUserReview,
+    page,
+    setPage,
+    perPage,
+    userReview,
+    showReviewForm,
+    setShowReviewForm,
+    reviewFormRef,
+  } = useReviewHandler(tourId);
 
   return (
     <>
@@ -28,14 +43,24 @@ const Reviews = ({tourId, canReview}: ReviewsProps) => {
               overallRating={reviews.overallRating}
             />
             {Boolean(reviews.userReviews.length) && (
-              <TourRating reviews={reviews.userReviews} totalCount={reviews.totalCount} isLoading={isLoading} />
+              <TourRating
+                reviews={reviews.userReviews}
+                totalCount={reviews.totalCount}
+                isLoading={isLoading}
+                page={page}
+                setPage={setPage}
+                perPage={perPage}
+                setShowReviewForm={setShowReviewForm}
+                isDeleting={isReviewDeletionLoading}
+                deleteReview={deleteUserReview}
+              />
             )}
           </>
         </TourSectionLayout>
       )}
-      {isLoggedIn && canReview && (
-        <div className="mt-40">
-          <PostReview onSubmit={reviewTour} isLoading={isReviewLoading} />
+      {isLoggedIn && canReview && (!userReview || showReviewForm) && (
+        <div className="mt-40" ref={reviewFormRef}>
+          <PostReview onSubmit={reviewTour} isLoading={isReviewLoading} defaultValues={userReview} />
         </div>
       )}
     </>

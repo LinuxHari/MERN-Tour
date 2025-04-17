@@ -47,7 +47,9 @@ const SearchPax = ({minAge}: SearchPaxProps) => {
         </div>
         <div className="searchFormItem__content">
           <h5>Passengers</h5>
-          <p className="js-select-control-chosen">{total} People</p>
+          <p className="js-select-control-chosen">
+            <span translate="no">{total}&nbsp;</span>People
+          </p>
         </div>
       </Dropdown.Toggle>
       <Dropdown.Content className="searchFormItemDropdown__container absolute top-100 start-50 translate-middle-x z-5">

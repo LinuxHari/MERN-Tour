@@ -11,7 +11,7 @@ const AvailabilitySection = () => {
   const numOfMonths = isMobile ? 1 : isSmallDesktop ? 2 : 3;
 
   return (
-    <div style={{minHeight: "45vh"}}>
+    <div style={{minHeight: "45vh"}} translate="no">
       <Controller
         control={control}
         name="availableDates"

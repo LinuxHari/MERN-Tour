@@ -42,40 +42,42 @@ const SingleDatePicker = ({startDate, setStartDate, dateRange}: SingleDatePicker
         </div>
       </Dropdown.Toggle>
       <Dropdown.Content className="absolute top-100 start-50 translate-middle-x z-5">
-        <Calendar
-          value={new DateObject(startDate)}
-          onChange={onDateChange}
-          minDate={new DateObject(defaultStartDate)}
-          maxDate={new DateObject(maxDate)}
-          mapDays={({date}) => {
-            const jsDate = new Date(date.year, date.month.number - 1, date.day);
-            const foundDate = dateRange?.find((d) => d.date.toDateString() === jsDate.toDateString());
+        <div translate="no">
+          <Calendar
+            value={new DateObject(startDate)}
+            onChange={onDateChange}
+            minDate={new DateObject(defaultStartDate)}
+            maxDate={new DateObject(maxDate)}
+            mapDays={({date}) => {
+              const jsDate = new Date(date.year, date.month.number - 1, date.day);
+              const foundDate = dateRange?.find((d) => d.date.toDateString() === jsDate.toDateString());
 
-            const isBeforeMinDate = jsDate.getTime() < new Date(defaultStartDate).setHours(0, 0, 0, 0);
+              const isBeforeMinDate = jsDate.getTime() < new Date(defaultStartDate).setHours(0, 0, 0, 0);
 
-            return {
-              disabled: !foundDate,
-              children: (
-                <div style={{position: "relative", textAlign: "center", fontSize: "12px"}}>
-                  <span>{date.day}</span>
-                  {foundDate?.extraInfo && !isBeforeMinDate && (
-                    <div
-                      style={{
-                        position: "absolute",
-                        bottom: "2px",
-                        right: "5px",
-                        fontSize: "9px",
-                        color: "blue",
-                      }}
-                    >
-                      {foundDate.extraInfo}
-                    </div>
-                  )}
-                </div>
-              ),
-            };
-          }}
-        />
+              return {
+                disabled: !foundDate,
+                children: (
+                  <div style={{position: "relative", textAlign: "center", fontSize: "12px"}}>
+                    <span>{date.day}</span>
+                    {foundDate?.extraInfo && !isBeforeMinDate && (
+                      <div
+                        style={{
+                          position: "absolute",
+                          bottom: "2px",
+                          right: "5px",
+                          fontSize: "9px",
+                          color: "blue",
+                        }}
+                      >
+                        {foundDate.extraInfo}
+                      </div>
+                    )}
+                  </div>
+                ),
+              };
+            }}
+          />
+        </div>
       </Dropdown.Content>
     </Dropdown>
   );

@@ -35,14 +35,16 @@ const DatePicker = ({onChange}: DatePickerProps) => {
   };
 
   return (
-    <Calendar
-      value={selectedDates}
-      onChange={handleDateChange}
-      range
-      numberOfMonths={isMobile ? 1 : 2}
-      minDate={new DateObject(startDate)}
-      maxDate={new DateObject(maxDate)}
-    />
+    <div translate="no">
+      <Calendar
+        value={selectedDates}
+        onChange={handleDateChange}
+        range
+        numberOfMonths={isMobile ? 1 : 2}
+        minDate={new DateObject(startDate)}
+        maxDate={new DateObject(maxDate)}
+      />
+    </div>
   );
 };
 
