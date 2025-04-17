@@ -15,9 +15,9 @@ const Translator = () => {
       }}
     >
       <select onChange={handleLanguageChange} value={selectedLang}>
-        {/* <option value="" disabled>
+        <option value="" disabled>
           Select Language
-        </option> */}
+        </option>
         {languages.map((lang) => (
           <option key={lang.code} value={lang.code}>
             {lang.name}

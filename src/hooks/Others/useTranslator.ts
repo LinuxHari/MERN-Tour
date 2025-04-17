@@ -32,7 +32,7 @@ const useTranslator = () => {
   ];
 
   const translatorInitialized = useRef(false);
-  const [selectedLang, setSelectedLang] = useState(languages[0].code);
+  const [selectedLang, setSelectedLang] = useState("");
 
   const googleTranslateElementInit = () => {
     if (window.google?.translate?.TranslateElement) {
