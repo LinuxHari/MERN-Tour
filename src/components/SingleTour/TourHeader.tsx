@@ -25,10 +25,10 @@ const TourHeader = ({
   averageRating,
 }: TourHeaderProps) => {
   return (
-    <section className="">
+    <section>
       <div className="container">
         <div className="row y-gap-20 justify-between items-end">
-          <div className="col-auto">
+          <div className="col-12">
             <div className="row x-gap-10 items-center">{freeCancellation && <Label>Free cancellation</Label>}</div>
             <h2 className="text-40 sm:text-30">{name}</h2>
             <div className="row x-gap-20 y-gap-20 items-center">
