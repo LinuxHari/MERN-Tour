@@ -58,7 +58,7 @@ Secure practices are followed in handling API requests and integrating third-par
 git clone https://github.com/LinuxHari/MERN-Tour
 
 # Navigate to the frontend directory
-cd mern-tours-frontend # Or whatever your frontend folder is named
+cd MERN-Tour
 
 # Install dependencies
 npm install # Or yarn install

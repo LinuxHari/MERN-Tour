@@ -1,5 +1,5 @@
-import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
-import env from "../../config/envConfig";
+import {createApi} from "@reduxjs/toolkit/query/react";
+import baseQueryWithReauth from "../baseQueryWithReauth";
 import {RatingType} from "../../schema/reviewSchema";
 import {
   AvailabilityResponse,
@@ -21,7 +21,7 @@ import {
 
 export const baseApi = createApi({
   reducerPath: "api",
-  baseQuery: fetchBaseQuery({baseUrl: `${env.API_BASE_URL}`}),
+  baseQuery: baseQueryWithReauth,
   tagTypes: ["Tour", "User", "Book", "Review", "Favorites", "Earnings", "UNAUTHORIZED", "TotalBookings"],
   endpoints: (builder) => ({
     getSearchSuggestionsByText: builder.query<SearchSuggestions, string>({
