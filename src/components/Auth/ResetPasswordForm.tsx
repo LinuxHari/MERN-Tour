@@ -2,7 +2,11 @@ import usePasswordResetHandler from "../../hooks/Users/usePasswordResetHandler";
 import {ResetPasswordSchema} from "../../schema/authSchema";
 import SimpleForm from "../Shared/Forms/SimpleForm";
 
-const ResetPasswordForm = () => {
+type ResetPasswordFormProps = {
+  accessToken: string;
+};
+
+const ResetPasswordForm = ({accessToken}: ResetPasswordFormProps) => {
   const fields = [
     {type: "password", name: "newPassword"},
     {type: "password", name: "confirmPassword"},
@@ -15,7 +19,7 @@ const ResetPasswordForm = () => {
       fields={[...fields]}
       schema={ResetPasswordSchema}
       buttonText="Reset Password"
-      onSubmit={updateUserPassword}
+      onSubmit={(data) => updateUserPassword({...data, accessToken})}
       isLoading={isUpdatingPassword}
     />
   );

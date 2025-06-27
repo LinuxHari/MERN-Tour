@@ -26,7 +26,7 @@ const ResetPassword = () => {
   return (
     <div className="d-flex align-items-center justify-content-center" style={{height: "100vh"}}>
       {isTokenVerified ? (
-        <ResetPasswordForm />
+        <ResetPasswordForm accessToken={token} />
       ) : (
         <NoResult title="Invalid token" description="Token could have been expired" />
       )}

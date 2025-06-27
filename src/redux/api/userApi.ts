@@ -83,7 +83,7 @@ const userApi = baseApi.injectEndpoints({
     }),
     sendResetPassMail: builder.mutation<void, string>({
       query: (email) => ({
-        url: "/user/reset-mail",
+        url: "/user/reset-password",
         method: "POST",
         body: {
           email,
@@ -91,11 +91,11 @@ const userApi = baseApi.injectEndpoints({
       }),
     }),
     verifyResetToken: builder.mutation<void, string>({
-      query: (authToken) => ({
+      query: (accessToken) => ({
         url: "/user/verify-reset-token",
         method: "POST",
         body: {
-          authToken,
+          accessToken,
         },
       }),
     }),

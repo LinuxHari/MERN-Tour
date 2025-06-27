@@ -1,6 +1,7 @@
 import {FetchBaseQueryError} from "@reduxjs/toolkit/query";
 import {useState} from "react";
 import toast from "react-hot-toast";
+import {useNavigate} from "react-router-dom";
 import {useUpdateResetPasswordMutation, useVerifyResetTokenMutation} from "../../redux/api/userApi";
 import {UpdatePasswordBody} from "../../redux/api/type";
 
@@ -8,6 +9,7 @@ const usePasswordResetHandler = () => {
   const [verifyResetToken, {isLoading: isVerifyingToken, isSuccess: isTokenVerified}] = useVerifyResetTokenMutation();
   const [updatePassword, {isLoading: isUpdatingPassword}] = useUpdateResetPasswordMutation();
   const [showVerifyModal, setShowVerifyModal] = useState(false);
+  const navigate = useNavigate();
 
   const verifyToken = async (token: string) => {
     const {error} = await verifyResetToken(token);
@@ -37,7 +39,8 @@ const usePasswordResetHandler = () => {
       } else return toast.error("Failed to change password");
     }
 
-    return toast.success("Password is changed successfully", {id: toastId});
+    toast.success("Password is changed successfully", {id: toastId});
+    navigate("/login");
   };
 
   const closeVerifyModal = () => setShowVerifyModal(false);

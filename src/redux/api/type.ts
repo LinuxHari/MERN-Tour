@@ -229,7 +229,7 @@ export type EarningsResponse = {
 export type UpdatePasswordBody = {
   newPassword: string;
   confirmPassword: string;
-  authToken: string;
+  accessToken: string;
 };
 
 export type ExchangeRateResponse = {
